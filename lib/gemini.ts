@@ -1,6 +1,9 @@
+'use server';
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const apiKey = process.env.GEMINI_API_KEY || "";
+
 const genAI = new GoogleGenerativeAI(apiKey);
 
 export interface GameState {
@@ -31,7 +34,10 @@ export async function generateScenario(currentDay: number, currentPrice: number)
       }
   }
 
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  // Attempt to use the latest model which often bypasses strict region locks on older models
+  const model = genAI.getGenerativeModel({ 
+      model: "gemini-2.0-flash-exp",
+  });
   const prompt = `
     You are a financial market simulator game master. 
     Current Day: ${currentDay}
@@ -71,7 +77,9 @@ export async function analyzeBehavior(events: GameEvent[]): Promise<{
         }
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+    const model = genAI.getGenerativeModel({ 
+        model: "gemini-2.0-flash-exp" 
+    });
     const eventsJson = JSON.stringify(events);
     
     const prompt = `
