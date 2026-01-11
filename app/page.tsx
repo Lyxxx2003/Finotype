@@ -19,6 +19,12 @@ export default function Home() {
           >
             Start Test
           </Link>
+          <Link
+            href="/pro/game"
+            className="rounded-full bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 text-xl font-semibold hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl"
+          >
+            Pro Simulation
+          </Link>
         </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center text-gray-400 text-sm">
