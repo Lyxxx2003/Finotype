@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { generateScenario, GameState, GameEvent } from '@/lib/gemini';
 import { createClient } from '@/lib/supabase/client';
+import { clearAnswers } from '@/lib/storage';
 
 const MAX_DAYS = 5;
 
@@ -20,6 +21,7 @@ export default function GamePage() {
   const [news, setNews] = useState("Welcome to the market. NebulaAI is the hottest stock right now.");
   const [history, setHistory] = useState<GameEvent[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showLocationError, setShowLocationError] = useState(false);
 
   const calculateNetWorth = () => cash + (shares * stockPrice) - loan;
 
@@ -80,6 +82,13 @@ export default function GamePage() {
     // 4. Generate Next Day Scenario
     try {
         const scenario = await generateScenario(day + 1, stockPrice);
+        
+        if (scenario.error === 'LOCATION_NOT_SUPPORTED') {
+            setShowLocationError(true);
+            setLoading(false);
+            return;
+        }
+
         setStockPrice(prev => Number((prev * (1 + scenario.priceChangePercent)).toFixed(2)));
         setNews(scenario.news);
         setDay(d => d + 1);
@@ -245,6 +254,37 @@ export default function GamePage() {
       {loading && (
           <div className="fixed inset-0 bg-white/50 backdrop-blur-sm flex items-center justify-center z-50">
               <div className="text-xl font-bold text-blue-600 animate-pulse">Simulating Market...</div>
+          </div>
+      )}
+
+      {showLocationError && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+              <div className="bg-white p-8 rounded-xl max-w-md w-full shadow-2xl space-y-6">
+                  <div className="text-center space-y-2">
+                       <h3 className="text-2xl font-bold text-gray-900">Wait a second!</h3>
+                       <p className="text-gray-600">
+                           It seems Gemini AI isn't available in your region yet.
+                           But you can still test your financial personality!
+                       </p>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                      <button
+                          onClick={() => {
+                              clearAnswers();
+                              router.push('/question/1');
+                          }}
+                          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium"
+                      >
+                          Go to Simple Q/A Version
+                      </button>
+                      <button
+                          onClick={() => setShowLocationError(false)}
+                          className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 font-medium"
+                      >
+                          Cancel
+                      </button>
+                  </div>
+              </div>
           </div>
       )}
     </div>

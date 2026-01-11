@@ -3,8 +3,9 @@
 import { useEffect, useState, Suspense } from 'react';
 import { GameEvent } from '@/lib/gemini';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { clearAnswers } from '@/lib/storage';
 
 function AnalysisContent() {
   const [analysis, setAnalysis] = useState<{
@@ -14,8 +15,10 @@ function AnalysisContent() {
   } | null>(null);
   const [loading, setLoading] = useState(true);
   const [netWorth, setNetWorth] = useState<string>('0');
+  const [showLocationError, setShowLocationError] = useState(false);
   
   const searchParams = useSearchParams();
+  const router = useRouter();
   const id = searchParams.get('id');
   const supabase = createClient();
 
@@ -64,6 +67,13 @@ function AnalysisContent() {
                     body: JSON.stringify({ events })
                 });
                 const result = await res.json();
+
+                if (result.error === 'LOCATION_NOT_SUPPORTED') {
+                    setShowLocationError(true);
+                    setLoading(false);
+                    return;
+                }
+
                 setAnalysis(result);
 
                 // 4. Update Supabase with result if we have an ID
@@ -140,6 +150,37 @@ function AnalysisContent() {
               Return Home
           </Link>
       </div>
+
+      {showLocationError && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+              <div className="bg-white p-8 rounded-xl max-w-md w-full shadow-2xl space-y-6">
+                  <div className="text-center space-y-2">
+                       <h3 className="text-2xl font-bold text-gray-900">Wait a second!</h3>
+                       <p className="text-gray-600">
+                           It seems Gemini AI isn't available in your region yet.
+                           But you can still test your financial personality!
+                       </p>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                      <button
+                          onClick={() => {
+                              clearAnswers();
+                              router.push('/question/1');
+                          }}
+                          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium text-center"
+                      >
+                          Go to Simple Q/A Version
+                      </button>
+                      <button
+                          onClick={() => setShowLocationError(false)}
+                          className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 font-medium"
+                      >
+                          Cancel
+                      </button>
+                  </div>
+              </div>
+          </div>
+      )}
     </div>
   );
 }

@@ -25,6 +25,7 @@ export interface GameEvent {
 export async function generateScenario(currentDay: number, currentPrice: number): Promise<{
     news: string;
     priceChangePercent: number;
+    error?: string;
 }> {
   if (!apiKey || apiKey.startsWith("TODO")) {
       // Mock response for testing without API key
@@ -55,8 +56,17 @@ export async function generateScenario(currentDay: number, currentPrice: number)
     // Clean up markdown code blocks if present
     const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
     return JSON.parse(cleanText);
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini Error:", error);
+
+    if (error.toString().includes("400") || error.status === 400) {
+        return {
+            news: "Gemini is not supported for your location. Please try the simple Q/A version.",
+            priceChangePercent: 0,
+            error: "LOCATION_NOT_SUPPORTED"
+        };
+    }
+
     return {
         news: "Analysts are uncertain about the market direction today.",
         priceChangePercent: 0
@@ -68,6 +78,7 @@ export async function analyzeBehavior(events: GameEvent[]): Promise<{
     profile: string;
     summary: string;
     tips: string[];
+    error?: string;
 }> {
     if (!apiKey || apiKey.startsWith("TODO")) {
         return {
@@ -99,8 +110,18 @@ export async function analyzeBehavior(events: GameEvent[]): Promise<{
         const text = result.response.text();
         const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
         return JSON.parse(cleanText);
-    } catch (error) {
+    } catch (error: any) {
         console.error("Gemini Analysis Error:", error);
+
+        if (error.toString().includes("400") || error.status === 400) {
+             return {
+                profile: "Location Not Supported",
+                summary: "Gemini is not supported for your location. Please try the simple Q/A version.",
+                tips: ["Use the simple Q/A version"],
+                error: "LOCATION_NOT_SUPPORTED"
+             };
+        }
+
         return {
             profile: "Unknown",
             summary: "Could not analyze data due to an error.",
