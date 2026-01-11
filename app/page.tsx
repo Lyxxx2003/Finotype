@@ -1,6 +1,17 @@
+'use client';
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { clearAnswers } from "@/lib/storage";
 
 export default function Home() {
+  const router = useRouter();
+
+  const startTest = () => {
+    clearAnswers();
+    router.push('/question/1');
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8 font-sans bg-gray-50 text-gray-900">
       <main className="flex flex-col gap-8 items-center text-center max-w-2xl">
@@ -13,12 +24,12 @@ export default function Home() {
         </p>
         
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <Link
-            href="/question/1"
+          <button
+            onClick={startTest}
             className="rounded-full bg-blue-600 text-white px-8 py-4 text-xl font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
           >
             Start Test
-          </Link>
+          </button>
           <Link
             href="/pro/game"
             className="rounded-full bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 text-xl font-semibold hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl"
