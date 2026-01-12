@@ -12,10 +12,12 @@ function AnalysisContent() {
     profile: string;
     summary: string;
     tips: string[];
+    error?: string;
   } | null>(null);
   const [loading, setLoading] = useState(true);
   const [netWorth, setNetWorth] = useState<string>('0');
-  const [showLocationError, setShowLocationError] = useState(false);
+  const [errorType, setErrorType] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -66,10 +68,57 @@ function AnalysisContent() {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ events })
                 });
+
+                if (!res.ok) {
+                    console.error('[Fetch Error]', {
+                        status: res.status,
+                        statusText: res.statusText,
+                        url: res.url
+                    });
+                    
+                    if (res.status === 429) {
+                        setErrorType('RATE_LIMIT_EXCEEDED');
+                        setErrorMessage('Too many requests. Please try again in a few minutes.');
+                    } else if (res.status === 401 || res.status === 403) {
+                        setErrorType('AUTH_ERROR');
+                        setErrorMessage('Authentication failed. Please refresh and try again.');
+                    } else if (res.status >= 500) {
+                        setErrorType('SERVER_ERROR');
+                        setErrorMessage('Server error occurred. Please try again later.');
+                    } else {
+                        setErrorType('FETCH_ERROR');
+                        setErrorMessage(`Request failed with status ${res.status}`);
+                    }
+                    setLoading(false);
+                    return;
+                }
+
                 const result = await res.json();
 
-                if (result.error === 'LOCATION_NOT_SUPPORTED') {
-                    setShowLocationError(true);
+                // Handle Gemini-specific errors
+                if (result.error) {
+                    console.error('[Gemini Error]', result.error);
+                    setErrorType(result.error);
+                    
+                    switch(result.error) {
+                        case 'LOCATION_NOT_SUPPORTED':
+                            setErrorMessage('Gemini AI is not available in your region yet.');
+                            break;
+                        case 'RATE_LIMIT_EXCEEDED':
+                            setErrorMessage('Too many requests. Please wait a few minutes.');
+                            break;
+                        case 'INVALID_API_KEY':
+                            setErrorMessage('API configuration issue. Please contact support.');
+                            break;
+                        case 'NETWORK_ERROR':
+                            setErrorMessage('Network connection issue. Check your internet.');
+                            break;
+                        case 'SAFETY_FILTER':
+                            setErrorMessage('Content was blocked by safety filters.');
+                            break;
+                        default:
+                            setErrorMessage('An unexpected error occurred.');
+                    }
                     setLoading(false);
                     return;
                 }
@@ -84,8 +133,14 @@ function AnalysisContent() {
                         .eq('id', id);
                 }
 
-            } catch (err) {
-                console.error(err);
+            } catch (err: any) {
+                console.error('[Network/Parse Error]', {
+                    message: err.message,
+                    name: err.name,
+                    stack: err.stack
+                });
+                setErrorType('NETWORK_ERROR');
+                setErrorMessage('Failed to connect to the server. Check your internet connection.');
             } finally {
                 setLoading(false);
             }
@@ -151,31 +206,61 @@ function AnalysisContent() {
           </Link>
       </div>
 
-      {showLocationError && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+      {errorType && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
               <div className="bg-white p-8 rounded-xl max-w-md w-full shadow-2xl space-y-6">
                   <div className="text-center space-y-2">
-                       <h3 className="text-2xl font-bold text-gray-900">Wait a second!</h3>
+                       <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                           <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                           </svg>
+                       </div>
+                       <h3 className="text-2xl font-bold text-gray-900">
+                           {errorType === 'LOCATION_NOT_SUPPORTED' ? 'Region Not Supported' :
+                            errorType === 'RATE_LIMIT_EXCEEDED' ? 'Too Many Requests' :
+                            errorType === 'NETWORK_ERROR' ? 'Connection Issue' :
+                            errorType === 'INVALID_API_KEY' ? 'Configuration Error' :
+                            errorType === 'SAFETY_FILTER' ? 'Content Filtered' :
+                            'Error Occurred'}
+                       </h3>
                        <p className="text-gray-600">
-                           It seems Gemini AI isn't available in your region yet.
-                           But you can still test your financial personality!
+                           {errorMessage}
                        </p>
+                       <div className="text-left mt-4 p-4 bg-gray-50 rounded-lg">
+                           <p className="text-xs text-gray-500 font-mono">Error Code: {errorType}</p>
+                       </div>
                   </div>
                   <div className="flex flex-col gap-3">
+                      {errorType === 'LOCATION_NOT_SUPPORTED' && (
+                          <button
+                              onClick={() => {
+                                  clearAnswers();
+                                  router.push('/question/1');
+                              }}
+                              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium text-center"
+                          >
+                              Go to Simple Q/A Version
+                          </button>
+                      )}
+                      {(errorType === 'NETWORK_ERROR' || errorType === 'SERVER_ERROR' || errorType === 'RATE_LIMIT_EXCEEDED') && (
+                          <button
+                              onClick={() => window.location.reload()}
+                              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium text-center"
+                          >
+                              Retry
+                          </button>
+                      )}
                       <button
-                          onClick={() => {
-                              clearAnswers();
-                              router.push('/question/1');
-                          }}
-                          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium text-center"
+                          onClick={() => router.push('/pro/game')}
+                          className="w-full bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 font-medium"
                       >
-                          Go to Simple Q/A Version
+                          Play Again
                       </button>
                       <button
-                          onClick={() => setShowLocationError(false)}
+                          onClick={() => setErrorType(null)}
                           className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 font-medium"
                       >
-                          Cancel
+                          Close
                       </button>
                   </div>
               </div>

@@ -57,9 +57,18 @@ export async function generateScenario(currentDay: number, currentPrice: number)
     const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
     return JSON.parse(cleanText);
   } catch (error: any) {
-    console.error("Gemini Error:", error);
+    console.error("[Gemini Scenario Error]", {
+      message: error.message,
+      status: error.status,
+      statusText: error.statusText,
+      errorDetails: error.errorDetails || error.toString(),
+      stack: error.stack
+    });
 
-    if (error.toString().includes("400") || error.status === 400) {
+    // Location/Region restrictions (400, 403)
+    if (error.status === 400 || error.status === 403 || 
+        error.toString().includes("400") || 
+        error.toString().includes("User location is not supported")) {
         return {
             news: "Gemini is not supported for your location. Please try the simple Q/A version.",
             priceChangePercent: 0,
@@ -67,9 +76,56 @@ export async function generateScenario(currentDay: number, currentPrice: number)
         };
     }
 
+    // Rate limiting (429)
+    if (error.status === 429 || error.toString().includes("429") || 
+        error.toString().includes("RESOURCE_EXHAUSTED")) {
+        console.error("[Rate Limit] Too many requests to Gemini API");
+        return {
+            news: "Too many requests. Please try again in a moment.",
+            priceChangePercent: 0,
+            error: "RATE_LIMIT_EXCEEDED"
+        };
+    }
+
+    // Invalid API Key (401)
+    if (error.status === 401 || error.toString().includes("401") || 
+        error.toString().includes("API_KEY_INVALID")) {
+        console.error("[Auth Error] Invalid or missing API key");
+        return {
+            news: "API authentication failed. Please check configuration.",
+            priceChangePercent: 0,
+            error: "INVALID_API_KEY"
+        };
+    }
+
+    // Network/Timeout errors
+    if (error.toString().includes("ECONNREFUSED") || 
+        error.toString().includes("ETIMEDOUT") ||
+        error.toString().includes("fetch failed")) {
+        console.error("[Network Error] Could not connect to Gemini API");
+        return {
+            news: "Network connection issue. Please check your internet.",
+            priceChangePercent: 0,
+            error: "NETWORK_ERROR"
+        };
+    }
+
+    // Safety/Content filtering (400 with SAFETY)
+    if (error.toString().includes("SAFETY") || error.toString().includes("blocked")) {
+        console.error("[Safety Error] Content was blocked by safety filters");
+        return {
+            news: "Content generation blocked by safety filters.",
+            priceChangePercent: 0,
+            error: "SAFETY_FILTER"
+        };
+    }
+
+    // Generic fallback
+    console.error("[Unknown Error] Unhandled Gemini error type");
     return {
         news: "Analysts are uncertain about the market direction today.",
-        priceChangePercent: 0
+        priceChangePercent: 0,
+        error: "UNKNOWN_ERROR"
     };
   }
 }
@@ -111,21 +167,81 @@ export async function analyzeBehavior(events: GameEvent[]): Promise<{
         const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
         return JSON.parse(cleanText);
     } catch (error: any) {
-        console.error("Gemini Analysis Error:", error);
+        console.error("[Gemini Analysis Error]", {
+            message: error.message,
+            status: error.status,
+            statusText: error.statusText,
+            errorDetails: error.errorDetails || error.toString(),
+            stack: error.stack
+        });
 
-        if (error.toString().includes("400") || error.status === 400) {
-             return {
+        // Location/Region restrictions (400, 403)
+        if (error.status === 400 || error.status === 403 || 
+            error.toString().includes("400") || 
+            error.toString().includes("User location is not supported")) {
+            return {
                 profile: "Location Not Supported",
                 summary: "Gemini is not supported for your location. Please try the simple Q/A version.",
                 tips: ["Use the simple Q/A version"],
                 error: "LOCATION_NOT_SUPPORTED"
-             };
+            };
         }
 
+        // Rate limiting (429)
+        if (error.status === 429 || error.toString().includes("429") || 
+            error.toString().includes("RESOURCE_EXHAUSTED")) {
+            console.error("[Rate Limit] Too many analysis requests");
+            return {
+                profile: "Rate Limited",
+                summary: "Too many requests. Please wait a moment and try again.",
+                tips: ["Wait a few minutes before requesting another analysis"],
+                error: "RATE_LIMIT_EXCEEDED"
+            };
+        }
+
+        // Invalid API Key (401)
+        if (error.status === 401 || error.toString().includes("401") || 
+            error.toString().includes("API_KEY_INVALID")) {
+            console.error("[Auth Error] Invalid or missing API key for analysis");
+            return {
+                profile: "Authentication Failed",
+                summary: "API authentication failed. Please contact support.",
+                tips: ["Check API key configuration"],
+                error: "INVALID_API_KEY"
+            };
+        }
+
+        // Network/Timeout errors
+        if (error.toString().includes("ECONNREFUSED") || 
+            error.toString().includes("ETIMEDOUT") ||
+            error.toString().includes("fetch failed")) {
+            console.error("[Network Error] Could not connect to Gemini for analysis");
+            return {
+                profile: "Network Issue",
+                summary: "Could not connect to analysis service. Check your internet connection.",
+                tips: ["Verify your internet connection", "Try again in a moment"],
+                error: "NETWORK_ERROR"
+            };
+        }
+
+        // Safety/Content filtering
+        if (error.toString().includes("SAFETY") || error.toString().includes("blocked")) {
+            console.error("[Safety Error] Analysis content was blocked");
+            return {
+                profile: "Content Filtered",
+                summary: "Analysis was blocked by content safety filters.",
+                tips: ["Try playing again with different strategies"],
+                error: "SAFETY_FILTER"
+            };
+        }
+
+        // Generic fallback
+        console.error("[Unknown Error] Unhandled analysis error type");
         return {
             profile: "Unknown",
-            summary: "Could not analyze data due to an error.",
-            tips: ["Try again later"]
+            summary: "Could not analyze data due to an unexpected error.",
+            tips: ["Try again later", "Contact support if the issue persists"],
+            error: "UNKNOWN_ERROR"
         };
     }
 }
