@@ -32,6 +32,8 @@ function AnalysisContent() {
   const [netWorth, setNetWorth] = useState<string>('0');
   const [errorType, setErrorType] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [postFamiliarity, setPostFamiliarity] = useState<string>('');
+  const [familiaritySubmitted, setFamiliaritySubmitted] = useState(false);
   
   const resultRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
@@ -40,6 +42,18 @@ function AnalysisContent() {
   const id = searchParams.get('id');
   const isDemo = searchParams.get('demo') === 'true';
   const supabase = createClient();
+
+  const handlePostFamiliaritySubmit = async () => {
+    if (!postFamiliarity) return;
+    
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+        await supabase.from('profiles').update({
+            post_familiarity: postFamiliarity
+        }).eq('id', user.id);
+        setFamiliaritySubmitted(true);
+    }
+  };
 
   const handleShare = async () => {
     // resultRef.current needs to be the actual DOM element to capture.
@@ -362,6 +376,35 @@ function AnalysisContent() {
                       </div>
                   </div>
                   )}
+
+                  {!familiaritySubmitted ? (
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mt-8" data-html2canvas-ignore>
+                        <h3 className="text-xl font-bold text-gray-900 mb-4">How confident do you feel about finance now?</h3>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <select
+                                value={postFamiliarity}
+                                onChange={(e) => setPostFamiliarity(e.target.value)}
+                                className="flex-1 bg-gray-50 border border-gray-200 text-gray-900 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                            >
+                                <option value="">Select level...</option>
+                                <option value="Beginner">Beginner (What is a 401k?)</option>
+                                <option value="Intermediate">Intermediate (I budget sometimes)</option>
+                                <option value="Advanced">Advanced (I have a diverse portfolio)</option>
+                            </select>
+                            <button
+                                onClick={handlePostFamiliaritySubmit}
+                                disabled={!postFamiliarity}
+                                className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold disabled:opacity-50 hover:bg-blue-700 transition"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="bg-green-50 p-6 rounded-2xl border border-green-100 mt-8 text-center text-green-800 font-medium" data-html2canvas-ignore>
+                        Thanks for your feedback!
+                    </div>
+                )}
               </div>
           </div>
       )}

@@ -16,6 +16,7 @@ export interface Database {
           created_at: string
           industry: string | null
           familiarity: string | null
+          post_familiarity: string | null
           salary: string | null
           payment_freq: string | null
         }
@@ -25,6 +26,7 @@ export interface Database {
           created_at?: string
           industry?: string | null
           familiarity?: string | null
+          post_familiarity?: string | null
           salary?: string | null
           payment_freq?: string | null
         }
@@ -34,6 +36,7 @@ export interface Database {
           created_at?: string
           industry?: string | null
           familiarity?: string | null
+          post_familiarity?: string | null
           salary?: string | null
           payment_freq?: string | null
         }
