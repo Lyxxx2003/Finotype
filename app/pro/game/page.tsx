@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { generateScenario, GameState, GameEvent } from '@/lib/gemini';
 import { createClient } from '@/lib/supabase/client';
 import { clearAnswers } from '@/lib/storage';
@@ -10,9 +10,11 @@ const MAX_DAYS = 5;
 
 export default function GamePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const supabase = createClient();
   
   // Game State
+  const [isDemo, setIsDemo] = useState(searchParams.get('demo') === 'true');
   const [day, setDay] = useState(1);
   const [cash, setCash] = useState(10000);
   const [shares, setShares] = useState(0);
@@ -21,7 +23,7 @@ export default function GamePage() {
   const [news, setNews] = useState("Welcome to the market. NebulaAI is the hottest stock right now.");
   const [history, setHistory] = useState<GameEvent[]>([]);
   const [loading, setLoading] = useState(false);
-  const [showLocationError, setShowLocationError] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const calculateNetWorth = () => cash + (shares * stockPrice) - loan;
 
@@ -81,10 +83,10 @@ export default function GamePage() {
 
     // 4. Generate Next Day Scenario
     try {
-        const scenario = await generateScenario(day + 1, stockPrice);
+        const scenario = await generateScenario(day + 1, stockPrice, isDemo);
         
-        if (scenario.error === 'LOCATION_NOT_SUPPORTED') {
-            setShowLocationError(true);
+        if (scenario.error) {
+            setShowError(true);
             setLoading(false);
             return;
         }
@@ -98,6 +100,8 @@ export default function GamePage() {
         setHistory(newHistory);
     } catch (e) {
         console.error("Failed to generate scenario", e);
+        setShowError(true);
+        setLoading(false);
     } finally {
         setLoading(false);
     }
@@ -108,6 +112,11 @@ export default function GamePage() {
       const finalPrice = stockPrice; // Use last known price
       const totalLoanRepayment = finalLoan * 1.5; // Heavy interest penalty
       const netWorth = finalCash + (finalShares * finalPrice) - totalLoanRepayment;
+
+      if (isDemo) {
+          router.push('/pro/analysis?demo=true');
+          return;
+      }
 
       // Save to Supabase
       const { data: { user } } = await supabase.auth.getUser();
@@ -257,14 +266,13 @@ export default function GamePage() {
           </div>
       )}
 
-      {showLocationError && (
+      {showError && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
               <div className="bg-white p-8 rounded-xl max-w-md w-full shadow-2xl space-y-6">
                   <div className="text-center space-y-2">
-                       <h3 className="text-2xl font-bold text-gray-900">Wait a second!</h3>
+                       <h3 className="text-2xl font-bold text-gray-900">Ooops!</h3>
                        <p className="text-gray-600">
-                           It seems Gemini AI isn't available in your region yet.
-                           But you can still test your financial personality!
+                           Something went wrong (AI service might be unavailable in your region or busy).
                        </p>
                   </div>
                   <div className="flex flex-col gap-3">
@@ -273,15 +281,24 @@ export default function GamePage() {
                               clearAnswers();
                               router.push('/question/1');
                           }}
-                          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium"
+                          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium text-center"
                       >
                           Go to Simple Q/A Version
                       </button>
                       <button
-                          onClick={() => setShowLocationError(false)}
-                          className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 font-medium"
+                          onClick={() => setShowError(false)}
+                          className="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 font-medium text-center"
                       >
-                          Cancel
+                          Retry
+                      </button>
+                       <button
+                          onClick={() => {
+                              setIsDemo(true);
+                              setShowError(false);
+                          }}
+                          className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 font-medium text-center"
+                      >
+                          Check Demo
                       </button>
                   </div>
               </div>

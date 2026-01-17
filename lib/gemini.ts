@@ -22,16 +22,25 @@ export interface GameEvent {
   reasoning?: string; // Optional user input
 }
 
-export async function generateScenario(currentDay: number, currentPrice: number): Promise<{
+export async function generateScenario(currentDay: number, currentPrice: number, isDemo: boolean = false): Promise<{
     news: string;
     priceChangePercent: number;
     error?: string;
 }> {
-  if (!apiKey || apiKey.startsWith("TODO")) {
-      // Mock response for testing without API key
+  if (isDemo || !apiKey || apiKey.startsWith("TODO")) {
+      const demoScenarios = [
+          { news: "NebulaAI announces a breakthrough in quantum computing.", priceChangePercent: 0.12 },
+          { news: "Regulatory concerns cause a slight dip in tech stocks.", priceChangePercent: -0.05 },
+          { news: "Quarterly earnings beat expectations, investors rejoice.", priceChangePercent: 0.08 },
+          { news: "Competitor launches a rival product, market reacts cautiously.", priceChangePercent: -0.03 },
+          { news: "New partnership with major cloud provider confirmed.", priceChangePercent: 0.15 }
+      ];
+      // Pick based on day to be deterministic-ish or just random
+      const scenario = demoScenarios[(currentDay - 1) % demoScenarios.length] || demoScenarios[0];
+      
       return {
-          news: "Market is stable but rumors of a new tech regulation are spreading.",
-          priceChangePercent: (Math.random() * 0.1) - 0.05 // -5% to +5%
+          news: `[DEMO] ${scenario.news}`,
+          priceChangePercent: scenario.priceChangePercent
       }
   }
 

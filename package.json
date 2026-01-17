@@ -13,13 +13,16 @@
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.90.1",
     "dotenv": "^17.2.3",
+    "html2canvas": "^1.4.1",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "sonner": "^2.0.7",
     "undici": "^7.18.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/html2canvas": "^0.5.35",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -7,6 +7,16 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { clearAnswers } from '@/lib/storage';
 
+const DEMO_ANALYSIS = {
+  profile: "Strategic Wealth Builder",
+  summary: "This is a demo analysis. You demonstrate a balanced approach to risk and reward. You make calculated decisions but sometimes hesitate when market volatility increases. Your financial psychology suggests a strong foundation with room for more aggressive growth strategies.",
+  tips: [
+    "Consider automating your savings to reduce decision fatigue.",
+    "Diversify your portfolio to hedge against market volatility.",
+    "Set clear long-term goals to maintain focus during market dips."
+  ]
+};
+
 function AnalysisContent() {
   const [analysis, setAnalysis] = useState<{
     profile: string;
@@ -22,10 +32,17 @@ function AnalysisContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const id = searchParams.get('id');
+  const isDemo = searchParams.get('demo') === 'true';
   const supabase = createClient();
 
   useEffect(() => {
     const fetchData = async () => {
+        if (isDemo) {
+            setAnalysis(DEMO_ANALYSIS);
+            setLoading(false);
+            return;
+        }
+
         let events: GameEvent[] | null = null;
         let finalBalance = 0;
 
@@ -231,36 +248,29 @@ function AnalysisContent() {
                        </div>
                   </div>
                   <div className="flex flex-col gap-3">
-                      {errorType === 'LOCATION_NOT_SUPPORTED' && (
-                          <button
-                              onClick={() => {
-                                  clearAnswers();
-                                  router.push('/question/1');
-                              }}
-                              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium text-center"
-                          >
-                              Go to Simple Q/A Version
-                          </button>
-                      )}
-                      {(errorType === 'NETWORK_ERROR' || errorType === 'SERVER_ERROR' || errorType === 'RATE_LIMIT_EXCEEDED') && (
-                          <button
-                              onClick={() => window.location.reload()}
-                              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium text-center"
-                          >
-                              Retry
-                          </button>
-                      )}
                       <button
-                          onClick={() => router.push('/pro/game')}
-                          className="w-full bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 font-medium"
+                          onClick={() => {
+                              clearAnswers();
+                              router.push('/question/1');
+                          }}
+                          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium text-center"
                       >
-                          Play Again
+                          Go to Simple Q/A Version
                       </button>
                       <button
-                          onClick={() => setErrorType(null)}
-                          className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 font-medium"
+                          onClick={() => window.location.reload()}
+                          className="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 font-medium text-center"
                       >
-                          Close
+                          Retry
+                      </button>
+                      <button
+                          onClick={() => {
+                              setAnalysis(DEMO_ANALYSIS);
+                              setErrorType(null);
+                          }}
+                          className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 font-medium text-center"
+                      >
+                          Check Demo
                       </button>
                   </div>
               </div>
