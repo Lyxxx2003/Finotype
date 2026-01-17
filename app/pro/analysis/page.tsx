@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, Suspense, useRef } from 'react';
 import { GameEvent, simulateYear } from '@/lib/gemini';
 import Link from 'next/link';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { clearAnswers } from '@/lib/storage';
+import html2canvas from 'html2canvas';
 
 const DEMO_ANALYSIS = {
   profile: "Strategic Wealth Builder",
@@ -17,24 +18,116 @@ const DEMO_ANALYSIS = {
   ]
 };
 
+interface AnalysisState {
+  profile: string;
+  summary: string;
+  tips: string[];
+  analysisByTopic?: Record<string, string>;
+  error?: string;
+}
+
 function AnalysisContent() {
-  const [analysis, setAnalysis] = useState<{
-    profile: string;
-    summary: string;
-    tips: string[];
-    error?: string;
-  } | null>(null);
+  const [analysis, setAnalysis] = useState<AnalysisState | null>(null);
   const [loading, setLoading] = useState(true);
   const [netWorth, setNetWorth] = useState<string>('0');
   const [errorType, setErrorType] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
   
+  const resultRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
   const id = searchParams.get('id');
   const isDemo = searchParams.get('demo') === 'true';
   const supabase = createClient();
+
+  const handleShare = async () => {
+    // resultRef.current needs to be the actual DOM element to capture.
+    if (!resultRef.current || !analysis) return;
+    
+    // Slight delay to ensure everything is rendered stable
+    await new Promise(r => setTimeout(r, 100));
+
+    try {
+      // Clone the element and convert lab() colors to rgb() for html2canvas compatibility
+      const clonedElement = resultRef.current.cloneNode(true) as HTMLElement;
+      
+      // Function to convert computed styles with lab() to rgb()
+      const convertLabToRgb = (element: HTMLElement) => {
+        const computedStyle = window.getComputedStyle(element);
+        const styles = ['color', 'backgroundColor', 'borderColor'];
+        
+        styles.forEach(prop => {
+          const value = computedStyle.getPropertyValue(prop);
+          if (value && value.includes('lab')) {
+            // Get the computed color value and convert it
+            const tempDiv = document.createElement('div');
+            tempDiv.style.color = value;
+            document.body.appendChild(tempDiv);
+            const rgb = window.getComputedStyle(tempDiv).color;
+            document.body.removeChild(tempDiv);
+            element.style.setProperty(prop, rgb);
+          }
+        });
+        
+        // Recursively process children
+        Array.from(element.children).forEach(child => {
+          convertLabToRgb(child as HTMLElement);
+        });
+      };
+      
+      // Temporarily add to DOM for processing
+      clonedElement.style.position = 'fixed';
+      clonedElement.style.left = '-9999px';
+      document.body.appendChild(clonedElement);
+      convertLabToRgb(clonedElement);
+      
+      const canvas = await html2canvas(clonedElement, {
+        scale: 2,
+        backgroundColor: '#ffffff',
+        logging: false,
+        useCORS: true, 
+        allowTaint: true,
+        windowWidth: clonedElement.scrollWidth,
+        windowHeight: clonedElement.scrollHeight
+      } as any);
+      
+      // Remove cloned element
+      document.body.removeChild(clonedElement);
+
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+            alert("Could not generate image blob");
+            return;
+        }
+        
+        // Generate a filename
+        const filename = `finotype-pro-${analysis.profile.replace(/\s+/g, '-').toLowerCase()}-${Date.now()}.png`;
+        const file = new File([blob], filename, { type: 'image/png' });
+        
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              title: `My Finotype: ${analysis.profile}`,
+              text: `I simulated my financial future and discovered I'm a ${analysis.profile}. Net Worth: $${netWorth}. Check it out:`,
+              files: [file]
+            });
+          } catch (err) {
+            console.log('Share canceled or failed', err);
+          }
+        } else {
+            // Fallback download
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+      }, 'image/png');
+    } catch (err) {
+      console.error('Failed to generate image', err);
+      alert('Failed to generate image. Please try again.');
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,10 +158,11 @@ function AnalysisContent() {
                         setAnalysis({
                             profile: analysisData.finotype,
                             summary: analysisData.narrative,
-                            tips: Array.isArray(analysisData.tips) ? analysisData.tips : []
+                            tips: Array.isArray(analysisData.tips) ? analysisData.tips : [],
+                            analysisByTopic: analysisData.analysisByTopic
                         });
                     } else {
-                        setAnalysis({ ...analysisData, tips: Array.isArray(analysisData.tips) ? analysisData.tips : [] });
+                        setAnalysis({ ...analysisData, tips: Array.isArray(analysisData.tips) ? analysisData.tips : [] } as AnalysisState);
                     }
                     setLoading(false);
                     return;
@@ -121,7 +215,8 @@ function AnalysisContent() {
                          ...res,
                          profile: res.finotype,
                          summary: res.narrative,
-                         tips: res.tips
+                         tips: res.tips,
+                         analysisByTopic: res.analysisByTopic
                      };
                      
                      // Update state
@@ -152,7 +247,7 @@ function AnalysisContent() {
                      // (Keep existing error handling for legacy if needed, or simplify)
                     if (res.ok) {
                         result = await res.json();
-                        setAnalysis({ ...result, tips: Array.isArray(result.tips) ? result.tips : [] });
+                        setAnalysis({ ...result, tips: Array.isArray(result.tips) ? result.tips : [] } as AnalysisState);
                     }
                 }
             } catch (err: any) {
@@ -187,32 +282,78 @@ function AnalysisContent() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
+    <div className="max-w-3xl mx-auto space-y-8 py-12 px-4">
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-gray-900">Simulation Results</h1>
-        <p className="text-xl text-gray-600">Final Net Worth: <span className={Number(netWorth) > 10000 ? "text-green-600 font-bold" : "text-red-600 font-bold"}>${netWorth}</span></p>
       </div>
 
       {analysis && (
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-              <div className="bg-blue-600 p-8 text-white">
-                  <h2 className="text-lg opacity-90 uppercase tracking-widest font-semibold">Your Financial Persona</h2>
-                  <div className="mt-2 text-5xl font-bold">{analysis.profile}</div>
+          <div 
+            ref={resultRef} 
+            className="rounded-2xl overflow-hidden border"
+            style={{ 
+              backgroundColor: '#ffffff', 
+              borderColor: '#f3f4f6', 
+              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+            }}
+          >
+              <div 
+                className="p-8 text-white relative overflow-hidden"
+                style={{ backgroundColor: '#2563eb', color: '#ffffff' }}
+              >
+                  <div className="relative z-10 text-center">
+                    <h2 
+                        className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
+                        style={{ opacity: 0.9 }}
+                    >
+                        Your Financial Persona
+                    </h2>
+                    <div className="text-4xl md:text-5xl font-bold mb-6">{analysis.profile}</div>
+                    
+                    <div 
+                        className="inline-block backdrop-blur-sm rounded-xl px-6 py-3 border"
+                        style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderColor: 'rgba(255,255,255,0.3)' }}
+                    >
+                        <p 
+                            className="text-xs font-bold uppercase tracking-wider mb-1"
+                            style={{ color: '#dbeafe' }} // blue-100
+                        >
+                            Final Net Worth
+                        </p>
+                        <p className="text-3xl font-bold text-white" style={{ color: '#ffffff' }}>${Number(netWorth).toLocaleString()}</p>
+                    </div>
+                  </div>
+                  {/* Decorative circles */}
+                  <div 
+                    className="absolute top-0 left-0 w-64 h-64 rounded-full -translate-x-1/2 -translate-y-1/2"
+                    style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}
+                  ></div>
+                  <div 
+                    className="absolute bottom-0 right-0 w-48 h-48 rounded-full translate-x-1/3 translate-y-1/3"
+                    style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+                  ></div>
               </div>
               
               <div className="p-8 space-y-8">
                   <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Behavioral Summary</h3>
-                      <p className="text-gray-700 leading-relaxed text-lg">{analysis.summary}</p>
+                      <h3 className="text-xl font-semibold mb-2" style={{ color: '#111827' }}>Behavioral Summary</h3>
+                      <p className="leading-relaxed text-lg" style={{ color: '#374151' }}>{analysis.summary}</p>
                   </div>
 
                   {analysis.tips && Array.isArray(analysis.tips) && analysis.tips.length > 0 && (
                   <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Gemini's Expert Tips</h3>
+                      <h3 className="text-xl font-semibold mb-4" style={{ color: '#111827' }}>Gemini's Expert Tips</h3>
                       <div className="grid gap-4">
                           {analysis.tips.map((tip, idx) => (
-                              <div key={idx} className="flex gap-4 items-start p-4 bg-yellow-50 rounded-lg text-yellow-900">
-                                  <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-yellow-200 rounded-full font-bold text-yellow-800">
+                              <div 
+                                key={idx} 
+                                className="flex gap-4 items-start p-4 rounded-lg border"
+                                style={{ backgroundColor: '#fefce8', color: '#713f12', borderColor: '#fef9c3' }}
+                              >
+                                  <span 
+                                    className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full font-bold"
+                                    style={{ backgroundColor: '#fef08a', color: '#854d0e' }}
+                                  >
                                       {idx + 1}
                                   </span>
                                   <p className="font-medium pt-1">{tip}</p>
@@ -225,11 +366,18 @@ function AnalysisContent() {
           </div>
       )}
 
-      <div className="flex justify-center gap-4">
-          <Link href="/pro/game" className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 font-medium">
+      <div data-html2canvas-ignore className="flex flex-col sm:flex-row justify-center gap-4">
+          <button 
+              onClick={handleShare}
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-bold shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
+          >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+              Share Result
+          </button>
+          <Link href="/pro/game" className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 font-medium text-center">
               Play Again
           </Link>
-          <Link href="/" className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium">
+          <Link href="/" className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium text-center">
               Return Home
           </Link>
       </div>

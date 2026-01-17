@@ -13,6 +13,142 @@ const TOPICS = [
   { id: 'Loans', name: 'Loans' }
 ];
 
+function JobFlipCard({ job, onSelect, selected }: { job: JobOption, onSelect: (j: JobOption) => void, selected: boolean }) {
+    const [flipped, setFlipped] = useState(false);
+    const [showModal, setShowModal] = useState<{title: string, content: string} | null>(null);
+
+    useEffect(() => {
+        if (selected) setFlipped(true);
+    }, [selected]);
+
+    const handleModal = (e: React.MouseEvent, title: string, content: string) => {
+        e.stopPropagation();
+        setShowModal({title, content});
+    };
+
+    return (
+        <>
+            <div 
+                className="h-96 w-full cursor-pointer [perspective:1000px] group"
+                onClick={() => {
+                    if (!selected) onSelect(job);
+                }}
+            >
+                <div className={`relative h-full w-full transition-all duration-700 [transform-style:preserve-3d] ${flipped ? '[transform:rotateY(180deg)]' : ''}`}>
+                    {/* Front */}
+                    <div className="absolute inset-0 bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-lg hover:border-blue-200 transition-all [backface-visibility:hidden] flex flex-col">
+                         <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{job.title}</h3>
+                         <div className="text-2xl text-blue-600 font-bold mb-4">{job.salaryLabel}</div>
+                         <div className="space-y-3 text-sm text-gray-600 flex-grow">
+                             <p className="flex justify-between items-center border-b border-gray-50 pb-2">
+                                 <span className="font-medium">Location</span> 
+                                 <span>{job.location}</span>
+                             </p>
+                             <p 
+                                 className="flex justify-between items-center border-b border-gray-50 pb-2 cursor-help hover:bg-gray-50 p-1 -mx-1 rounded"
+                                 onClick={(e) => handleModal(e, "Compensation", "Bonuses: Often performance based. RSUs: Restricted Stock Units, vest over time. Options: Right to buy stock at set price.")}
+                             >
+                                 <span className="font-medium text-blue-600 underline decoration-dotted">Compensation</span>
+                                 <span className="text-right truncate max-w-[50%]">{job.bonus}</span>
+                             </p>
+                             <p 
+                                 className="flex justify-between items-center cursor-help hover:bg-gray-50 p-1 -mx-1 rounded"
+                                 onClick={(e) => handleModal(e, "Health Insurance", "PPO: Higher premium but more doctor choice. HMO: Lower premium but restricted network. HDHP: Lower premium, high deductible (good with HSA).")}
+                             >
+                                 <span className="font-medium text-blue-600 underline decoration-dotted">Health</span>
+                                 <span className="text-right truncate max-w-[50%]">{job.healthInsurance}</span>
+                             </p>
+                         </div>
+                         <div className="mt-4 text-center text-xs text-blue-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                             Tap to Select
+                         </div>
+                    </div>
+
+                    {/* Back */}
+                    <div className="absolute inset-0 bg-indigo-600 rounded-2xl border border-indigo-500 p-6 flex flex-col items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div className="mb-4 bg-white/20 p-3 rounded-full">
+                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        </div>
+                        <h3 className="text-white font-bold text-lg mb-2">Career Outlook</h3>
+                        <p className="text-indigo-100 text-sm leading-relaxed mb-6">{job.analysis || "Stable choice with good growth."}</p>
+                    </div>
+                </div>
+            </div>
+            
+            {showModal && (
+                <div 
+                    className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-[100] animate-fadeIn" // Increased z-index
+                    onClick={(e) => {
+                         e.stopPropagation();
+                         setShowModal(null);
+                    }}
+                 >
+                    <div className="bg-white p-8 rounded-2xl max-w-md w-full shadow-2xl transform transition-all scale-100 border border-gray-100" onClick={e => e.stopPropagation()}>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">{showModal.title}</h3>
+                        <p className="text-gray-600 mb-8 leading-relaxed">{showModal.content}</p>
+                        <button 
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setShowModal(null);
+                            }}
+                            className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl text-white font-bold transition-colors shadow-lg"
+                        >
+                            Got it
+                        </button>
+                    </div>
+                </div>
+            )}
+        </>
+    )
+}
+
+function FlipCard({ option, onSelect, selected }: { option: LifeOption, onSelect: (o: LifeOption) => void, selected: boolean }) {
+    const [flipped, setFlipped] = useState(false);
+
+    useEffect(() => {
+        if (selected) setFlipped(true);
+    }, [selected]);
+
+    return (
+        <div 
+            className="h-80 w-full cursor-pointer [perspective:1000px] group"
+            onClick={() => {
+                if (!selected) {
+                    onSelect(option);
+                }
+            }}
+        >
+             <div className={`relative h-full w-full transition-all duration-700 [transform-style:preserve-3d] ${flipped ? '[transform:rotateY(180deg)]' : ''}`}>
+                {/* Front */}
+                <div className="absolute inset-0 bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-lg hover:border-blue-200 transition-all [backface-visibility:hidden] flex flex-col">
+                    <div className="flex justify-between items-start mb-3 w-full">
+                        <h3 className="font-bold text-gray-900 text-lg leading-tight">{option.title}</h3>
+                        <span className={`text-xs px-2 py-1 rounded-full font-medium whitespace-nowrap ml-2 ${option.type === 'monthly' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}`}>
+                            {option.type === 'monthly' ? '/mo' : 'one-time'}
+                        </span>
+                    </div>
+                    <p className="text-gray-500 text-sm mb-6 flex-grow">{option.description}</p>
+                    <div className="text-xl text-blue-600 font-bold border-t border-gray-50 pt-4 w-full">
+                        ${option.cost.toLocaleString()}
+                    </div>
+                    <div className="mt-4 text-center text-xs text-blue-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        Tap to Select
+                    </div>
+                </div>
+
+                {/* Back */}
+                <div className="absolute inset-0 bg-blue-600 rounded-2xl border border-blue-500 p-6 flex flex-col items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                     <div className="mb-4 bg-white/20 p-3 rounded-full">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                     </div>
+                     <h3 className="text-white font-bold text-lg mb-2">Choice Analyzed</h3>
+                     <p className="text-blue-100 text-sm leading-relaxed mb-6">{option.analysis || "Good choice!"}</p>
+                </div>
+             </div>
+        </div>
+    )
+}
+
 export default function GamePage() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
@@ -20,12 +156,15 @@ export default function GamePage() {
   const [profile, setProfile] = useState<UserProfile>({ industry: '', familiarity: '', salary: '', paymentFreq: 'Monthly' });
   const [jobs, setJobs] = useState<JobOption[]>([]);
   const [selectedJob, setSelectedJob] = useState<JobOption | null>(null);
+  const [confirmedJob, setConfirmedJob] = useState<JobOption | null>(null); // Actual confirmed selection
   
   // Topic State
   const [currentTopicIndex, setCurrentTopicIndex] = useState(0);
   const [topicOptions, setTopicOptions] = useState<LifeOption[]>([]);
   const [topicDescription, setTopicDescription] = useState('');
   const [choices, setChoices] = useState<Record<string, LifeOption>>({});
+  const [selectedTopicOption, setSelectedTopicOption] = useState<LifeOption | null>(null); // For immediate feedback
+
   
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -144,7 +283,14 @@ export default function GamePage() {
   };
 
   const handleJobSelect = async (job: JobOption) => {
+    // Just select for feedback first
     setSelectedJob(job);
+  };
+
+  const confirmJobChoice = async () => {
+    if (!selectedJob) return;
+    setConfirmedJob(selectedJob); // Actually store it if needed, but mainly we move step
+    
     // Start topics
     setLoading(true);
     await loadTopic(0);
@@ -180,9 +326,16 @@ export default function GamePage() {
   };
 
   const handleTopicChoice = async (option: LifeOption) => {
+      setSelectedTopicOption(option);
+  };
+
+  const confirmTopicChoice = async () => {
+    if (!selectedTopicOption) return;
+    const option = selectedTopicOption;
     const topic = TOPICS[currentTopicIndex];
     const newChoices = { ...choices, [topic.id]: option };
     setChoices(newChoices);
+    setSelectedTopicOption(null); // Reset for next screen
 
     if (currentTopicIndex < TOPICS.length - 1) {
         setLoading(true);
@@ -365,36 +518,27 @@ export default function GamePage() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {jobs.map(job => (
-                            <div 
+                            <JobFlipCard
                                 key={job.id} 
-                                onClick={() => handleJobSelect(job)} 
-                                className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-md hover:border-blue-200 cursor-pointer transition-all transform hover:-translate-y-1 group"
-                            >
-                                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{job.title}</h3>
-                                <div className="text-2xl text-blue-600 font-bold mb-4">{job.salaryLabel}</div>
-                                <div className="space-y-3 text-sm text-gray-600">
-                                    <p className="flex justify-between items-center border-b border-gray-50 pb-2">
-                                        <span className="font-medium">Location</span> 
-                                        <span>{job.location}</span>
-                                    </p>
-                                    <p 
-                                        className="flex justify-between items-center border-b border-gray-50 pb-2 cursor-help hover:bg-gray-50 p-1 -mx-1 rounded"
-                                        onClick={(e) => { e.stopPropagation(); setShowModal({title: "Compensation", content: "Bonuses: Often performance based. RSUs: Restricted Stock Units, vest over time. Options: Right to buy stock at set price."}); }}
-                                    >
-                                        <span className="font-medium text-blue-600 underline decoration-dotted">Compensation</span>
-                                        <span className="text-right truncate max-w-[50%]">{job.bonus}</span>
-                                    </p>
-                                    <p 
-                                        className="flex justify-between items-center cursor-help hover:bg-gray-50 p-1 -mx-1 rounded"
-                                        onClick={(e) => { e.stopPropagation(); setShowModal({title: "Health Insurance", content: "PPO: Higher premium but more doctor choice. HMO: Lower premium but restricted network. HDHP: Lower premium, high deductible (good with HSA)."}); }}
-                                    >
-                                        <span className="font-medium text-blue-600 underline decoration-dotted">Health</span>
-                                        <span className="text-right truncate max-w-[50%]">{job.healthInsurance}</span>
-                                    </p>
-                                </div>
-                            </div>
+                                job={job}
+                                onSelect={handleJobSelect} 
+                                selected={selectedJob?.id === job.id}
+                            />
                         ))}
                     </div>
+
+                    {/* Confimation Button */}
+                    {selectedJob && (
+                        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 animate-bounce">
+                            <button 
+                                onClick={confirmJobChoice}
+                                className="bg-indigo-600 text-white px-8 py-4 rounded-full font-bold shadow-2xl hover:bg-indigo-700 transition flex items-center gap-2"
+                            >
+                                Confirm Career
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                            </button>
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -435,23 +579,26 @@ export default function GamePage() {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {topicOptions.map(option => (
-                                <button 
+                                <FlipCard 
                                     key={option.id} 
-                                    onClick={() => handleTopicChoice(option)}
-                                    className="text-left bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-lg hover:border-blue-200 transition-all transform hover:-translate-y-1 h-full flex flex-col"
-                                >
-                                    <div className="flex justify-between items-start mb-3 w-full">
-                                        <h3 className="font-bold text-gray-900 text-lg leading-tight">{option.title}</h3>
-                                        <span className={`text-xs px-2 py-1 rounded-full font-medium whitespace-nowrap ml-2 ${option.type === 'monthly' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}`}>
-                                            {option.type === 'monthly' ? '/mo' : 'one-time'}
-                                        </span>
-                                    </div>
-                                    <p className="text-gray-500 text-sm mb-6 flex-grow">{option.description}</p>
-                                    <div className="text-xl text-blue-600 font-bold border-t border-gray-50 pt-4 w-full">
-                                        ${option.cost.toLocaleString()}
-                                    </div>
-                                </button>
+                                    option={option} 
+                                    onSelect={handleTopicChoice}
+                                    selected={selectedTopicOption?.id === option.id}
+                                />
                             ))}
+                        </div>
+                    )}
+                    
+                    {/* Next Button for when card is flipped */}
+                    {selectedTopicOption && (
+                        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 animate-bounce">
+                            <button 
+                                onClick={confirmTopicChoice}
+                                className="bg-gray-900 text-white px-8 py-4 rounded-full font-bold shadow-2xl hover:bg-black transition flex items-center gap-2"
+                            >
+                                Continue to Next Step
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                            </button>
                         </div>
                     )}
                 </div>

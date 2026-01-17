@@ -21,12 +21,14 @@ export interface JobOption {
   bonus: string;
   healthInsurance: string;
   location: string;
+  analysis: string; // Feedback on this career path
 }
 
 export interface LifeOption {
   id: string;
   title: string;
   description: string;
+  analysis: string; // Immediate feedback
   cost: number;
   type: string; // 'monthly' or 'one-time'
 }
@@ -37,14 +39,15 @@ export interface SimulationResult {
     narrative: string;
     tips: string[];
     finotype: string;
+    analysisByTopic?: Record<string, string>;
     error?: string;
 }
 
 function getFallbackJobs(profile: UserProfile): JobOption[] {
     return [
-        { id: "1", title: "Junior " + profile.industry + " Associate", salary: 50000, salaryLabel: "$4,166/mo", bonus: "5% annual", healthInsurance: "Basic HMP", location: "Remote" },
-        { id: "2", title: "Mid-Level " + profile.industry + " Specialist", salary: 75000, salaryLabel: "$6,250/mo", bonus: "10% annual + Stock Options", healthInsurance: "Standard PPO", location: "New York, NY" },
-        { id: "3", title: "Senior " + profile.industry + " Manager", salary: 120000, salaryLabel: "$10,000/mo", bonus: "20% annual + RSUs", healthInsurance: "Premium PPO + Dental", location: "San Francisco, CA" }
+        { id: "1", title: "Junior " + profile.industry + " Associate", salary: 50000, salaryLabel: "$4,166/mo", bonus: "5% annual", healthInsurance: "Basic HMP", location: "Remote", analysis: "A great entry-level starting point with low pressure." },
+        { id: "2", title: "Mid-Level " + profile.industry + " Specialist", salary: 75000, salaryLabel: "$6,250/mo", bonus: "10% annual + Stock Options", healthInsurance: "Standard PPO", location: "New York, NY", analysis: "Solid growth potential but comes with higher cost of living." },
+        { id: "3", title: "Senior " + profile.industry + " Manager", salary: 120000, salaryLabel: "$10,000/mo", bonus: "20% annual + RSUs", healthInsurance: "Premium PPO + Dental", location: "San Francisco, CA", analysis: "High reward, high stress, and very high living costs." }
     ];
 }
 
@@ -53,33 +56,33 @@ function getFallbackLifeOptions(topic: string): { description: string, options: 
         "Housing": {
             description: "Housing is likely your biggest monthly expense. Choosing correctly depends on your income and lifestyle.",
             options: [
-                { id: "opt1", title: "Share an Apartment", description: "Split rent with roommates.", cost: 800, type: "monthly" },
-                { id: "opt2", title: "Studio Apartment", description: "Live alone in a modest space.", cost: 1500, type: "monthly" },
-                { id: "opt3", title: "Luxury Condo", description: "High-end amenities and location.", cost: 3000, type: "monthly" }
+                { id: "opt1", title: "Share an Apartment", description: "Split rent with roommates.", analysis: "Good choice! Budget-friendly.", cost: 800, type: "monthly" },
+                { id: "opt2", title: "Studio Apartment", description: "Live alone in a modest space.", analysis: "Balanced choice for privacy and cost.", cost: 1500, type: "monthly" },
+                { id: "opt3", title: "Luxury Condo", description: "High-end amenities and location.", analysis: "Expensive, but comfortable.", cost: 3000, type: "monthly" }
             ]
         },
         "Credit Cards": {
             description: "Credit cards can build credit or create debt. Pick one that matches your spending habits.",
             options: [
-                { id: "opt1", title: "No Annual Fee Card", description: "Basic cash back, no perks.", cost: 0, type: "one-time" },
-                { id: "opt2", title: "Travel Rewards Card", description: "Points for travel, $95 annual fee.", cost: 95, type: "one-time" },
-                { id: "opt3", title: "Premium Platinum Card", description: "Lounge access, $695 annual fee.", cost: 695, type: "one-time" }
+                { id: "opt1", title: "No Annual Fee Card", description: "Basic cash back, no perks.", analysis: "Safe, no-cost option.", cost: 0, type: "one-time" },
+                { id: "opt2", title: "Travel Rewards Card", description: "Points for travel, $95 annual fee.", analysis: "Great if you travel often.", cost: 95, type: "one-time" },
+                { id: "opt3", title: "Premium Platinum Card", description: "Lounge access, $695 annual fee.", analysis: "High fee, ensure you use the perks.", cost: 695, type: "one-time" }
             ]
         },
         "Investment": {
             description: "Investing helps grow your wealth over time. Consider your risk tolerance.",
             options: [
-                { id: "opt1", title: "High Yield Savings", description: "Safe, low return (4-5%).", cost: 500, type: "monthly" },
-                { id: "opt2", title: "Index Funds (S&P 500)", description: "Moderate risk, checks market average.", cost: 500, type: "monthly" },
-                { id: "opt3", title: "Individual Crypto/Tech Stocks", description: "High risk, potential high reward.", cost: 500, type: "monthly" }
+                { id: "opt1", title: "High Yield Savings", description: "Safe, low return (4-5%).", analysis: "Low risk, liquid cash.", cost: 500, type: "monthly" },
+                { id: "opt2", title: "Index Funds (S&P 500)", description: "Moderate risk, checks market average.", analysis: "Solid long-term growth.", cost: 500, type: "monthly" },
+                { id: "opt3", title: "Individual Crypto/Tech Stocks", description: "High risk, potential high reward.", analysis: "High risk, high variance.", cost: 500, type: "monthly" }
             ]
         },
         "Loans": {
                 description: "Sometimes you need leverage. Be careful with interest rates.",
                 options: [
-                    { id: "opt1", title: "No Loans", description: "Live completely debt-free.", cost: 0, type: "monthly" },
-                    { id: "opt2", title: "Car Loan", description: "Buy a new car.", cost: 400, type: "monthly" },
-                    { id: "opt3", title: "Personal Loan for Vacation", description: "Borrow for a trip.", cost: 200, type: "monthly" }
+                    { id: "opt1", title: "No Loans", description: "Live completely debt-free.", analysis: "Excellent for cash flow.", cost: 0, type: "monthly" },
+                    { id: "opt2", title: "Car Loan", description: "Buy a new car.", analysis: "Depreciating asset, be careful.", cost: 400, type: "monthly" },
+                    { id: "opt3", title: "Personal Loan for Vacation", description: "Borrow for a trip.", analysis: "Avoid borrowing for leisure.", cost: 200, type: "monthly" }
                 ]
         }
     };
@@ -99,6 +102,7 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
         
         Vary the salary, benefits (bonus/stocks), health insurance plans, and locations.
         Make them realistic.
+        Include a short "analysis" string (1 sentence) critiquing this career path (e.g. "High pay but high stress").
         
         Output JSON only:
         {
@@ -110,7 +114,8 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
                     "salaryLabel": "$5,000/mo", // String to display
                     "bonus": "Details about bonus/stock",
                     "healthInsurance": "Plan details",
-                    "location": "City, State or Remote"
+                    "location": "City, State or Remote",
+                    "analysis": "Short feedback"
                 }
             ]
         }
@@ -144,9 +149,11 @@ export async function generateLifeOptions(topic: string, context: any, isDemo: b
         Topic: ${topic}
         Context: User earns ${context.salary} annually.
         
+        0. IMPORTANT: "analysis" field for each option is REQUIRED.
         1. Write a 1-sentence description of what "${topic}" means in personal finance.
         2. Generate 3 distinct options for the user to choose from regarding this topic.
            Include a cost (monthly or one-time) that is realistic for their salary.
+           Include an "analysis" string that briefly critiques/praises this choice (e.g., "Smart frugal choice" or "High risk but potentially high reward").
         
         Output JSON only:
         {
@@ -156,6 +163,7 @@ export async function generateLifeOptions(topic: string, context: any, isDemo: b
                     "id": "1",
                     "title": "Option Name",
                     "description": "Short description",
+                    "analysis": "Short feedback on this specific choice",
                     "cost": 1000,
                     "type": "monthly" // or "one-time"
                 }
@@ -209,7 +217,13 @@ export async function simulateYear(
             netWorth: Math.round(finalBalance + (Math.random() * 5000)), // Assuming some assets
             narrative: "In this simulation mode, your finances were calculated based on your inputs. You managed to balance your job and expenses.",
             tips: ["Review your monthly subscriptions", "Consider higher yield investments", "Building an emergency fund is key"],
-            finotype: finalBalance > 10000 ? "The Saver" : "The Spender"
+            finotype: finalBalance > 10000 ? "The Saver" : "The Spender",
+            analysisByTopic: {
+                "Housing": "You chose a housing option that fits within your basic budget, but could be optimized.",
+                "Credit Cards": "Your credit card choice reflects a cautious approach to debt.",
+                "Investment": "You are starting to build a portfolio, which is excellent for long term growth.",
+                "Loans": "Managing loans is critical. Your choice minimizes immediate interest impact."
+            }
         };
     };
 
@@ -227,6 +241,7 @@ export async function simulateYear(
         2. Write a short narrative of their year.
         3. Identify their "Finotype" (Financial Persona).
         4. Give 3 tips.
+        5. For each choice made (Housing, Credit Cards, etc.), provide a 1-sentence analysis/critique of that specific decision in the context of their profile. Key by topic ID.
         
         Output JSON only:
         {
@@ -234,7 +249,11 @@ export async function simulateYear(
             "netWorth": number,
             "narrative": "string",
             "finotype": "string", // e.g. "The Strategist"
-            "tips": ["tip1", "tip2", "tip3"]
+            "tips": ["tip1", "tip2", "tip3"],
+            "analysisByTopic": {
+                "Housing": "Analysis of housing...",
+                "Credit Cards": "Analysis..."
+            }
         }
     `;
 
