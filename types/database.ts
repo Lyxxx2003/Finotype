@@ -14,16 +14,28 @@ export interface Database {
           id: string
           display_name: string | null
           created_at: string
+          industry: string | null
+          familiarity: string | null
+          salary: string | null
+          payment_freq: string | null
         }
         Insert: {
           id: string
           display_name?: string | null
           created_at?: string
+          industry?: string | null
+          familiarity?: string | null
+          salary?: string | null
+          payment_freq?: string | null
         }
         Update: {
           id?: string
           display_name?: string | null
           created_at?: string
+          industry?: string | null
+          familiarity?: string | null
+          salary?: string | null
+          payment_freq?: string | null
         }
       }
       simulations: {

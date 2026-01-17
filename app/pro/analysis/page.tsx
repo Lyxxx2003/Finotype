@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState, Suspense } from 'react';
-import { GameEvent } from '@/lib/gemini';
+import { GameEvent, simulateYear } from '@/lib/gemini';
 import Link from 'next/link';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { clearAnswers } from '@/lib/storage';
 
@@ -31,19 +31,14 @@ function AnalysisContent() {
   
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
   const id = searchParams.get('id');
   const isDemo = searchParams.get('demo') === 'true';
   const supabase = createClient();
 
   useEffect(() => {
     const fetchData = async () => {
-        if (isDemo) {
-            setAnalysis(DEMO_ANALYSIS);
-            setLoading(false);
-            return;
-        }
-
-        let events: GameEvent[] | null = null;
+        let events: any = null;
         let finalBalance = 0;
 
         // 1. Try fetching from Supabase if ID exists
@@ -56,117 +51,131 @@ function AnalysisContent() {
             
             if (data) {
                 finalBalance = data.final_balance;
-                setNetWorth(finalBalance.toFixed(2));
+                setNetWorth(finalBalance?.toFixed(2) || '0');
                 
                 // If analysis already exists, use it
-                if (data.gemini_analysis) {
-                    setAnalysis(data.gemini_analysis as any);
+                // BUT if we are forcing demo now (e.g. user clicked "Check Demo" on error), 
+                // we might want to regenerate purely locally instead of showing the old (potentially empty/error) analysis
+                // implicitly, if isDemo is true, we might want to re-run simulation locally.
+                // However, usually existing analysis is better. 
+                // Let's stick to: use existing if avail, unless it's null.
+                if (data.gemini_analysis && !isDemo) {
+                    const analysisData = data.gemini_analysis as any;
+                    if (analysisData.finotype) {
+                        setAnalysis({
+                            profile: analysisData.finotype,
+                            summary: analysisData.narrative,
+                            tips: Array.isArray(analysisData.tips) ? analysisData.tips : []
+                        });
+                    } else {
+                        setAnalysis({ ...analysisData, tips: Array.isArray(analysisData.tips) ? analysisData.tips : [] });
+                    }
                     setLoading(false);
                     return;
                 }
                 
-                events = data.game_history as any;
+                events = data.game_history;
             }
         } 
         
         // 2. Fallback to localStorage if no ID or DB fetch failed
         if (!events) {
-            const historyData = localStorage.getItem('gameHistory');
-            const finalNetWorth = localStorage.getItem('finalNetWorth');
-            if (finalNetWorth) setNetWorth(Number(finalNetWorth).toFixed(2));
-            if (historyData) events = JSON.parse(historyData);
+            try {
+                const historyData = localStorage.getItem('gameHistory');
+                const finalNetWorth = localStorage.getItem('finalNetWorth');
+                if (finalNetWorth) setNetWorth(Number(finalNetWorth).toFixed(2));
+                if (historyData) events = JSON.parse(historyData);
+            } catch (e) {
+               console.error("Error parsing local storage", e);
+            }
         }
 
-        // 3. Run Analysis if we have events
+        // 3. Logic Branch
         if (events) {
             try {
-                const res = await fetch('/api/analysis/ai', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ events })
-                });
+                const isProSimulation = !Array.isArray(events) && events.profile && events.job;
+                let result: any = null;
 
-                if (!res.ok) {
-                    console.error('[Fetch Error]', {
-                        status: res.status,
-                        statusText: res.statusText,
-                        url: res.url
+                if (isProSimulation) {
+                     // Check if we should use demo mode (local simulation)
+                     const forceDemo = isDemo || events.isDemo;
+                     
+                     // Run simulation (Gemini or Fallback/Demo)
+                     const res = await simulateYear(events.profile, events.job, events.choices, forceDemo);
+                     
+                     if (res.error && !forceDemo) {
+                         setErrorType(res.error);
+                         // If REGION_BLOCKED, provide specific message. Otherwise use the narrative or generic
+                         setErrorMessage(res.error === 'REGION_BLOCKED' 
+                            ? 'AI unavailable in your region. Please use Demo Mode.' 
+                            : (res.narrative && res.narrative.includes("failed") ? res.narrative : "Simulation generation failed."));
+                         setLoading(false);
+                         return;
+                     }
+
+                     if (res.error === 'SIMULATION_ERROR') {
+                         console.warn("Simulation fell back to local calculation");
+                     }
+
+                     result = {
+                         ...res,
+                         profile: res.finotype,
+                         summary: res.narrative,
+                         tips: res.tips
+                     };
+                     
+                     // Update state
+                     setNetWorth(res.finalBalance.toFixed(2));
+                     setAnalysis(result);
+                     
+                     // Update DB if not just a demo view
+                     if (id && !isDemo) { // Don't overwrite real analysis with demo analysis unless intended
+                         await supabase.from('simulations').update({ 
+                             gemini_analysis: res,
+                             final_balance: res.finalBalance
+                         }).eq('id', id);
+                     }
+
+                } else {
+                    // Legacy code for simple QA game...
+                    if (isDemo) {
+                         setAnalysis(DEMO_ANALYSIS);
+                         setLoading(false);
+                         return;
+                    }
+
+                    // ... existing legacy fetch logic ...
+                    const res = await fetch('/api/analysis/ai', {
+                        method: 'POST',
+                        body: JSON.stringify({ events })
                     });
-                    
-                    if (res.status === 429) {
-                        setErrorType('RATE_LIMIT_EXCEEDED');
-                        setErrorMessage('Too many requests. Please try again in a few minutes.');
-                    } else if (res.status === 401 || res.status === 403) {
-                        setErrorType('AUTH_ERROR');
-                        setErrorMessage('Authentication failed. Please refresh and try again.');
-                    } else if (res.status >= 500) {
-                        setErrorType('SERVER_ERROR');
-                        setErrorMessage('Server error occurred. Please try again later.');
-                    } else {
-                        setErrorType('FETCH_ERROR');
-                        setErrorMessage(`Request failed with status ${res.status}`);
+                     // (Keep existing error handling for legacy if needed, or simplify)
+                    if (res.ok) {
+                        result = await res.json();
+                        setAnalysis({ ...result, tips: Array.isArray(result.tips) ? result.tips : [] });
                     }
-                    setLoading(false);
-                    return;
                 }
-
-                const result = await res.json();
-
-                // Handle Gemini-specific errors
-                if (result.error) {
-                    console.error('[Gemini Error]', result.error);
-                    setErrorType(result.error);
-                    
-                    switch(result.error) {
-                        case 'LOCATION_NOT_SUPPORTED':
-                            setErrorMessage('Gemini AI is not available in your region yet.');
-                            break;
-                        case 'RATE_LIMIT_EXCEEDED':
-                            setErrorMessage('Too many requests. Please wait a few minutes.');
-                            break;
-                        case 'INVALID_API_KEY':
-                            setErrorMessage('API configuration issue. Please contact support.');
-                            break;
-                        case 'NETWORK_ERROR':
-                            setErrorMessage('Network connection issue. Check your internet.');
-                            break;
-                        case 'SAFETY_FILTER':
-                            setErrorMessage('Content was blocked by safety filters.');
-                            break;
-                        default:
-                            setErrorMessage('An unexpected error occurred.');
-                    }
-                    setLoading(false);
-                    return;
-                }
-
-                setAnalysis(result);
-
-                // 4. Update Supabase with result if we have an ID
-                if (id && result) {
-                    await supabase
-                        .from('simulations')
-                        .update({ gemini_analysis: result })
-                        .eq('id', id);
-                }
-
             } catch (err: any) {
-                console.error('[Network/Parse Error]', {
-                    message: err.message,
-                    name: err.name,
-                    stack: err.stack
-                });
+                console.error('Analysis Error', err);
                 setErrorType('NETWORK_ERROR');
-                setErrorMessage('Failed to connect to the server. Check your internet connection.');
+                setErrorMessage('Failed to generate analysis.');
             } finally {
                 setLoading(false);
             }
         } else {
-            setLoading(false);
+            // No events found.
+            if (isDemo) {
+                // If checking demo without game data, show static content
+                setAnalysis(DEMO_ANALYSIS);
+                setLoading(false);
+            } else {
+                setLoading(false);
+                // Optionally show "No data found" state
+            }
         }
     };
     fetchData();
-  }, [id]);
+  }, [id, isDemo]);
 
   if (loading) {
       return (
@@ -197,6 +206,7 @@ function AnalysisContent() {
                       <p className="text-gray-700 leading-relaxed text-lg">{analysis.summary}</p>
                   </div>
 
+                  {analysis.tips && Array.isArray(analysis.tips) && analysis.tips.length > 0 && (
                   <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">Gemini's Expert Tips</h3>
                       <div className="grid gap-4">
@@ -210,6 +220,7 @@ function AnalysisContent() {
                           ))}
                       </div>
                   </div>
+                  )}
               </div>
           </div>
       )}
@@ -233,11 +244,12 @@ function AnalysisContent() {
                            </svg>
                        </div>
                        <h3 className="text-2xl font-bold text-gray-900">
-                           {errorType === 'LOCATION_NOT_SUPPORTED' ? 'Region Not Supported' :
+                           {errorType === 'LOCATION_NOT_SUPPORTED' || errorType === 'REGION_BLOCKED' ? 'Region Not Supported' :
                             errorType === 'RATE_LIMIT_EXCEEDED' ? 'Too Many Requests' :
                             errorType === 'NETWORK_ERROR' ? 'Connection Issue' :
                             errorType === 'INVALID_API_KEY' ? 'Configuration Error' :
                             errorType === 'SAFETY_FILTER' ? 'Content Filtered' :
+                            errorType === 'GENERATION_ERROR' ? 'AI Generation Issue' :
                             'Error Occurred'}
                        </h3>
                        <p className="text-gray-600">
@@ -250,27 +262,37 @@ function AnalysisContent() {
                   <div className="flex flex-col gap-3">
                       <button
                           onClick={() => {
-                              clearAnswers();
-                              router.push('/question/1');
+                              window.location.reload();
                           }}
-                          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium text-center"
+                          className="w-full bg-gray-100 text-gray-900 py-3 rounded-lg hover:bg-gray-200 font-bold text-center"
                       >
-                          Go to Simple Q/A Version
-                      </button>
-                      <button
-                          onClick={() => window.location.reload()}
-                          className="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 font-medium text-center"
-                      >
-                          Retry
+                          Retry Connection
                       </button>
                       <button
                           onClick={() => {
-                              setAnalysis(DEMO_ANALYSIS);
-                              setErrorType(null);
+                              // Force demo mode for this analysis
+                              const params = new URLSearchParams(searchParams);
+                              params.set('demo', 'true');
+                              router.push(`${pathname}?${params.toString()}`);
+                              // The useEffect will re-run because searchParams changed (via router push potentially, but check dependency)
+                              // Actually simple router push might not trigger re-render of useSearchParams instantly in some NextJS versions/app router setups
+                              // But usually it does. 
+                              // We also need to clear error so it re-fetches.
+                              setErrorType(null); 
+                              setLoading(true); // show loading while re-fetching
                           }}
-                          className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 font-medium text-center"
+                          className="w-full bg-orange-100 text-orange-700 py-3 rounded-lg hover:bg-orange-200 font-bold text-center"
                       >
-                          Check Demo
+                          Continue in Demo Mode
+                      </button>
+                      <button
+                          onClick={() => {
+                              clearAnswers();
+                              router.replace('/standard/question/1');
+                          }}
+                          className="w-full border border-gray-200 text-gray-600 py-3 rounded-lg hover:bg-gray-50 font-medium text-center"
+                      >
+                          Switch to Simple Q/A Test
                       </button>
                   </div>
               </div>

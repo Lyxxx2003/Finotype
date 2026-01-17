@@ -9,7 +9,7 @@ export default function Home() {
 
   const startTest = () => {
     clearAnswers();
-    router.push('/question/1');
+    router.push('/standard/question/1');
   };
 
   return (

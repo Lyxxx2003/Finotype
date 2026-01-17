@@ -6,6 +6,277 @@ const apiKey = process.env.GEMINI_API_KEY || "";
 
 const genAI = new GoogleGenerativeAI(apiKey);
 
+export interface UserProfile {
+  industry: string;
+  familiarity: string;
+  salary?: string;
+  paymentFreq?: string;
+}
+
+export interface JobOption {
+  id: string;
+  title: string;
+  salary: number; // Annualized for calculation
+  salaryLabel: string;
+  bonus: string;
+  healthInsurance: string;
+  location: string;
+}
+
+export interface LifeOption {
+  id: string;
+  title: string;
+  description: string;
+  cost: number;
+  type: string; // 'monthly' or 'one-time'
+}
+
+export interface SimulationResult {
+    finalBalance: number;
+    netWorth: number;
+    narrative: string;
+    tips: string[];
+    finotype: string;
+    error?: string;
+}
+
+function getFallbackJobs(profile: UserProfile): JobOption[] {
+    return [
+        { id: "1", title: "Junior " + profile.industry + " Associate", salary: 50000, salaryLabel: "$4,166/mo", bonus: "5% annual", healthInsurance: "Basic HMP", location: "Remote" },
+        { id: "2", title: "Mid-Level " + profile.industry + " Specialist", salary: 75000, salaryLabel: "$6,250/mo", bonus: "10% annual + Stock Options", healthInsurance: "Standard PPO", location: "New York, NY" },
+        { id: "3", title: "Senior " + profile.industry + " Manager", salary: 120000, salaryLabel: "$10,000/mo", bonus: "20% annual + RSUs", healthInsurance: "Premium PPO + Dental", location: "San Francisco, CA" }
+    ];
+}
+
+function getFallbackLifeOptions(topic: string): { description: string, options: LifeOption[] } {
+    const fallbacks: any = {
+        "Housing": {
+            description: "Housing is likely your biggest monthly expense. Choosing correctly depends on your income and lifestyle.",
+            options: [
+                { id: "opt1", title: "Share an Apartment", description: "Split rent with roommates.", cost: 800, type: "monthly" },
+                { id: "opt2", title: "Studio Apartment", description: "Live alone in a modest space.", cost: 1500, type: "monthly" },
+                { id: "opt3", title: "Luxury Condo", description: "High-end amenities and location.", cost: 3000, type: "monthly" }
+            ]
+        },
+        "Credit Cards": {
+            description: "Credit cards can build credit or create debt. Pick one that matches your spending habits.",
+            options: [
+                { id: "opt1", title: "No Annual Fee Card", description: "Basic cash back, no perks.", cost: 0, type: "one-time" },
+                { id: "opt2", title: "Travel Rewards Card", description: "Points for travel, $95 annual fee.", cost: 95, type: "one-time" },
+                { id: "opt3", title: "Premium Platinum Card", description: "Lounge access, $695 annual fee.", cost: 695, type: "one-time" }
+            ]
+        },
+        "Investment": {
+            description: "Investing helps grow your wealth over time. Consider your risk tolerance.",
+            options: [
+                { id: "opt1", title: "High Yield Savings", description: "Safe, low return (4-5%).", cost: 500, type: "monthly" },
+                { id: "opt2", title: "Index Funds (S&P 500)", description: "Moderate risk, checks market average.", cost: 500, type: "monthly" },
+                { id: "opt3", title: "Individual Crypto/Tech Stocks", description: "High risk, potential high reward.", cost: 500, type: "monthly" }
+            ]
+        },
+        "Loans": {
+                description: "Sometimes you need leverage. Be careful with interest rates.",
+                options: [
+                    { id: "opt1", title: "No Loans", description: "Live completely debt-free.", cost: 0, type: "monthly" },
+                    { id: "opt2", title: "Car Loan", description: "Buy a new car.", cost: 400, type: "monthly" },
+                    { id: "opt3", title: "Personal Loan for Vacation", description: "Borrow for a trip.", cost: 200, type: "monthly" }
+                ]
+        }
+    };
+    const data = fallbacks[topic] || fallbacks["Housing"];
+    return { description: data.description, options: data.options };
+}
+
+export async function generateJobs(profile: UserProfile, isDemo: boolean = false): Promise<{ jobs: JobOption[], error?: string }> {
+    if (isDemo || !apiKey || apiKey.startsWith("TODO")) {
+        return { jobs: getFallbackJobs(profile) };
+    }
+
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const prompt = `
+        Generate 3 job offers for a user in the "${profile.industry}" industry.
+        They expect a salary around "${profile.salary || 'market rate'}".
+        
+        Vary the salary, benefits (bonus/stocks), health insurance plans, and locations.
+        Make them realistic.
+        
+        Output JSON only:
+        {
+            "jobs": [
+                {
+                    "id": "1",
+                    "title": "Job Title",
+                    "salary": 60000, // Number, annual amount
+                    "salaryLabel": "$5,000/mo", // String to display
+                    "bonus": "Details about bonus/stock",
+                    "healthInsurance": "Plan details",
+                    "location": "City, State or Remote"
+                }
+            ]
+        }
+    `;
+
+    try {
+        const result = await model.generateContent(prompt);
+        const text = result.response.text();
+        const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+        return JSON.parse(cleanText);
+    } catch (error: any) {
+        console.error("Gemini generateJobs failed, using fallback:", error);
+        let errorType = "FALLBACK_USED";
+        if (error.toString().includes("User location is not supported") || error.toString().includes("400")) {
+             errorType = "REGION_BLOCKED";
+        }
+        return { 
+            jobs: getFallbackJobs(profile),
+            error: errorType
+        };
+    }
+}
+
+export async function generateLifeOptions(topic: string, context: any, isDemo: boolean = false): Promise<{ description: string, options: LifeOption[], error?: string }> {
+    if (isDemo || !apiKey || apiKey.startsWith("TODO")) {
+        return getFallbackLifeOptions(topic);
+    }
+
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const prompt = `
+        Topic: ${topic}
+        Context: User earns ${context.salary} annually.
+        
+        1. Write a 1-sentence description of what "${topic}" means in personal finance.
+        2. Generate 3 distinct options for the user to choose from regarding this topic.
+           Include a cost (monthly or one-time) that is realistic for their salary.
+        
+        Output JSON only:
+        {
+            "description": "...",
+            "options": [
+                {
+                    "id": "1",
+                    "title": "Option Name",
+                    "description": "Short description",
+                    "cost": 1000,
+                    "type": "monthly" // or "one-time"
+                }
+            ]
+        }
+    `;
+
+    try {
+        const result = await model.generateContent(prompt);
+        const text = result.response.text();
+        const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+        return JSON.parse(cleanText);
+    } catch (error: any) {
+        console.error("Gemini generateLifeOptions failed, using fallback:", error);
+        let errorType = "FALLBACK_USED";
+        if (error.toString().includes("User location is not supported") || error.toString().includes("400")) {
+             errorType = "REGION_BLOCKED";
+        }
+        const fallback = getFallbackLifeOptions(topic);
+        return {
+            ...fallback,
+            error: errorType
+        };
+    }
+}
+
+export async function simulateYear(
+    profile: UserProfile, 
+    job: JobOption, 
+    choices: Record<string, LifeOption>, 
+    isDemo: boolean = false
+): Promise<SimulationResult> {
+    const calculateFallback = () => {
+        // Simple logic fallback
+        const monthlyIncome = job.salary / 12;
+        let monthlyExpenses = 0;
+        let oneTimeExpenses = 0;
+
+        Object.values(choices).forEach(choice => {
+            if (choice.type === 'monthly') monthlyExpenses += choice.cost;
+            else oneTimeExpenses += choice.cost;
+        });
+
+        const netAnnual = (monthlyIncome - monthlyExpenses) * 12 - oneTimeExpenses;
+        // Simple "market" effect +5% to -5%
+        const marketEffect = 1 + (Math.random() * 0.1 - 0.05);
+        const finalBalance = Math.round(netAnnual * marketEffect);
+        
+        return {
+            finalBalance: finalBalance > 0 ? finalBalance : 0,
+            netWorth: Math.round(finalBalance + (Math.random() * 5000)), // Assuming some assets
+            narrative: "In this simulation mode, your finances were calculated based on your inputs. You managed to balance your job and expenses.",
+            tips: ["Review your monthly subscriptions", "Consider higher yield investments", "Building an emergency fund is key"],
+            finotype: finalBalance > 10000 ? "The Saver" : "The Spender"
+        };
+    };
+
+    if (isDemo || !apiKey || apiKey.startsWith("TODO")) {
+        return calculateFallback();
+    }
+
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const inputs = JSON.stringify({ profile, job, choices });
+    const prompt = `
+        Simulate 1 year of financial life for this user based on their choices.
+        Inputs: ${inputs}
+        
+        1. Calculate a realistic final bank balance and net worth after 1 year.
+        2. Write a short narrative of their year.
+        3. Identify their "Finotype" (Financial Persona).
+        4. Give 3 tips.
+        
+        Output JSON only:
+        {
+            "finalBalance": number,
+            "netWorth": number,
+            "narrative": "string",
+            "finotype": "string", // e.g. "The Strategist"
+            "tips": ["tip1", "tip2", "tip3"]
+        }
+    `;
+
+    try {
+        const result = await model.generateContent(prompt);
+        const text = result.response.text();
+        const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+        return JSON.parse(cleanText);
+    } catch (error: any) {
+        console.error("Simulation failed", error);
+        let errorType = "SIMULATION_ERROR";
+        if (error.toString().includes("User location is not supported") || error.toString().includes("400")) {
+             errorType = "REGION_BLOCKED";
+        }
+        return {
+            ...calculateFallback(),
+            narrative: "Gemini simulation failed. Falling back to basic calculation. " + (error.message || ""),
+            error: errorType
+        };
+    }
+}
+
+function handleGeminiError(error: any, type: string): any {
+     console.error(`[Gemini ${type} Error]`, {
+        message: error.message,
+        status: error.status
+    });
+
+    const errorObj = {
+        options: [],
+        jobs: [],
+        error: "UNKNOWN_ERROR"
+    };
+
+    if (error.status === 400 || error.toString().includes("location")) errorObj.error = "LOCATION_NOT_SUPPORTED";
+    else if (error.status === 429) errorObj.error = "RATE_LIMIT_EXCEEDED";
+    else if (error.toString().includes("SAFETY")) errorObj.error = "SAFETY_FILTER";
+    else errorObj.error = "NETWORK_ERROR";
+
+    return errorObj;
+}
+
 export interface GameState {
   ticker: string;
   price: number;

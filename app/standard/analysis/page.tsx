@@ -29,7 +29,7 @@ export default function AnalysisPage() {
               <p className="text-gray-500">Finotype: {persona.id}</p>
             </div>
           </div>
-          <Link href="/results" className="text-blue-600 font-medium hover:underline">
+          <Link href="/standard/results" className="text-blue-600 font-medium hover:underline">
              ← Back to Summary
           </Link>
         </header>

@@ -104,7 +104,7 @@ export default function ResultsPage() {
           </button>
 
           <Link 
-            href="/analysis"
+            href="/standard/analysis"
             className="w-full sm:w-auto bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg hover:shadow-xl text-center"
           >
             See Common Pitfalls & Tips

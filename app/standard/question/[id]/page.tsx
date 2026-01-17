@@ -42,9 +42,9 @@ export default function QuestionPage() {
     // Small delay for better UX
     setTimeout(() => {
       if (questionId < questions.length) {
-        router.push(`/question/${questionId + 1}`);
+        router.push(`/standard/question/${questionId + 1}`);
       } else {
-        router.push('/results');
+        router.push('/standard/results');
       }
     }, 300);
   };
@@ -87,7 +87,7 @@ export default function QuestionPage() {
         <div className="mt-8 flex justify-between">
            {questionId > 1 && (
              <button 
-               onClick={() => router.push(`/question/${questionId - 1}`)}
+               onClick={() => router.push(`/standard/question/${questionId - 1}`)}
                className="text-gray-500 hover:text-gray-900 font-medium"
              >
                ← Back
