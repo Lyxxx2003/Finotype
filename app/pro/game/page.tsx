@@ -574,7 +574,7 @@ export default function GamePage() {
                     {loading ? (
                         <div className="py-24 text-center text-gray-400 animate-pulse flex flex-col items-center">
                             <div className="h-8 w-8 bg-blue-100 rounded-full animate-ping mb-4"></div>
-                            Consulting the oracle...
+                            Consulting the gemini expert...
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

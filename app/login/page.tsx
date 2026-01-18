@@ -11,6 +11,9 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [resending, setResending] = useState(false)
+  const [showForgotPassword, setShowForgotPassword] = useState(false)
+  const [resetEmail, setResetEmail] = useState('')
+  const [showResendVerification, setShowResendVerification] = useState(false)
   const router = useRouter()
   const supabase = createClient()
 
@@ -31,17 +34,50 @@ export default function LoginPage() {
         if (error) throw error
         setMessage('Check your email for the confirmation link.')
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
         })
         if (error) throw error
+        
+        // Check if email is verified
+        if (data.user && !data.user.email_confirmed_at) {
+          await supabase.auth.signOut()
+          setMessage('Please verify your email before signing in. Check your inbox for the confirmation link.')
+          setShowResendVerification(true)
+          return
+        }
+        
         router.push('/pro/game')
       }
     } catch (error: any) {
       setMessage(error.message || 'Sign-in failed. Please try again.')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleResendVerification = async () => {
+    if (!email) {
+      setMessage('Enter your email to resend verification link.')
+      return
+    }
+    setResending(true)
+    setMessage('')
+    try {
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email,
+        options: { 
+          emailRedirectTo: `${location.origin}/auth/callback` 
+        },
+      })
+      if (error) throw error
+      setMessage('Verification email resent! Check your inbox.')
+    } catch (error: any) {
+      setMessage(error.message || 'Failed to resend verification email.')
+    } finally {
+      setResending(false)
     }
   }
 
@@ -55,9 +91,78 @@ export default function LoginPage() {
       if (error) setMessage(error.message)
   }
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setMessage('')
+
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+        redirectTo: `${location.origin}/auth/reset-password`,
+      })
+      if (error) throw error
+      setMessage('Password reset link sent! Check your email.')
+      setShowForgotPassword(false)
+    } catch (error: any) {
+      setMessage(error.message || 'Failed to send reset email.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md space-y-8 rounded-xl bg-white p-10 shadow-lg">
+        {showForgotPassword ? (
+          // Forgot Password Form
+          <>
+            <div>
+              <h2 className="text-center text-3xl font-extrabold text-gray-900">
+                Reset Password
+              </h2>
+              <p className="mt-2 text-center text-sm text-gray-600">
+                Enter your email to receive a password reset link
+              </p>
+            </div>
+            <form className="mt-8 space-y-6" onSubmit={handleForgotPassword}>
+              <div>
+                <input
+                  type="email"
+                  required
+                  className="relative block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
+                  placeholder="Email address"
+                  value={resetEmail}
+                  onChange={(e) => setResetEmail(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="group relative flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50"
+                >
+                  {loading ? 'Sending...' : 'Send Reset Link'}
+                </button>
+              </div>
+            </form>
+
+            <p className="text-center text-sm text-gray-500">
+              <button
+                onClick={() => {
+                  setShowForgotPassword(false)
+                  setResetEmail('')
+                  setMessage('')
+                }}
+                className="font-semibold text-blue-600 hover:text-blue-500"
+              >
+                Back to Sign In
+              </button>
+            </p>
+          </>
+        ) : (
+          // Original Login/Sign Up Form
+          <>
         <div>
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
             {isSignUp ? 'Create your Pro Account' : 'Sign in to Pro'}
@@ -107,25 +212,7 @@ export default function LoginPage() {
             Didn’t get the confirmation email?
           </div>
           <button
-            onClick={async () => {
-              if (!email) {
-                setMessage('Enter your email to resend the link.')
-                return
-              }
-              setResending(true)
-              setMessage('')
-              const { error } = await supabase.auth.resend({
-                type: 'signup',
-                email,
-                options: { emailRedirectTo: `${location.origin}/auth/callback` },
-              })
-              if (error) {
-                setMessage(error.message)
-              } else {
-                setMessage('Confirmation email resent. Check your inbox.')
-              }
-              setResending(false)
-            }}
+            onClick={handleResendVerification}
             disabled={resending}
             className="flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:opacity-50"
           >
@@ -133,10 +220,37 @@ export default function LoginPage() {
           </button>
         </div>
         )}
+
+        {!isSignUp && showResendVerification && (
+          <div className="space-y-3">
+            <div className="text-center text-sm text-gray-600">
+              Need a new verification link?
+            </div>
+            <button
+              onClick={handleResendVerification}
+              disabled={resending}
+              className="flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:opacity-50"
+            >
+              {resending ? 'Resending…' : 'Resend Verification Email'}
+            </button>
+          </div>
+        )}
         
         {!isSignUp && (
           <>
-            <div className="relative">
+            <div className="text-center">
+              <button
+                onClick={() => {
+                  setShowForgotPassword(true)
+                  setShowResendVerification(false)
+                  setMessage('')
+                }}
+                className="text-sm font-medium text-blue-600 hover:text-blue-500"
+              >
+                Forgot your password?
+              </button>
+            </div>
+                        <div className="relative">
               <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-300"></div></div>
               <div className="relative flex justify-center text-sm"><span className="bg-white px-2 text-gray-500">Or continue with</span></div>
             </div>
@@ -154,7 +268,11 @@ export default function LoginPage() {
         <p className="text-center text-sm text-gray-500">
             {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
             <button
-              onClick={() => setIsSignUp(!isSignUp)}
+              onClick={() => {
+                setIsSignUp(!isSignUp)
+                setShowResendVerification(false)
+                setMessage('')
+              }}
               className="font-semibold text-blue-600 hover:text-blue-500"
             >
               {isSignUp ? 'Sign in' : 'Start free trial'}
@@ -165,6 +283,8 @@ export default function LoginPage() {
             <div className="text-center text-sm text-red-600 bg-red-50 p-2 rounded">
                 {message}
             </div>
+        )}
+        </>
         )}
       </div>
     </div>
