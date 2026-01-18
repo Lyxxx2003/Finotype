@@ -48,5 +48,17 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  // Check if user is logged in but email is not verified
+  if (
+    user &&
+    !user.email_confirmed_at &&
+    request.nextUrl.pathname.startsWith('/pro')
+  ) {
+    // User is not verified, redirect to login
+    const url = request.nextUrl.clone()
+    url.pathname = '/login'
+    return NextResponse.redirect(url)
+  }
+
   return supabaseResponse
 }
