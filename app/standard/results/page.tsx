@@ -85,7 +85,7 @@ export default function ResultsPage() {
           try {
             await navigator.share({
               title: `I'm a ${persona.name}!`,
-              text: `I discovered my financial personality type: ${persona.name}. Check out yours using Finotype!`,
+              text: `I discovered my financial personality type: ${persona.name}. Check out yours using Finotype: https://finotype.vercel.app/!`,
               files: [file]
             });
           } catch (err) {
