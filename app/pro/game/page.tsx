@@ -670,20 +670,10 @@ export default function GamePage() {
                                 Play Again
                             </button>
                             <button 
-                                onClick={() => {
-                                    if (navigator.share) {
-                                        navigator.share({
-                                            title: 'My Finotype Result',
-                                            text: `I finished the year as "${result.finotype}" with a net worth of $${result.netWorth.toLocaleString()}! #Finotype`,
-                                            url: window.location.href
-                                        });
-                                    } else {
-                                        alert("Check out my Finotype: " + result.finotype);
-                                    }
-                                }}
+                                onClick={() => router.push('/pro/analysis')}
                                 className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-lg hover:shadow-xl transition-all"
                             >
-                                Share Result
+                                View Full Analysis & Share
                             </button>
                         </div>
                     </div>

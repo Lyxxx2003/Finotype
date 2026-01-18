@@ -123,7 +123,7 @@ function AnalysisContent() {
           try {
             await navigator.share({
               title: `My Finotype: ${analysis.profile}`,
-              text: `I simulated my financial future and discovered I'm a ${analysis.profile}. Net Worth: $${netWorth}. Check it out:`,
+              text: `I simulated my financial future and discovered I'm a ${analysis.profile}. Net Worth: $${netWorth}. Check it out at https://finotype.vercel.app/`,
               files: [file]
             });
           } catch (err) {
