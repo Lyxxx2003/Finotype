@@ -276,26 +276,6 @@ export async function simulateYear(
     }
 }
 
-function handleGeminiError(error: any, type: string): any {
-     console.error(`[Gemini ${type} Error]`, {
-        message: error.message,
-        status: error.status
-    });
-
-    const errorObj = {
-        options: [],
-        jobs: [],
-        error: "UNKNOWN_ERROR"
-    };
-
-    if (error.status === 400 || error.toString().includes("location")) errorObj.error = "LOCATION_NOT_SUPPORTED";
-    else if (error.status === 429) errorObj.error = "RATE_LIMIT_EXCEEDED";
-    else if (error.toString().includes("SAFETY")) errorObj.error = "SAFETY_FILTER";
-    else errorObj.error = "NETWORK_ERROR";
-
-    return errorObj;
-}
-
 export interface GameState {
   ticker: string;
   price: number;

@@ -24,14 +24,33 @@ export default function LoginPage() {
 
     try {
       if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             emailRedirectTo: `${location.origin}/auth/callback`,
           },
         })
-        if (error) throw error
+        
+        if (error) {
+          // Check if user already exists
+          if (error.message.toLowerCase().includes('already registered') || 
+              error.message.toLowerCase().includes('already exists') ||
+              error.message.toLowerCase().includes('user already registered')) {
+            setMessage('Looks like you already have an account! Please try signing in instead.')
+            setLoading(false)
+            return
+          }
+          throw error
+        }
+        
+        // Additional check: if user exists and is already confirmed (Supabase might not throw error)
+        if (data.user && data.user.identities && data.user.identities.length === 0) {
+          setMessage('Looks like you already have an account! Please try signing in instead.')
+          setLoading(false)
+          return
+        }
+        
         setMessage('Check your email for the confirmation link.')
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({
@@ -206,6 +225,28 @@ export default function LoginPage() {
           </div>
         </form>
 
+        {message && (
+            <div className="text-center text-sm text-red-600 bg-red-50 p-2 rounded">
+                {message.includes('[signing in]') ? (
+                  <>
+                    {message.split('[signing in]')[0]}
+                    <button
+                      onClick={() => {
+                        setIsSignUp(false)
+                        setMessage('')
+                      }}
+                      className="font-semibold underline hover:no-underline"
+                    >
+                      signing in
+                    </button>
+                    {message.split('[signing in]')[1]}
+                  </>
+                ) : (
+                  message
+                )}
+            </div>
+        )}
+
         {isSignUp && (
           <div className="space-y-3">
           <div className="text-center text-sm text-gray-600">
@@ -278,12 +319,6 @@ export default function LoginPage() {
               {isSignUp ? 'Sign in' : 'Start free trial'}
             </button>
         </p>
-        
-        {message && (
-            <div className="text-center text-sm text-red-600 bg-red-50 p-2 rounded">
-                {message}
-            </div>
-        )}
         </>
         )}
       </div>

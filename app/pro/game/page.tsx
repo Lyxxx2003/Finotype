@@ -13,12 +13,12 @@ const TOPICS = [
   { id: 'Loans', name: 'Loans' }
 ];
 
-function JobFlipCard({ job, onSelect, selected }: { job: JobOption, onSelect: (j: JobOption) => void, selected: boolean }) {
-    const [flipped, setFlipped] = useState(false);
+function JobFlipCard({ job, onSelect, selected, disabled }: { job: JobOption, onSelect: (j: JobOption) => void, selected: boolean, disabled?: boolean }) {
+    const [flipped, setFlipped] = useState(selected);
     const [showModal, setShowModal] = useState<{title: string, content: string} | null>(null);
 
     useEffect(() => {
-        if (selected) setFlipped(true);
+        setFlipped(selected);
     }, [selected]);
 
     const handleModal = (e: React.MouseEvent, title: string, content: string) => {
@@ -29,9 +29,9 @@ function JobFlipCard({ job, onSelect, selected }: { job: JobOption, onSelect: (j
     return (
         <>
             <div 
-                className="h-96 w-full cursor-pointer [perspective:1000px] group"
+                className={`h-96 w-full [perspective:1000px] group ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
                 onClick={() => {
-                    if (!selected) onSelect(job);
+                    if (!disabled && !selected) onSelect(job);
                 }}
             >
                 <div className={`relative h-full w-full transition-all duration-700 [transform-style:preserve-3d] ${flipped ? '[transform:rotateY(180deg)]' : ''}`}>
@@ -102,18 +102,18 @@ function JobFlipCard({ job, onSelect, selected }: { job: JobOption, onSelect: (j
     )
 }
 
-function FlipCard({ option, onSelect, selected }: { option: LifeOption, onSelect: (o: LifeOption) => void, selected: boolean }) {
-    const [flipped, setFlipped] = useState(false);
+function FlipCard({ option, onSelect, selected, disabled }: { option: LifeOption, onSelect: (o: LifeOption) => void, selected: boolean, disabled?: boolean }) {
+    const [flipped, setFlipped] = useState(selected);
 
     useEffect(() => {
-        if (selected) setFlipped(true);
+        setFlipped(selected);
     }, [selected]);
 
     return (
         <div 
-            className="h-80 w-full cursor-pointer [perspective:1000px] group"
+            className={`h-80 w-full [perspective:1000px] group ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
             onClick={() => {
-                if (!selected) {
+                if (!disabled && !selected) {
                     onSelect(option);
                 }
             }}
@@ -523,18 +523,25 @@ export default function GamePage() {
                                 job={job}
                                 onSelect={handleJobSelect} 
                                 selected={selectedJob?.id === job.id}
+                                disabled={selectedJob !== null && selectedJob.id !== job.id}
                             />
                         ))}
                     </div>
 
                     {/* Confimation Button */}
                     {selectedJob && (
-                        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 animate-bounce">
+                        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex gap-4">
+                            <button 
+                                onClick={() => setSelectedJob(null)}
+                                className="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-full font-bold shadow-xl hover:bg-gray-50 transition"
+                            >
+                                Reselect
+                            </button>
                             <button 
                                 onClick={confirmJobChoice}
                                 className="bg-indigo-600 text-white px-8 py-4 rounded-full font-bold shadow-2xl hover:bg-indigo-700 transition flex items-center gap-2"
                             >
-                                Confirm Career
+                                Continue
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                             </button>
                         </div>
@@ -574,7 +581,7 @@ export default function GamePage() {
                     {loading ? (
                         <div className="py-24 text-center text-gray-400 animate-pulse flex flex-col items-center">
                             <div className="h-8 w-8 bg-blue-100 rounded-full animate-ping mb-4"></div>
-                            Consulting the gemini expert...
+                            Reflecting on your decision...
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -584,6 +591,7 @@ export default function GamePage() {
                                     option={option} 
                                     onSelect={handleTopicChoice}
                                     selected={selectedTopicOption?.id === option.id}
+                                    disabled={selectedTopicOption !== null && selectedTopicOption.id !== option.id}
                                 />
                             ))}
                         </div>
@@ -591,12 +599,18 @@ export default function GamePage() {
                     
                     {/* Next Button for when card is flipped */}
                     {selectedTopicOption && (
-                        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 animate-bounce">
+                        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex gap-4">
+                            <button 
+                                onClick={() => setSelectedTopicOption(null)}
+                                className="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-full font-bold shadow-xl hover:bg-gray-50 transition"
+                            >
+                                Reselect
+                            </button>
                             <button 
                                 onClick={confirmTopicChoice}
                                 className="bg-gray-900 text-white px-8 py-4 rounded-full font-bold shadow-2xl hover:bg-black transition flex items-center gap-2"
                             >
-                                Continue to Next Step
+                                Continue
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                             </button>
                         </div>
