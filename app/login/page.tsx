@@ -24,14 +24,35 @@ export default function LoginPage() {
 
     try {
       if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             emailRedirectTo: `${location.origin}/auth/callback`,
           },
         })
-        if (error) throw error
+        
+        if (error) {
+          // Check if user already exists
+          if (error.message.toLowerCase().includes('already registered') || 
+              error.message.toLowerCase().includes('already exists') ||
+              error.message.toLowerCase().includes('user already registered')) {
+            setMessage('Looks like you already have an account! Please try signing in instead.')
+            setIsSignUp(false)
+            setLoading(false)
+            return
+          }
+          throw error
+        }
+        
+        // Additional check: if user exists and is already confirmed (Supabase might not throw error)
+        if (data.user && data.user.identities && data.user.identities.length === 0) {
+          setMessage('Looks like you already have an account! Please try signing in instead.')
+          setIsSignUp(false)
+          setLoading(false)
+          return
+        }
+        
         setMessage('Check your email for the confirmation link.')
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({
