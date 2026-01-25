@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { getAnswers, getDisplayName } from '@/lib/storage';
 import { calculateFinotype } from '@/lib/logic';
 import { personas } from '@/lib/data';
@@ -8,12 +8,10 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Persona } from '@/types';
-import html2canvas from 'html2canvas';
 
 export default function ResultsPage() {
   const [persona, setPersona] = useState<Persona | null>(null);
   const [displayName, setDisplayName] = useState<string>('');
-  const resultRef = useRef<HTMLDivElement>(null);
   const params = useParams();
   const locale = params.locale as string;
   const tPersonas = useTranslations('personas');
@@ -31,73 +29,74 @@ export default function ResultsPage() {
   }, []);
 
   const handleShare = async () => {
-    if (!resultRef.current || !persona) return;
-    
-    // Slight delay to ensure everything is rendered stable
-    await new Promise(r => setTimeout(r, 100));
+    if (!persona) return;
 
     try {
-      // Clone the element and convert lab() colors to rgb() for html2canvas compatibility
-      const clonedElement = resultRef.current.cloneNode(true) as HTMLElement;
-      
-      // Function to convert computed styles with lab() to rgb()
-      const convertLabToRgb = (element: HTMLElement) => {
-        const computedStyle = window.getComputedStyle(element);
-        const styles = ['color', 'backgroundColor', 'borderColor'];
-        
-        styles.forEach(prop => {
-          const value = computedStyle.getPropertyValue(prop);
-          if (value && value.includes('lab')) {
-            // Get the computed color value and convert it
-            const tempDiv = document.createElement('div');
-            tempDiv.style.color = value;
-            document.body.appendChild(tempDiv);
-            const rgb = window.getComputedStyle(tempDiv).color;
-            document.body.removeChild(tempDiv);
-            element.style.setProperty(prop, rgb);
-          }
-        });
-        
-        // Recursively process children
-        Array.from(element.children).forEach(child => {
-          convertLabToRgb(child as HTMLElement);
-        });
-      };
-      
-      // Temporarily add to DOM for processing
-      clonedElement.style.position = 'fixed';
-      clonedElement.style.left = '-9999px';
-      document.body.appendChild(clonedElement);
-      convertLabToRgb(clonedElement);
-      
-      const canvas = await html2canvas(clonedElement, {
-        scale: 2,
-        backgroundColor: '#ffffff',
-        logging: false,
-        useCORS: true, 
-        allowTaint: true,
-        windowWidth: clonedElement.scrollWidth,
-        windowHeight: clonedElement.scrollHeight
-      } as any);
-      
-      // Remove cloned element
-      document.body.removeChild(clonedElement);
+      // Create a simplified share card with just mascot + branding + link
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
+      // Set canvas size (Instagram post friendly: 1080x1080)
+      canvas.width = 1080;
+      canvas.height = 1080;
+
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, '#2563eb');
+      gradient.addColorStop(1, '#1e40af');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Decorative circles
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+      ctx.beginPath();
+      ctx.arc(150, 150, 300, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.beginPath();
+      ctx.arc(900, 900, 250, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Mascot emoji (large)
+      ctx.font = 'bold 280px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(persona.mascot, canvas.width / 2, 420);
+
+      // "What's your Finotype?" text
+      ctx.font = 'bold 64px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText("What's your Finotype?", canvas.width / 2, 680);
+
+      // Website URL
+      ctx.font = '48px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.fillText('finotype.vercel.app', canvas.width / 2, 820);
+
+      // Small branding at bottom
+      ctx.font = '28px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.fillText('Discover your financial personality', canvas.width / 2, 950);
+
+      // Convert to blob and share
       canvas.toBlob(async (blob) => {
         if (!blob) {
-          alert("Could not generate image blob");
+          alert("Could not generate image");
           return;
         }
         
-        // Generate a filename
         const filename = `finotype-${persona.id}-${Date.now()}.png`;
         const file = new File([blob], filename, { type: 'image/png' });
+        const shareUrl = `https://finotype.vercel.app/${locale}`;
         
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           try {
             await navigator.share({
-              title: `I'm a ${persona.name}!`,
-              text: `I discovered my financial personality type: ${persona.name}. Check out yours using Finotype: https://finotype.vercel.app/!`,
+              title: "What's your Finotype?",
+              text: `Discover your financial personality! ${shareUrl}`,
               files: [file]
             });
           } catch (err) {
@@ -112,8 +111,8 @@ export default function ResultsPage() {
         }
       }, 'image/png');
     } catch (err) {
-      console.error('Failed to generate image', err);
-      alert('Failed to generate image. Please try again.');
+      console.error('Failed to generate share image', err);
+      alert('Failed to generate share image. Please try again.');
     }
   };
 
@@ -132,7 +131,6 @@ export default function ResultsPage() {
         </div>
 
         <div 
-          ref={resultRef} 
           className="rounded-2xl overflow-hidden border"
           style={{ 
             backgroundColor: '#ffffff', 

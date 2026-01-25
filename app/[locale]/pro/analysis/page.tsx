@@ -1,13 +1,12 @@
 'use client';
 
-import { useEffect, useState, Suspense, useRef } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { GameEvent, simulateYear } from '@/lib/gemini';
 import Link from 'next/link';
 import { useSearchParams, useRouter, usePathname, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { createClient } from '@/lib/supabase/client';
 import { clearAnswers } from '@/lib/storage';
-import html2canvas from 'html2canvas';
 
 const DEMO_ANALYSIS = {
   profile: "Strategic Wealth Builder",
@@ -37,7 +36,6 @@ function AnalysisContent() {
   const [familiaritySubmitted, setFamiliaritySubmitted] = useState(false);
   const [displayName, setDisplayName] = useState<string>('');
   
-  const resultRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -61,90 +59,90 @@ function AnalysisContent() {
   };
 
   const handleShare = async () => {
-    // resultRef.current needs to be the actual DOM element to capture.
-    if (!resultRef.current || !analysis) return;
-    
-    // Slight delay to ensure everything is rendered stable
-    await new Promise(r => setTimeout(r, 100));
+    if (!analysis) return;
 
     try {
-      // Clone the element and convert lab() colors to rgb() for html2canvas compatibility
-      const clonedElement = resultRef.current.cloneNode(true) as HTMLElement;
-      
-      // Function to convert computed styles with lab() to rgb()
-      const convertLabToRgb = (element: HTMLElement) => {
-        const computedStyle = window.getComputedStyle(element);
-        const styles = ['color', 'backgroundColor', 'borderColor'];
-        
-        styles.forEach(prop => {
-          const value = computedStyle.getPropertyValue(prop);
-          if (value && value.includes('lab')) {
-            // Get the computed color value and convert it
-            const tempDiv = document.createElement('div');
-            tempDiv.style.color = value;
-            document.body.appendChild(tempDiv);
-            const rgb = window.getComputedStyle(tempDiv).color;
-            document.body.removeChild(tempDiv);
-            element.style.setProperty(prop, rgb);
-          }
-        });
-        
-        // Recursively process children
-        Array.from(element.children).forEach(child => {
-          convertLabToRgb(child as HTMLElement);
-        });
-      };
-      
-      // Temporarily add to DOM for processing
-      clonedElement.style.position = 'fixed';
-      clonedElement.style.left = '-9999px';
-      document.body.appendChild(clonedElement);
-      convertLabToRgb(clonedElement);
-      
-      const canvas = await html2canvas(clonedElement, {
-        scale: 2,
-        backgroundColor: '#ffffff',
-        logging: false,
-        useCORS: true, 
-        allowTaint: true,
-        windowWidth: clonedElement.scrollWidth,
-        windowHeight: clonedElement.scrollHeight
-      } as any);
-      
-      // Remove cloned element
-      document.body.removeChild(clonedElement);
+      // Create a simplified share card with just mascot + branding + link
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
+      // Set canvas size (Instagram post friendly: 1080x1080)
+      canvas.width = 1080;
+      canvas.height = 1080;
+
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, '#0f172a');
+      gradient.addColorStop(1, '#1e293b');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Decorative circles
+      ctx.fillStyle = 'rgba(59, 130, 246, 0.1)';
+      ctx.beginPath();
+      ctx.arc(150, 150, 300, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = 'rgba(34, 197, 94, 0.1)';
+      ctx.beginPath();
+      ctx.arc(900, 900, 250, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Financial emoji (generic for pro mode)
+      ctx.font = 'bold 280px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('💰', canvas.width / 2, 420);
+
+      // Simulate your financial future text
+      ctx.font = 'bold 56px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('Simulate your financial future', canvas.width / 2, 680);
+
+      // Website URL
+      ctx.font = '48px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.fillText('finotype.vercel.app', canvas.width / 2, 820);
+
+      // Small branding at bottom
+      ctx.font = '28px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.fillText('Interactive financial personality game', canvas.width / 2, 950);
+
+      // Convert to blob and share
       canvas.toBlob(async (blob) => {
         if (!blob) {
-            alert("Could not generate image blob");
-            return;
+          alert("Could not generate image");
+          return;
         }
         
-        // Generate a filename
-        const filename = `finotype-pro-${analysis.profile.replace(/\s+/g, '-').toLowerCase()}-${Date.now()}.png`;
+        const filename = `finotype-pro-${Date.now()}.png`;
         const file = new File([blob], filename, { type: 'image/png' });
+        const shareUrl = `https://finotype.vercel.app/${locale}/pro/game`;
         
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           try {
             await navigator.share({
-              title: `My Finotype: ${analysis.profile}`,
-              text: `I simulated my financial future and discovered I'm a ${analysis.profile}. Net Worth: $${netWorth}. Check it out at https://finotype.vercel.app/`,
+              title: "Finotype - Financial Personality Game",
+              text: `Simulate your financial future! ${shareUrl}`,
               files: [file]
             });
           } catch (err) {
             console.log('Share canceled or failed', err);
           }
         } else {
-            // Fallback download
-            const link = document.createElement('a');
-            link.download = filename;
-            link.href = canvas.toDataURL();
-            link.click();
+          // Fallback download
+          const link = document.createElement('a');
+          link.download = filename;
+          link.href = canvas.toDataURL();
+          link.click();
         }
       }, 'image/png');
     } catch (err) {
-      console.error('Failed to generate image', err);
-      alert('Failed to generate image. Please try again.');
+      console.error('Failed to generate share image', err);
+      alert('Failed to generate share image. Please try again.');
     }
   };
 
@@ -330,7 +328,6 @@ function AnalysisContent() {
 
       {analysis && (
           <div 
-            ref={resultRef} 
             className="rounded-2xl overflow-hidden border"
             style={{ 
               backgroundColor: '#ffffff', 
