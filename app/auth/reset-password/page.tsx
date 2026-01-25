@@ -9,7 +9,7 @@ export default function ResetPasswordPage() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
-  const [error, setError] = useState('')
+  const [messageType, setMessageType] = useState<'error' | 'success' | 'warning' | 'info'>('error')
   const router = useRouter()
   const supabase = createClient()
 
@@ -19,7 +19,8 @@ export default function ResetPasswordPage() {
     // Check if user has a valid session from the reset link
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (!session) {
-        setError('Invalid or expired reset link. Please request a new one.')
+        setMessage('Invalid or expired reset link. Please request a new one.')
+        setMessageType('error')
         setHasValidSession(false)
       }
     })
@@ -29,17 +30,19 @@ export default function ResetPasswordPage() {
     e.preventDefault()
     setLoading(true)
     setMessage('')
-    setError('')
+    setMessageType('info')
 
     // Validation
     if (password.length < 6) {
-      setError('Password must be at least 6 characters long.')
+      setMessage('Password must be at least 6 characters long.')
+      setMessageType('error')
       setLoading(false)
       return
     }
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match.')
+      setMessage('Passwords do not match.')
+      setMessageType('error')
       setLoading(false)
       return
     }
@@ -52,11 +55,13 @@ export default function ResetPasswordPage() {
       if (error) throw error
       
       setMessage('Password updated successfully! Redirecting to login...')
+      setMessageType('success')
       setTimeout(() => {
         router.push('/login')
       }, 2000)
     } catch (error: any) {
-      setError(error.message || 'Failed to reset password. Please try again.')
+      setMessage(error.message || 'Failed to reset password. Please try again.')
+      setMessageType('error')
     } finally {
       setLoading(false)
     }
@@ -74,15 +79,14 @@ export default function ResetPasswordPage() {
           </p>
         </div>
 
-        {error && (
-          <div className="rounded-md bg-red-50 p-4">
-            <div className="text-sm text-red-800">{error}</div>
-          </div>
-        )}
-
         {message && (
-          <div className="rounded-md bg-green-50 p-4">
-            <div className="text-sm text-green-800">{message}</div>
+          <div className={`rounded-md p-4 ${
+            messageType === 'success' ? 'text-green-800 bg-green-50' :
+            messageType === 'warning' ? 'text-yellow-800 bg-yellow-50' :
+            messageType === 'info' ? 'text-blue-800 bg-blue-50' :
+            'text-red-800 bg-red-50'
+          }`}>
+            <div className="text-sm">{message}</div>
           </div>
         )}
 
@@ -102,7 +106,7 @@ export default function ResetPasswordPage() {
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value)
-                  setError('')
+                  setMessage('')
                 }}
                 disabled={loading || !hasValidSession}
               />
@@ -121,7 +125,7 @@ export default function ResetPasswordPage() {
                 value={confirmPassword}
                 onChange={(e) => {
                   setConfirmPassword(e.target.value)
-                  setError('')
+                  setMessage('')
                 }}
                 disabled={loading || !hasValidSession}
               />

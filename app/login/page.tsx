@@ -10,6 +10,7 @@ export default function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const [messageType, setMessageType] = useState<'error' | 'success' | 'warning' | 'info'>('error')
   const [resending, setResending] = useState(false)
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [resetEmail, setResetEmail] = useState('')
@@ -21,6 +22,7 @@ export default function LoginPage() {
     e.preventDefault()
     setLoading(true)
     setMessage('')
+    setMessageType('info') // Default
 
     try {
       if (isSignUp) {
@@ -37,7 +39,8 @@ export default function LoginPage() {
           if (error.message.toLowerCase().includes('already registered') || 
               error.message.toLowerCase().includes('already exists') ||
               error.message.toLowerCase().includes('user already registered')) {
-            setMessage('Looks like you already have an account! Please try signing in instead.')
+            setMessageType('warning')
+            setMessage('Looks like you already have an account! [reset password] to use email login, or continue with [Google].')
             setLoading(false)
             return
           }
@@ -46,11 +49,13 @@ export default function LoginPage() {
         
         // Additional check: if user exists and is already confirmed (Supabase might not throw error)
         if (data.user && data.user.identities && data.user.identities.length === 0) {
-          setMessage('Looks like you already have an account! Please try signing in instead.')
+          setMessage('Looks like you already have an account! [reset password] to use email login, or continue with [Google].')
+          setMessageType('warning')
           setLoading(false)
           return
         }
         
+        setMessageType('success')
         setMessage('Check your email for the confirmation link.')
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({
@@ -63,6 +68,7 @@ export default function LoginPage() {
         if (data.user && !data.user.email_confirmed_at) {
           await supabase.auth.signOut()
           setMessage('Please verify your email before signing in. Check your inbox for the confirmation link.')
+          setMessageType('warning')
           setShowResendVerification(true)
           return
         }
@@ -70,6 +76,7 @@ export default function LoginPage() {
         router.push('/pro/game')
       }
     } catch (error: any) {
+      setMessageType('error')
       setMessage(error.message || 'Sign-in failed. Please try again.')
     } finally {
       setLoading(false)
@@ -79,10 +86,12 @@ export default function LoginPage() {
   const handleResendVerification = async () => {
     if (!email) {
       setMessage('Enter your email to resend verification link.')
+      setMessageType('error')
       return
     }
     setResending(true)
     setMessage('')
+    setMessageType('info')
     try {
       const { error } = await supabase.auth.resend({
         type: 'signup',
@@ -92,8 +101,10 @@ export default function LoginPage() {
         },
       })
       if (error) throw error
+      setMessageType('success')
       setMessage('Verification email resent! Check your inbox.')
     } catch (error: any) {
+      setMessageType('error')
       setMessage(error.message || 'Failed to resend verification email.')
     } finally {
       setResending(false)
@@ -107,22 +118,28 @@ export default function LoginPage() {
               redirectTo: `${location.origin}/auth/callback`
           }
       })
-      if (error) setMessage(error.message)
+      if (error) {
+        setMessageType('error')
+        setMessage(error.message)
+      }
   }
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setMessage('')
+    setMessageType('info')
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
         redirectTo: `${location.origin}/auth/reset-password`,
       })
       if (error) throw error
+      setMessageType('success')
       setMessage('Password reset link sent! Check your email.')
       setShowForgotPassword(false)
     } catch (error: any) {
+      setMessageType('error')
       setMessage(error.message || 'Failed to send reset email.')
     } finally {
       setLoading(false)
@@ -226,20 +243,34 @@ export default function LoginPage() {
         </form>
 
         {message && (
-            <div className="text-center text-sm text-red-600 bg-red-50 p-2 rounded">
-                {message.includes('[signing in]') ? (
+            <div className={`text-center text-sm p-2 rounded ${
+              messageType === 'success' ? 'text-green-600 bg-green-50' :
+              messageType === 'warning' ? 'text-yellow-600 bg-yellow-50' :
+              messageType === 'info' ? 'text-blue-600 bg-blue-50' :
+              'text-red-600 bg-red-50'
+            }`}>
+                {message.includes('[reset password]') && message.includes('[Google]') ? (
                   <>
-                    {message.split('[signing in]')[0]}
+                    {message.split('[reset password]')[0]}
                     <button
                       onClick={() => {
                         setIsSignUp(false)
+                        setShowForgotPassword(true)
+                        setResetEmail(email)
                         setMessage('')
                       }}
                       className="font-semibold underline hover:no-underline"
                     >
-                      signing in
+                      reset password
                     </button>
-                    {message.split('[signing in]')[1]}
+                    {message.split('[reset password]')[1].split('[Google]')[0]}
+                    <button
+                      onClick={handleGoogleLogin}
+                      className="font-semibold underline hover:no-underline"
+                    >
+                      Google
+                    </button>
+                    {message.split('[Google]')[1]}
                   </>
                 ) : (
                   message
@@ -278,7 +309,6 @@ export default function LoginPage() {
         )}
         
         {!isSignUp && (
-          <>
             <div className="text-center">
               <button
                 onClick={() => {
@@ -291,7 +321,11 @@ export default function LoginPage() {
                 Forgot your password?
               </button>
             </div>
-                        <div className="relative">
+        )}
+
+        {!isSignUp && (
+          <>
+            <div className="relative">
               <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-300"></div></div>
               <div className="relative flex justify-center text-sm"><span className="bg-white px-2 text-gray-500">Or continue with</span></div>
             </div>
