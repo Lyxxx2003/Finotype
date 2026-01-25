@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { clearAnswers } from "@/lib/storage";
 
 export default function StandardLayout({
@@ -36,6 +37,11 @@ export default function StandardLayout({
                   Finotype Standard
                 </button>
               </div>
+            </div>
+            <div className="flex items-center">
+              <Link href="/standard/account" className="text-sm text-gray-500 hover:text-gray-900">
+                Account
+              </Link>
             </div>
           </div>
         </div>

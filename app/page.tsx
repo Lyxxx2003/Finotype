@@ -9,7 +9,7 @@ export default function Home() {
 
   const startTest = () => {
     clearAnswers();
-    router.push('/standard/question/1');
+    router.push('/standard/start');
   };
 
   return (
@@ -28,7 +28,7 @@ export default function Home() {
             onClick={startTest}
             className="rounded-full bg-blue-600 text-white px-8 py-4 text-xl font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
           >
-            Start Test
+            Try Standard Test
           </button>
           <Link
             href="/pro/game"

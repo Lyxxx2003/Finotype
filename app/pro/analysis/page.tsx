@@ -34,6 +34,7 @@ function AnalysisContent() {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [postFamiliarity, setPostFamiliarity] = useState<string>('');
   const [familiaritySubmitted, setFamiliaritySubmitted] = useState(false);
+  const [displayName, setDisplayName] = useState<string>('');
   
   const resultRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
@@ -144,6 +145,23 @@ function AnalysisContent() {
   };
 
   useEffect(() => {
+    const loadDisplayName = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('display_name')
+          .eq('id', user.id)
+          .single();
+        
+        if (profile?.display_name) {
+          setDisplayName(profile.display_name);
+        }
+      }
+    };
+    
+    loadDisplayName();
+    
     const fetchData = async () => {
         let events: any = null;
         let finalBalance = 0;
@@ -297,6 +315,11 @@ function AnalysisContent() {
 
   return (
     <div className="max-w-3xl mx-auto space-y-8 py-12 px-4">
+      {displayName && (
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-gray-900">Hey {displayName}! 👋</h2>
+        </div>
+      )}
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-gray-900">Simulation Results</h1>
       </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getAnswers } from '@/lib/storage';
+import { getAnswers, getDisplayName } from '@/lib/storage';
 import { calculateFinotype } from '@/lib/logic';
 import { personas } from '@/lib/data';
 import Link from 'next/link';
@@ -9,11 +9,17 @@ import { Persona } from '@/types';
 
 export default function AnalysisPage() {
   const [persona, setPersona] = useState<Persona | null>(null);
+  const [displayName, setDisplayName] = useState<string>('');
 
   useEffect(() => {
     const answers = getAnswers();
     const type = calculateFinotype(answers);
     setPersona(personas[type]);
+    
+    const name = getDisplayName();
+    if (name) {
+      setDisplayName(name);
+    }
   }, []);
 
   if (!persona) return <div className="p-8 text-center">Loading analysis...</div>;
@@ -21,6 +27,11 @@ export default function AnalysisPage() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-white p-6 md:p-12 font-sans">
       <div className="max-w-4xl w-full">
+        {displayName && (
+          <div className="mb-6">
+            <h2 className="text-3xl font-bold text-gray-900">Hey {displayName}! 👋</h2>
+          </div>
+        )}
         <header className="mb-12 border-b border-gray-100 pb-8 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <span className="text-4xl">{persona.mascot}</span>

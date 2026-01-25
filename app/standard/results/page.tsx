@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { getAnswers } from '@/lib/storage';
+import { getAnswers, getDisplayName } from '@/lib/storage';
 import { calculateFinotype } from '@/lib/logic';
 import { personas } from '@/lib/data';
 import Link from 'next/link';
@@ -10,12 +10,18 @@ import html2canvas from 'html2canvas';
 
 export default function ResultsPage() {
   const [persona, setPersona] = useState<Persona | null>(null);
+  const [displayName, setDisplayName] = useState<string>('');
   const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const answers = getAnswers();
     const type = calculateFinotype(answers);
     setPersona(personas[type]);
+    
+    const name = getDisplayName();
+    if (name) {
+      setDisplayName(name);
+    }
   }, []);
 
   const handleShare = async () => {
@@ -110,6 +116,11 @@ export default function ResultsPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6 font-sans">
       <div className="max-w-3xl w-full space-y-8">
+        {displayName && (
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900">Hey {displayName}! 👋</h2>
+          </div>
+        )}
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold text-gray-900">Your Results</h1>
         </div>

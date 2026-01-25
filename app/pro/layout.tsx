@@ -30,7 +30,9 @@ export default async function ProLayout({
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-500">{user.email}</span>
+              <Link href="/pro/account" className="text-sm text-gray-500 hover:text-gray-900">
+                Account
+              </Link>
               <form action="/auth/signout" method="post">
                 <button className="text-sm text-gray-500 hover:text-gray-900">
                   Sign out
