@@ -240,6 +240,20 @@ export default function GamePage() {
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Clear all previous game state
+    setSelectedJob(null);
+    setConfirmedJob(null);
+    setChoices({});
+    setSelectedTopicOption(null);
+    setCurrentTopicIndex(0);
+    setTopicOptions([]);
+    setTopicDescription('');
+    setResult(null);
+    
+    // Clear localStorage
+    localStorage.removeItem('gameHistory');
+    localStorage.removeItem('finalNetWorth');
+    
     // Save to DB
     if (user) {
         await supabase.from('profiles').upsert({
@@ -498,7 +512,7 @@ export default function GamePage() {
                             type="submit" 
                             className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {loading ? 'Generating Options...' : 'Update & Restart'}
+                            {loading ? 'Generating Options...' : (jobs.length > 0 ? 'Update & Restart' : 'Start')}
                         </button>
                     </div>
                 </form>
