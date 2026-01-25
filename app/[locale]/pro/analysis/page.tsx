@@ -120,7 +120,7 @@ function AnalysisContent() {
         
         const filename = `finotype-pro-${Date.now()}.png`;
         const file = new File([blob], filename, { type: 'image/png' });
-        const shareUrl = `https://finotype.vercel.app/${locale}/pro/game`;
+        const shareUrl = `https://finotype.vercel.app/${locale}`;
         
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           try {
