@@ -1,4 +1,5 @@
 export const STORAGE_KEY = 'finotype_answers';
+export const DISPLAY_NAME_KEY = 'finotype_display_name';
 
 export const saveAnswer = (questionId: number, answer: string) => {
   if (typeof window === 'undefined') return;
@@ -16,4 +17,19 @@ export const getAnswers = (): Record<number, string> => {
 export const clearAnswers = () => {
   if (typeof window === 'undefined') return;
   localStorage.removeItem(STORAGE_KEY);
+};
+
+export const saveDisplayName = (name: string) => {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem(DISPLAY_NAME_KEY, name);
+};
+
+export const getDisplayName = (): string | null => {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem(DISPLAY_NAME_KEY);
+};
+
+export const clearDisplayName = () => {
+  if (typeof window === 'undefined') return;
+  localStorage.removeItem(DISPLAY_NAME_KEY);
 };

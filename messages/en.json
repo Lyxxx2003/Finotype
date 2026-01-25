@@ -1,0 +1,333 @@
+{
+  "home": {
+    "title": "Finotype",
+    "subtitle": "Discover your financial personality type. Are you a Guardian, a Maverick, or something else? Take the 10-question test to find out and level up your financial literacy.",
+    "standardTest": "Try Standard Test",
+    "proSimulation": "Pro Simulation",
+    "footer": "© {year} Finotype. All rights reserved."
+  },
+  "login": {
+    "title": "Sign In",
+    "signUpTitle": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signInWith": "Sign In with {provider}",
+    "switchToSignUp": "Don't have an account? Sign up",
+    "switchToSignIn": "Already have an account? Sign in",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset Password",
+    "sendResetLink": "Send Reset Link",
+    "backToSignIn": "Back to Sign In",
+    "resendVerification": "Resend Verification Email",
+    "checkEmail": "Check your email for the confirmation link.",
+    "verifyEmail": "Please verify your email before signing in. Check your inbox for the confirmation link.",
+    "accountExists": "Looks like you already have an account! [reset password] to use email login, or continue with [Google].",
+    "verificationSent": "Verification email sent! Please check your inbox.",
+    "resetLinkSent": "Password reset link sent! Check your email.",
+    "enterEmail": "Enter your email to resend verification link.",
+    "loading": "Processing...",
+    "resending": "Sending...",
+    "passwordTooShort": "Password must be at least 6 characters long.",
+    "invalidEmail": "Please enter a valid email address.",
+    "authError": "Authentication error occurred. Please try again."
+  },
+  "auth": {
+    "authError": "Authentication Error",
+    "authErrorMessage": "There was an issue verifying your email link. Only one verification is needed.",
+    "authErrorDetail": "The link may have expired or been automatically visited by your email provider. If you can sign in, your account is already verified.",
+    "signInButton": "Sign In",
+    "setNewPassword": "Set New Password",
+    "enterNewPassword": "Enter your new password below",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "updatePassword": "Update Password",
+    "updating": "Updating...",
+    "invalidResetLink": "Invalid or expired reset link. Please request a new one.",
+    "passwordTooShort": "Password must be at least 6 characters long.",
+    "passwordsDontMatch": "Passwords do not match.",
+    "passwordUpdated": "Password updated successfully! Redirecting to login...",
+    "resetFailed": "Failed to reset password. Please try again.",
+    "backToLogin": "Back to Login"
+  },
+  "start": {
+    "welcome": "Welcome to Finotype",
+    "prompt": "Let's get started! What should we call you?",
+    "namePlaceholder": "Enter your name",
+    "startButton": "Start Test",
+    "nameNote": "Your name will be used to personalize your results",
+    "returnHomeTitle": "Return to Home?",
+    "returnHomeMessage": "Are you sure you want to go back to Home? You'll lose all your current results.",
+    "cancelButton": "Cancel",
+    "continueButton": "Continue"
+  },
+  "results": {
+    "hey": "Hey {name}! 👋",
+    "yourResults": "Your Results",
+    "yourFinotype": "Your Finotype",
+    "aboutYourType": "About Your Type",
+    "shareResult": "Share My Result",
+    "seePitfallsAndTips": "See Common Pitfalls & Tips",
+    "returnHome": "Return Home",
+    "calculating": "Calculating your financial DNA...",
+    "questionOf": "Question {current} of {total}",
+    "back": "← Back"
+  },
+  "account": {
+    "title": "Account Settings",
+    "displayName": "Display Name",
+    "displayNameNote": "This name will be used in your analysis results",
+    "email": "Email",
+    "preferences": "Preferences",
+    "language": "Preferred Language",
+    "languageDescription": "Select your preferred language for the app and AI-generated content",
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "saved": "Display name saved successfully!",
+    "savedError": "Failed to save display name. Please try again.",
+    "deleteSuccess": "Account deleted successfully.",
+    "deleteError": "Failed to delete account. Please try again.",
+    "dangerZone": "Danger Zone",
+    "deleteAccount": "Delete Account",
+    "deleteWarning": "This action cannot be undone. All your data, including simulation history and profile information, will be permanently deleted.",
+    "confirmDelete": "Delete Account?",
+    "cancel": "Cancel",
+    "confirmButton": "Delete",
+    "deleting": "Deleting...",
+    "loading": "Loading...",
+    "backToGame": "Back to Game"
+  },
+  "analysis": {
+    "title": "Your Financial Analysis",
+    "simulationResults": "Simulation Results",
+    "hey": "Hey {name}! 👋",
+    "typeAnalysis": "{name} Analysis",
+    "finotypeLabel": "Finotype: {type}",
+    "backToSummary": "← Back to Summary",
+    "yourStrengths": "✨ Your Strengths",
+    "commonPitfalls": "⚠️ Common Pitfalls",
+    "tipsForYou": "💡 Tips for You",
+    "startOver": "Start Over",
+    "loadingAnalysis": "Gemini is analyzing your financial psychology...",
+    "finalBalance": "Final Cash Balance",
+    "netWorth": "Net Worth",
+    "finalNetWorth": "Final Net Worth",
+    "finotype": "Your Finotype",
+    "narrative": "Your Story",
+    "tips": "Tips for Improvement",
+    "topicAnalysis": "Topic Analysis",
+    "shareResults": "Share Results",
+    "shareResult": "Share Result",
+    "downloadImage": "Download as Image",
+    "backToGame": "Back to Simulation",
+    "playAgain": "Play Again",
+    "returnHome": "Return Home",
+    "yourFinancialPersona": "Your Financial Persona",
+    "behavioralSummary": "Behavioral Summary",
+    "expertTips": "Gemini's Expert Tips",
+    "confidenceQuestion": "How confident do you feel about finance now?",
+    "selectLevel": "Select level...",
+    "beginnerLevel": "Beginner (What is a 401k?)",
+    "intermediateLevel": "Intermediate (I budget sometimes)",
+    "advancedLevel": "Advanced (I have a diverse portfolio)",
+    "submit": "Submit",
+    "thanksFeedback": "Thanks for your feedback!",
+    "retryConnection": "Retry Connection",
+    "continueDemo": "Continue in Demo Mode",
+    "switchToQA": "Switch to Simple Q/A Test",
+    "regionBlocked": "AI unavailable in your region. Please use Demo Mode.",
+    "simulationFailed": "Simulation generation failed.",
+    "analysisGenerationFailed": "Failed to generate analysis."
+  },
+  "game": {
+    "welcome": "Welcome to Finotype Pro",
+    "title": "Finotype Pro Simulation",
+    "subtitle": "Design your financial life, one choice at a time.",
+    "demoMode": "DEMO MODE",
+    "setupProfile": "User Profile",
+    "industry": "Your Ideal Industry",
+    "industryPlaceholder": "e.g. Tech, Healthcare, Arts...",
+    "familiarity": "Financial Familiarity",
+    "selectLevel": "Select level...",
+    "beginnerLevel": "Beginner (What is a 401k?)",
+    "intermediateLevel": "Intermediate (I budget sometimes)",
+    "advancedLevel": "Advanced (I have a diverse portfolio)",
+    "salary": "Intended Salary (Annual)",
+    "salaryPlaceholder": "e.g. 75000",
+    "paymentFreq": "Pay Frequency",
+    "payMonthly": "Monthly",
+    "paySemiMonth": "Semi-Month",
+    "payHourly": "Hourly",
+    "required": "*",
+    "cancel": "Cancel",
+    "updateRestart": "Update & Restart",
+    "start": "Start",
+    "generatingOptions": "Generating Options...",
+    "selectJob": "Select Your Career Path",
+    "editProfile": "Edit Profile",
+    "editProfileTitle": "Start Over?",
+    "editProfileMessage": "Editing your profile will restart the simulation from the beginning. Your previous game results will be cleared. Are you sure you want to continue?",
+    "location": "Location",
+    "compensation": "Compensation",
+    "compensationTooltip": "Bonuses: Often performance based. RSUs: Restricted Stock Units, vest over time. Options: Right to buy stock at set price.",
+    "health": "Health",
+    "healthTooltip": "PPO: Higher premium but more doctor choice. HMO: Lower premium but restricted network. HDHP: Lower premium, high deductible (good with HSA).",
+    "tapToSelect": "Tap to Select",
+    "careerOutlook": "Career Outlook",
+    "stableChoice": "Stable choice with good growth.",
+    "reselect": "Reselect",
+    "continue": "Continue",
+    "monthlyTag": "/mo",
+    "oneTimeTag": "one-time",
+    "choiceAnalyzed": "Choice Analyzed",
+    "goodChoice": "Good choice!",
+    "reflectingDecision": "Reflecting on your decision...",
+    "editProfileConfirm": "Changing profile will restart the simulation. Continue?",
+    "simulatingYear": "Simulating your financial year...",
+    "simulatingYearSubtext": "Checking stock markets... Calculating interest... Paying bills...",
+    "oneYearLater": "One Year Later...",
+    "yourFinancialPersona": "Your Financial Persona",
+    "finalBalance": "Final Cash Balance",
+    "netWorth": "Net Worth",
+    "yearInReview": "Your Year in Review",
+    "professionalTips": "Professional Tips for You",
+    "playAgain": "Play Again",
+    "viewAnalysis": "View Full Analysis & Share",
+    "gotIt": "Got it",
+    "aiGenerationIssue": "AI Generation Issue",
+    "aiGenerationMessage": "We encountered an issue creating your personalized scenario.",
+    "retryConnection": "Retry Connection",
+    "continueDemo": "Continue in Demo Mode",
+    "switchToQA": "Switch to Simple Q/A Test",
+    "networkError": "Network error or limit reached.",
+    "regionBlocked": "AI unavailable in your region. Please use Demo Mode.",
+    "loading": "Loading...",
+    "currentBalance": "Current Balance"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "continue": "Continue",
+    "goBack": "Go Back",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "monthly": "per month",
+    "oneTime": "one-time",
+    "account": "Account",
+    "signOut": "Sign Out"
+  },
+  "questions": {
+    "1": {
+      "text": "When you receive your paycheck, what is your first instinct?",
+      "options": {
+        "F": "Immediately transfer a portion to savings",
+        "L": "Check my wish list and treat myself"
+      }
+    },
+    "2": {
+      "text": "How do you handle grocery shopping?",
+      "options": {
+        "F": "I stick to a strict list and look for discounts",
+        "L": "I buy whatever looks good or inspires me"
+      }
+    },
+    "3": {
+      "text": "A new phone model just came out. You...",
+      "options": {
+        "F": "Wait until my current one completely dies",
+        "L": "Consider upgrading if it has cool new features"
+      }
+    },
+    "4": {
+      "text": "Your friends invite you to an expensive dinner. You...",
+      "options": {
+        "F": "Suggest a cheaper alternative or decline politely",
+        "L": "Go along! Experiences are worth paying for"
+      }
+    },
+    "5": {
+      "text": "What does 'budgeting' mean to you?",
+      "options": {
+        "F": "A daily ritual I strictly follow",
+        "L": "A vague guideline I try to keep in mind"
+      }
+    },
+    "6": {
+      "text": "If you had $10,000 to invest, where would you put it?",
+      "options": {
+        "C": "A high-yield savings account or bonds",
+        "A": "Crypto or a high-growth stock startup"
+      }
+    },
+    "7": {
+      "text": "How do you feel about the stock market crashing?",
+      "options": {
+        "C": "Terrified, I might pull my money out",
+        "A": "Excited, it's a buying opportunity!"
+      }
+    },
+    "8": {
+      "text": "You hear about a risky investment with potential 10x returns. You...",
+      "options": {
+        "C": "Stay away, it sounds like a scam or gamble",
+        "A": "Invest a small amount just to see what happens"
+      }
+    },
+    "9": {
+      "text": "When planning for retirement, you prefer...",
+      "options": {
+        "C": "Guaranteed stable income",
+        "A": "Maximum possible growth, even if risky"
+      }
+    },
+    "10": {
+      "text": "Your financial knowledge mainly comes from...",
+      "options": {
+        "C": "Established books and certified advisors",
+        "A": "Online forums, Twitter/X, and trends"
+      }
+    }
+  },
+  "personas": {
+    "FC": {
+      "name": "The Guardian",
+      "mascot": "🛡️",
+      "description": "You are the bedrock of financial stability. You value security over luxury and prefer steady, predictable growth.",
+      "strengths": ["Excellent saver", "Prepared for emergencies", "Disciplined"],
+      "pitfalls": ["Risk aversion may lead to inflation loss", "Missed opportunities for growth", "Can be too frugal to enjoy life"],
+      "tips": ["Allocate a small 'fun budget' guilt-free", "Explore low-cost index funds to beat inflation", "Remember that money is a tool, not just a scoreboard"]
+    },
+    "FA": {
+      "name": "The Strategist",
+      "mascot": "♟️",
+      "description": "You are disciplined with spending but bold with investing. You save aggressively to fuel your high-growth ambitions.",
+      "strengths": ["High savings rate", "Forward-thinking", "Capitalizes on compound interest"],
+      "pitfalls": ["Might take uncalculated risks with hard-earned savings", "Can overlook liquidity needs", "Overconfidence"],
+      "tips": ["Ensure you have a liquid emergency fund before heavy investing", "Diversify your high-risk bets", "Balance your portfolio with some stable assets"]
+    },
+    "LC": {
+      "name": "The Enthusiast",
+      "mascot": "🎉",
+      "description": "You love to enjoy the present moment and prefer your investments to be safe and sound. You work hard to spend well.",
+      "strengths": ["Generous", "Enjoys life", "Avoids gambling with money"],
+      "pitfalls": ["Low savings rate", "Lifestyle creep", "Financial stress from lack of buffer"],
+      "tips": ["Automate savings before you see the money", "Use the 50/30/20 rule to structure spending", "Find low-cost ways to enjoy your hobbies"]
+    },
+    "LA": {
+      "name": "The Maverick",
+      "mascot": "🚀",
+      "description": "You live fast and invest fast. High earning potential, high spending, and high risk tolerance define your style.",
+      "strengths": ["Not afraid of failure", "Ambitious", "Adaptable"],
+      "pitfalls": ["High volatility in net worth", "Debt accumulation", "Lack of long-term security"],
+      "tips": ["Focus on cash flow management", "Pay off high-interest debt immediately", "Create a 'do not touch' safety net account"]
+    }
+  }
+}

@@ -6,11 +6,24 @@ const apiKey = process.env.GEMINI_API_KEY || "";
 
 const genAI = new GoogleGenerativeAI(apiKey);
 
+function getLanguageName(code: string): string {
+  const languageMap: Record<string, string> = {
+    'en': 'English',
+    'zh': 'Chinese (Simplified)',
+    'es': 'Spanish',
+    'fr': 'French',
+    'de': 'German',
+    'ja': 'Japanese'
+  };
+  return languageMap[code] || 'English';
+}
+
 export interface UserProfile {
   industry: string;
   familiarity: string;
   salary?: string;
   paymentFreq?: string;
+  language?: string; // User's preferred language
 }
 
 export interface JobOption {
@@ -90,10 +103,15 @@ function getFallbackLifeOptions(topic: string): { description: string, options: 
     return { description: data.description, options: data.options };
 }
 
-export async function generateJobs(profile: UserProfile, isDemo: boolean = false): Promise<{ jobs: JobOption[], error?: string }> {
+export async function generateJobs(profile: UserProfile, isDemo: boolean = false, locale: string = 'en'): Promise<{ jobs: JobOption[], error?: string }> {
     if (isDemo || !apiKey || apiKey.startsWith("TODO")) {
         return { jobs: getFallbackJobs(profile) };
     }
+
+    const language = locale || 'en';
+    const languageInstruction = language !== 'en' 
+        ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The job titles, analysis, and all descriptions should be in ${getLanguageName(language)}.` 
+        : '';
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
     const prompt = `
@@ -103,6 +121,7 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
         Vary the salary, benefits (bonus/stocks), health insurance plans, and locations.
         Make them realistic.
         Include a short "analysis" string (1 sentence) critiquing this career path (e.g. "High pay but high stress").
+        ${languageInstruction}
         
         Output JSON only:
         {
@@ -139,10 +158,15 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
     }
 }
 
-export async function generateLifeOptions(topic: string, context: any, isDemo: boolean = false): Promise<{ description: string, options: LifeOption[], error?: string }> {
+export async function generateLifeOptions(topic: string, context: any, isDemo: boolean = false, locale: string = 'en'): Promise<{ description: string, options: LifeOption[], error?: string }> {
     if (isDemo || !apiKey || apiKey.startsWith("TODO")) {
         return getFallbackLifeOptions(topic);
     }
+
+    const language = locale || 'en';
+    const languageInstruction = language !== 'en' 
+        ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The description, option titles, descriptions, and analysis should all be in ${getLanguageName(language)}.` 
+        : '';
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
     const prompt = `
@@ -154,6 +178,7 @@ export async function generateLifeOptions(topic: string, context: any, isDemo: b
         2. Generate 3 distinct options for the user to choose from regarding this topic.
            Include a cost (monthly or one-time) that is realistic for their salary.
            Include an "analysis" string that briefly critiques/praises this choice (e.g., "Smart frugal choice" or "High risk but potentially high reward").
+        ${languageInstruction}
         
         Output JSON only:
         {
@@ -194,7 +219,8 @@ export async function simulateYear(
     profile: UserProfile, 
     job: JobOption, 
     choices: Record<string, LifeOption>, 
-    isDemo: boolean = false
+    isDemo: boolean = false,
+    locale: string = 'en'
 ): Promise<SimulationResult> {
     const calculateFallback = () => {
         // Simple logic fallback
@@ -231,6 +257,11 @@ export async function simulateYear(
         return calculateFallback();
     }
 
+    const language = locale || 'en';
+    const languageInstruction = language !== 'en' 
+        ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The narrative, finotype, tips, and analysisByTopic should all be in ${getLanguageName(language)}.` 
+        : '';
+
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
     const inputs = JSON.stringify({ profile, job, choices });
     const prompt = `
@@ -242,6 +273,7 @@ export async function simulateYear(
         3. Identify their "Finotype" (Financial Persona).
         4. Give 3 tips.
         5. For each choice made (Housing, Credit Cards, etc.), provide a 1-sentence analysis/critique of that specific decision in the context of their profile. Key by topic ID.
+        ${languageInstruction}
         
         Output JSON only:
         {
