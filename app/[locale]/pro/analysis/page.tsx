@@ -309,8 +309,8 @@ function AnalysisContent() {
   if (loading) {
       return (
           <div className="flex flex-col items-center justify-center h-[60vh] space-y-4">
-              <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-              <p className="text-lg text-gray-600">{t('loadingAnalysis')}</p>
+              <div className="w-12 h-12 border-4 rounded-full animate-spin" style={{ borderColor: 'var(--color-primary)', borderTopColor: 'transparent' }}></div>
+              <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>{t('loadingAnalysis')}</p>
           </div>
       );
   }
@@ -319,82 +319,82 @@ function AnalysisContent() {
     <div className="max-w-3xl mx-auto space-y-8 py-12 px-4">
       {displayName && (
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">{t('hey', {name: displayName})}</h2>
+          <h2 className="text-3xl font-bold text-morandi-dark">{t('hey', {name: displayName})}</h2>
         </div>
       )}
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-gray-900">{t('title')}</h1>
+        <h1 className="text-4xl font-bold text-morandi-dark">{t('title')}</h1>
       </div>
 
       {analysis && (
-          <div 
-            className="rounded-2xl overflow-hidden border"
-            style={{ 
-              backgroundColor: '#ffffff', 
-              borderColor: '#f3f4f6', 
-              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
-            }}
-          >
-              <div 
-                className="p-8 text-white relative overflow-hidden"
-                style={{ backgroundColor: '#2563eb', color: '#ffffff' }}
-              >
+          <div className="card-morandi rounded-3xl overflow-hidden border-0">
+              <div className="p-8 md:p-12 text-white relative overflow-hidden bg-gradient-morandi-blue">
                   <div className="relative z-10 text-center">
                     <h2 
-                        className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
-                        style={{ opacity: 0.9 }}
+                        className="text-sm uppercase tracking-widest font-bold mb-3"
+                        style={{ opacity: 0.95, letterSpacing: '0.1em' }}
                     >
                         {t('yourFinancialPersona')}
                     </h2>
-                    <div className="text-4xl md:text-5xl font-bold mb-6">{analysis.profile}</div>
+                    <div className="text-4xl md:text-5xl font-bold mb-8 leading-tight">{analysis.profile}</div>
                     
                     <div 
-                        className="inline-block backdrop-blur-sm rounded-xl px-6 py-3 border"
-                        style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderColor: 'rgba(255,255,255,0.3)' }}
+                        className="inline-block backdrop-blur-md rounded-2xl px-8 py-4 border"
+                        style={{ 
+                          background: 'rgba(255,255,255,0.25)', 
+                          borderColor: 'rgba(255,255,255,0.4)',
+                          boxShadow: '0 4px 16px rgba(0,0,0,0.1)'
+                        }}
                     >
                         <p 
-                            className="text-xs font-bold uppercase tracking-wider mb-1"
-                            style={{ color: '#dbeafe' }} // blue-100
+                            className="text-sm font-bold uppercase tracking-wider mb-2"
+                            style={{ color: 'rgba(255,255,255,0.9)' }}
                         >
                             {t('finalNetWorth')}
                         </p>
-                        <p className="text-3xl font-bold text-white" style={{ color: '#ffffff' }}>${Number(netWorth).toLocaleString()}</p>
+                        <p className="text-4xl font-bold text-white">${Number(netWorth).toLocaleString()}</p>
                     </div>
                   </div>
-                  {/* Decorative circles */}
+                  {/* Decorative elements - Morandi style */}
                   <div 
-                    className="absolute top-0 left-0 w-64 h-64 rounded-full -translate-x-1/2 -translate-y-1/2"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}
-                  ></div>
+                    className="absolute top-0 left-0 w-64 h-64 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-30"
+                    style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)' }}
+                  />
                   <div 
-                    className="absolute bottom-0 right-0 w-48 h-48 rounded-full translate-x-1/3 translate-y-1/3"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
-                  ></div>
+                    className="absolute bottom-0 right-0 w-48 h-48 rounded-full translate-x-1/3 translate-y-1/3 opacity-30"
+                    style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)' }}
+                  />
               </div>
               
-              <div className="p-8 space-y-8">
+              <div className="p-8 md:p-12 space-y-10">
                   <div>
-                      <h3 className="text-xl font-semibold mb-2" style={{ color: '#111827' }}>{t('behavioralSummary')}</h3>
-                      <p className="leading-relaxed text-lg" style={{ color: '#374151' }}>{analysis.summary}</p>
+                      <h3 className="text-2xl font-bold mb-4 text-morandi-dark">{t('behavioralSummary')}</h3>
+                      <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{analysis.summary}</p>
                   </div>
 
                   {analysis.tips && Array.isArray(analysis.tips) && analysis.tips.length > 0 && (
                   <div>
-                      <h3 className="text-xl font-semibold mb-4" style={{ color: '#111827' }}>{t('expertTips')}</h3>
+                      <h3 className="text-2xl font-bold mb-6 text-morandi-dark">{t('expertTips')}</h3>
                       <div className="grid gap-4">
                           {analysis.tips.map((tip, idx) => (
                               <div 
                                 key={idx} 
-                                className="flex gap-4 items-start p-4 rounded-lg border"
-                                style={{ backgroundColor: '#fefce8', color: '#713f12', borderColor: '#fef9c3' }}
+                                className="flex gap-4 items-start p-5 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                                style={{ 
+                                  background: 'linear-gradient(135deg, rgba(245,217,168,0.3) 0%, rgba(232,184,125,0.2) 100%)',
+                                  borderColor: 'var(--color-accent)',
+                                  border: '1px solid',
+                                  color: 'var(--color-neutral-700)',
+                                  boxShadow: '0 2px 8px rgba(232,184,125,0.1)'
+                                }}
                               >
                                   <span 
-                                    className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full font-bold"
-                                    style={{ backgroundColor: '#fef08a', color: '#854d0e' }}
+                                    className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg text-white bg-gradient-morandi-warm"
+                                    style={{ boxShadow: '0 2px 8px rgba(232,184,125,0.3)' }}
                                   >
                                       {idx + 1}
                                   </span>
-                                  <p className="font-medium pt-1">{tip}</p>
+                                  <p className="font-medium pt-1.5 leading-relaxed">{tip}</p>
                               </div>
                           ))}
                       </div>
@@ -402,13 +402,13 @@ function AnalysisContent() {
                   )}
 
                   {!familiaritySubmitted ? (
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mt-8" data-html2canvas-ignore>
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">{t('confidenceQuestion')}</h3>
+                    <div className="card-morandi p-6 mt-8" data-html2canvas-ignore>
+                        <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>{t('confidenceQuestion')}</h3>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <select
                                 value={postFamiliarity}
                                 onChange={(e) => setPostFamiliarity(e.target.value)}
-                                className="flex-1 bg-gray-50 border border-gray-200 text-gray-900 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                                className="input-morandi flex-1"
                             >
                                 <option value="">{t('selectLevel')}</option>
                                 <option value="Beginner">{t('beginnerLevel')}</option>
@@ -418,14 +418,14 @@ function AnalysisContent() {
                             <button
                                 onClick={handlePostFamiliaritySubmit}
                                 disabled={!postFamiliarity}
-                                className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold disabled:opacity-50 hover:bg-blue-700 transition"
+                                className="btn-morandi-primary disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {t('submit')}
                             </button>
                         </div>
                     </div>
                 ) : (
-                    <div className="bg-green-50 p-6 rounded-2xl border border-green-100 mt-8 text-center text-green-800 font-medium" data-html2canvas-ignore>
+                    <div className="alert-success p-6 mt-8 text-center font-medium" data-html2canvas-ignore>
                         {t('thanksFeedback')}
                     </div>
                 )}
@@ -436,29 +436,29 @@ function AnalysisContent() {
       <div data-html2canvas-ignore className="flex flex-col sm:flex-row justify-center gap-4">
           <button 
               onClick={handleShare}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-bold shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
+              className="btn-morandi-primary flex items-center justify-center gap-2"
           >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
               {t('shareResult')}
           </button>
-          <Link href={`/${locale}/pro/game`} className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 font-medium text-center">
+          <Link href={`/${locale}/pro/game`} className="btn-morandi-accent text-center">
               {t('playAgain')}
           </Link>
-          <Link href={`/${locale}`} className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium text-center">
+          <Link href={`/${locale}`} className="btn-morandi-outline text-center">
               {t('returnHome')}
           </Link>
       </div>
 
       {errorType && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-              <div className="bg-white p-8 rounded-xl max-w-md w-full shadow-2xl space-y-6">
+          <div className="modal-backdrop">
+              <div className="modal-content space-y-6">
                   <div className="text-center space-y-2">
-                       <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                           <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(135deg, rgba(196,148,139,0.2) 0%, rgba(196,148,139,0.1) 100%)' }}>
+                           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-terracotta)' }}>
                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                            </svg>
                        </div>
-                       <h3 className="text-2xl font-bold text-gray-900">
+                       <h3 className="text-2xl font-bold" style={{ color: 'var(--color-text)' }}>
                            {errorType === 'LOCATION_NOT_SUPPORTED' || errorType === 'REGION_BLOCKED' ? 'Region Not Supported' :
                             errorType === 'RATE_LIMIT_EXCEEDED' ? 'Too Many Requests' :
                             errorType === 'NETWORK_ERROR' ? 'Connection Issue' :
@@ -467,11 +467,11 @@ function AnalysisContent() {
                             errorType === 'GENERATION_ERROR' ? 'AI Generation Issue' :
                             'Error Occurred'}
                        </h3>
-                       <p className="text-gray-600">
+                       <p style={{ color: 'var(--color-text-secondary)' }}>
                            {errorMessage}
                        </p>
-                       <div className="text-left mt-4 p-4 bg-gray-50 rounded-lg">
-                           <p className="text-xs text-gray-500 font-mono">Error Code: {errorType}</p>
+                       <div className="text-left mt-4 p-4 rounded-lg" style={{ background: 'var(--color-neutral-100)' }}>
+                           <p className="text-xs font-mono" style={{ color: 'var(--color-text-muted)' }}>Error Code: {errorType}</p>
                        </div>
                   </div>
                   <div className="flex flex-col gap-3">
@@ -479,7 +479,7 @@ function AnalysisContent() {
                           onClick={() => {
                               window.location.reload();
                           }}
-                          className="w-full bg-gray-100 text-gray-900 py-3 rounded-lg hover:bg-gray-200 font-bold text-center"
+                          className="btn-morandi-secondary w-full py-3"
                       >
                           {t('retryConnection')}
                       </button>
@@ -496,7 +496,7 @@ function AnalysisContent() {
                               setErrorType(null); 
                               setLoading(true); // show loading while re-fetching
                           }}
-                          className="w-full bg-orange-100 text-orange-700 py-3 rounded-lg hover:bg-orange-200 font-bold text-center"
+                          className="btn-morandi-accent w-full py-3"
                       >
                           {t('continueDemo')}
                       </button>
@@ -505,7 +505,7 @@ function AnalysisContent() {
                               clearAnswers();
                               router.replace(`/${locale}/standard/question/1`);
                           }}
-                          className="w-full border border-gray-200 text-gray-600 py-3 rounded-lg hover:bg-gray-50 font-medium text-center"
+                          className="btn-morandi-outline w-full py-3"
                       >
                           {t('switchToQA')}
                       </button>
@@ -519,7 +519,7 @@ function AnalysisContent() {
 
 export default function AnalysisPage() {
     return (
-        <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}>
+        <Suspense fallback={<div className="p-8 text-center" style={{ color: 'var(--color-text-muted)' }}>Loading...</div>}>
             <AnalysisContent />
         </Suspense>
     )

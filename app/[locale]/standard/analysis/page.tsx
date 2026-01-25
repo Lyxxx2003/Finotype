@@ -31,36 +31,36 @@ export default function AnalysisPage() {
   if (!persona) return <div className="p-8 text-center">{t('loadingAnalysis')}</div>;
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-white p-6 md:p-12 font-sans">
+    <div className="flex flex-col items-center min-h-screen p-6 md:p-12 font-sans bg-gradient-morandi">
       <div className="max-w-4xl w-full">
         {displayName && (
           <div className="mb-6">
-            <h2 className="text-3xl font-bold text-gray-900">{t('hey', { name: displayName })}</h2>
+            <h2 className="text-3xl font-bold text-morandi-dark">{t('hey', { name: displayName })}</h2>
           </div>
         )}
-        <header className="mb-12 border-b border-gray-100 pb-8 flex justify-between items-center">
+        <header className="mb-12 border-b pb-8 flex justify-between items-center" style={{ borderColor: 'var(--color-neutral-200)' }}>
           <div className="flex items-center gap-4">
             <span className="text-4xl">{persona.mascot}</span>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{t('typeAnalysis', { name: tPersonas(`${persona.id}.name`) })}</h1>
-              <p className="text-gray-500">{t('finotypeLabel', { type: persona.id })}</p>
+              <h1 className="text-3xl font-bold text-morandi-dark">{t('typeAnalysis', { name: tPersonas(`${persona.id}.name`) })}</h1>
+              <p style={{ color: 'var(--color-text-secondary)' }}>{t('finotypeLabel', { type: persona.id })}</p>
             </div>
           </div>
-          <Link href={`/${locale}/standard/results`} className="text-blue-600 font-medium hover:underline">
+          <Link href={`/${locale}/standard/results`} className="text-morandi-primary font-medium hover:underline cursor-pointer">
             {t('backToSummary')}
           </Link>
         </header>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Strengths */}
-          <section className="bg-green-50 p-8 rounded-2xl border border-green-100">
-            <h2 className="text-xl font-bold text-green-800 mb-6 flex items-center gap-2">
+          <section className="p-8 rounded-2xl border transition-all duration-300 hover:scale-[1.02]" style={{ background: 'linear-gradient(135deg, rgba(167,184,168,0.15) 0%, rgba(167,184,168,0.08) 100%)', borderColor: 'var(--color-sage)' }}>
+            <h2 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--color-sage)' }}>
               {t('yourStrengths')}
             </h2>
             <ul className="space-y-4">
               {persona.strengths.map((s, i) => (
-                <li key={i} className="flex items-start gap-3 text-green-900">
-                  <span className="mt-1 block w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                <li key={i} className="flex items-start gap-3" style={{ color: 'var(--color-neutral-700)' }}>
+                  <span className="mt-1 block w-2 h-2 rounded-full bg-morandi-sage flex-shrink-0"></span>
                   {s}
                 </li>
               ))}
@@ -68,14 +68,14 @@ export default function AnalysisPage() {
           </section>
 
           {/* Pitfalls */}
-          <section className="bg-red-50 p-8 rounded-2xl border border-red-100">
-            <h2 className="text-xl font-bold text-red-800 mb-6 flex items-center gap-2">
+          <section className="p-8 rounded-2xl border transition-all duration-300 hover:scale-[1.02]" style={{ background: 'linear-gradient(135deg, rgba(196,148,139,0.15) 0%, rgba(196,148,139,0.08) 100%)', borderColor: 'var(--color-terracotta)' }}>
+            <h2 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--color-terracotta)' }}>
               {t('commonPitfalls')}
             </h2>
             <ul className="space-y-4">
               {persona.pitfalls.map((p, i) => (
-                <li key={i} className="flex items-start gap-3 text-red-900">
-                  <span className="mt-1 block w-2 h-2 rounded-full bg-red-500 flex-shrink-0"></span>
+                <li key={i} className="flex items-start gap-3" style={{ color: 'var(--color-neutral-700)' }}>
+                  <span className="mt-1 block w-2 h-2 rounded-full bg-morandi-terracotta flex-shrink-0"></span>
                   {p}
                 </li>
               ))}
@@ -84,15 +84,15 @@ export default function AnalysisPage() {
         </div>
 
         {/* Actionable Tips */}
-        <section className="bg-blue-50 p-8 rounded-2xl border border-blue-100 mb-12">
-          <h2 className="text-xl font-bold text-blue-800 mb-6 flex items-center gap-2">
+        <section className="p-8 rounded-2xl border mb-12" style={{ background: 'linear-gradient(135deg, rgba(245,217,168,0.2) 0%, rgba(232,184,125,0.15) 100%)', borderColor: 'var(--color-accent)' }}>
+          <h2 className="text-xl font-bold text-morandi-accent mb-6 flex items-center gap-2">
             {t('tipsForYou')}
           </h2>
           <div className="grid gap-4">
             {persona.tips.map((tip, i) => (
-              <div key={i} className="bg-white p-4 rounded-xl shadow-sm border border-blue-100 text-blue-900 flex gap-4 items-center">
-                 <span className="font-bold text-blue-200 text-2xl">0{i+1}</span>
-                 {tip}
+              <div key={i} className="card-morandi p-4 flex gap-4 items-center">
+                 <span className="font-bold text-2xl bg-gradient-morandi-warm bg-clip-text" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>0{i+1}</span>
+                 <span style={{ color: 'var(--color-text)' }}>{tip}</span>
               </div>
             ))}
           </div>
@@ -101,7 +101,7 @@ export default function AnalysisPage() {
         <div className="text-center">
           <Link
              href={`/${locale}`}
-             className="inline-block bg-gray-900 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition"
+             className="btn-morandi-primary inline-block"
           >
             {t('startOver')}
           </Link>

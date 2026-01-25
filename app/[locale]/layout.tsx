@@ -3,11 +3,15 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { IBM_Plex_Sans } from 'next/font/google';
 import { locales } from '@/i18n';
 import Navbar from '@/components/Navbar';
 
-const inter = Inter({ subsets: ['latin'] });
+const ibmPlexSans = IBM_Plex_Sans({ 
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Finotype - Financial Personality Test',
@@ -38,7 +42,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body className={ibmPlexSans.className}>
         <NextIntlClientProvider messages={messages}>
           <div className="min-h-screen flex flex-col">
             <Navbar />

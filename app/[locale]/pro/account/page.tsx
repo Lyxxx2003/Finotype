@@ -106,31 +106,31 @@ export default function AccountPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-gray-500">{t('loading')}</div>
+      <div className="flex items-center justify-center min-h-screen bg-gradient-morandi">
+        <div className="text-morandi-dark" style={{ color: 'var(--color-text-muted)' }}>{t('loading')}</div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-2xl mx-auto py-8 px-4">
+    <div className="max-w-2xl mx-auto py-8 px-4 bg-gradient-morandi" style={{ minHeight: 'calc(100vh - 4rem)' }}>
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+        <h1 className="text-3xl font-bold text-gradient-morandi">{t('title')}</h1>
         <Link 
           href={`/${locale}/pro/game`}
-          className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 border border-blue-600 hover:border-blue-700 rounded-lg transition-colors"
+          className="btn-morandi-outline text-sm"
         >
           ← {t('backToGame')}
         </Link>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm p-6 space-y-6">
+      <div className="card-morandi p-8 space-y-6">
         {/* Email */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="label-morandi">
             {t('email')}
           </label>
-          <div className="text-gray-900 bg-gray-50 px-4 py-2 rounded-md">
+          <div className="display-box">
             {user?.email}
           </div>
         </div>
@@ -138,18 +138,18 @@ export default function AccountPage() {
         {/* Display Name */}
         <form onSubmit={handleSave}>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="label-morandi">
               {t('displayName')}
             </label>
             <input
               type="text"
               maxLength={50}
-              className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm"
+              className="input-morandi"
               placeholder="Enter your display name"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
             />
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
               {t('displayNameNote')}
             </p>
           </div>
@@ -157,18 +157,18 @@ export default function AccountPage() {
           <button
             type="submit"
             disabled={saving}
-            className="mt-4 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 disabled:opacity-50"
+            className="mt-4 btn-morandi-primary disabled:opacity-50"
           >
             {saving ? t('saving') : t('save')}
           </button>
         </form>
 
         {message && (
-          <div className={`text-sm p-3 rounded-md ${
-            messageType === 'success' ? 'bg-green-50 text-green-700 border border-green-200' :
-            messageType === 'error' ? 'bg-red-50 text-red-700 border border-red-200' :
-            messageType === 'warning' ? 'bg-yellow-50 text-yellow-700 border border-yellow-200' :
-            'bg-blue-50 text-blue-700 border border-blue-200'
+          <div className={`${
+            messageType === 'success' ? 'alert-success' :
+            messageType === 'error' ? 'alert-error' :
+            messageType === 'warning' ? 'alert-warning' :
+            'alert-info'
           }`}>
             {message}
           </div>
@@ -176,14 +176,14 @@ export default function AccountPage() {
       </div>
 
       {/* Danger Zone */}
-      <div className="bg-white rounded-xl shadow-sm p-6 mt-6 border border-red-200">
-        <h2 className="text-lg font-semibold text-red-600 mb-4">{t('dangerZone')}</h2>
-        <p className="text-sm text-gray-600 mb-4">
+      <div className="card-danger mt-6">
+        <h2 className="text-lg font-bold mb-4" style={{ color: 'var(--color-terracotta)' }}>{t('dangerZone')}</h2>
+        <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
           {t('deleteWarning')}
         </p>
         <button
           onClick={() => setShowDeleteConfirm(true)}
-          className="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-500"
+          className="btn-morandi-danger text-sm"
         >
           {t('deleteAccount')}
         </button>
@@ -192,29 +192,34 @@ export default function AccountPage() {
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
         <div 
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-[100]"
+          className="modal-backdrop"
           onClick={() => setShowDeleteConfirm(false)}
         >
           <div 
-            className="bg-white p-8 rounded-2xl max-w-md w-full shadow-2xl border border-gray-100"
+            className="modal-content"
             onClick={e => e.stopPropagation()}
           >
-            <h3 className="text-xl font-bold text-gray-900 mb-3">{t('confirmDelete')}</h3>
-            <p className="text-gray-600 mb-8 leading-relaxed">
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style={{ background: 'linear-gradient(135deg, rgba(196,148,139,0.2) 0%, rgba(196,148,139,0.1) 100%)' }}>
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-terracotta)' }}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-center" style={{ color: 'var(--color-text)' }}>{t('confirmDelete')}</h3>
+            <p className="mb-8 leading-relaxed text-center" style={{ color: 'var(--color-text-secondary)' }}>
               {t('deleteWarning')}
             </p>
             <div className="flex gap-3">
               <button 
                 onClick={() => setShowDeleteConfirm(false)}
                 disabled={deleting}
-                className="flex-1 bg-gray-200 hover:bg-gray-300 py-3 rounded-xl text-gray-700 font-bold transition-colors disabled:opacity-50"
+                className="btn-morandi-secondary flex-1 py-3 disabled:opacity-50"
               >
                 {t('cancel')}
               </button>
               <button 
                 onClick={handleDeleteAccount}
                 disabled={deleting}
-                className="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-xl text-white font-bold transition-colors shadow-lg disabled:opacity-50"
+                className="btn-morandi-danger flex-1 py-3 disabled:opacity-50"
               >
                 {deleting ? t('deleting') : t('confirmButton')}
               </button>
