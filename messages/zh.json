@@ -1,0 +1,331 @@
+{
+  "home": {
+    "title": "Finotype",
+    "subtitle": "发现你的财务性格类型。你是守护者、冒险家，还是其他类型？完成10道题的测试，提升你的财务素养。",
+    "standardTest": "尝试标准测试",
+    "proSimulation": "专业模拟",
+    "footer": "© {year} Finotype. 保留所有权利。"
+  },
+  "login": {
+    "title": "登录",
+    "signUpTitle": "创建账户",
+    "email": "邮箱",
+    "password": "密码",
+    "signIn": "登录",
+    "signUp": "注册",
+    "signInWith": "使用{provider}登录",
+    "switchToSignUp": "还没有账户？立即注册",
+    "switchToSignIn": "已有账户？立即登录",
+    "forgotPassword": "忘记密码？",
+    "resetPassword": "重置密码",
+    "sendResetLink": "发送重置链接",
+    "backToSignIn": "返回登录",
+    "resendVerification": "重新发送验证邮件",
+    "checkEmail": "请查看您的邮箱以获取确认链接。",
+    "verifyEmail": "登录前请先验证您的邮箱。请查看收件箱中的确认链接。",
+    "accountExists": "看起来您已经有账户了！[重置密码]以使用邮箱登录，或继续使用[Google]登录。",
+    "verificationSent": "验证邮件已发送！请查看您的收件箱。",
+    "resetLinkSent": "密码重置链接已发送！请查看您的邮箱。",
+    "enterEmail": "输入您的邮箱以重新发送验证链接。",
+    "loading": "处理中...",
+    "resending": "发送中...",
+    "passwordTooShort": "密码必须至少为 6 个字符。",
+    "invalidEmail": "请输入有效的邮箱地址。",
+    "authError": "身份验证错误。请重试。"
+  },
+  "auth": {
+    "authError": "身份验证错误",
+    "authErrorMessage": "验证您的电子邮件链接时出现问题。只需要验证一次。",
+    "authErrorDetail": "链接可能已过期或被您的电子邮件提供商自动访问。如果您可以登录，您的账户已经验证。",
+    "signInButton": "登录",
+    "setNewPassword": "设置新密码",
+    "enterNewPassword": "在下方输入您的新密码",
+    "newPassword": "新密码",
+    "confirmPassword": "确认密码",
+    "updatePassword": "更新密码",
+    "updating": "正在更新...",
+    "invalidResetLink": "无效或过期的重置链接。请请求新的。",
+    "passwordTooShort": "密码必须至少为 6 个字符。",
+    "passwordsDontMatch": "密码不匹配。",
+    "passwordUpdated": "密码更新成功！正在跳转到登录...",
+    "resetFailed": "重置密码失败。请重试。",
+    "backToLogin": "返回登录"
+  },
+  "start": {
+    "welcome": "欢迎来到 Finotype",
+    "prompt": "让我们开始吧！我们应该怎么称呼您？",
+    "namePlaceholder": "输入您的姓名",
+    "startButton": "开始测试",
+    "nameNote": "你的名字将用于个性化你的结果",
+    "returnHomeTitle": "返回主页？",
+    "returnHomeMessage": "确定要返回主页吗？你将失去所有当前的测试结果。",
+    "cancelButton": "取消",
+    "continueButton": "继续"
+  },
+  "results": {
+    "hey": "嗨 {name}！👋",
+    "yourResults": "您的结果",
+    "yourFinotype": "您的财务类型",
+    "aboutYourType": "关于您的类型",
+    "shareResult": "分享我的结果",
+    "seePitfallsAndTips": "查看常见陷阱和技巧",
+    "returnHome": "返回首页",
+    "calculating": "正在计算您的财务基因...",
+    "questionOf": "问题 {current} / {total}",
+    "back": "← 返回"
+  },
+  "account": {
+    "title": "账户设置",
+    "displayName": "显示名称",
+    "displayNameNote": "此名称将用于您的分析结果",
+    "email": "邮箱",
+    "preferences": "偏好设置",
+    "language": "首选语言",
+    "languageDescription": "选择应用程序和AI生成内容的首选语言",
+    "save": "保存更改",
+    "saving": "保存中...",
+    "saved": "显示名称保存成功！",
+    "savedError": "保存显示名称失败。请重试。",
+    "deleteSuccess": "账户删除成功。",
+    "deleteError": "删除账户失败。请重试。",
+    "dangerZone": "危险区域",
+    "deleteAccount": "删除账户",
+    "deleteWarning": "此操作无法撤销。您的所有数据，包括模拟历史和个人资料信息，将被永久删除。",
+    "confirmDelete": "删除账户？",
+    "cancel": "取消",
+    "confirmButton": "删除",
+    "deleting": "删除中...",
+    "loading": "加载中...",
+    "backToGame": "返回游戏"
+  },
+  "analysis": {
+    "title": "您的财务分析",
+    "simulationResults": "模拟结果",
+    "hey": "嗨 {name}！👋",
+    "typeAnalysis": "{name}分析",
+    "finotypeLabel": "Finotype: {type}",
+    "backToSummary": "← 返回摘要",
+    "yourStrengths": "✨ 你的优势",
+    "commonPitfalls": "⚠️ 常见陷阱",
+    "tipsForYou": "💡 给你的建议",
+    "startOver": "重新开始",
+    "loadingAnalysis": "Gemini正在分析您的财务心理...",
+    "finalBalance": "最终现金余额",
+    "netWorth": "净资产",
+    "finalNetWorth": "最终净资产",
+    "finotype": "您的财务类型",
+    "narrative": "您的故事",
+    "tips": "改进建议",
+    "topicAnalysis": "主题分析",
+    "shareResults": "分享结果",
+    "shareResult": "分享结果",
+    "downloadImage": "下载为图片",
+    "backToGame": "返回模拟",
+    "playAgain": "再玩一次",
+    "returnHome": "返回首页",
+    "yourFinancialPersona": "您的财务人格",
+    "behavioralSummary": "行为摘要",
+    "expertTips": "Gemini的专家建议",
+    "confidenceQuestion": "您现在对财务感觉有多大信心？",
+    "selectLevel": "选择等级...",
+    "beginnerLevel": "初学者（什么是401k？）",
+    "intermediateLevel": "中级（我有时做预算）",
+    "advancedLevel": "高级（我有多元化的投资组合）",
+    "submit": "提交",
+    "thanksFeedback": "感谢您的反馈！",
+    "retryConnection": "重试连接",
+    "continueDemo": "继续演示模式",
+    "switchToQA": "切换到简单问答测试",
+    "regionBlocked": "AI在您所在地区不可用。请使用演示模式。",
+    "simulationFailed": "模拟生成失败。",
+    "analysisGenerationFailed": "生成分析失败。"
+  },
+  "game": {
+    "welcome": "欢迎来到 Finotype 专业版",
+    "title": "Finotype专业模拟",
+    "subtitle": "设计您的财务生活，一次一个选择。",
+    "demoMode": "演示模式",
+    "setupProfile": "用户资料",
+    "industry": "您的理想行业",
+    "industryPlaceholder": "例如 科技、医疗、艺术...",
+    "familiarity": "财务熟悉度",
+    "selectLevel": "选择等级...",
+    "beginnerLevel": "初学者（什么是401k？）",
+    "intermediateLevel": "中级（我有时做预算）",
+    "advancedLevel": "高级（我有多元化的投资组合）",
+    "salary": "预期薪资（年度）",
+    "salaryPlaceholder": "例如 75000",
+    "paymentFreq": "支付频率",
+    "payMonthly": "每月",
+    "paySemiMonth": "半月一次",
+    "payHourly": "按小时",
+    "required": "*",
+    "cancel": "取消",
+    "updateRestart": "更新并重新开始",
+    "start": "开始",
+    "generatingOptions": "正在生成选项...",
+    "selectJob": "选择您的职业道路",
+    "editProfile": "编辑个人资料",    "editProfileTitle": "重新开始？",
+    "editProfileMessage": "编辑您的个人资料将从头开始重启模拟。您之前的游戏结果将被清除。您确定要继续吗？",    "location": "位置",
+    "compensation": "补偿",
+    "compensationTooltip": "奖金：通常基于绩效。RSU：限制性股票单位，随时间解锁。期权：以固定价格购买股票的权利。",
+    "health": "健康",
+    "healthTooltip": "PPO：更高的保费但更多的医生选择。HMO：更低的保费但网络限制。HDHP：低保费，高免赔额（适合HSA）。",
+    "tapToSelect": "点击选择",
+    "careerOutlook": "职业前景",
+    "stableChoice": "稳定的选择，具有良好的增长。",
+    "reselect": "重新选择",
+    "continue": "继续",
+    "monthlyTag": "/月",
+    "oneTimeTag": "一次性",
+    "choiceAnalyzed": "选择已分析",
+    "goodChoice": "好选择！",
+    "reflectingDecision": "正在反思您的决定...",
+    "editProfileConfirm": "更改个人资料将重启模拟。继续？",
+    "simulatingYear": "正在模拟您的财务年度...",
+    "simulatingYearSubtext": "检查股票市场...计算利息...支付账单...",
+    "oneYearLater": "一年后...",
+    "yourFinancialPersona": "您的财务人格",
+    "finalBalance": "最终现金余额",
+    "netWorth": "净资产",
+    "yearInReview": "您的一年回顾",
+    "professionalTips": "专业建议给您",
+    "playAgain": "再玩一次",
+    "viewAnalysis": "查看完整分析并分享",
+    "gotIt": "知道了",
+    "aiGenerationIssue": "AI生成问题",
+    "aiGenerationMessage": "我们在创建您的个性化场景时遇到问题。",
+    "retryConnection": "重试连接",
+    "continueDemo": "继续演示模式",
+    "switchToQA": "切换到简单问答测试",
+    "networkError": "网络错误或达到限制。",
+    "regionBlocked": "AI在您所在地区不可用。请使用演示模式。",
+    "loading": "加载中...",
+    "currentBalance": "当前余额"
+  },
+  "common": {
+    "yes": "是",
+    "no": "否",
+    "continue": "继续",
+    "goBack": "返回",
+    "submit": "提交",
+    "cancel": "取消",
+    "close": "关闭",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "loading": "加载中...",
+    "error": "发生错误",
+    "success": "成功！",
+    "monthly": "每月",
+    "oneTime": "一次性",
+    "account": "账户",
+    "signOut": "退出登录"
+  },
+  "questions": {
+    "1": {
+      "text": "当你收到薪水时，你的第一反应是什么？",
+      "options": {
+        "F": "立即转一部分到储蓄账户",
+        "L": "查看我的愿望清单并奖励自己"
+      }
+    },
+    "2": {
+      "text": "你如何处理购买日用品？",
+      "options": {
+        "F": "我严格按照清单购买并寻找折扣",
+        "L": "我买任何看起来不错或让我有灵感的东西"
+      }
+    },
+    "3": {
+      "text": "新手机型号刚刚发布。你会...",
+      "options": {
+        "F": "等到我现在的手机完全坏掉",
+        "L": "如果有很酷的新功能就考虑升级"
+      }
+    },
+    "4": {
+      "text": "你的朋友邀请你去吃一顿昂贵的晚餐。你会...",
+      "options": {
+        "F": "建议更便宜的选择或礼貌地拒绝",
+        "L": "一起去！体验是值得花钱的"
+      }
+    },
+    "5": {
+      "text": "对你来说，'预算'意味着什么？",
+      "options": {
+        "F": "我严格遵守的日常习惯",
+        "L": "我尽量记住的模糊指南"
+      }
+    },
+    "6": {
+      "text": "如果你有10,000美元用于投资，你会投资哪里？",
+      "options": {
+        "C": "高收益储蓄账户或债券",
+        "A": "加密货币或高增长股票创业公司"
+      }
+    },
+    "7": {
+      "text": "你如何看待股市崩盘？",
+      "options": {
+        "C": "害怕，我可能会撤出我的钱",
+        "A": "兴奋，这是买入的好机会！"
+      }
+    },
+    "8": {
+      "text": "你听说有一个有潜力获得10倍回报的高风险投资。你会...",
+      "options": {
+        "C": "远离，这听起来像是骗局或赌博",
+        "A": "投资少量资金看看会发生什么"
+      }
+    },
+    "9": {
+      "text": "在规划退休时，你更喜欢...",
+      "options": {
+        "C": "有保障的稳定收入",
+        "A": "最大可能的增长，即使有风险"
+      }
+    },
+    "10": {
+      "text": "你的财务知识主要来自...",
+      "options": {
+        "C": "权威书籍和认证顾问",
+        "A": "在线论坛、Twitter/X 和趋势"
+      }
+    }
+  },
+  "personas": {
+    "FC": {
+      "name": "守护者",
+      "mascot": "🛡️",
+      "description": "你是财务稳定的基石。你重视安全胜过奢侈，更喜欢稳定、可预测的增长。",
+      "strengths": ["优秀的储蓄者", "为紧急情况做好准备", "有纪律"],
+      "pitfalls": ["风险规避可能导致通胀损失", "错过增长机会", "可能过于节俭而无法享受生活"],
+      "tips": ["分配一个小的'娱乐预算'无需内疚", "探索低成本指数基金以对抗通胀", "记住金钱是工具，而不仅仅是记分牌"]
+    },
+    "FA": {
+      "name": "战略家",
+      "mascot": "♟️",
+      "description": "你在消费上很有纪律，但在投资上很大胆。你积极储蓄以支持你的高增长雄心。",
+      "strengths": ["高储蓄率", "有远见", "利用复利"],
+      "pitfalls": ["可能用辛苦赚来的储蓄承担未经计算的风险", "可能忽视流动性需求", "过度自信"],
+      "tips": ["在大量投资之前确保有流动紧急基金", "分散你的高风险投资", "用一些稳定资产平衡你的投资组合"]
+    },
+    "LC": {
+      "name": "热情者",
+      "mascot": "🎉",
+      "description": "你喜欢享受当下，更喜欢你的投资安全可靠。你努力工作以便更好地消费。",
+      "strengths": ["慷慨", "享受生活", "避免用金钱赌博"],
+      "pitfalls": ["低储蓄率", "生活方式膨胀", "缺乏缓冲导致财务压力"],
+      "tips": ["在看到钱之前自动储蓄", "使用50/30/20规则来组织支出", "找到低成本的方式来享受你的爱好"]
+    },
+    "LA": {
+      "name": "特立独行者",
+      "mascot": "🚀",
+      "description": "你生活节奏快，投资也快。高收入潜力、高消费和高风险承受能力定义了你的风格。",
+      "strengths": ["不怕失败", "有抱负", "适应能力强"],
+      "pitfalls": ["净资产波动性高", "债务累积", "缺乏长期安全保障"],
+      "tips": ["专注于现金流管理", "立即偿还高息债务", "创建一个'不可触碰'的安全网账户"]
+    }
+  }
+}
