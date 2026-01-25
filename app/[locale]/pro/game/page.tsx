@@ -211,28 +211,33 @@ export default function GamePage() {
   useEffect(() => {
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        // Redirect to login if user is not authenticated
+        router.push(`/${locale}/login`);
+        return;
+      }
+      
       setUser(user);
       
       let profileLoaded = false;
-      if (user) {
-          const { data: profileData } = await supabase
-            .from('profiles')
-            .select('*')
-            .eq('id', user.id)
-            .single();
-            
-          if (profileData && profileData.industry && profileData.familiarity) {
-             const loadedProfile = {
-                 industry: profileData.industry,
-                 familiarity: profileData.familiarity,
-                 salary: profileData.salary || '',
-                 paymentFreq: (profileData.payment_freq as any) || 'Monthly'
-             };
-             setProfile(loadedProfile);
-             profileLoaded = true;
-             // Auto-generate jobs
-             generateJobsForProfile(loadedProfile);
-          }
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+        
+      if (profileData && profileData.industry && profileData.familiarity) {
+         const loadedProfile = {
+             industry: profileData.industry,
+             familiarity: profileData.familiarity,
+             salary: profileData.salary || '',
+             paymentFreq: (profileData.payment_freq as any) || 'Monthly'
+         };
+         setProfile(loadedProfile);
+         profileLoaded = true;
+         // Auto-generate jobs
+         generateJobsForProfile(loadedProfile);
       }
       
       if (!profileLoaded) {
