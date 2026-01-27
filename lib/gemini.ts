@@ -1,6 +1,7 @@
 'use server';
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { UserProfile, JobOption, LifeOption, SimulationResult } from '@/types';
 
 const apiKey = process.env.GEMINI_API_KEY || "";
 
@@ -16,44 +17,6 @@ function getLanguageName(code: string): string {
     'ja': 'Japanese'
   };
   return languageMap[code] || 'English';
-}
-
-export interface UserProfile {
-  industry: string;
-  familiarity: string;
-  salary?: string;
-  paymentFreq?: string;
-  language?: string; // User's preferred language
-}
-
-export interface JobOption {
-  id: string;
-  title: string;
-  salary: number; // Annualized for calculation
-  salaryLabel: string;
-  bonus: string;
-  healthInsurance: string;
-  location: string;
-  analysis: string; // Feedback on this career path
-}
-
-export interface LifeOption {
-  id: string;
-  title: string;
-  description: string;
-  analysis: string; // Immediate feedback
-  cost: number;
-  type: string; // 'monthly' or 'one-time'
-}
-
-export interface SimulationResult {
-    finalBalance: number;
-    netWorth: number;
-    narrative: string;
-    tips: string[];
-    finotype: string;
-    analysisByTopic?: Record<string, string>;
-    error?: string;
 }
 
 function getFallbackJobs(profile: UserProfile): JobOption[] {
@@ -120,6 +83,14 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
         
         Vary the salary, benefits (bonus/stocks), health insurance plans, and locations.
         Make them realistic.
+        
+        LENGTH CONSTRAINTS (CRITICAL):
+        - title: Maximum 40 characters
+        - bonus: Maximum 35 characters
+        - healthInsurance: Maximum 25 characters
+        - location: Maximum 30 characters
+        - analysis: Maximum 100 characters
+        
         Include a short "analysis" string (1 sentence) critiquing this career path (e.g. "High pay but high stress").
         ${languageInstruction}
         
@@ -202,16 +173,36 @@ export async function generateLifeOptions(topic: string, context: any, isDemo: b
         ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The description, option titles, descriptions, and analysis should all be in ${getLanguageName(language)}.` 
         : '';
 
+    // Build context string with previous choices
+    let contextString = `User earns ${context.salary} annually.`;
+    if (context.job) {
+        contextString += `\nJob: ${context.job.title} (${context.job.salaryLabel})`;
+    }
+    if (context.previousChoices && Object.keys(context.previousChoices).length > 0) {
+        contextString += `\nPrevious choices:`;
+        Object.entries(context.previousChoices).forEach(([topicName, choice]: [string, any]) => {
+            contextString += `\n  - ${topicName}: ${choice.title} (${choice.type === 'monthly' ? '$' + choice.cost + '/month' : '$' + choice.cost + ' one-time'})`;
+        });
+    }
+
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
     const prompt = `
         Topic: ${topic}
-        Context: User earns ${context.salary} annually.
+        Context: ${contextString}
         
         0. IMPORTANT: "analysis" field for each option is REQUIRED.
         1. Write a 1-sentence description of what "${topic}" means in personal finance.
         2. Generate 3 distinct options for the user to choose from regarding this topic.
-           Include a cost (monthly or one-time) that is realistic for their salary.
+           Consider their salary and previous choices to make realistic recommendations.
+           Include a cost (monthly or one-time) that is realistic for their salary and existing commitments.
            Include an "analysis" string that briefly critiques/praises this choice (e.g., "Smart frugal choice" or "High risk but potentially high reward").
+        
+        LENGTH CONSTRAINTS (CRITICAL):
+        - description: Maximum 150 characters
+        - title: Maximum 40 characters
+        - description (option): Maximum 80 characters
+        - analysis: Maximum 100 characters
+        
         ${languageInstruction}
         
         Output JSON only:

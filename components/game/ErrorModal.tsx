@@ -1,0 +1,35 @@
+'use client';
+
+/* this is error modal happening when gemini issues */
+
+interface ErrorModalProps {
+  errorMessage: string;
+  onRetry: () => void;
+  onDemo: () => void;
+  onQA: () => void;
+  t: any;
+}
+
+export function ErrorModal({ errorMessage, onRetry, onDemo, onQA, t }: ErrorModalProps) {
+  return (
+    <div className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4" style={{ background: 'rgba(42,38,34,0.5)' }}>
+      <div className="card-morandi p-8 max-w-md w-full border" style={{ borderColor: 'var(--color-terracotta)', boxShadow: '0 20px 40px rgba(196,148,139,0.2)' }}>
+        <div className="text-4xl mb-4 text-center" style={{ color: 'var(--color-terracotta)' }}>⚠️</div>
+        <h3 className="text-xl font-bold text-center text-neutral-900 mb-2">{t('errorTitle')}</h3>
+        <p className="text-center mb-6" style={{ color: 'var(--color-text-secondary)' }}>{errorMessage}</p>
+        
+        <div className="space-y-3">
+          <button onClick={onRetry} className="btn-morandi-accent w-full">
+            {t('retry')}
+          </button>
+          <button onClick={onDemo} className="btn-morandi-outline w-full">
+            {t('continueWithDemo')}
+          </button>
+          <button onClick={onQA} className="btn-morandi-outline w-full">
+            {t('tryStandardMode')}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

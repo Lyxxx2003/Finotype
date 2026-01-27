@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect, useState, Suspense } from 'react';
-import Link from 'next/link';
 import { useSearchParams, useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { createClient } from '@/lib/supabase/client';
 import { simulateYear } from '@/lib/gemini';
+import { PersonaCard } from '@/components/results/PersonaCard';
+import { TipsSection } from '@/components/results/TipsSection';
+import { FamiliarityForm } from '@/components/results/FamiliarityForm';
+import { ShareButtons } from '@/components/results/ShareButtons';
 
 const DEMO_ANALYSIS = {
   profile: "Strategic Wealth Builder",
@@ -30,8 +33,6 @@ function ResultsContent() {
   const [loading, setLoading] = useState(true);
   const [netWorth, setNetWorth] = useState<string>('0');
   const [displayName, setDisplayName] = useState<string>('');
-  const [postFamiliarity, setPostFamiliarity] = useState<string>('');
-  const [familiaritySubmitted, setFamiliaritySubmitted] = useState(false);
   
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -42,15 +43,12 @@ function ResultsContent() {
   const isDemo = searchParams.get('demo') === 'true';
   const supabase = createClient();
 
-  const handlePostFamiliaritySubmit = async () => {
-    if (!postFamiliarity) return;
-    
+  const handlePostFamiliaritySubmit = async (familiarity: string) => {
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
         await supabase.from('profiles').update({
-            post_familiarity: postFamiliarity
+            post_familiarity: familiarity
         }).eq('id', user.id);
-        setFamiliaritySubmitted(true);
     }
   };
 
@@ -248,9 +246,11 @@ function ResultsContent() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-[60vh] space-y-4">
-        <div className="w-12 h-12 border-4 rounded-full animate-spin" style={{ borderColor: 'var(--color-primary)', borderTopColor: 'transparent' }}></div>
-        <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>{t('loadingAnalysis')}</p>
+      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6">
+        <div className="w-16 h-16 border-4 rounded-full animate-spin" style={{ borderColor: 'var(--color-primary)', borderTopColor: 'transparent' }}></div>
+        <div className="text-center space-y-2">
+          <p className="text-2xl font-bold text-neutral-900">{t('loadingAnalysis')}</p>
+        </div>
       </div>
     );
   }
@@ -268,42 +268,7 @@ function ResultsContent() {
 
       {analysis && (
         <div className="card-morandi rounded-3xl overflow-hidden border-0">
-          <div className="p-8 md:p-12 text-white relative overflow-hidden bg-gradient-morandi-blue">
-            <div className="relative z-10 text-center">
-              <h2 
-                className="text-sm uppercase tracking-widest font-bold mb-3"
-                style={{ opacity: 0.95, letterSpacing: '0.1em' }}
-              >
-                {t('yourFinancialPersona')}
-              </h2>
-              <div className="text-4xl md:text-5xl font-bold mb-8 leading-tight">{analysis.profile}</div>
-              
-              <div 
-                className="inline-block backdrop-blur-md rounded-2xl px-8 py-4 border"
-                style={{ 
-                  background: 'rgba(255,255,255,0.25)', 
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.1)'
-                }}
-              >
-                <p 
-                  className="text-sm font-bold uppercase tracking-wider mb-2"
-                  style={{ color: 'rgba(255,255,255,0.9)' }}
-                >
-                  {t('finalNetWorth')}
-                </p>
-                <p className="text-4xl font-bold text-white">${Number(netWorth).toLocaleString()}</p>
-              </div>
-            </div>
-            <div 
-              className="absolute top-0 left-0 w-64 h-64 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-30"
-              style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)' }}
-            />
-            <div 
-              className="absolute bottom-0 right-0 w-48 h-48 rounded-full translate-x-1/3 translate-y-1/3 opacity-30"
-              style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)' }}
-            />
-          </div>
+          <PersonaCard profile={analysis.profile} netWorth={netWorth} t={t} />
           
           <div className="p-8 md:p-12 space-y-10">
             <div>
@@ -311,82 +276,14 @@ function ResultsContent() {
               <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{analysis.summary}</p>
             </div>
 
-            {analysis.tips && Array.isArray(analysis.tips) && analysis.tips.length > 0 && (
-              <div>
-                <h3 className="text-2xl font-bold mb-6 text-neutral-900">{t('expertTips')}</h3>
-                <div className="grid gap-4">
-                  {analysis.tips.map((tip, idx) => (
-                    <div 
-                      key={idx} 
-                      className="flex gap-4 items-start p-5 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-                      style={{ 
-                        background: 'rgba(14,165,233,0.08)',
-                        borderColor: 'var(--color-accent)',
-                        border: '1px solid',
-                        color: 'var(--color-neutral-700)',
-                        boxShadow: '0 2px 8px rgba(14,165,233,0.1)'
-                      }}
-                    >
-                      <span 
-                        className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg text-white"
-                        style={{ background: 'var(--gradient-accent)', boxShadow: '0 2px 8px rgba(14,165,233,0.3)' }}
-                      >
-                        {idx + 1}
-                      </span>
-                      <p className="font-medium pt-1.5 leading-relaxed">{tip}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            <TipsSection tips={analysis.tips} t={t} />
 
-            {!familiaritySubmitted ? (
-              <div className="card-morandi p-6 mt-8" data-html2canvas-ignore>
-                <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>{t('confidenceQuestion')}</h3>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <select
-                    value={postFamiliarity}
-                    onChange={(e) => setPostFamiliarity(e.target.value)}
-                    className="input-morandi flex-1"
-                  >
-                    <option value="">{t('selectLevel')}</option>
-                    <option value="Beginner">{t('beginnerLevel')}</option>
-                    <option value="Intermediate">{t('intermediateLevel')}</option>
-                    <option value="Advanced">{t('advancedLevel')}</option>
-                  </select>
-                  <button
-                    onClick={handlePostFamiliaritySubmit}
-                    disabled={!postFamiliarity}
-                    className="btn-morandi-primary disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {t('submit')}
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="alert-success p-6 mt-8 text-center font-medium" data-html2canvas-ignore>
-                {t('thanksFeedback')}
-              </div>
-            )}
+            <FamiliarityForm onSubmit={handlePostFamiliaritySubmit} t={t} />
           </div>
         </div>
       )}
 
-      <div data-html2canvas-ignore className="flex flex-col sm:flex-row justify-center gap-4">
-        <button 
-          onClick={handleShare}
-          className="btn-morandi-primary flex items-center justify-center gap-2"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-          {t('shareResult')}
-        </button>
-        <Link href={`/${locale}/pro/game`} className="btn-morandi-accent text-center">
-          {t('playAgain')}
-        </Link>
-        <Link href={`/${locale}`} className="btn-morandi-outline text-center">
-          {t('returnHome')}
-        </Link>
-      </div>
+      <ShareButtons locale={locale} onShare={handleShare} t={t} />
     </div>
   );
 }

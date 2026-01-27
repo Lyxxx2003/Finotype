@@ -183,7 +183,7 @@ export default function ResultsPage() {
           </button>
 
           <Link 
-            href={`/${locale}/standard/analysis`}
+            href={`/${locale}/standard/resources`}
             className="btn-morandi-accent text-center"
           >
             {tResults('seePitfallsAndTips')}
