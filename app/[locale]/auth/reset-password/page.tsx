@@ -63,7 +63,8 @@ export default function ResetPasswordPage() {
         router.push(`/${locale}/login`)
       }, 2000)
     } catch (error: any) {
-      setMessage(error.message || t('resetFailed'))
+      console.error('Reset password error:', error)
+      setMessage(t('resetFailed'))
       setMessageType('error')
     } finally {
       setLoading(false)
@@ -71,32 +72,37 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-md space-y-8 rounded-xl bg-white p-10 shadow-lg">
+    <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-primary">
+      <div className="card-morandi w-full max-w-md space-y-8 p-10">
         <div>
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">
+          <div className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 icon-container-accent">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+            </svg>
+          </div>
+          <h2 className="text-center text-3xl font-extrabold text-gradient-morandi">
             {t('setNewPassword')}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-neutral-600">
             {t('enterNewPassword')}
           </p>
         </div>
 
         {message && (
-          <div className={`rounded-md p-4 ${
-            messageType === 'success' ? 'text-green-800 bg-green-50' :
-            messageType === 'warning' ? 'text-yellow-800 bg-yellow-50' :
-            messageType === 'info' ? 'text-blue-800 bg-blue-50' :
-            'text-red-800 bg-red-50'
+          <div className={`rounded-2xl ${
+            messageType === 'success' ? 'alert-success' :
+            messageType === 'warning' ? 'alert-warning' :
+            messageType === 'info' ? 'alert-info' :
+            'alert-error'
           }`}>
-            <div className="text-sm">{message}</div>
+            <div className="text-sm font-medium">{message}</div>
           </div>
         )}
 
         <form className="mt-8 space-y-6" onSubmit={handleResetPassword}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="label-morandi">
                 {t('newPassword')}
               </label>
               <input
@@ -104,14 +110,14 @@ export default function ResetPasswordPage() {
                 type="password"
                 required
                 disabled={!hasValidSession}
-                className="relative block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3 disabled:opacity-50"
+                className="input-morandi disabled:opacity-50"
                 placeholder={t('newPassword')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="confirmPassword" className="label-morandi">
                 {t('confirmPassword')}
               </label>
               <input
@@ -119,7 +125,7 @@ export default function ResetPasswordPage() {
                 type="password"
                 required
                 disabled={!hasValidSession}
-                className="relative block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3 disabled:opacity-50"
+                className="input-morandi disabled:opacity-50"
                 placeholder={t('confirmPassword')}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -131,7 +137,7 @@ export default function ResetPasswordPage() {
             <button
               type="submit"
               disabled={loading || !hasValidSession}
-              className="group relative flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50"
+              className="btn-morandi-primary w-full disabled:opacity-50"
             >
               {loading ? t('updating') : t('updatePassword')}
             </button>
@@ -142,7 +148,7 @@ export default function ResetPasswordPage() {
           <div className="text-center">
             <Link
               href={`/${locale}/login`}
-              className="text-sm font-medium text-blue-600 hover:text-blue-500"
+              className="link-button text-sm"
             >
               {t('backToLogin')}
             </Link>

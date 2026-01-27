@@ -40,13 +40,16 @@ export default function Navbar() {
   };
 
   if (isProRoute) {
-    // Pro navbar
+    // Pro navbar with Professional aesthetics
     return (
-      <nav className="bg-white border-b border-gray-200">
+      <nav className="backdrop-blur-lg border-b sticky top-0 z-50" style={{ background: 'rgba(248,250,252,0.95)', borderColor: 'var(--color-neutral-200)', boxShadow: '0 1px 3px rgba(15,23,42,0.08)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <Link href={`/${locale}`} className="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+              <Link href={`/${locale}`} className="flex items-center gap-2 text-xl font-bold transition-all" style={{ background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-primary)' }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
                 Finotype Pro
               </Link>
             </div>
@@ -55,13 +58,19 @@ export default function Navbar() {
                 <>
                   <Link
                     href={`/${locale}/pro/account`}
-                    className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                    className="text-sm font-semibold transition-colors"
+                    style={{ color: 'var(--color-text-secondary)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
                   >
                     {t('account')}
                   </Link>
                   <button
                     onClick={handleSignOut}
-                    className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                    className="text-sm font-semibold transition-colors"
+                    style={{ color: 'var(--color-text-secondary)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-accent-dark)'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
                   >
                     {t('signOut')}
                   </button>
@@ -76,17 +85,21 @@ export default function Navbar() {
   }
 
   if (isStandardRoute) {
-    // Standard navbar
+    // Standard navbar with Professional aesthetics
     return (
       <>
-        <nav className="bg-white border-b border-gray-200">
+        <nav className="backdrop-blur-lg border-b sticky top-0 z-50" style={{ background: 'rgba(248,250,252,0.95)', borderColor: 'var(--color-neutral-200)', boxShadow: '0 1px 3px rgba(15,23,42,0.08)' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16">
               <div className="flex items-center">
                 <button 
                   onClick={() => setShowReturnHomeConfirm(true)}
-                  className="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
+                  className="flex items-center gap-2 text-xl font-bold transition-all cursor-pointer"
+                  style={{ background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
                 >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-primary)' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                   Finotype Standard
                 </button>
               </div>
@@ -97,19 +110,28 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* Return Home Confirmation Popup */}
+        {/* Return Home Confirmation Popup - Morandi styled */}
         {showReturnHomeConfirm && (
           <div 
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            style={{ background: 'rgba(15,23,42,0.4)' }}
             onClick={() => setShowReturnHomeConfirm(false)}
           >
             <div 
-              className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-yellow-100"
+              className="bg-white rounded-3xl p-8 max-w-md w-full"
+              style={{ 
+                boxShadow: '0 20px 60px rgba(15,23,42,0.2)',
+                border: '2px solid var(--color-neutral-200)'
+              }}
               onClick={e => e.stopPropagation()}
             >
-              <div className="text-yellow-500 text-4xl mb-4 text-center">⚠️</div>
-              <h3 className="text-xl font-bold text-center text-gray-900 mb-2">{tStart('returnHomeTitle')}</h3>
-              <p className="text-center text-gray-500 mb-6">{tStart('returnHomeMessage')}</p>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(14,165,233,0.1)' }}>
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-accent)' }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-center mb-2" style={{ color: 'var(--color-text)' }}>{tStart('returnHomeTitle')}</h3>
+              <p className="text-center mb-6" style={{ color: 'var(--color-text-secondary)' }}>{tStart('returnHomeMessage')}</p>
               
               <div className="space-y-3">
                 <button 
@@ -118,13 +140,31 @@ export default function Navbar() {
                     clearAnswers();
                     router.push(`/${locale}`);
                   }} 
-                  className="w-full py-3 px-4 bg-yellow-600 hover:bg-yellow-700 text-white rounded-xl font-bold transition"
+                  className="w-full py-3 px-4 text-white rounded-xl font-bold transition-all duration-300 cursor-pointer"
+                  style={{ 
+                    background: 'var(--gradient-primary)',
+                    boxShadow: '0 4px 16px rgba(30,64,175,0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(30,64,175,0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(30,64,175,0.3)';
+                  }}
                 >
                   {tStart('continueButton')}
                 </button>
                 <button 
                   onClick={() => setShowReturnHomeConfirm(false)} 
-                  className="w-full py-3 px-4 border border-gray-200 hover:bg-gray-50 text-gray-600 rounded-xl font-medium transition"
+                  className="w-full py-3 px-4 rounded-xl font-medium transition-all duration-300 cursor-pointer"
+                  style={{ 
+                    border: '2px solid var(--color-neutral-300)',
+                    color: 'var(--color-text-secondary)'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-neutral-100)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                 >
                   {tStart('cancelButton')}
                 </button>
@@ -136,13 +176,16 @@ export default function Navbar() {
     );
   }
 
-  // Default navbar
+  // Default navbar with Professional aesthetics
   return (
-    <nav className="bg-white border-b border-gray-200">
+    <nav className="backdrop-blur-lg border-b sticky top-0 z-50" style={{ background: 'rgba(248,250,252,0.95)', borderColor: 'var(--color-neutral-200)', boxShadow: '0 1px 3px rgba(15,23,42,0.08)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href={`/${locale}`} className="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+            <Link href={`/${locale}`} className="flex items-center gap-2 text-xl font-bold transition-all" style={{ background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-primary)' }}>
+                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" fill="currentColor"/>
+              </svg>
               Finotype
             </Link>
           </div>

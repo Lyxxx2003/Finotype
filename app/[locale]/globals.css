@@ -1,26 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Professional Finance Education Theme */
+  /* Trust, Stability, and Modern Design */
+  
+  /* Primary Blues - Professional and Trustworthy */
+  --color-primary: #1E40AF;        /* Blue 800 - Main Brand */
+  --color-primary-light: #3B82F6;  /* Blue 500 - Interactives */
+  --color-primary-dark: #1E3A8A;   /* Blue 900 - Deep Backgrounds */
+  
+  /* Accent Colors - Sky Blue for Highlights */
+  --color-accent: #0EA5E9;         /* Sky 500 - Highlights */
+  --color-accent-light: #7DD3FC;   /* Sky 300 - Subtle */
+  --color-accent-dark: #0284C7;    /* Sky 600 - Deep */
+  
+  /* Neutral Scale - Clean Slate Tones */
+  --color-neutral-50: #F8FAFC;     /* Slate 50 - Background */
+  --color-neutral-100: #F1F5F9;    /* Slate 100 */
+  --color-neutral-200: #E2E8F0;    /* Slate 200 - Borders */
+  --color-neutral-300: #CBD5E1;    /* Slate 300 */
+  --color-neutral-400: #94A3B8;    /* Slate 400 - Muted Text */
+  --color-neutral-500: #64748B;    /* Slate 500 - Secondary Text */
+  --color-neutral-600: #475569;    /* Slate 600 */
+  --color-neutral-700: #334155;    /* Slate 700 */
+  --color-neutral-800: #1E293B;    /* Slate 800 - Primary Text */
+  --color-neutral-900: #0F172A;    /* Slate 900 - Headings */
+  
+  /* Legacy Color Mappings for Compatibility */
+  --color-sage: #E2E8F0;           /* Maps to Slate 200 (lighter) */
+  --color-terracotta: #0EA5E9;     /* Maps to Sky 500 (blue accent) */
+  --color-lavender: #3B82F6;       /* Maps to Blue 500 */
+  
+  /* Functional Colors */
+  --color-success: #10B981;        /* Emerald 500 */
+  --color-warning: #F59E0B;        /* Amber 500 */
+  --color-error: #EF4444;          /* Red 500 */
+  --color-info: #0EA5E9;           /* Sky 500 */
+  
+  /* Application Colors */
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748B;
+  
+  /* Gradients - Professional Blue Schemes */
+  --gradient-primary: linear-gradient(135deg, #1E40AF 0%, #0EA5E9 100%);
+  --gradient-accent: linear-gradient(135deg, #0EA5E9 0%, #7DD3FC 100%);
+  --gradient-surface: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  
+  /* Legacy variables */
+  --background: #F8FAFC;
+  --foreground: #0F172A;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Dark mode - Professional Blue */
+    --color-neutral-50: #020617;
+    --color-neutral-100: #0F172A;
+    --color-neutral-200: #1E293B;
+    --color-neutral-800: #E2E8F0;
+    --color-neutral-900: #F8FAFC;
+    
+    --color-background: #020617;
+    --color-surface: #0F172A;
+    --color-text: #F8FAFC;
+    --color-text-secondary: #94A3B8;
+    --color-text-muted: #64748B;
+    
+    --background: #020617;
+    --foreground: #F8FAFC;
+    
+    --gradient-primary: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+    --gradient-accent: linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%);
+    --gradient-surface: linear-gradient(135deg, #020617 0%, #0F172A 100%);
   }
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer utilities {
+  /* Professional Blue Design System Utilities */
+  .bg-morandi-primary, .bg-primary { background-color: var(--color-primary); }
+  .bg-morandi-accent, .bg-accent { background-color: var(--color-accent); }
+  .bg-morandi-sage { background-color: var(--color-sage); }
+  .bg-morandi-terracotta { background-color: var(--color-terracotta); }
+  .bg-morandi-lavender { background-color: var(--color-lavender); }
+
+  .text-morandi-primary, .text-primary { color: var(--color-primary); }
+  .text-morandi-accent, .text-accent { color: var(--color-accent); }
+  .text-morandi-dark, .text-neutral-900 { color: var(--color-neutral-900); }
+  .text-neutral-700 { color: var(--color-neutral-700); }
+  .text-neutral-600 { color: var(--color-neutral-600); }
+  .text-neutral-500 { color: var(--color-neutral-500); }
+
+  .border-morandi { border-color: var(--color-neutral-200); }
+
+  /* Gradient backgrounds - Professional Blue */
+  .bg-gradient-morandi {
+    background: var(--gradient-surface);
+  }
+
+  .bg-gradient-morandi-blue, .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-morandi-warm, .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .bg-gradient-blue-light {
+    background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%);
+  }
+
+  /* Card styles - Professional */
+  .card-morandi {
+    background: var(--color-surface);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+    transition: all 0.3s ease;
+  }
+
+  .card-morandi:hover {
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    transform: translateY(-2px);
+  }
+
+  /* Button styles - Professional Blue Theme */
+  .btn-morandi, .btn-morandi-primary {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-morandi:hover, .btn-morandi-primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+  }
+
+  .btn-morandi-accent {
+    background: var(--color-accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-morandi-accent:hover {
+    background: var(--color-accent-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  }
+
+  .btn-morandi-danger {
+    background: var(--color-error);
+    color: white;
+    padding: 0.625rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  }
+
+  .btn-morandi-danger:hover {
+    transform: scale(1.05);
+  }
+
+  .btn-morandi-outline {
+    background: white;
+    color: var(--color-primary);
+    padding: 0.625rem 1rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-morandi-outline:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .btn-morandi-secondary {
+    background: var(--color-neutral-200);
+    color: var(--color-text);
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-morandi-secondary:hover {
+    transform: scale(1.05);
+  }
+
+  /* Input styles */
+  .input-morandi {
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid var(--color-neutral-300);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: var(--color-text);
+    background: white;
+    transition: all 0.3s ease;
+  }
+
+  .input-morandi:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+  }
+
+  /* Alert/Message styles - Professional Colors */
+  .alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #047857;
+    border: 1px solid var(--color-success);
+    padding: 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+  }
+
+  .alert-error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #B91C1C;
+    border: 1px solid var(--color-error);
+    padding: 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+  }
+
+  .alert-warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #92400E;
+    border: 1px solid var(--color-warning);
+    padding: 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+  }
+
+  .alert-info {
+    background: rgba(14, 165, 233, 0.1);
+    color: #075985;
+    border: 1px solid var(--color-accent);
+    padding: 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+  }
+  
+
+/* Text styles */
+  /* Text styles */
+  .text-gradient-morandi, .text-gradient-blue {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-accent {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Danger zone card */
+  .card-danger {
+    background: var(--color-surface);
+    border: 2px solid var(--color-error);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  /* Modal backdrop */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(8px);
+    background: rgba(15, 23, 42, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 100;
+  }
+
+  .modal-content {
+    background: var(--color-surface);
+    border-radius: 24px;
+    padding: 2rem;
+    max-width: 28rem;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2);
+    border: 2px solid var(--color-neutral-200);
+  }
+
+  /* Label styles */
+  .label-morandi {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  /* Display box (read-only) */
+  .display-box {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    color: var(--color-text);
+    background: var(--color-neutral-100);
+    border: 1px solid var(--color-neutral-200);
+  }
+
+  /* Icon container styles */
+  .icon-container-blue, .icon-container-primary {
+    background: var(--gradient-primary);
+    box-shadow: 0 4px 16px rgba(30, 64, 175, 0.3);
+  }
+
+  .icon-container-warm, .icon-container-accent {
+    background: var(--gradient-accent);
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.3);
+  }
+
+  /* Link button styles */
+  .link-button {
+    color: var(--color-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .link-button:hover {
+    color: var(--color-primary-dark);
+  }
+
+  /* Option card styles for game */
+  .option-card {
+    background: white;
+    border: 1px solid var(--color-neutral-100);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+
+  .option-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primary-light);
+  }
+
+  /* Tag styles */
+  .tag-monthly {
+    background: linear-gradient(135deg, rgba(127,163,195,0.15) 0%, rgba(127,163,195,0.1) 100%);
+    color: var(--color-primary-dark);
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .tag-onetime {
+    background: linear-gradient(135deg, rgba(232,184,125,0.15) 0%, rgba(232,184,125,0.1) 100%);
+    color: var(--color-accent-dark);
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
 }

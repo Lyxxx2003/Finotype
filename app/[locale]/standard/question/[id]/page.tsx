@@ -58,16 +58,16 @@ export default function QuestionPage() {
   const progress = (currentStep / totalSteps) * 100;
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-50 p-6">
+    <div className="flex flex-col items-center min-h-screen p-6 bg-gradient-morandi">
       <div className="w-full max-w-xl mt-10">
         {/* Progress Bar */}
-        <div className="w-full bg-gray-200 rounded-full h-2.5 mb-8">
-          <div className="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
+        <div className="w-full rounded-full h-2.5 mb-8" style={{ backgroundColor: 'var(--color-neutral-200)' }}>
+          <div className="bg-primary h-2.5 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-          <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">{tResults('questionOf', { current: currentStep, total: totalSteps })}</span>
-          <h2 className="text-2xl font-bold text-gray-900 mt-4 mb-8">
+        <div className="card-morandi p-8">
+          <span className="text-sm font-semibold text-primary uppercase tracking-wider">{tResults('questionOf', { current: currentStep, total: totalSteps })}</span>
+          <h2 className="text-2xl font-bold text-neutral-900 mt-4 mb-8">
             {t(`${questionId}.text`)}
           </h2>
 
@@ -76,11 +76,15 @@ export default function QuestionPage() {
               <button
                 key={index}
                 onClick={() => handleOptionSelect(option.value)}
-                className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 
+                className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer
                   ${selectedOption === option.value 
-                    ? 'border-blue-600 bg-blue-50 text-blue-700' 
-                    : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50 text-gray-700'
+                    ? 'text-white bg-gradient-morandi-blue' 
+                    : 'hover:scale-[1.02]'
                   }`}
+                style={{
+                  borderColor: selectedOption === option.value ? 'var(--color-primary)' : 'var(--color-neutral-200)',
+                  color: selectedOption === option.value ? 'white' : 'var(--color-text)'
+                }}
               >
                 {t(`${questionId}.options.${option.value}`)}
               </button>
@@ -92,7 +96,10 @@ export default function QuestionPage() {
            {questionId > 1 && (
              <button 
                onClick={() => router.push(`/${locale}/standard/question/${questionId - 1}`)}
-               className="text-gray-500 hover:text-gray-900 font-medium"
+               className="font-medium cursor-pointer"
+               style={{ color: 'var(--color-text-secondary)' }}
+               onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-text)'}
+               onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
              >
                {tResults('back')}
              </button>

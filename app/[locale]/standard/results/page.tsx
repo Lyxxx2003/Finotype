@@ -119,29 +119,16 @@ export default function ResultsPage() {
   if (!persona) return <div className="p-8 text-center">{tResults('calculating')}</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6 font-sans">
-      <div className="max-w-3xl w-full space-y-8">
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans bg-gradient-morandi">
+      <div className="max-w-3xl w-full space-y-4">
         {displayName && (
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">{tResults('hey', { name: displayName })}</h2>
+            <h1 className="text-3xl font-bold text-neutral-900">{tResults('hey', { name: displayName })}, {tResults('yourResults')}</h1>
           </div>
         )}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-gray-900">{tResults('yourResults')}</h1>
-        </div>
 
-        <div 
-          className="rounded-2xl overflow-hidden border"
-          style={{ 
-            backgroundColor: '#ffffff', 
-            borderColor: '#f3f4f6', 
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
-          }}
-        >
-          <div 
-            className="p-8 text-white relative overflow-hidden"
-            style={{ backgroundColor: '#2563eb', color: '#ffffff' }}
-          >
+        <div className="card-morandi rounded-3xl overflow-hidden border-0">
+          <div className="p-8 text-white relative overflow-hidden bg-gradient-morandi-blue">
             <div className="relative z-10 text-center">
               <h2 
                 className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
@@ -160,25 +147,25 @@ export default function ResultsPage() {
                   className="text-xs font-bold uppercase tracking-wider"
                   style={{ color: '#dbeafe' }}
                 >
-                  Type: {persona.id}
+                  {persona.id}
                 </p>
               </div>
             </div>
             {/* Decorative circles */}
             <div 
-              className="absolute top-0 left-0 w-64 h-64 rounded-full -translate-x-1/2 -translate-y-1/2"
-              style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}
+              className="absolute top-0 left-0 w-64 h-64 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-20"
+              style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)' }}
             ></div>
             <div 
-              className="absolute bottom-0 right-0 w-48 h-48 rounded-full translate-x-1/3 translate-y-1/3"
-              style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+              className="absolute bottom-0 right-0 w-48 h-48 rounded-full translate-x-1/3 translate-y-1/3 opacity-20"
+              style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)' }}
             ></div>
           </div>
           
           <div className="p-8 space-y-8">
             <div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: '#111827' }}>{tResults('aboutYourType')}</h3>
-              <p className="leading-relaxed text-lg" style={{ color: '#374151' }}>{tPersonas(`${persona.id}.description`)}</p>
+              <h3 className="text-xl font-semibold mb-2 text-neutral-900">{tResults('aboutYourType')}</h3>
+              <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{tPersonas(`${persona.id}.description`)}</p>
             </div>
           </div>
         </div>
@@ -186,22 +173,26 @@ export default function ResultsPage() {
         <div data-html2canvas-ignore className="flex flex-col sm:flex-row justify-center gap-4">
           <button
             onClick={handleShare}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-bold shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
+            className="btn-morandi-primary flex items-center justify-center gap-2"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
             {tResults('shareResult')}
           </button>
 
           <Link 
-            href={`/${locale}/standard/analysis`}
-            className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 font-medium text-center"
+            href={`/${locale}/standard/resources`}
+            className="btn-morandi-accent text-center"
           >
             {tResults('seePitfallsAndTips')}
           </Link>
           
           <Link
             href={`/${locale}`}
-            className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium text-center"
+            className="px-6 py-3 border-2 rounded-xl font-medium text-center transition-all duration-200 cursor-pointer"
+            style={{ 
+              borderColor: 'var(--color-neutral-300)',
+              color: 'var(--color-text)'
+            }}
           >
             {tResults('returnHome')}
           </Link>
