@@ -4,7 +4,11 @@
     "subtitle": "Descubre tu tipo de personalidad financiera. ¿Eres un Guardián, un Inconformista o algo más? Haz la prueba de 10 preguntas para descubrirlo y mejora tu educación financiera.",
     "standardTest": "Prueba Estándar",
     "proSimulation": "Simulación Pro",
-    "footer": "© {year} Finotype. Todos los derechos reservados."
+    "footer": "© {year} Finotype. Todos los derechos reservados.",
+    "behavioralAnalysis": "Análisis Conductual",
+    "personalizedInsights": "Perspectivas Personalizadas",
+    "realScenarios": "Escenarios Reales",
+    "financialEducationPlatform": "Plataforma de Educación Financiera"
   },
   "login": {
     "title": "Iniciar Sesión",
@@ -87,6 +91,7 @@
     "backToGame": "Volver al Juego"
   },
   "analysis": {
+    "loading":"Cargando...",
     "title": "Tu Análisis Financiero",
     "simulationResults": "Resultados de Simulación",
     "hey": "¡Hola {name}! 👋",
@@ -96,7 +101,6 @@
     "yourStrengths": "✨ Tus Fortalezas",
     "commonPitfalls": "⚠️ Errores Comunes",
     "tipsForYou": "💡 Consejos para Ti",
-    "startOver": "Empezar de Nuevo",
     "loadingAnalysis": "Gemini está analizando tu psicología financiera...",
     "finalBalance": "Saldo Final en Efectivo",
     "netWorth": "Patrimonio Neto",
@@ -136,6 +140,10 @@
     "viewFullReport": "Ver Informe Completo"
   },
   "game": {
+    "Housing": "Vivienda",
+    "Credit Cards": "Tarjetas de Crédito",
+    "Investment": "Inversiones",
+    "Loans": "Préstamos",
     "selectFamiliarity": "Selecciona tu nivel de familiaridad financiera",
     "goBack": "Volver",
     "welcome": "Bienvenido a Finotype Pro",
@@ -187,7 +195,7 @@
     "goodChoice": "¡Buena elección!",
     "reflectingDecision": "Reflexionando sobre tu decisión...",
     "editProfileConfirm": "Cambiar el perfil reiniciará la simulación. ¿Continuar?",
-    "simulatingYear": "Simulando tu año financiero...",
+    "simulatingYear": "Gemini está simulando tu año financiero...",
     "simulatingYearSubtext": "Revisando mercados bursátiles... Calculando intereses... Pagando facturas...",
     "oneYearLater": "Un Año Después...",
     "yourFinancialPersona": "Tu Personalidad Financiera",

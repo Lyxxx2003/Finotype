@@ -33,11 +33,6 @@ export default function AnalysisPage() {
   return (
     <div className="flex flex-col items-center min-h-screen p-6 md:p-12 font-sans bg-gradient-morandi">
       <div className="max-w-4xl w-full">
-        {displayName && (
-          <div className="mb-6">
-            <h2 className="text-3xl font-bold text-neutral-900">{t('hey', { name: displayName })}</h2>
-          </div>
-        )}
         <header className="mb-12 border-b pb-8 flex justify-between items-center" style={{ borderColor: 'var(--color-neutral-200)' }}>
           <div className="flex items-center gap-4">
             <span className="text-4xl">{persona.mascot}</span>
@@ -103,7 +98,7 @@ export default function AnalysisPage() {
              href={`/${locale}`}
              className="btn-morandi-primary inline-block"
           >
-            {t('startOver')}
+            {t('returnHome')}
           </Link>
         </div>
       </div>

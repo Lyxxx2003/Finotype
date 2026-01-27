@@ -56,3 +56,11 @@ export interface SimulationResult {
   analysisByTopic?: Record<string, string>;
   error?: string;
 }
+
+export interface AnalysisState {
+  profile: string;
+  summary: string;
+  tips: string[];
+  analysisByTopic?: Record<string, string>;
+  error?: string;
+}

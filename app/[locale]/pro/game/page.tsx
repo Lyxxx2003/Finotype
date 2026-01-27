@@ -12,7 +12,6 @@ import { OptionCard } from '@/components/game/OptionCard';
 import { ErrorModal } from '@/components/game/ErrorModal';
 import { AnalysisModal } from '@/components/game/AnalysisModal';
 import { ProfileForm } from '@/components/game/ProfileForm';
-import { EditProfileConfirm } from '@/components/game/EditProfileConfirm';
 
 const TOPICS = [
   { id: 'Housing', name: 'Housing' },
@@ -27,10 +26,9 @@ export default function GamePage() {
   const searchParams = useSearchParams();
   const locale = params.locale as string;
   const t = useTranslations('game');
-  const tResults = useTranslations('results');
   const [user, setUser] = useState<User | null>(null);
-  const [displayName, setDisplayName] = useState<string>('');
-  const [step, setStep] = useState<'loading' | 'profile' | 'jobs' | 'topics' | 'simulation' | 'result'>('loading');
+  const [step, setStep] = useState<'loading' | 'profile' | 'jobs' | 'topics' | 'simulation'>('loading');
+  const [previousStep, setPreviousStep] = useState<'jobs' | 'topics' | null>(null);
   const [profile, setProfile] = useState<UserProfile>({ industry: '', familiarity: '', salary: '', paymentFreq: 'Monthly' });
   const [jobs, setJobs] = useState<JobOption[]>([]);
   const [selectedJob, setSelectedJob] = useState<JobOption | null>(null);
@@ -44,95 +42,14 @@ export default function GamePage() {
   const [selectedTopicOption, setSelectedTopicOption] = useState<LifeOption | null>(null); // For immediate feedback
   const [showAnalysisModal, setShowAnalysisModal] = useState(false);
 
-  
-  const [result, setResult] = useState<SimulationResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [errorType, setErrorType] = useState<'NONE' | 'GENERATION_ERROR'>('NONE');
   const [errorMessage, setErrorMessage] = useState('');
   const [pendingJobs, setPendingJobs] = useState<JobOption[] | null>(null);
   const [showModal, setShowModal] = useState<{title: string, content: string} | null>(null);
   const [isDemoMode, setIsDemoMode] = useState(false);
-  const [showEditProfileConfirm, setShowEditProfileConfirm] = useState(false);
 
   const supabase = createClient();
-
-  const handleShare = async () => {
-    if (!result) return;
-
-    try {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      canvas.width = 1080;
-      canvas.height = 1080;
-
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#0f172a');
-      gradient.addColorStop(1, '#1e293b');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = 'rgba(59, 130, 246, 0.1)';
-      ctx.beginPath();
-      ctx.arc(150, 150, 300, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = 'rgba(34, 197, 94, 0.1)';
-      ctx.beginPath();
-      ctx.arc(900, 900, 250, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.font = 'bold 280px Arial';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText('💰', canvas.width / 2, 420);
-
-      ctx.font = 'bold 56px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText('Simulate your financial future', canvas.width / 2, 680);
-
-      ctx.font = '48px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-      ctx.fillText('finotype.vercel.app', canvas.width / 2, 820);
-
-      ctx.font = '28px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-      ctx.fillText('Interactive financial personality game', canvas.width / 2, 950);
-
-      canvas.toBlob(async (blob) => {
-        if (!blob) {
-          alert("Could not generate image");
-          return;
-        }
-        
-        const filename = `finotype-pro-${Date.now()}.png`;
-        const file = new File([blob], filename, { type: 'image/png' });
-        const shareUrl = `https://finotype.vercel.app/${locale}`;
-        
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share({
-              title: "Finotype - Financial Personality Game",
-              text: `Simulate your financial future! ${shareUrl}`,
-              files: [file]
-            });
-          } catch (err) {
-            console.log('Share canceled or failed', err);
-          }
-        } else {
-          const link = document.createElement('a');
-          link.download = filename;
-          link.href = canvas.toDataURL();
-          link.click();
-        }
-      }, 'image/png');
-    } catch (err) {
-      console.error('Failed to generate share image', err);
-      alert('Failed to generate share image. Please try again.');
-    }
-  };
 
   const generateJobsForProfile = async (currentProfile: UserProfile) => {
     setLoading(true);
@@ -177,17 +94,6 @@ export default function GamePage() {
       
       setUser(user);
 
-      // Fetch profile data first (to get display name and other info)
-      const { data: profileData } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single();
-
-      if (profileData?.display_name) {
-        setDisplayName(profileData.display_name);
-      }
-      
       const newGame = searchParams.get('newGame') === 'true';
       if (!newGame) {
           const { data: latestSim } = await supabase
@@ -200,20 +106,18 @@ export default function GamePage() {
               .single();
 
           if (latestSim && latestSim.gemini_analysis) {
-              // Show their latest results
-              const analysisData = latestSim.gemini_analysis as any;
-              setResult({
-                  finalBalance: analysisData.finalBalance || latestSim.final_balance || 0,
-                  netWorth: analysisData.netWorth || latestSim.final_balance || 0,
-                  narrative: analysisData.narrative || '',
-                  finotype: analysisData.finotype || 'Financial Explorer',
-                  tips: Array.isArray(analysisData.tips) ? analysisData.tips : [],
-                  analysisByTopic: analysisData.analysisByTopic || {}
-              });
-              setStep('result');
+              // Redirect to their latest results
+              router.push(`/${locale}/pro/results?id=${latestSim.id}`);
               return;
           }
       }
+      
+      // Fetch profile data for game setup
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
       
       let profileLoaded = false;
         
@@ -226,8 +130,8 @@ export default function GamePage() {
          };
          setProfile(loadedProfile);
          profileLoaded = true;
-         // Auto-generate jobs
-         generateJobsForProfile(loadedProfile);
+         // Auto-generate jobs (this will set step to 'jobs' when complete)
+         await generateJobsForProfile(loadedProfile);
       }
       
       if (!profileLoaded) {
@@ -248,7 +152,6 @@ export default function GamePage() {
     setCurrentTopicIndex(0);
     setTopicOptions([]);
     setTopicDescription('');
-    setResult(null);
     
     // Save profile to DB
     if (user) {
@@ -405,8 +308,9 @@ export default function GamePage() {
         );
         
         // Save to DB with gemini_analysis
+        let simulationId = null;
         if (user) {
-            await supabase.from('simulations').insert({
+            const { data } = await supabase.from('simulations').insert({
                 user_id: user.id,
                 final_balance: simResult.finalBalance,
                 game_history: {
@@ -416,13 +320,13 @@ export default function GamePage() {
                     isDemo: isDemoMode
                 },
                 gemini_analysis: simResult
-            });
+            }).select().single();
+            
+            simulationId = data?.id;
         }
         
-        // Show results on this page
-        setResult(simResult);
-        setStep('result');
-        setLoading(false);
+        // Redirect to results page
+        router.push(`/${locale}/pro/results${simulationId ? `?id=${simulationId}` : ''}${isDemoMode ? '&demo=true' : ''}`);
     }
   };
 
@@ -447,8 +351,8 @@ export default function GamePage() {
             <header className="mb-8 text-center md:text-left flex justify-between items-start">
                 <div>
                     <h1 className="text-3xl font-bold text-primary mb-2">{t('title')}</h1>
-                    {isDemoMode && step !== 'result' && <span className="text-xs font-bold px-2 py-1 rounded-full border" style={{ background: 'rgba(14,165,233,0.1)', color: 'var(--color-accent)', borderColor: 'var(--color-accent)' }}>{t('demoMode')}</span>}
-                    {step !== 'result' && <p className="mt-1" style={{ color: 'var(--color-text-secondary)' }}>{t('subtitle')}</p>}
+                    {isDemoMode && <span className="text-xs font-bold px-2 py-1 rounded-full border" style={{ background: 'rgba(14,165,233,0.1)', color: 'var(--color-accent)', borderColor: 'var(--color-accent)' }}>{t('demoMode')}</span>}
+                    <p className="mt-1" style={{ color: 'var(--color-text-secondary)' }}>{t('subtitle')}</p>
                 </div>
             </header>
             
@@ -470,7 +374,13 @@ export default function GamePage() {
                     onSubmit={handleProfileSubmit}
                     loading={loading}
                     hasExistingJobs={jobs.length > 0}
-                    onEditProfile={() => setStep('jobs')}
+                    onEditProfile={() => {
+                        // Go back to previous step if we have existing jobs, otherwise stay in profile
+                        if (jobs.length > 0 && previousStep) {
+                            setStep(previousStep);
+                            setPreviousStep(null);
+                        }
+                    }}
                     t={t}
                 />
             )}
@@ -481,7 +391,10 @@ export default function GamePage() {
                     <div className="flex justify-between items-center">
                         <h2 className="text-xl font-bold text-neutral-900">{t('selectJob')}</h2>
                         <button 
-                            onClick={() => setShowEditProfileConfirm(true)}
+                            onClick={() => {
+                                setPreviousStep('jobs');
+                                setStep('profile');
+                            }}
                             className="text-sm text-primary hover:text-primary font-medium cursor-pointer"
                         >
                             {t('editProfile')}
@@ -530,9 +443,12 @@ export default function GamePage() {
                 <div className="space-y-6 animate-fadeIn">
                     <div className="flex justify-between items-center mb-4">
                         <div className="flex items-center gap-4">
-                            <h2 className="text-2xl font-bold text-neutral-900">{TOPICS[currentTopicIndex].name}</h2>
+                            <h2 className="text-2xl font-bold text-neutral-900">{t(TOPICS[currentTopicIndex].name)}</h2>
                             <button 
-                                onClick={() => setShowEditProfileConfirm(true)}
+                                onClick={() => {
+                                    setPreviousStep('topics');
+                                    setStep('profile');
+                                }}
                                 className="text-xs px-3 py-1 rounded-full border transition cursor-pointer"
                                 style={{ 
                                   background: 'var(--color-neutral-100)',
@@ -560,7 +476,7 @@ export default function GamePage() {
                                 </div>
                             </div>
                             <h3 className="text-2xl font-bold text-neutral-900 mb-3">
-                                {TOPICS[currentTopicIndex].name}
+                                {t(TOPICS[currentTopicIndex].name)}
                             </h3>
                             <p className="text-lg mb-8 max-w-xl mx-auto leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                                 {currentTopicIndex === 0 ? t('housingLoadingDesc') : 
@@ -614,110 +530,6 @@ export default function GamePage() {
                 </div>
             )}
 
-            {/* Result Step */}
-            {step === 'result' && result && (
-                <>
-                {displayName && (
-                    <div className="text-center mb-6">
-                        <h2 className="text-3xl font-bold text-neutral-900">{tResults('hey', {name: displayName})}</h2>
-                    </div>
-                )}
-                <div className="card-morandi rounded-3xl overflow-hidden">
-                    <div className="bg-gradient-morandi-blue p-12 text-center text-white relative overflow-hidden">
-                        <div className="relative z-10">
-                            <h2 className="text-4xl font-bold mb-4">{t('oneYearLater')}</h2>
-                            <p className="text-blue-100 text-lg">{t('yourFinancialPersona')}</p>
-                            <div className="text-3xl font-bold mt-2 bg-white/20 inline-block px-6 py-2 rounded-full backdrop-blur-sm">
-                                {result.finotype}
-                            </div>
-                        </div>
-                        {/* Decorative circles */}
-                        <div className="absolute top-0 left-0 w-64 h-64 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-                        <div className="absolute bottom-0 right-0 w-48 h-48 bg-white/10 rounded-full translate-x-1/3 translate-y-1/3"></div>
-                    </div>
-                    
-                    <div className="p-8 md:p-12 space-y-12">
-                        <div className="grid grid-cols-2 gap-8 text-center">
-                            <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100">
-                                <p className="text-gray-500 uppercase text-xs font-bold tracking-wider mb-2">{t('finalBalance')}</p>
-                                <p className="text-3xl md:text-4xl font-bold text-gray-900">${result.finalBalance.toLocaleString()}</p>
-                            </div>
-                            <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100">
-                                <p className="text-gray-500 uppercase text-xs font-bold tracking-wider mb-2">{t('netWorth')}</p>
-                                <p className="text-3xl md:text-4xl font-bold text-blue-600">${result.netWorth.toLocaleString()}</p>
-                            </div>
-                        </div>
-
-                        <div className="bg-blue-50 p-8 rounded-2xl border border-blue-100">
-                            <h3 className="text-xl font-bold text-blue-900 mb-4 flex items-center gap-2">
-                                <span>📅</span> {t('yearInReview')}
-                            </h3>
-                            <p className="text-blue-800 leading-relaxed text-lg">{result.narrative}</p>
-                        </div>
-
-                        <div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                                <span>💡</span> {t('professionalTips')}
-                            </h3>
-                            <div className="space-y-4">
-                                {result.tips.map((tip, i) => (
-                                    <div key={i} className="flex items-start bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                        <div className="bg-green-100 text-green-700 h-6 w-6 rounded-full flex items-center justify-center mr-4 flex-shrink-0 text-xs font-bold">✓</div>
-                                        <span className="text-gray-700">{tip}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row justify-center gap-3 pt-8 border-t" style={{ borderColor: 'var(--color-neutral-200)' }}>
-                            <button
-                                onClick={() => router.push(`/${locale}`)}
-                                className="px-8 py-3 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition font-semibold shadow-sm"
-                                style={{ minWidth: 140 }}
-                            >
-                                <span className="inline-flex items-center gap-2">
-                                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 12l7-7v4h7v6h-7v4l-7-7z"/></svg>
-                                    {tResults('returnHome')}
-                                </span>
-                            </button>
-                            <button
-                                onClick={handleShare}
-                                className="px-8 py-3 rounded-full border-0 bg-blue-100 text-blue-700 hover:bg-blue-200 transition font-semibold shadow-sm"
-                                style={{ minWidth: 140 }}
-                            >
-                                <span className="inline-flex items-center gap-2">
-                                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
-                                    {tResults('shareResult')}
-                                </span>
-                            </button>
-                            <button
-                                onClick={async () => {
-                                  setResult(null);
-                                  setSelectedJob(null);
-                                  setConfirmedJob(null);
-                                  setSelectedTopicOption(null);
-                                  setCurrentTopicIndex(0);
-                                  setTopicOptions([]);
-                                  setTopicDescription('');
-                                  setChoices({});
-                                  setStep('jobs');
-                                  setLoading(true);
-                                  await generateJobsForProfile(profile);
-                                }}
-                                className="px-8 py-3 rounded-full bg-primary text-white font-bold shadow-md hover:bg-primary/90 transition"
-                                style={{ minWidth: 140 }}
-                            >
-                                <span className="inline-flex items-center gap-2">
-                                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
-                                    {t('playAgain')}
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </>
-            )}
-
             {/* Modal */}
             {showModal && (
                 <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn" style={{ background: 'rgba(42,38,34,0.4)' }} onClick={() => setShowModal(null)}>
@@ -734,26 +546,6 @@ export default function GamePage() {
                 </div>
             )}
         </div>
-        {/* Edit Profile Confirmation Popup */}
-        {showEditProfileConfirm && (
-          <EditProfileConfirm
-            onConfirm={async () => {
-              setShowEditProfileConfirm(false);
-              // Clear game state and go back to job selection
-              setSelectedJob(null);
-              setConfirmedJob(null);
-              setSelectedTopicOption(null);
-              setCurrentTopicIndex(0);
-              setTopicOptions([]);
-              setTopicDescription('');
-              setChoices({});
-              // Regenerate jobs with current profile
-              await generateJobsForProfile(profile);
-            }}
-            onCancel={() => setShowEditProfileConfirm(false)}
-            t={t}
-          />
-        )}
         
         {/* Analysis Modal */}
         {showAnalysisModal && (selectedJob || selectedTopicOption) && (

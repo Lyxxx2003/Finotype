@@ -120,15 +120,12 @@ export default function ResultsPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans bg-gradient-morandi">
-      <div className="max-w-3xl w-full space-y-8">
+      <div className="max-w-3xl w-full space-y-4">
         {displayName && (
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-neutral-900">{tResults('hey', { name: displayName })}</h2>
+            <h1 className="text-3xl font-bold text-neutral-900">{tResults('hey', { name: displayName })}, {tResults('yourResults')}</h1>
           </div>
         )}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-neutral-900">{tResults('yourResults')}</h1>
-        </div>
 
         <div className="card-morandi rounded-3xl overflow-hidden border-0">
           <div className="p-8 text-white relative overflow-hidden bg-gradient-morandi-blue">
@@ -150,7 +147,7 @@ export default function ResultsPage() {
                   className="text-xs font-bold uppercase tracking-wider"
                   style={{ color: '#dbeafe' }}
                 >
-                  Type: {persona.id}
+                  {persona.id}
                 </p>
               </div>
             </div>

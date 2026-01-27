@@ -80,7 +80,7 @@ export default function AccountPage() {
     setMessageType('info');
     try {
       // Call API route to delete account
-      const response = await fetch('/api/delete-account', {
+      const response = await fetch(`/${locale}/api/delete-account`, {
         method: 'POST',
       });
 

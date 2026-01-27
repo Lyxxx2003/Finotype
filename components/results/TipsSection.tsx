@@ -10,7 +10,6 @@ export function TipsSection({ tips, t }: TipsSectionProps) {
 
   return (
     <div>
-      <h3 className="text-2xl font-bold mb-6 text-neutral-900">{t('expertTips')}</h3>
       <div className="grid gap-4">
         {tips.map((tip, idx) => (
           <div 

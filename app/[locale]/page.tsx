@@ -73,7 +73,7 @@ export default function Home() {
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
               </svg>
-              Financial Education Platform
+              {t("financialEducationPlatform")}
             </div>
 
             {/* Title with professional gradient */}
@@ -117,7 +117,7 @@ export default function Home() {
                 <svg className="w-4 h-4 inline-block mr-1.5 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
-                Behavioral Analysis
+                {t('behavioralAnalysis')}
               </span>
               <span 
                 className="px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
@@ -130,7 +130,7 @@ export default function Home() {
                 <svg className="w-4 h-4 inline-block mr-1.5 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
-                Personalized Insights
+                {t('personalizedInsights')}
               </span>
               <span 
                 className="px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
@@ -143,11 +143,11 @@ export default function Home() {
                 <svg className="w-4 h-4 inline-block mr-1.5 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
-                Real Scenarios
+                {t('realScenarios')}
               </span>
             </div>
-            
-            {/* CTA buttons - Morandi styled */}
+
+            {/* Action buttons */}
             <div 
               className="flex gap-4 items-center flex-col sm:flex-row justify-center relative z-10"
               style={{ animation: 'scaleIn 0.8s ease-out 1s both' }}
@@ -190,8 +190,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Stats section - Morandi aesthetic */}
-          <div 
+          {/* TODO: Stats section */}
+          {/* <div 
             className="grid grid-cols-3 gap-4 sm:gap-6 w-full mt-8"
             style={{ animation: 'fadeInUp 0.8s ease-out 1.2s both' }}
           >
@@ -228,7 +228,7 @@ export default function Home() {
               <div className="text-2xl sm:text-4xl font-bold mb-1 sm:mb-2" style={{ color: 'var(--color-success)' }}>4.9/5</div>
               <div className="text-xs sm:text-sm" style={{ color: 'var(--color-neutral-500)' }}>Rating</div>
             </div>
-          </div>
+          </div> */}
         </main>
 
         {/* Footer */}

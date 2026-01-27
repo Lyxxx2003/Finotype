@@ -24,7 +24,7 @@ export function ShareButtons({ locale, onShare, t }: ShareButtonsProps) {
         </svg>
         {t('shareResult')}
       </button>
-      <Link href={`/${locale}/pro/game`} className="btn-morandi-accent text-center">
+      <Link href={`/${locale}/pro/game?newGame=true`} className="btn-morandi-accent text-center">
         {t('playAgain')}
       </Link>
       <Link href={`/${locale}`} className="btn-morandi-outline text-center">

@@ -9,6 +9,7 @@ import { PersonaCard } from '@/components/results/PersonaCard';
 import { TipsSection } from '@/components/results/TipsSection';
 import { FamiliarityForm } from '@/components/results/FamiliarityForm';
 import { ShareButtons } from '@/components/results/ShareButtons';
+import { AnalysisState } from '@/types';
 
 const DEMO_ANALYSIS = {
   profile: "Strategic Wealth Builder",
@@ -19,14 +20,6 @@ const DEMO_ANALYSIS = {
     "Set clear long-term goals to maintain focus during market dips."
   ]
 };
-
-interface AnalysisState {
-  profile: string;
-  summary: string;
-  tips: string[];
-  analysisByTopic?: Record<string, string>;
-  error?: string;
-}
 
 function ResultsContent() {
   const [analysis, setAnalysis] = useState<AnalysisState | null>(null);
@@ -221,12 +214,14 @@ function ResultsContent() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6 card-morandi rounded-3xl p-12">
-        <div className="w-16 h-16 border-4 rounded-full animate-spin" style={{ borderColor: 'var(--color-primary)', borderTopColor: 'transparent' }}></div>
-        <div className="text-center space-y-2">
-          <p className="text-2xl font-bold text-neutral-900">{tGame('simulatingYear')}</p>
-          <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>{tGame('simulatingYearSubtext')}</p>
-          <p className="text-md font-medium mt-4 pt-2 border-t border-gray-100" style={{ color: 'var(--color-primary)' }}>{t('loadingAnalysis')}</p>
+      <div className="min-h-screen bg-gradient-morandi flex items-center justify-center">
+        <div className="text-center">
+          <div className="flex items-center gap-3 px-6 py-3 rounded-full animate-pulse" style={{ background: 'rgba(14,165,233,0.1)' }}>
+            <div className="h-2 w-2 rounded-full animate-ping" style={{ background: 'var(--color-accent)' }}></div>
+            <span className="font-medium" style={{ color: 'var(--color-accent)' }}>
+              {t('loading')}
+            </span>
+          </div>
         </div>
       </div>
     );
@@ -236,12 +231,9 @@ function ResultsContent() {
     <div className="max-w-3xl mx-auto space-y-8 py-12 px-4">
       {displayName && (
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-neutral-900">{t('hey', {name: displayName})}</h2>
+          <h1 className="text-3xl font-bold text-neutral-900">{t('hey', {name: displayName})} {t('title')}</h1>
         </div>
       )}
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-neutral-900">{t('title')}</h1>
-      </div>
 
       {analysis && (
         <div className="card-morandi rounded-3xl overflow-hidden border-0">

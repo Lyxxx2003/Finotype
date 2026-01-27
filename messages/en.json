@@ -4,7 +4,11 @@
     "subtitle": "Discover your financial personality type. Are you a Guardian, a Maverick, or something else? Take the 10-question test to find out and level up your financial literacy.",
     "standardTest": "Try Standard Test",
     "proSimulation": "Pro Simulation",
-    "footer": "© {year} Finotype. All rights reserved."
+    "footer": "© {year} Finotype. All rights reserved.",
+    "behavioralAnalysis": "Behavioral Analysis",
+    "personalizedInsights": "Personalized Insights",
+    "realScenarios": "Real Scenarios",
+    "financialEducationPlatform": "Financial Education Platform"
   },
   "login": {
     "title": "Sign In",
@@ -99,6 +103,7 @@
     "backToGame": "Back to Game"
   },
   "analysis": {
+    "loading":"Loading...",
     "title": "Your Financial Analysis",
     "simulationResults": "Simulation Results",
     "hey": "Hey {name}! 👋",
@@ -108,7 +113,6 @@
     "yourStrengths": "✨ Your Strengths",
     "commonPitfalls": "⚠️ Common Pitfalls",
     "tipsForYou": "💡 Tips for You",
-    "startOver": "Start Over",
     "loadingAnalysis": "Gemini is analyzing your financial psychology...",
     "finalBalance": "Final Cash Balance",
     "netWorth": "Net Worth",
@@ -149,6 +153,10 @@
     "viewFullReport": "View Full Report"
   },
   "game": {
+    "Housing": "Housing",
+    "Credit Cards": "Credit Cards",
+    "Investment": "Investments",
+    "Loans": "Loans",
     "selectFamiliarity": "Select your financial familiarity level",
     "goBack": "Back",
     "welcome": "Welcome to Finotype Pro",
@@ -201,7 +209,7 @@
     "goodChoice": "Good choice!",
     "reflectingDecision": "Reflecting on your decision...",
     "editProfileConfirm": "Changing profile will restart the simulation. Continue?",
-    "simulatingYear": "Simulating your financial year...",
+    "simulatingYear": "Gemini is Simulating your financial year...",
     "simulatingYearSubtext": "Checking stock markets... Calculating interest... Paying bills...",
     "oneYearLater": "One Year Later...",
     "yourFinancialPersona": "Your Financial Persona",

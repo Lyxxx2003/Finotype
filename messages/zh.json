@@ -4,7 +4,11 @@
     "subtitle": "发现你的财务性格类型。你是守护者、冒险家，还是其他类型？完成10道题的测试，提升你的财务素养。",
     "standardTest": "尝试标准测试",
     "proSimulation": "专业模拟",
-    "footer": "© {year} Finotype. 保留所有权利。"
+    "footer": "© {year} Finotype. 保留所有权利。",
+    "behavioralAnalysis": "行为分析",
+    "personalizedInsights": "个性化见解",
+    "realScenarios": "真实场景",
+    "financialEducationPlatform": "财务教育平台"
   },
   "login": {
     "title": "登录",
@@ -99,6 +103,7 @@
     "backToGame": "返回游戏"
   },
   "analysis": {
+    "loading":"加载中...",
     "title": "您的财务分析",
     "simulationResults": "模拟结果",
     "hey": "嗨 {name}！👋",
@@ -108,7 +113,6 @@
     "yourStrengths": "✨ 你的优势",
     "commonPitfalls": "⚠️ 常见陷阱",
     "tipsForYou": "💡 给你的建议",
-    "startOver": "重新开始",
     "loadingAnalysis": "Gemini正在分析您的财务心理...",
     "finalBalance": "最终现金余额",
     "netWorth": "净资产",
@@ -149,6 +153,10 @@
     "viewFullReport": "查看完整报告"
   },
   "game": {
+    "Housing": "住房",
+    "Credit Cards": "信用卡",
+    "Investment": "投资", 
+    "Loans": "贷款",
     "selectFamiliarity": "选择您的财务熟悉度等级",
     "goBack": "返回",
     "welcome": "欢迎来到 Finotype 专业版",
@@ -198,7 +206,7 @@
     "goodChoice": "好选择！",
     "reflectingDecision": "正在反思您的决定...",
     "editProfileConfirm": "更改个人资料将重启模拟。继续？",
-    "simulatingYear": "正在模拟您的财务年度...",
+    "simulatingYear": "Gemini正在模拟您的财务年度...",
     "simulatingYearSubtext": "检查股票市场...计算利息...支付账单...",
     "oneYearLater": "一年后...",
     "yourFinancialPersona": "您的财务人格",
