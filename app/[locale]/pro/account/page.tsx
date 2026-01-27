@@ -113,18 +113,19 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto py-8 px-4 bg-gradient-morandi" style={{ minHeight: 'calc(100vh - 4rem)' }}>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gradient-morandi">{t('title')}</h1>
-        <Link 
-          href={`/${locale}/pro/game`}
-          className="btn-morandi-outline text-sm"
-        >
-          ← {t('backToGame')}
-        </Link>
-      </div>
+    <div className="min-h-screen bg-gradient-morandi py-12 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-3xl font-bold text-gradient-morandi">{t('title')}</h1>
+          <Link 
+            href={`/${locale}/pro/game`}
+            className="btn-morandi-outline text-sm"
+          >
+            ← {t('backToGame')}
+          </Link>
+        </div>
 
-      <div className="card-morandi p-8 space-y-6">
+        <div className="card-morandi p-8 space-y-6">
         {/* Email */}
         <div>
           <label className="label-morandi">
@@ -175,18 +176,19 @@ export default function AccountPage() {
         )}
       </div>
 
-      {/* Danger Zone */}
-      <div className="card-danger mt-6">
-        <h2 className="text-lg font-bold mb-4" style={{ color: 'var(--color-terracotta)' }}>{t('dangerZone')}</h2>
-        <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
-          {t('deleteWarning')}
-        </p>
-        <button
-          onClick={() => setShowDeleteConfirm(true)}
-          className="btn-morandi-danger text-sm"
-        >
-          {t('deleteAccount')}
-        </button>
+        {/* Danger Zone */}
+        <div className="card-danger mt-8">
+          <h2 className="text-lg font-bold mb-4" style={{ color: 'var(--color-error)' }}>{t('dangerZone')}</h2>
+          <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
+            {t('deleteWarning')}
+          </p>
+          <button
+            onClick={() => setShowDeleteConfirm(true)}
+            className="btn-morandi-danger text-sm"
+          >
+            {t('deleteAccount')}
+          </button>
+        </div>
       </div>
 
       {/* Delete Confirmation Modal */}

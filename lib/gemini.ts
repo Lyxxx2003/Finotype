@@ -19,6 +19,33 @@ function getLanguageName(code: string): string {
   return languageMap[code] || 'English';
 }
 
+function getCurrencyInfo(locale: string): { symbol: string, code: string, name: string } {
+  const currencyMap: Record<string, { symbol: string, code: string, name: string }> = {
+    'en': { symbol: '$', code: 'USD', name: 'US Dollars' },
+    'zh': { symbol: '¥', code: 'CNY', name: 'Chinese Yuan' },
+    'es': { symbol: '€', code: 'EUR', name: 'Euros' },
+    'fr': { symbol: '€', code: 'EUR', name: 'Euros' },
+    'de': { symbol: '€', code: 'EUR', name: 'Euros' },
+    'ja': { symbol: '¥', code: 'JPY', name: 'Japanese Yen' }
+  };
+  return currencyMap[locale] || currencyMap['en'];
+}
+
+function normalizeToAnnualSalary(salary: string, paymentFreq: string = 'Monthly'): number {
+  const numericSalary = parseFloat(salary.replace(/[^0-9.]/g, ''));
+  if (isNaN(numericSalary)) return 0;
+  
+  switch (paymentFreq) {
+    case 'Weekly':
+      return numericSalary * 52;
+    case 'Biweekly':
+      return numericSalary * 26;
+    case 'Monthly':
+    default:
+      return numericSalary * 12;
+  }
+}
+
 function getFallbackJobs(profile: UserProfile): JobOption[] {
     return [
         { id: "1", title: "Junior " + profile.industry + " Associate", salary: 50000, salaryLabel: "$4,166/mo", bonus: "5% annual", healthInsurance: "Basic HMP", location: "Remote", analysis: "A great entry-level starting point with low pressure." },
@@ -72,17 +99,27 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
     }
 
     const language = locale || 'en';
+    const currency = getCurrencyInfo(language);
     const languageInstruction = language !== 'en' 
         ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The job titles, analysis, and all descriptions should be in ${getLanguageName(language)}.` 
         : '';
 
+    // Normalize salary to annual amount
+    const annualSalary = profile.salary ? normalizeToAnnualSalary(profile.salary, profile.paymentFreq) : 0;
+    const salaryContext = annualSalary > 0 
+        ? `They expect approximately ${currency.symbol}${annualSalary.toLocaleString()} per year (${profile.paymentFreq || 'Monthly'} payment frequency: ${currency.symbol}${profile.salary}).`
+        : 'They are open to market rate salaries.';
+
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
     const prompt = `
         Generate 3 job offers for a user in the "${profile.industry}" industry.
-        They expect a salary around "${profile.salary || 'market rate'}".
+        ${salaryContext}
+        
+        CURRENCY: All salaries MUST be in ${currency.name} (${currency.code}). Use ${currency.symbol} symbol.
+        Generate salaries that are realistic and close to the user's expected salary range.
         
         Vary the salary, benefits (bonus/stocks), health insurance plans, and locations.
-        Make them realistic.
+        Make them realistic for the target market and currency.
         
         LENGTH CONSTRAINTS (CRITICAL):
         - title: Maximum 40 characters
@@ -100,8 +137,8 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
                 {
                     "id": "1",
                     "title": "Job Title",
-                    "salary": 60000, // Number, annual amount
-                    "salaryLabel": "$5,000/mo", // String to display
+                    "salary": 60000, // Number, annual amount in ${currency.code}
+                    "salaryLabel": "${currency.symbol}5,000/mo", // String to display with ${currency.symbol}
                     "bonus": "Details about bonus/stock",
                     "healthInsurance": "Plan details",
                     "location": "City, State or Remote",
