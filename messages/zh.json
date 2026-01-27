@@ -138,7 +138,15 @@
     "switchToQA": "切换到简单问答测试",
     "regionBlocked": "AI在您所在地区不可用。请使用演示模式。",
     "simulationFailed": "模拟生成失败。",
-    "analysisGenerationFailed": "生成分析失败。"
+    "analysisGenerationFailed": "生成分析失败。",
+    "stepByStepAnalysis": "逐步分析",
+    "jobChoice": "工作选择",
+    "topic": "主题",
+    "yourChoice": "您的选择",
+    "aiAnalysis": "AI分析",
+    "previous": "上一个",
+    "next": "下一个",
+    "viewFullReport": "查看完整报告"
   },
   "game": {
     "welcome": "欢迎来到 Finotype 专业版",
@@ -200,6 +208,9 @@
     "switchToQA": "切换到简单问答测试",
     "networkError": "网络错误或达到限制。",
     "regionBlocked": "AI在您所在地区不可用。请使用演示模式。",
+    "rateLimitError": "请求过多。请稍后重试。",
+    "apiKeyError": "API配置错误。请使用演示模式。",
+    "safetyFilterError": "内容被安全过滤。请尝试不同的输入。",
     "loading": "加载中...",
     "currentBalance": "当前余额"
   },

@@ -107,7 +107,7 @@ export default function AccountPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-morandi">
-        <div className="text-morandi-dark" style={{ color: 'var(--color-text-muted)' }}>{t('loading')}</div>
+        <div className="text-neutral-900" style={{ color: 'var(--color-text-muted)' }}>{t('loading')}</div>
       </div>
     );
   }

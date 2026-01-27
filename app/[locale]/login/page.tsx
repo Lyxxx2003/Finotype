@@ -182,7 +182,7 @@ export default function LoginPage() {
           // Forgot Password Form with Morandi styling
           <>
             <div>
-              <div className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-gradient-morandi-warm icon-container-warm">
+              <div className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 icon-container-accent">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
                 </svg>

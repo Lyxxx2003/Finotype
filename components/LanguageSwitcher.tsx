@@ -25,14 +25,20 @@ export default function LanguageSwitcher() {
       <select
         value={currentLocale}
         onChange={(e) => switchLocale(e.target.value as Locale)}
-        className="appearance-none rounded-xl px-4 py-2 pr-8 text-sm cursor-pointer transition-all duration-300 border-2"
+        className="appearance-none rounded-xl px-4 py-2 pr-8 text-sm font-medium cursor-pointer transition-all duration-300 border-2 hover:shadow-md"
         style={{
           background: 'white',
           borderColor: 'var(--color-neutral-300)',
           color: 'var(--color-text)'
         }}
-        onFocus={(e) => e.currentTarget.style.borderColor = 'var(--color-primary)'}
-        onBlur={(e) => e.currentTarget.style.borderColor = 'var(--color-neutral-300)'}
+        onFocus={(e) => {
+          e.currentTarget.style.borderColor = 'var(--color-primary)';
+          e.currentTarget.style.boxShadow = '0 0 0 3px rgba(30, 64, 175, 0.1)';
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.borderColor = 'var(--color-neutral-300)';
+          e.currentTarget.style.boxShadow = 'none';
+        }}
       >
         {locales.map((locale) => (
           <option key={locale} value={locale}>
@@ -40,7 +46,7 @@ export default function LanguageSwitcher() {
           </option>
         ))}
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2" style={{ color: 'var(--color-text-secondary)' }}>
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2" style={{ color: 'var(--color-primary)' }}>
         <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
           <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
         </svg>

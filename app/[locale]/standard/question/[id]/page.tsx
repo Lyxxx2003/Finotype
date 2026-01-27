@@ -62,12 +62,12 @@ export default function QuestionPage() {
       <div className="w-full max-w-xl mt-10">
         {/* Progress Bar */}
         <div className="w-full rounded-full h-2.5 mb-8" style={{ backgroundColor: 'var(--color-neutral-200)' }}>
-          <div className="bg-morandi-primary h-2.5 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
+          <div className="bg-primary h-2.5 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
         </div>
 
         <div className="card-morandi p-8">
-          <span className="text-sm font-semibold text-morandi-primary uppercase tracking-wider">{tResults('questionOf', { current: currentStep, total: totalSteps })}</span>
-          <h2 className="text-2xl font-bold text-morandi-dark mt-4 mb-8">
+          <span className="text-sm font-semibold text-primary uppercase tracking-wider">{tResults('questionOf', { current: currentStep, total: totalSteps })}</span>
+          <h2 className="text-2xl font-bold text-neutral-900 mt-4 mb-8">
             {t(`${questionId}.text`)}
           </h2>
 

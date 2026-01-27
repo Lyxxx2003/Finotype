@@ -23,21 +23,21 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden" style={{ background: 'linear-gradient(135deg, #F9F8F6 0%, #F0EDE9 50%, #E2DDD5 100%)' }}>
-      {/* Artistic background elements - Morandi inspired */}
-      <div className="absolute inset-0 overflow-hidden opacity-40">
+    <div className="relative min-h-screen overflow-hidden" style={{ background: 'var(--gradient-surface)' }}>
+      {/* Professional background elements */}
+      <div className="absolute inset-0 overflow-hidden opacity-30">
         {/* Large soft circles */}
-        <div className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(127,163,195,0.15) 0%, transparent 70%)', animation: 'float 12s ease-in-out infinite' }} />
-        <div className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(232,184,125,0.15) 0%, transparent 70%)', animation: 'float 15s ease-in-out infinite', animationDelay: '2s' }} />
-        <div className="absolute -bottom-1/4 left-1/3 w-[450px] h-[450px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(167,184,168,0.12) 0%, transparent 70%)', animation: 'float 18s ease-in-out infinite', animationDelay: '4s' }} />
+        <div className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)', animation: 'float 12s ease-in-out infinite' }} />
+        <div className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)', animation: 'float 15s ease-in-out infinite', animationDelay: '2s' }} />
+        <div className="absolute -bottom-1/4 left-1/3 w-[450px] h-[450px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(30,64,175,0.12) 0%, transparent 70%)', animation: 'float 18s ease-in-out infinite', animationDelay: '4s' }} />
       </div>
 
-      {/* Floating geometric shapes - subtle and artistic */}
+      {/* Floating geometric shapes - minimal and professional */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-20 h-20 rounded-lg opacity-20" style={{ background: 'var(--color-primary)', animation: 'float 8s ease-in-out infinite', transform: 'rotate(15deg)' }} />
-        <div className="absolute top-1/3 right-16 w-16 h-16 rounded-full opacity-15" style={{ background: 'var(--color-accent)', animation: 'float 10s ease-in-out infinite', animationDelay: '1s' }} />
-        <div className="absolute bottom-32 left-1/4 w-12 h-12 opacity-10" style={{ background: 'var(--color-sage)', animation: 'float 9s ease-in-out infinite', animationDelay: '2s', transform: 'rotate(-20deg)' }} />
-        <div className="absolute bottom-1/4 right-1/3 w-14 h-14 rounded-lg opacity-15" style={{ background: 'var(--color-terracotta)', animation: 'float 11s ease-in-out infinite', animationDelay: '3s' }} />
+        <div className="absolute top-20 left-10 w-20 h-20 rounded-lg opacity-10" style={{ background: 'var(--color-primary)', animation: 'float 8s ease-in-out infinite', transform: 'rotate(15deg)' }} />
+        <div className="absolute top-1/3 right-16 w-16 h-16 rounded-full opacity-10" style={{ background: 'var(--color-accent)', animation: 'float 10s ease-in-out infinite', animationDelay: '1s' }} />
+        <div className="absolute bottom-32 left-1/4 w-12 h-12 opacity-8" style={{ background: 'var(--color-primary-light)', animation: 'float 9s ease-in-out infinite', animationDelay: '2s', transform: 'rotate(-20deg)' }} />
+        <div className="absolute bottom-1/4 right-1/3 w-14 h-14 rounded-lg opacity-10" style={{ background: 'var(--color-accent-dark)', animation: 'float 11s ease-in-out infinite', animationDelay: '3s' }} />
       </div>
 
       <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
@@ -47,27 +47,27 @@ export default function Home() {
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {/* Main card with Morandi aesthetics */}
+          {/* Main card with Professional aesthetics */}
           <div 
             className="relative backdrop-blur-md rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden"
             style={{ 
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,237,233,0.95) 100%)',
-              border: '1px solid rgba(201,195,186,0.3)',
-              boxShadow: '0 8px 32px rgba(42,38,34,0.08), 0 2px 8px rgba(42,38,34,0.04)'
+              background: 'rgba(255,255,255,0.95)',
+              border: '1px solid var(--color-neutral-200)',
+              boxShadow: '0 8px 32px rgba(15,23,42,0.08), 0 2px 8px rgba(15,23,42,0.04)'
             }}
           >
             {/* Decorative corner elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 opacity-10" style={{ background: 'var(--color-accent)', borderRadius: '0 0 0 100%' }} />
-            <div className="absolute bottom-0 left-0 w-24 h-24 opacity-10" style={{ background: 'var(--color-primary)', borderRadius: '0 100% 0 0' }} />
+            <div className="absolute top-0 right-0 w-32 h-32 opacity-5" style={{ background: 'var(--color-accent)', borderRadius: '0 0 0 100%' }} />
+            <div className="absolute bottom-0 left-0 w-24 h-24 opacity-5" style={{ background: 'var(--color-primary)', borderRadius: '0 100% 0 0' }} />
             
-            {/* Badge - artistic and refined */}
+            {/* Badge - professional */}
             <div 
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold mb-6 sm:mb-8 relative z-10" 
               style={{ 
                 animation: 'scaleIn 0.6s ease-out 0.2s both',
-                background: 'linear-gradient(135deg, #7FA3C3 0%, #4A6FA5 100%)',
+                background: 'var(--gradient-primary)',
                 color: 'white',
-                boxShadow: '0 4px 16px rgba(74,111,165,0.25)'
+                boxShadow: '0 4px 16px rgba(30,64,175,0.25)'
               }}
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -76,12 +76,12 @@ export default function Home() {
               Financial Education Platform
             </div>
 
-            {/* Title with artistic gradient */}
+            {/* Title with professional gradient */}
             <h1 
               className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4 sm:mb-6 relative z-10"
               style={{ 
                 animation: 'fadeInUp 0.8s ease-out 0.4s both',
-                background: 'linear-gradient(135deg, #4A6FA5 0%, #7FA3C3 35%, #E8B87D 65%, #C99B5E 100%)',
+                background: 'var(--gradient-primary)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -109,9 +109,9 @@ export default function Home() {
               <span 
                 className="px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
                 style={{ 
-                  background: 'rgba(127,163,195,0.15)',
-                  color: 'var(--color-primary-dark)',
-                  border: '1px solid rgba(127,163,195,0.3)'
+                  background: 'rgba(30,64,175,0.1)',
+                  color: 'var(--color-primary)',
+                  border: '1px solid rgba(30,64,175,0.2)'
                 }}
               >
                 <svg className="w-4 h-4 inline-block mr-1.5 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,9 +122,9 @@ export default function Home() {
               <span 
                 className="px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
                 style={{ 
-                  background: 'rgba(232,184,125,0.15)',
-                  color: 'var(--color-accent-dark)',
-                  border: '1px solid rgba(232,184,125,0.3)'
+                  background: 'rgba(14,165,233,0.1)',
+                  color: 'var(--color-accent)',
+                  border: '1px solid rgba(14,165,233,0.2)'
                 }}
               >
                 <svg className="w-4 h-4 inline-block mr-1.5 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,9 +135,9 @@ export default function Home() {
               <span 
                 className="px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
                 style={{ 
-                  background: 'rgba(167,184,168,0.15)',
-                  color: '#5C7F5D',
-                  border: '1px solid rgba(167,184,168,0.3)'
+                  background: 'rgba(16,185,129,0.1)',
+                  color: 'var(--color-success)',
+                  border: '1px solid rgba(16,185,129,0.2)'
                 }}
               >
                 <svg className="w-4 h-4 inline-block mr-1.5 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,8 +156,8 @@ export default function Home() {
                 onClick={startTest}
                 className="group relative cursor-pointer rounded-2xl text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 overflow-hidden w-full sm:w-auto"
                 style={{ 
-                  background: 'linear-gradient(135deg, #4A6FA5 0%, #2D4A6E 100%)',
-                  boxShadow: '0 8px 24px rgba(74,111,165,0.35), 0 2px 8px rgba(74,111,165,0.2)'
+                  background: 'var(--gradient-primary)',
+                  boxShadow: '0 8px 24px rgba(30,64,175,0.35), 0 2px 8px rgba(30,64,175,0.2)'
                 }}
               >
                 <span className="relative z-10 flex items-center gap-2 justify-center">
@@ -168,7 +168,7 @@ export default function Home() {
                 </span>
                 <div 
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: 'linear-gradient(135deg, #2D4A6E 0%, #1F3653 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%)' }}
                 />
               </button>
               
@@ -176,10 +176,10 @@ export default function Home() {
                 href={`/${locale}/pro/game`}
                 className="group cursor-pointer rounded-2xl px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto flex items-center gap-2 justify-center"
                 style={{
-                  background: 'linear-gradient(135deg, #F5D9A8 0%, #E8B87D 100%)',
-                  color: 'var(--color-neutral-800)',
-                  border: '2px solid rgba(232,184,125,0.5)',
-                  boxShadow: '0 8px 24px rgba(232,184,125,0.3), 0 2px 8px rgba(232,184,125,0.15)'
+                  background: 'var(--gradient-accent)',
+                  color: 'white',
+                  border: '2px solid rgba(14,165,233,0.5)',
+                  boxShadow: '0 8px 24px rgba(14,165,233,0.3), 0 2px 8px rgba(14,165,233,0.15)'
                 }}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,9 +198,9 @@ export default function Home() {
             <div 
               className="backdrop-blur-md rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 cursor-pointer"
               style={{
-                background: 'linear-gradient(135deg, rgba(127,163,195,0.1) 0%, rgba(127,163,195,0.05) 100%)',
-                border: '1px solid rgba(127,163,195,0.2)',
-                boxShadow: '0 4px 16px rgba(74,111,165,0.08)'
+                background: 'rgba(30,64,175,0.05)',
+                border: '1px solid rgba(30,64,175,0.2)',
+                boxShadow: '0 4px 16px rgba(30,64,175,0.08)'
               }}
             >
               <div className="text-2xl sm:text-4xl font-bold mb-1 sm:mb-2" style={{ color: 'var(--color-primary)' }}>15K+</div>
@@ -209,9 +209,9 @@ export default function Home() {
             <div 
               className="backdrop-blur-md rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 cursor-pointer"
               style={{
-                background: 'linear-gradient(135deg, rgba(232,184,125,0.1) 0%, rgba(232,184,125,0.05) 100%)',
-                border: '1px solid rgba(232,184,125,0.2)',
-                boxShadow: '0 4px 16px rgba(232,184,125,0.08)'
+                background: 'rgba(14,165,233,0.05)',
+                border: '1px solid rgba(14,165,233,0.2)',
+                boxShadow: '0 4px 16px rgba(14,165,233,0.08)'
               }}
             >
               <div className="text-2xl sm:text-4xl font-bold mb-1 sm:mb-2" style={{ color: 'var(--color-accent-dark)' }}>98%</div>
@@ -220,12 +220,12 @@ export default function Home() {
             <div 
               className="backdrop-blur-md rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 cursor-pointer"
               style={{
-                background: 'linear-gradient(135deg, rgba(167,184,168,0.1) 0%, rgba(167,184,168,0.05) 100%)',
-                border: '1px solid rgba(167,184,168,0.2)',
-                boxShadow: '0 4px 16px rgba(167,184,168,0.08)'
+                background: 'rgba(16,185,129,0.05)',
+                border: '1px solid rgba(16,185,129,0.2)',
+                boxShadow: '0 4px 16px rgba(16,185,129,0.08)'
               }}
             >
-              <div className="text-2xl sm:text-4xl font-bold mb-1 sm:mb-2" style={{ color: 'var(--color-sage)' }}>4.9/5</div>
+              <div className="text-2xl sm:text-4xl font-bold mb-1 sm:mb-2" style={{ color: 'var(--color-success)' }}>4.9/5</div>
               <div className="text-xs sm:text-sm" style={{ color: 'var(--color-neutral-500)' }}>Rating</div>
             </div>
           </div>

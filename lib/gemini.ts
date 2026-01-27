@@ -146,11 +146,45 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
         const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
         return JSON.parse(cleanText);
     } catch (error: any) {
-        console.error("Gemini generateJobs failed, using fallback:", error);
+        console.error("[Gemini generateJobs Error]", {
+            message: error.message,
+            status: error.status,
+            statusText: error.statusText,
+            errorDetails: error.errorDetails || error.toString(),
+            stack: error.stack
+        });
+        
         let errorType = "FALLBACK_USED";
-        if (error.toString().includes("User location is not supported") || error.toString().includes("400")) {
-             errorType = "REGION_BLOCKED";
+        
+        // Location/Region blocking (400, 403)
+        if (error.status === 400 || error.status === 403 || 
+            error.toString().includes("400") || 
+            error.toString().includes("403") ||
+            error.toString().includes("User location is not supported") ||
+            error.toString().includes("PERMISSION_DENIED")) {
+            errorType = "REGION_BLOCKED";
         }
+        
+        // Rate limiting (429)
+        if (error.status === 429 || 
+            error.toString().includes("429") || 
+            error.toString().includes("RESOURCE_EXHAUSTED")) {
+            errorType = "RATE_LIMIT_EXCEEDED";
+        }
+        
+        // API key issues
+        if (error.status === 401 || 
+            error.toString().includes("API key") ||
+            error.toString().includes("UNAUTHENTICATED")) {
+            errorType = "INVALID_API_KEY";
+        }
+        
+        // Safety/content filter
+        if (error.toString().includes("SAFETY") ||
+            error.toString().includes("content filter")) {
+            errorType = "SAFETY_FILTER";
+        }
+        
         return { 
             jobs: getFallbackJobs(profile),
             error: errorType
@@ -202,11 +236,45 @@ export async function generateLifeOptions(topic: string, context: any, isDemo: b
         const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
         return JSON.parse(cleanText);
     } catch (error: any) {
-        console.error("Gemini generateLifeOptions failed, using fallback:", error);
+        console.error("[Gemini generateLifeOptions Error]", {
+            message: error.message,
+            status: error.status,
+            statusText: error.statusText,
+            errorDetails: error.errorDetails || error.toString(),
+            stack: error.stack
+        });
+        
         let errorType = "FALLBACK_USED";
-        if (error.toString().includes("User location is not supported") || error.toString().includes("400")) {
-             errorType = "REGION_BLOCKED";
+        
+        // Location/Region blocking (400, 403)
+        if (error.status === 400 || error.status === 403 || 
+            error.toString().includes("400") || 
+            error.toString().includes("403") ||
+            error.toString().includes("User location is not supported") ||
+            error.toString().includes("PERMISSION_DENIED")) {
+            errorType = "REGION_BLOCKED";
         }
+        
+        // Rate limiting (429)
+        if (error.status === 429 || 
+            error.toString().includes("429") || 
+            error.toString().includes("RESOURCE_EXHAUSTED")) {
+            errorType = "RATE_LIMIT_EXCEEDED";
+        }
+        
+        // API key issues
+        if (error.status === 401 || 
+            error.toString().includes("API key") ||
+            error.toString().includes("UNAUTHENTICATED")) {
+            errorType = "INVALID_API_KEY";
+        }
+        
+        // Safety/content filter
+        if (error.toString().includes("SAFETY") ||
+            error.toString().includes("content filter")) {
+            errorType = "SAFETY_FILTER";
+        }
+        
         const fallback = getFallbackLifeOptions(topic);
         return {
             ...fallback,
@@ -295,264 +363,48 @@ export async function simulateYear(
         const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
         return JSON.parse(cleanText);
     } catch (error: any) {
-        console.error("Simulation failed", error);
-        let errorType = "SIMULATION_ERROR";
-        if (error.toString().includes("User location is not supported") || error.toString().includes("400")) {
-             errorType = "REGION_BLOCKED";
-        }
-        return {
-            ...calculateFallback(),
-            narrative: "Gemini simulation failed. Falling back to basic calculation. " + (error.message || ""),
-            error: errorType
-        };
-    }
-}
-
-export interface GameState {
-  ticker: string;
-  price: number;
-  day: number;
-  news: string;
-  history: GameEvent[];
-}
-
-export interface GameEvent {
-  day: number;
-  action: 'buy' | 'sell' | 'hold' | 'loan' | 'repay';
-  amount?: number;
-  priceAtAction: number;
-  reasoning?: string; // Optional user input
-}
-
-export async function generateScenario(currentDay: number, currentPrice: number, isDemo: boolean = false): Promise<{
-    news: string;
-    priceChangePercent: number;
-    error?: string;
-}> {
-  if (isDemo || !apiKey || apiKey.startsWith("TODO")) {
-      const demoScenarios = [
-          { news: "NebulaAI announces a breakthrough in quantum computing.", priceChangePercent: 0.12 },
-          { news: "Regulatory concerns cause a slight dip in tech stocks.", priceChangePercent: -0.05 },
-          { news: "Quarterly earnings beat expectations, investors rejoice.", priceChangePercent: 0.08 },
-          { news: "Competitor launches a rival product, market reacts cautiously.", priceChangePercent: -0.03 },
-          { news: "New partnership with major cloud provider confirmed.", priceChangePercent: 0.15 }
-      ];
-      // Pick based on day to be deterministic-ish or just random
-      const scenario = demoScenarios[(currentDay - 1) % demoScenarios.length] || demoScenarios[0];
-      
-      return {
-          news: `[DEMO] ${scenario.news}`,
-          priceChangePercent: scenario.priceChangePercent
-      }
-  }
-
-  // Attempt to use the latest model which often bypasses strict region locks on older models
-  const model = genAI.getGenerativeModel({ 
-      model: "gemini-2.0-flash-exp",
-  });
-  const prompt = `
-    You are a financial market simulator game master. 
-    Current Day: ${currentDay}
-    Current Stock Price: ${currentPrice}
-    
-    Generate a short, realistic financial news headline (1 sentence) regarding a fictional tech company "NebulaAI". 
-    Then determine a percentage price change for the stock based on this news (between -15% and +15%).
-    
-    Output JSON only: { "news": "string", "priceChangePercent": number }
-  `;
-
-  try {
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
-    // Clean up markdown code blocks if present
-    const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
-    return JSON.parse(cleanText);
-  } catch (error: any) {
-    console.error("[Gemini Scenario Error]", {
-      message: error.message,
-      status: error.status,
-      statusText: error.statusText,
-      errorDetails: error.errorDetails || error.toString(),
-      stack: error.stack
-    });
-
-    // Location/Region restrictions (400, 403)
-    if (error.status === 400 || error.status === 403 || 
-        error.toString().includes("400") || 
-        error.toString().includes("User location is not supported")) {
-        return {
-            news: "Gemini is not supported for your location. Please try the simple Q/A version.",
-            priceChangePercent: 0,
-            error: "LOCATION_NOT_SUPPORTED"
-        };
-    }
-
-    // Rate limiting (429)
-    if (error.status === 429 || error.toString().includes("429") || 
-        error.toString().includes("RESOURCE_EXHAUSTED")) {
-        console.error("[Rate Limit] Too many requests to Gemini API");
-        return {
-            news: "Too many requests. Please try again in a moment.",
-            priceChangePercent: 0,
-            error: "RATE_LIMIT_EXCEEDED"
-        };
-    }
-
-    // Invalid API Key (401)
-    if (error.status === 401 || error.toString().includes("401") || 
-        error.toString().includes("API_KEY_INVALID")) {
-        console.error("[Auth Error] Invalid or missing API key");
-        return {
-            news: "API authentication failed. Please check configuration.",
-            priceChangePercent: 0,
-            error: "INVALID_API_KEY"
-        };
-    }
-
-    // Network/Timeout errors
-    if (error.toString().includes("ECONNREFUSED") || 
-        error.toString().includes("ETIMEDOUT") ||
-        error.toString().includes("fetch failed")) {
-        console.error("[Network Error] Could not connect to Gemini API");
-        return {
-            news: "Network connection issue. Please check your internet.",
-            priceChangePercent: 0,
-            error: "NETWORK_ERROR"
-        };
-    }
-
-    // Safety/Content filtering (400 with SAFETY)
-    if (error.toString().includes("SAFETY") || error.toString().includes("blocked")) {
-        console.error("[Safety Error] Content was blocked by safety filters");
-        return {
-            news: "Content generation blocked by safety filters.",
-            priceChangePercent: 0,
-            error: "SAFETY_FILTER"
-        };
-    }
-
-    // Generic fallback
-    console.error("[Unknown Error] Unhandled Gemini error type");
-    return {
-        news: "Analysts are uncertain about the market direction today.",
-        priceChangePercent: 0,
-        error: "UNKNOWN_ERROR"
-    };
-  }
-}
-
-export async function analyzeBehavior(events: GameEvent[]): Promise<{
-    profile: string;
-    summary: string;
-    tips: string[];
-    error?: string;
-}> {
-    if (!apiKey || apiKey.startsWith("TODO")) {
-        return {
-            profile: "Demo Trader",
-            summary: "You took some risks but mostly played it safe. (Gemini API Key missing)",
-            tips: ["Add a valid Gemini API Key to get real analysis", "Diversify portfolio"]
-        }
-    }
-
-    const model = genAI.getGenerativeModel({ 
-        model: "gemini-2.0-flash-exp" 
-    });
-    const eventsJson = JSON.stringify(events);
-    
-    const prompt = `
-      You are an expert financial behavioral psychologist. 
-      Analyze the following user actions from a stock trading simulation game:
-      ${eventsJson}
-      
-      Identify their trading personality (e.g., "FOMO Chaser", "Value Investor", "Panic Seller", etc.).
-      Write a brief summary of their behavior.
-      Provide 3 actionable tips to improve their emotional regulation and financial decision making.
-      
-      Output JSON only: { "profile": "string", "summary": "string", "tips": ["string", "string", "string"] }
-    `;
-
-    try {
-        const result = await model.generateContent(prompt);
-        const text = result.response.text();
-        const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
-        return JSON.parse(cleanText);
-    } catch (error: any) {
-        console.error("[Gemini Analysis Error]", {
+        console.error("[Gemini simulateYear Error]", {
             message: error.message,
             status: error.status,
             statusText: error.statusText,
             errorDetails: error.errorDetails || error.toString(),
             stack: error.stack
         });
-
-        // Location/Region restrictions (400, 403)
+        
+        let errorType = "SIMULATION_ERROR";
+        
+        // Location/Region blocking (400, 403)
         if (error.status === 400 || error.status === 403 || 
             error.toString().includes("400") || 
-            error.toString().includes("User location is not supported")) {
-            return {
-                profile: "Location Not Supported",
-                summary: "Gemini is not supported for your location. Please try the simple Q/A version.",
-                tips: ["Use the simple Q/A version"],
-                error: "LOCATION_NOT_SUPPORTED"
-            };
+            error.toString().includes("403") ||
+            error.toString().includes("User location is not supported") ||
+            error.toString().includes("PERMISSION_DENIED")) {
+            errorType = "REGION_BLOCKED";
         }
-
+        
         // Rate limiting (429)
-        if (error.status === 429 || error.toString().includes("429") || 
+        if (error.status === 429 || 
+            error.toString().includes("429") || 
             error.toString().includes("RESOURCE_EXHAUSTED")) {
-            console.error("[Rate Limit] Too many analysis requests");
-            return {
-                profile: "Rate Limited",
-                summary: "Too many requests. Please wait a moment and try again.",
-                tips: ["Wait a few minutes before requesting another analysis"],
-                error: "RATE_LIMIT_EXCEEDED"
-            };
+            errorType = "RATE_LIMIT_EXCEEDED";
         }
-
-        // Invalid API Key (401)
-        if (error.status === 401 || error.toString().includes("401") || 
-            error.toString().includes("API_KEY_INVALID")) {
-            console.error("[Auth Error] Invalid or missing API key for analysis");
-            return {
-                profile: "Authentication Failed",
-                summary: "API authentication failed. Please contact support.",
-                tips: ["Check API key configuration"],
-                error: "INVALID_API_KEY"
-            };
+        
+        // API key issues
+        if (error.status === 401 || 
+            error.toString().includes("API key") ||
+            error.toString().includes("UNAUTHENTICATED")) {
+            errorType = "INVALID_API_KEY";
         }
-
-        // Network/Timeout errors
-        if (error.toString().includes("ECONNREFUSED") || 
-            error.toString().includes("ETIMEDOUT") ||
-            error.toString().includes("fetch failed")) {
-            console.error("[Network Error] Could not connect to Gemini for analysis");
-            return {
-                profile: "Network Issue",
-                summary: "Could not connect to analysis service. Check your internet connection.",
-                tips: ["Verify your internet connection", "Try again in a moment"],
-                error: "NETWORK_ERROR"
-            };
+        
+        // Safety/content filter
+        if (error.toString().includes("SAFETY") ||
+            error.toString().includes("content filter")) {
+            errorType = "SAFETY_FILTER";
         }
-
-        // Safety/Content filtering
-        if (error.toString().includes("SAFETY") || error.toString().includes("blocked")) {
-            console.error("[Safety Error] Analysis content was blocked");
-            return {
-                profile: "Content Filtered",
-                summary: "Analysis was blocked by content safety filters.",
-                tips: ["Try playing again with different strategies"],
-                error: "SAFETY_FILTER"
-            };
-        }
-
-        // Generic fallback
-        console.error("[Unknown Error] Unhandled analysis error type");
+        
         return {
-            profile: "Unknown",
-            summary: "Could not analyze data due to an unexpected error.",
-            tips: ["Try again later", "Contact support if the issue persists"],
-            error: "UNKNOWN_ERROR"
+            ...calculateFallback(),
+            error: errorType
         };
     }
 }

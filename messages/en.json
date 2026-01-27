@@ -138,7 +138,15 @@
     "switchToQA": "Switch to Simple Q/A Test",
     "regionBlocked": "AI unavailable in your region. Please use Demo Mode.",
     "simulationFailed": "Simulation generation failed.",
-    "analysisGenerationFailed": "Failed to generate analysis."
+    "analysisGenerationFailed": "Failed to generate analysis.",
+    "stepByStepAnalysis": "Step-by-Step Analysis",
+    "jobChoice": "Job Choice",
+    "topic": "Topic",
+    "yourChoice": "Your Choice",
+    "aiAnalysis": "AI Analysis",
+    "previous": "Previous",
+    "next": "Next",
+    "viewFullReport": "View Full Report"
   },
   "game": {
     "welcome": "Welcome to Finotype Pro",
@@ -202,6 +210,9 @@
     "switchToQA": "Switch to Simple Q/A Test",
     "networkError": "Network error or limit reached.",
     "regionBlocked": "AI unavailable in your region. Please use Demo Mode.",
+    "rateLimitError": "Too many requests. Please try again in a moment.",
+    "apiKeyError": "API configuration error. Please try Demo Mode.",
+    "safetyFilterError": "Content filtered for safety. Please try different inputs.",
     "loading": "Loading...",
     "currentBalance": "Current Balance"
   },

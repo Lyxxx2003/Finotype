@@ -123,11 +123,11 @@ export default function ResultsPage() {
       <div className="max-w-3xl w-full space-y-8">
         {displayName && (
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-morandi-dark">{tResults('hey', { name: displayName })}</h2>
+            <h2 className="text-3xl font-bold text-neutral-900">{tResults('hey', { name: displayName })}</h2>
           </div>
         )}
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-morandi-dark">{tResults('yourResults')}</h1>
+          <h1 className="text-4xl font-bold text-neutral-900">{tResults('yourResults')}</h1>
         </div>
 
         <div className="card-morandi rounded-3xl overflow-hidden border-0">
@@ -167,7 +167,7 @@ export default function ResultsPage() {
           
           <div className="p-8 space-y-8">
             <div>
-              <h3 className="text-xl font-semibold mb-2 text-morandi-dark">{tResults('aboutYourType')}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-neutral-900">{tResults('aboutYourType')}</h3>
               <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{tPersonas(`${persona.id}.description`)}</p>
             </div>
           </div>

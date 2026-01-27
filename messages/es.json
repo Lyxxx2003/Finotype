@@ -126,7 +126,15 @@
     "switchToQA": "Cambiar a Prueba Simple de P/R",
     "regionBlocked": "IA no disponible en tu región. Por favor usa el Modo Demo.",
     "simulationFailed": "Falló la generación de la simulación.",
-    "analysisGenerationFailed": "Error al generar análisis."
+    "analysisGenerationFailed": "Error al generar el análisis.",
+    "stepByStepAnalysis": "Análisis Paso a Paso",
+    "jobChoice": "Elección de Trabajo",
+    "topic": "Tema",
+    "yourChoice": "Tu Elección",
+    "aiAnalysis": "Análisis de IA",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "viewFullReport": "Ver Informe Completo"
   },
   "game": {
     "welcome": "Bienvenido a Finotype Pro",
@@ -189,8 +197,9 @@
     "continueDemo": "Continuar en Modo Demo",
     "switchToQA": "Cambiar a Prueba Simple de P/R",
     "networkError": "Error de red o límite alcanzado.",
-    "regionBlocked": "IA no disponible en tu región. Por favor usa el Modo Demo.",
-    "loading": "Cargando...",
+    "regionBlocked": "IA no disponible en tu región. Por favor usa el Modo Demo.",    "rateLimitError": "Demasiadas solicitudes. Inténtalo de nuevo en un momento.",
+    "apiKeyError": "Error de configuración de API. Por favor, usa el Modo Demo.",
+    "safetyFilterError": "Contenido filtrado por seguridad. Prueba con diferentes entradas.",    "loading": "Cargando...",
     "currentBalance": "Saldo Actual"
   },
   "common": {

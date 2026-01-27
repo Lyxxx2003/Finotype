@@ -35,32 +35,32 @@ export default function AnalysisPage() {
       <div className="max-w-4xl w-full">
         {displayName && (
           <div className="mb-6">
-            <h2 className="text-3xl font-bold text-morandi-dark">{t('hey', { name: displayName })}</h2>
+            <h2 className="text-3xl font-bold text-neutral-900">{t('hey', { name: displayName })}</h2>
           </div>
         )}
         <header className="mb-12 border-b pb-8 flex justify-between items-center" style={{ borderColor: 'var(--color-neutral-200)' }}>
           <div className="flex items-center gap-4">
             <span className="text-4xl">{persona.mascot}</span>
             <div>
-              <h1 className="text-3xl font-bold text-morandi-dark">{t('typeAnalysis', { name: tPersonas(`${persona.id}.name`) })}</h1>
+              <h1 className="text-3xl font-bold text-neutral-900">{t('typeAnalysis', { name: tPersonas(`${persona.id}.name`) })}</h1>
               <p style={{ color: 'var(--color-text-secondary)' }}>{t('finotypeLabel', { type: persona.id })}</p>
             </div>
           </div>
-          <Link href={`/${locale}/standard/results`} className="text-morandi-primary font-medium hover:underline cursor-pointer">
+          <Link href={`/${locale}/standard/results`} className="text-primary font-medium hover:underline cursor-pointer">
             {t('backToSummary')}
           </Link>
         </header>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Strengths */}
-          <section className="p-8 rounded-2xl border transition-all duration-300 hover:scale-[1.02]" style={{ background: 'linear-gradient(135deg, rgba(167,184,168,0.15) 0%, rgba(167,184,168,0.08) 100%)', borderColor: 'var(--color-sage)' }}>
-            <h2 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--color-sage)' }}>
+          <section className="p-8 rounded-2xl border transition-all duration-300 hover:scale-[1.02]" style={{ background: 'rgba(16,185,129,0.08)', borderColor: 'var(--color-success)' }}>
+            <h2 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--color-success)' }}>
               {t('yourStrengths')}
             </h2>
             <ul className="space-y-4">
               {persona.strengths.map((s, i) => (
                 <li key={i} className="flex items-start gap-3" style={{ color: 'var(--color-neutral-700)' }}>
-                  <span className="mt-1 block w-2 h-2 rounded-full bg-morandi-sage flex-shrink-0"></span>
+                  <span className="mt-1 block w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--color-success)' }}></span>
                   {s}
                 </li>
               ))}
@@ -68,14 +68,14 @@ export default function AnalysisPage() {
           </section>
 
           {/* Pitfalls */}
-          <section className="p-8 rounded-2xl border transition-all duration-300 hover:scale-[1.02]" style={{ background: 'linear-gradient(135deg, rgba(196,148,139,0.15) 0%, rgba(196,148,139,0.08) 100%)', borderColor: 'var(--color-terracotta)' }}>
-            <h2 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--color-terracotta)' }}>
+          <section className="p-8 rounded-2xl border transition-all duration-300 hover:scale-[1.02]" style={{ background: 'rgba(245,158,11,0.08)', borderColor: 'var(--color-warning)' }}>
+            <h2 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--color-warning)' }}>
               {t('commonPitfalls')}
             </h2>
             <ul className="space-y-4">
               {persona.pitfalls.map((p, i) => (
                 <li key={i} className="flex items-start gap-3" style={{ color: 'var(--color-neutral-700)' }}>
-                  <span className="mt-1 block w-2 h-2 rounded-full bg-morandi-terracotta flex-shrink-0"></span>
+                  <span className="mt-1 block w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--color-warning)' }}></span>
                   {p}
                 </li>
               ))}
@@ -84,14 +84,14 @@ export default function AnalysisPage() {
         </div>
 
         {/* Actionable Tips */}
-        <section className="p-8 rounded-2xl border mb-12" style={{ background: 'linear-gradient(135deg, rgba(245,217,168,0.2) 0%, rgba(232,184,125,0.15) 100%)', borderColor: 'var(--color-accent)' }}>
-          <h2 className="text-xl font-bold text-morandi-accent mb-6 flex items-center gap-2">
+        <section className="p-8 rounded-2xl border mb-12" style={{ background: 'rgba(14,165,233,0.08)', borderColor: 'var(--color-accent)' }}>
+          <h2 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--color-accent)' }}>
             {t('tipsForYou')}
           </h2>
           <div className="grid gap-4">
             {persona.tips.map((tip, i) => (
               <div key={i} className="card-morandi p-4 flex gap-4 items-center">
-                 <span className="font-bold text-2xl bg-gradient-morandi-warm bg-clip-text" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>0{i+1}</span>
+                 <span className="font-bold text-2xl bg-clip-text" style={{ background: 'var(--gradient-accent)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>0{i+1}</span>
                  <span style={{ color: 'var(--color-text)' }}>{tip}</span>
               </div>
             ))}

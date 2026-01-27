@@ -29,7 +29,7 @@ export default function StartPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </div>
-          <h2 className="text-center text-3xl font-extrabold text-morandi-primary">
+          <h2 className="text-center text-3xl font-extrabold text-primary">
             {t('welcome')}
           </h2>
           <p className="mt-2 text-center text-sm" style={{ color: 'var(--color-text-secondary)' }}>
