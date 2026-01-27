@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { generateJobs, generateLifeOptions } from '@/lib/gemini'
 import {UserProfile, JobOption, LifeOption, SimulationResult } from '@/types';
@@ -11,7 +11,6 @@ import { JobCard } from '@/components/game/JobCard';
 import { OptionCard } from '@/components/game/OptionCard';
 import { ErrorModal } from '@/components/game/ErrorModal';
 import { AnalysisModal } from '@/components/game/AnalysisModal';
-import { LoadingState } from '@/components/game/LoadingState';
 import { ProfileForm } from '@/components/game/ProfileForm';
 import { EditProfileConfirm } from '@/components/game/EditProfileConfirm';
 
@@ -25,10 +24,12 @@ const TOPICS = [
 export default function GamePage() {
   const router = useRouter();
   const params = useParams();
+  const searchParams = useSearchParams();
   const locale = params.locale as string;
   const t = useTranslations('game');
-  const tCommon = useTranslations('common');
+  const tResults = useTranslations('results');
   const [user, setUser] = useState<User | null>(null);
+  const [displayName, setDisplayName] = useState<string>('');
   const [step, setStep] = useState<'loading' | 'profile' | 'jobs' | 'topics' | 'simulation' | 'result'>('loading');
   const [profile, setProfile] = useState<UserProfile>({ industry: '', familiarity: '', salary: '', paymentFreq: 'Monthly' });
   const [jobs, setJobs] = useState<JobOption[]>([]);
@@ -54,6 +55,84 @@ export default function GamePage() {
   const [showEditProfileConfirm, setShowEditProfileConfirm] = useState(false);
 
   const supabase = createClient();
+
+  const handleShare = async () => {
+    if (!result) return;
+
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      canvas.width = 1080;
+      canvas.height = 1080;
+
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, '#0f172a');
+      gradient.addColorStop(1, '#1e293b');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'rgba(59, 130, 246, 0.1)';
+      ctx.beginPath();
+      ctx.arc(150, 150, 300, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = 'rgba(34, 197, 94, 0.1)';
+      ctx.beginPath();
+      ctx.arc(900, 900, 250, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.font = 'bold 280px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('💰', canvas.width / 2, 420);
+
+      ctx.font = 'bold 56px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('Simulate your financial future', canvas.width / 2, 680);
+
+      ctx.font = '48px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.fillText('finotype.vercel.app', canvas.width / 2, 820);
+
+      ctx.font = '28px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.fillText('Interactive financial personality game', canvas.width / 2, 950);
+
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          alert("Could not generate image");
+          return;
+        }
+        
+        const filename = `finotype-pro-${Date.now()}.png`;
+        const file = new File([blob], filename, { type: 'image/png' });
+        const shareUrl = `https://finotype.vercel.app/${locale}`;
+        
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              title: "Finotype - Financial Personality Game",
+              text: `Simulate your financial future! ${shareUrl}`,
+              files: [file]
+            });
+          } catch (err) {
+            console.log('Share canceled or failed', err);
+          }
+        } else {
+          const link = document.createElement('a');
+          link.download = filename;
+          link.href = canvas.toDataURL();
+          link.click();
+        }
+      }, 'image/png');
+    } catch (err) {
+      console.error('Failed to generate share image', err);
+      alert('Failed to generate share image. Please try again.');
+    }
+  };
 
   const generateJobsForProfile = async (currentProfile: UserProfile) => {
     setLoading(true);
@@ -97,13 +176,46 @@ export default function GamePage() {
       }
       
       setUser(user);
-      
-      let profileLoaded = false;
+
+      // Fetch profile data first (to get display name and other info)
       const { data: profileData } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', user.id)
         .single();
+
+      if (profileData?.display_name) {
+        setDisplayName(profileData.display_name);
+      }
+      
+      const newGame = searchParams.get('newGame') === 'true';
+      if (!newGame) {
+          const { data: latestSim } = await supabase
+              .from('simulations')
+              .select('*')
+              .eq('user_id', user.id)
+              .not('gemini_analysis', 'is', null)
+              .order('created_at', { ascending: false })
+              .limit(1)
+              .single();
+
+          if (latestSim && latestSim.gemini_analysis) {
+              // Show their latest results
+              const analysisData = latestSim.gemini_analysis as any;
+              setResult({
+                  finalBalance: analysisData.finalBalance || latestSim.final_balance || 0,
+                  netWorth: analysisData.netWorth || latestSim.final_balance || 0,
+                  narrative: analysisData.narrative || '',
+                  finotype: analysisData.finotype || 'Financial Explorer',
+                  tips: Array.isArray(analysisData.tips) ? analysisData.tips : [],
+                  analysisByTopic: analysisData.analysisByTopic || {}
+              });
+              setStep('result');
+              return;
+          }
+      }
+      
+      let profileLoaded = false;
         
       if (profileData && profileData.industry && profileData.familiarity) {
          const loadedProfile = {
@@ -138,11 +250,7 @@ export default function GamePage() {
     setTopicDescription('');
     setResult(null);
     
-    // Clear localStorage
-    localStorage.removeItem('gameHistory');
-    localStorage.removeItem('finalNetWorth');
-    
-    // Save to DB
+    // Save profile to DB
     if (user) {
         await supabase.from('profiles').upsert({
             id: user.id,
@@ -280,35 +388,41 @@ export default function GamePage() {
         await loadTopic(nextIndex, newChoices);
         setLoading(false);
     } else {
-        // All topics done - save and go to results
+        // All topics done - run simulation now
         setStep('simulation');
+        setLoading(true);
         
+        // Import simulateYear
+        const { simulateYear } = await import('@/lib/gemini');
+        
+        // Run the simulation
+        const simResult = await simulateYear(
+            profile,
+            confirmedJob!,
+            newChoices,
+            isDemoMode,
+            locale
+        );
+        
+        // Save to DB with gemini_analysis
         if (user) {
-            const { data, error: dbError } = await supabase.from('simulations').insert({
+            await supabase.from('simulations').insert({
                 user_id: user.id,
-                final_balance: 0,
+                final_balance: simResult.finalBalance,
                 game_history: {
                     profile,
                     job: confirmedJob,
                     choices: newChoices,
                     isDemo: isDemoMode
                 },
-                gemini_analysis: null
-            }).select();
-            
-            if (data && data[0]) {
-                router.push(`/${locale}/pro/results?id=${data[0].id}${isDemoMode ? '&demo=true' : ''}`);
-                return;
-            }
+                gemini_analysis: simResult
+            });
         }
         
-        localStorage.setItem('gameHistory', JSON.stringify({
-            profile,
-            job: confirmedJob,
-            choices: newChoices,
-            isDemo: isDemoMode
-        }));
-        router.push(`/${locale}/pro/results${isDemoMode ? '?demo=true' : ''}`);
+        // Show results on this page
+        setResult(simResult);
+        setStep('result');
+        setLoading(false);
     }
   };
 
@@ -502,6 +616,12 @@ export default function GamePage() {
 
             {/* Result Step */}
             {step === 'result' && result && (
+                <>
+                {displayName && (
+                    <div className="text-center mb-6">
+                        <h2 className="text-3xl font-bold text-neutral-900">{tResults('hey', {name: displayName})}</h2>
+                    </div>
+                )}
                 <div className="card-morandi rounded-3xl overflow-hidden">
                     <div className="bg-gradient-morandi-blue p-12 text-center text-white relative overflow-hidden">
                         <div className="relative z-10">
@@ -549,22 +669,53 @@ export default function GamePage() {
                             </div>
                         </div>
 
-                        <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8 border-t" style={{ borderColor: 'var(--color-neutral-200)' }}>
-                            <button 
-                                onClick={() => window.location.reload()}
-                                className="btn-morandi-secondary px-8 py-3"
+                        <div className="flex flex-col sm:flex-row justify-center gap-3 pt-8 border-t" style={{ borderColor: 'var(--color-neutral-200)' }}>
+                            <button
+                                onClick={() => router.push(`/${locale}`)}
+                                className="px-8 py-3 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition font-semibold shadow-sm"
+                                style={{ minWidth: 140 }}
                             >
-                                {t('playAgain')}
+                                <span className="inline-flex items-center gap-2">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 12l7-7v4h7v6h-7v4l-7-7z"/></svg>
+                                    {tResults('returnHome')}
+                                </span>
                             </button>
-                            <button 
-                                onClick={() => router.push(`/${locale}/pro/analysis`)}
-                                className="btn-morandi-primary px-8 py-3"
+                            <button
+                                onClick={handleShare}
+                                className="px-8 py-3 rounded-full border-0 bg-blue-100 text-blue-700 hover:bg-blue-200 transition font-semibold shadow-sm"
+                                style={{ minWidth: 140 }}
                             >
-                                {t('viewAnalysis')}
+                                <span className="inline-flex items-center gap-2">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
+                                    {tResults('shareResult')}
+                                </span>
+                            </button>
+                            <button
+                                onClick={async () => {
+                                  setResult(null);
+                                  setSelectedJob(null);
+                                  setConfirmedJob(null);
+                                  setSelectedTopicOption(null);
+                                  setCurrentTopicIndex(0);
+                                  setTopicOptions([]);
+                                  setTopicDescription('');
+                                  setChoices({});
+                                  setStep('jobs');
+                                  setLoading(true);
+                                  await generateJobsForProfile(profile);
+                                }}
+                                className="px-8 py-3 rounded-full bg-primary text-white font-bold shadow-md hover:bg-primary/90 transition"
+                                style={{ minWidth: 140 }}
+                            >
+                                <span className="inline-flex items-center gap-2">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                                    {t('playAgain')}
+                                </span>
                             </button>
                         </div>
                     </div>
                 </div>
+            </>
             )}
 
             {/* Modal */}
@@ -586,8 +737,9 @@ export default function GamePage() {
         {/* Edit Profile Confirmation Popup */}
         {showEditProfileConfirm && (
           <EditProfileConfirm
-            onConfirm={() => {
+            onConfirm={async () => {
               setShowEditProfileConfirm(false);
+              // Clear game state and go back to job selection
               setSelectedJob(null);
               setConfirmedJob(null);
               setSelectedTopicOption(null);
@@ -595,7 +747,8 @@ export default function GamePage() {
               setTopicOptions([]);
               setTopicDescription('');
               setChoices({});
-              setStep('profile');
+              // Regenerate jobs with current profile
+              await generateJobsForProfile(profile);
             }}
             onCancel={() => setShowEditProfileConfirm(false)}
             t={t}

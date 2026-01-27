@@ -149,6 +149,7 @@
     "viewFullReport": "查看完整报告"
   },
   "game": {
+    "selectFamiliarity": "选择您的财务熟悉度等级",
     "goBack": "返回",
     "welcome": "欢迎来到 Finotype 专业版",
     "title": "Finotype专业模拟",

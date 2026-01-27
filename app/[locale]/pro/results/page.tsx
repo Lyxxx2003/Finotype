@@ -39,6 +39,7 @@ function ResultsContent() {
   const params = useParams();
   const locale = params.locale as string;
   const t = useTranslations('analysis');
+  const tGame = useTranslations('game');
   const id = searchParams.get('id');
   const isDemo = searchParams.get('demo') === 'true';
   const supabase = createClient();
@@ -208,34 +209,8 @@ function ResultsContent() {
             }
           }
         }
-      } else {
-        // Try localStorage fallback
-        const historyStr = localStorage.getItem('gameHistory');
-        if (historyStr) {
-          const gameHistory = JSON.parse(historyStr);
-          if (gameHistory?.profile && gameHistory?.job && gameHistory?.choices) {
-            const forceDemo = isDemo || gameHistory.isDemo;
-            const res = await simulateYear(
-              gameHistory.profile,
-              gameHistory.job,
-              gameHistory.choices,
-              forceDemo,
-              locale
-            );
-            
-            const result = {
-              profile: res.finotype,
-              summary: res.narrative,
-              tips: res.tips,
-              analysisByTopic: res.analysisByTopic
-            };
-            
-            setNetWorth(res.finalBalance.toFixed(2));
-            setAnalysis(result);
-          }
-        } else if (isDemo) {
-          setAnalysis(DEMO_ANALYSIS);
-        }
+      } else if (isDemo) {
+        setAnalysis(DEMO_ANALYSIS);
       }
       
       setLoading(false);
@@ -246,10 +221,12 @@ function ResultsContent() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6">
+      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6 card-morandi rounded-3xl p-12">
         <div className="w-16 h-16 border-4 rounded-full animate-spin" style={{ borderColor: 'var(--color-primary)', borderTopColor: 'transparent' }}></div>
         <div className="text-center space-y-2">
-          <p className="text-2xl font-bold text-neutral-900">{t('loadingAnalysis')}</p>
+          <p className="text-2xl font-bold text-neutral-900">{tGame('simulatingYear')}</p>
+          <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>{tGame('simulatingYearSubtext')}</p>
+          <p className="text-md font-medium mt-4 pt-2 border-t border-gray-100" style={{ color: 'var(--color-primary)' }}>{t('loadingAnalysis')}</p>
         </div>
       </div>
     );

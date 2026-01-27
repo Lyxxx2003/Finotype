@@ -149,6 +149,7 @@
     "viewFullReport": "View Full Report"
   },
   "game": {
+    "selectFamiliarity": "Select your financial familiarity level",
     "goBack": "Back",
     "welcome": "Welcome to Finotype Pro",
     "title": "Finotype Pro Simulation",

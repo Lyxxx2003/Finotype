@@ -48,11 +48,11 @@ export interface LifeOption {
 }
 
 export interface SimulationResult {
-    finalBalance: number;
-    netWorth: number;
-    narrative: string;
-    tips: string[];
-    finotype: string;
-    analysisByTopic?: Record<string, string>;
-    error?: string;
+  finalBalance: number;
+  netWorth: number;
+  narrative: string;
+  tips: string[];
+  finotype: string;
+  analysisByTopic?: Record<string, string>;
+  error?: string;
 }

@@ -98,15 +98,37 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
                   className="cursor-pointer hover:scale-125 transition-transform"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setShowDetail({
+                    setShowTooltip({
                       title: t('healthTitle'),
-                      content: t('healthExplain')
+                      content: t('healthTooltip')
                     });
                   }}
                 >
                   <circle cx="12" cy="12" r="10"></circle>
                   <line x1="12" y1="16" x2="12" y2="12"></line>
                   <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="cursor-pointer hover:scale-125 transition-transform"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowDetail({
+                      title: t('healthTitle'),
+                      content: job.healthInsurance
+                    });
+                  }}
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
                 </svg>
                 {t('health')}
               </span>
