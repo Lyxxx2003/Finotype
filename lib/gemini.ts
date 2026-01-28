@@ -110,7 +110,7 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
         ? `They expect approximately ${currency.symbol}${annualSalary.toLocaleString()} per year (${profile.paymentFreq || 'Monthly'} payment frequency: ${currency.symbol}${profile.salary}).`
         : 'They are open to market rate salaries.';
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     const prompt = `
         Generate 3 job offers for a user in the "${profile.industry}" industry.
         ${salaryContext}
@@ -222,7 +222,7 @@ export async function generateLifeOptions(topic: string, context: any, isDemo: b
         });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     const prompt = `
         Topic: ${topic}
         Context: ${contextString}
@@ -358,7 +358,7 @@ export async function simulateYear(
         ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The narrative, finotype, tips, and analysisByTopic should all be in ${getLanguageName(language)}.` 
         : '';
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     const inputs = JSON.stringify({ profile, job, choices });
     const prompt = `
         Simulate 1 year of financial life for this user based on their choices.
