@@ -14,7 +14,7 @@ interface ProfileFormProps {
 
 export function ProfileForm({ profile, setProfile, onSubmit, loading, hasExistingJobs, onEditProfile, t }: ProfileFormProps) {
   return (
-    <form onSubmit={onSubmit} className="card-morandi p-8 space-y-6">
+    <form onSubmit={onSubmit} className="card-professional p-8 space-y-6">
       <h2 className="text-xl font-bold text-neutral-900 mb-4 border-b pb-2" style={{ borderColor: 'var(--color-neutral-200)' }}>{t('setupProfile')}</h2>
       
       <div className="space-y-4">
@@ -97,7 +97,7 @@ export function ProfileForm({ profile, setProfile, onSubmit, loading, hasExistin
         <button 
           disabled={loading}
           type="submit" 
-          className="btn-morandi-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-professional-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? t('generating') : (hasExistingJobs ? t('regenerateJobs') : t('generateJobs'))}
         </button>

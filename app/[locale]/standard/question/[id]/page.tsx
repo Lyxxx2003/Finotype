@@ -58,14 +58,14 @@ export default function QuestionPage() {
   const progress = (currentStep / totalSteps) * 100;
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-6 bg-gradient-morandi">
+    <div className="flex flex-col items-center min-h-screen p-6 bg-gradient-professional">
       <div className="w-full max-w-xl mt-10">
         {/* Progress Bar */}
         <div className="w-full rounded-full h-2.5 mb-8" style={{ backgroundColor: 'var(--color-neutral-200)' }}>
           <div className="bg-primary h-2.5 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
         </div>
 
-        <div className="card-morandi p-8">
+        <div className="card-professional p-8">
           <span className="text-sm font-semibold text-primary uppercase tracking-wider">{tResults('questionOf', { current: currentStep, total: totalSteps })}</span>
           <h2 className="text-2xl font-bold text-neutral-900 mt-4 mb-8">
             {t(`${questionId}.text`)}
@@ -78,7 +78,7 @@ export default function QuestionPage() {
                 onClick={() => handleOptionSelect(option.value)}
                 className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer
                   ${selectedOption === option.value 
-                    ? 'text-white bg-gradient-morandi-blue' 
+                    ? 'text-white bg-gradient-professional-blue' 
                     : 'hover:scale-[1.02]'
                   }`}
                 style={{

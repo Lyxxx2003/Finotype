@@ -101,7 +101,7 @@ export default function Home() {
               {t('subtitle')}
             </p>
             
-            {/* Feature badges - Morandi color palette */}
+            {/* Feature badges - professional color palette */}
             <div 
               className="flex flex-wrap gap-3 justify-center mb-8 sm:mb-10 relative z-10"
               style={{ animation: 'fadeInUp 0.8s ease-out 0.8s both' }}

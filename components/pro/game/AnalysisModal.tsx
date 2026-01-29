@@ -20,7 +20,7 @@ export function AnalysisModal({ selectedJob, selectedTopicOption, onConfirm, onC
       onClick={onCancel}
     >
       <div 
-        className="card-morandi p-8 md:p-12 max-w-2xl w-full border-0 rounded-3xl overflow-hidden"
+        className="card-professional p-8 md:p-12 max-w-2xl w-full border-0 rounded-3xl overflow-hidden"
         style={{ boxShadow: '0 20px 60px rgba(14,165,233,0.3)' }}
         onClick={e => e.stopPropagation()}
       >

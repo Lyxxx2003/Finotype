@@ -7,11 +7,11 @@ import { generateJobs, generateLifeOptions } from '@/lib/gemini'
 import {UserProfile, JobOption, LifeOption, SimulationResult } from '@/types';
 import { createClient } from '@/lib/supabase/client';
 import { User } from '@supabase/supabase-js';
-import { JobCard } from '@/components/game/JobCard';
-import { OptionCard } from '@/components/game/OptionCard';
-import { ErrorModal } from '@/components/game/ErrorModal';
-import { AnalysisModal } from '@/components/game/AnalysisModal';
-import { ProfileForm } from '@/components/game/ProfileForm';
+import { JobCard } from '@/components/pro/game/JobCard';
+import { OptionCard } from '@/components/pro/game/OptionCard';
+import { ErrorModal } from '@/components/pro/game/ErrorModal';
+import { AnalysisModal } from '@/components/pro/game/AnalysisModal';
+import { ProfileForm } from '@/components/pro/game/ProfileForm';
 
 const TOPICS = [
   { id: 'Housing', name: 'Housing' },
@@ -332,7 +332,7 @@ export default function GamePage() {
 
   if (step === 'loading' && errorType === 'NONE') {
     return (
-      <div className="min-h-screen bg-gradient-morandi flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-professional flex items-center justify-center">
         <div className="text-center">
           <div className="flex items-center gap-3 px-6 py-3 rounded-full animate-pulse" style={{ background: 'rgba(14,165,233,0.1)' }}>
             <div className="h-2 w-2 rounded-full animate-ping" style={{ background: 'var(--color-accent)' }}></div>
@@ -346,7 +346,7 @@ export default function GamePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-morandi text-gray-900 p-6 md:p-12 font-sans flex justify-center">
+    <div className="min-h-screen bg-gradient-professional text-gray-900 p-6 md:p-12 font-sans flex justify-center">
         <div className="max-w-4xl w-full">
             <header className="mb-8 text-center md:text-left flex justify-between items-start">
                 <div>
@@ -521,7 +521,7 @@ export default function GamePage() {
 
             {/* Simulation loading */}
             {step === 'simulation' && (
-                <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6 card-morandi rounded-3xl p-12">
+                <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6 card-professional rounded-3xl p-12">
                     <div className="w-16 h-16 border-4 rounded-full animate-spin" style={{ borderColor: 'var(--color-primary)', borderTopColor: 'transparent' }}></div>
                     <div className="text-center space-y-2">
                         <p className="text-2xl font-bold text-neutral-900">{t('simulatingYear')}</p>
@@ -533,12 +533,12 @@ export default function GamePage() {
             {/* Modal */}
             {showModal && (
                 <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn" style={{ background: 'rgba(42,38,34,0.4)' }} onClick={() => setShowModal(null)}>
-                    <div className="card-morandi p-8 max-w-md w-full" style={{ boxShadow: '0 20px 40px rgba(42,38,34,0.2)' }} onClick={e => e.stopPropagation()}>
+                    <div className="card-professional p-8 max-w-md w-full" style={{ boxShadow: '0 20px 40px rgba(42,38,34,0.2)' }} onClick={e => e.stopPropagation()}>
                         <h3 className="text-xl font-bold text-neutral-900 mb-3">{showModal.title}</h3>
                         <p className="mb-8 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>{showModal.content}</p>
                         <button 
                             onClick={() => setShowModal(null)}
-                            className="btn-morandi-primary w-full"
+                            className="btn-professional-primary w-full"
                         >
                             {t('gotIt')}
                         </button>

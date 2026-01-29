@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import { getAnswers, getDisplayName } from '@/lib/storage';
 import { calculateFinotype } from '@/lib/logic';
 import { personas } from '@/lib/data';
-import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { generateShareImage } from '@/components/ShareUtil';
 import { Persona } from '@/types';
+import { ResultsButtons } from '@/components/ResultsButtons';
 
 export default function ResultsPage() {
   const [persona, setPersona] = useState<Persona | null>(null);
@@ -31,95 +32,26 @@ export default function ResultsPage() {
   const handleShare = async () => {
     if (!persona) return;
 
-    try {
-      // Create a simplified share card with just mascot + branding + link
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
+    const shareUrl = `https://finotype.vercel.app/${locale}`;
 
-      // Set canvas size (Instagram post friendly: 1080x1080)
-      canvas.width = 1080;
-      canvas.height = 1080;
-
-      // Background gradient
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#2563eb');
-      gradient.addColorStop(1, '#1e40af');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Decorative circles
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.beginPath();
-      ctx.arc(150, 150, 300, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
-      ctx.beginPath();
-      ctx.arc(900, 900, 250, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Mascot emoji (large)
-      ctx.font = 'bold 280px Arial';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText(persona.mascot, canvas.width / 2, 420);
-
-      // "What's your Finotype?" text
-      ctx.font = 'bold 64px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText("What's your Finotype?", canvas.width / 2, 680);
-
-      // Website URL
-      ctx.font = '48px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-      ctx.fillText('finotype.vercel.app', canvas.width / 2, 820);
-
-      // Small branding at bottom
-      ctx.font = '28px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-      ctx.fillText('Discover your financial personality', canvas.width / 2, 950);
-
-      // Convert to blob and share
-      canvas.toBlob(async (blob) => {
-        if (!blob) {
-          alert("Could not generate image");
-          return;
-        }
-        
-        const filename = `finotype-${persona.id}-${Date.now()}.png`;
-        const file = new File([blob], filename, { type: 'image/png' });
-        const shareUrl = `https://finotype.vercel.app/${locale}`;
-        
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share({
-              title: "What's your Finotype?",
-              text: `Discover your financial personality! ${shareUrl}`,
-              files: [file]
-            });
-          } catch (err) {
-            console.log('Share canceled or failed', err);
-          }
-        } else {
-          // Fallback download
-          const link = document.createElement('a');
-          link.download = filename;
-          link.href = canvas.toDataURL();
-          link.click();
-        }
-      }, 'image/png');
-    } catch (err) {
-      console.error('Failed to generate share image', err);
-      alert('Failed to generate share image. Please try again.');
-    }
+    await generateShareImage({
+      gradientColors: ['#2563eb', '#1e40af'],
+      circleColor1: 'rgba(255, 255, 255, 0.05)',
+      circleColor2: 'rgba(255, 255, 255, 0.08)',
+      mascot: persona.mascot,
+      title: "What's your Finotype?",
+      subtitle: 'finotype.vercel.app',
+      brandText: 'Discover your financial personality',
+      filename: `finotype-${persona.id}-${Date.now()}.png`,
+      shareTitle: "What's your Finotype?",
+      shareText: `Discover your financial personality! ${shareUrl}`,
+    });
   };
 
   if (!persona) return <div className="p-8 text-center">{tResults('calculating')}</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans bg-gradient-morandi">
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans bg-gradient-professional">
       <div className="max-w-3xl w-full space-y-4">
         {displayName && (
           <div className="text-center">
@@ -127,8 +59,8 @@ export default function ResultsPage() {
           </div>
         )}
 
-        <div className="card-morandi rounded-3xl overflow-hidden border-0">
-          <div className="p-8 text-white relative overflow-hidden bg-gradient-morandi-blue">
+        <div className="card-professional rounded-3xl overflow-hidden border-0">
+          <div className="p-8 text-white relative overflow-hidden bg-gradient-professional-blue">
             <div className="relative z-10 text-center">
               <h2 
                 className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
@@ -170,33 +102,13 @@ export default function ResultsPage() {
           </div>
         </div>
 
-        <div data-html2canvas-ignore className="flex flex-col sm:flex-row justify-center gap-4">
-          <button
-            onClick={handleShare}
-            className="btn-morandi-primary flex items-center justify-center gap-2"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-            {tResults('shareResult')}
-          </button>
-
-          <Link 
-            href={`/${locale}/standard/resources`}
-            className="btn-morandi-accent text-center"
-          >
-            {tResults('seePitfallsAndTips')}
-          </Link>
-          
-          <Link
-            href={`/${locale}`}
-            className="px-6 py-3 border-2 rounded-xl font-medium text-center transition-all duration-200 cursor-pointer"
-            style={{ 
-              borderColor: 'var(--color-neutral-300)',
-              color: 'var(--color-text)'
-            }}
-          >
-            {tResults('returnHome')}
-          </Link>
-        </div>
+        <ResultsButtons
+          locale={locale}
+          onShare={handleShare}
+          t={tResults}
+          secondaryButtonText={tResults('seePitfallsAndTips')}
+          secondaryButtonHref={`/${locale}/standard/resources`}
+        />
       </div>
     </div>
   );

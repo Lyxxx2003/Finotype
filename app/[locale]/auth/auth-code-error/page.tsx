@@ -10,8 +10,8 @@ export default function AuthErrorPage() {
   const t = useTranslations('auth')
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-morandi">
-      <div className="card-morandi w-full max-w-md space-y-8 p-10 text-center">
+    <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-professional">
+      <div className="card-professional w-full max-w-md space-y-8 p-10 text-center">
         <div className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ background: 'rgba(239,68,68,0.1)' }}>
           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-error)' }}>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -31,7 +31,7 @@ export default function AuthErrorPage() {
         <div className="mt-8">
           <Link
             href={`/${locale}/login`}
-            className="btn-morandi-primary flex w-full justify-center"
+            className="btn-professional-primary flex w-full justify-center"
           >
             {t('signInButton')}
           </Link>

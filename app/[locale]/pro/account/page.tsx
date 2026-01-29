@@ -106,29 +106,29 @@ export default function AccountPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-morandi">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-professional">
         <div className="text-neutral-900" style={{ color: 'var(--color-text-muted)' }}>{t('loading')}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-morandi py-12 px-4">
+    <div className="min-h-screen bg-gradient-professional py-12 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gradient-morandi">{t('title')}</h1>
+          <h1 className="text-3xl font-bold text-gradient-professional">{t('title')}</h1>
           <Link 
             href={`/${locale}/pro/game`}
-            className="btn-morandi-outline text-sm"
+            className="btn-professional-outline text-sm"
           >
             ← {t('backToGame')}
           </Link>
         </div>
 
-        <div className="card-morandi p-8 space-y-6">
+        <div className="card-professional p-8 space-y-6">
         {/* Email */}
         <div>
-          <label className="label-morandi">
+          <label className="label-professional">
             {t('email')}
           </label>
           <div className="display-box">
@@ -139,13 +139,13 @@ export default function AccountPage() {
         {/* Display Name */}
         <form onSubmit={handleSave}>
           <div>
-            <label className="label-morandi">
+            <label className="label-professional">
               {t('displayName')}
             </label>
             <input
               type="text"
               maxLength={50}
-              className="input-morandi"
+              className="input-professional"
               placeholder="Enter your display name"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
@@ -158,7 +158,7 @@ export default function AccountPage() {
           <button
             type="submit"
             disabled={saving}
-            className="mt-4 btn-morandi-primary disabled:opacity-50"
+            className="mt-4 btn-professional-primary disabled:opacity-50"
           >
             {saving ? t('saving') : t('save')}
           </button>
@@ -184,7 +184,7 @@ export default function AccountPage() {
           </p>
           <button
             onClick={() => setShowDeleteConfirm(true)}
-            className="btn-morandi-danger text-sm"
+            className="btn-professional-danger text-sm"
           >
             {t('deleteAccount')}
           </button>
@@ -214,14 +214,14 @@ export default function AccountPage() {
               <button 
                 onClick={() => setShowDeleteConfirm(false)}
                 disabled={deleting}
-                className="btn-morandi-secondary flex-1 py-3 disabled:opacity-50"
+                className="btn-professional-secondary flex-1 py-3 disabled:opacity-50"
               >
                 {t('cancel')}
               </button>
               <button 
                 onClick={handleDeleteAccount}
                 disabled={deleting}
-                className="btn-morandi-danger flex-1 py-3 disabled:opacity-50"
+                className="btn-professional-danger flex-1 py-3 disabled:opacity-50"
               >
                 {deleting ? t('deleting') : t('confirmButton')}
               </button>

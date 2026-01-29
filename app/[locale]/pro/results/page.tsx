@@ -5,11 +5,12 @@ import { useSearchParams, useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { createClient } from '@/lib/supabase/client';
 import { simulateYear } from '@/lib/gemini';
-import { PersonaCard } from '@/components/results/PersonaCard';
-import { TipsSection } from '@/components/results/TipsSection';
-import { FamiliarityForm } from '@/components/results/FamiliarityForm';
-import { ShareButtons } from '@/components/results/ShareButtons';
+import { PersonaCard } from '@/components/pro/results/PersonaCard';
+import { TipsSection } from '@/components/pro/results/TipsSection';
+import { FamiliarityForm } from '@/components/pro/results/FamiliarityForm';
+import { generateShareImage } from '@/components/ShareUtil';
 import { AnalysisState } from '@/types';
+import { ResultsButtons } from '@/components/ResultsButtons';
 
 const DEMO_ANALYSIS = {
   profile: "Strategic Wealth Builder",
@@ -49,79 +50,21 @@ function ResultsContent() {
   const handleShare = async () => {
     if (!analysis) return;
 
-    try {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
+    const shareUrl = `https://finotype.vercel.app/${locale}`;
 
-      canvas.width = 1080;
-      canvas.height = 1080;
-
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#0f172a');
-      gradient.addColorStop(1, '#1e293b');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = 'rgba(59, 130, 246, 0.1)';
-      ctx.beginPath();
-      ctx.arc(150, 150, 300, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = 'rgba(34, 197, 94, 0.1)';
-      ctx.beginPath();
-      ctx.arc(900, 900, 250, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.font = 'bold 280px Arial';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText('💰', canvas.width / 2, 420);
-
-      ctx.font = 'bold 56px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText('Simulate your financial future', canvas.width / 2, 680);
-
-      ctx.font = '48px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-      ctx.fillText('finotype.vercel.app', canvas.width / 2, 820);
-
-      ctx.font = '28px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-      ctx.fillText('Interactive financial personality game', canvas.width / 2, 950);
-
-      canvas.toBlob(async (blob) => {
-        if (!blob) {
-          alert("Could not generate image");
-          return;
-        }
-        
-        const filename = `finotype-pro-${Date.now()}.png`;
-        const file = new File([blob], filename, { type: 'image/png' });
-        const shareUrl = `https://finotype.vercel.app/${locale}`;
-        
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share({
-              title: "Finotype - Financial Personality Game",
-              text: `Simulate your financial future! ${shareUrl}`,
-              files: [file]
-            });
-          } catch (err) {
-            console.log('Share canceled or failed', err);
-          }
-        } else {
-          const link = document.createElement('a');
-          link.download = filename;
-          link.href = canvas.toDataURL();
-          link.click();
-        }
-      }, 'image/png');
-    } catch (err) {
-      console.error('Failed to generate share image', err);
-      alert('Failed to generate share image. Please try again.');
-    }
+    await generateShareImage({
+      gradientColors: ['#0f172a', '#1e293b'],
+      circleColor1: 'rgba(59, 130, 246, 0.1)',
+      circleColor2: 'rgba(34, 197, 94, 0.1)',
+      mascot: '💰',
+      title: 'Simulate your financial future',
+      titleFontSize: 56,
+      subtitle: 'finotype.vercel.app',
+      brandText: 'Interactive financial personality game',
+      filename: `finotype-pro-${Date.now()}.png`,
+      shareTitle: "Finotype - Financial Personality Game",
+      shareText: `Simulate your financial future! ${shareUrl}`,
+    });
   };
 
   useEffect(() => {
@@ -214,7 +157,7 @@ function ResultsContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-morandi flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-professional flex items-center justify-center">
         <div className="text-center">
           <div className="flex items-center gap-3 px-6 py-3 rounded-full animate-pulse" style={{ background: 'rgba(14,165,233,0.1)' }}>
             <div className="h-2 w-2 rounded-full animate-ping" style={{ background: 'var(--color-accent)' }}></div>
@@ -236,7 +179,7 @@ function ResultsContent() {
       )}
 
       {analysis && (
-        <div className="card-morandi rounded-3xl overflow-hidden border-0">
+        <div className="card-professional rounded-3xl overflow-hidden border-0">
           <PersonaCard profile={analysis.profile} netWorth={netWorth} t={t} />
           
           <div className="p-8 md:p-12 space-y-10">
@@ -252,7 +195,13 @@ function ResultsContent() {
         </div>
       )}
 
-      <ShareButtons locale={locale} onShare={handleShare} t={t} />
+      <ResultsButtons
+        locale={locale}
+        onShare={handleShare}
+        t={t}
+        secondaryButtonText={t('playAgain')}
+        secondaryButtonHref={`/${locale}/pro/game?newGame=true`}
+      />
     </div>
   );
 }

@@ -16,7 +16,7 @@ export function EditProfileConfirm({ onConfirm, onCancel, t }: EditProfileConfir
       onClick={onCancel}
     >
       <div 
-        className="card-morandi p-8 max-w-md w-full border"
+        className="card-professional p-8 max-w-md w-full border"
         style={{ borderColor: 'var(--color-accent)', boxShadow: '0 20px 40px rgba(14,165,233,0.2)' }}
         onClick={e => e.stopPropagation()}
       >
@@ -27,7 +27,7 @@ export function EditProfileConfirm({ onConfirm, onCancel, t }: EditProfileConfir
         <div className="space-y-3">
           <button 
             onClick={onConfirm} 
-            className="btn-morandi-accent w-full"
+            className="btn-professional-accent w-full"
           >
             {t('editProfile')}
           </button>
