@@ -13,7 +13,7 @@ export function ShareButtons({ locale, onShare, t }: ShareButtonsProps) {
     <div data-html2canvas-ignore className="flex flex-col sm:flex-row justify-center gap-4">
       <button 
         onClick={onShare}
-        className="btn-morandi-primary flex items-center justify-center gap-2"
+        className="btn-professional-primary flex items-center justify-center gap-2"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="18" cy="5" r="3"></circle>
@@ -24,10 +24,10 @@ export function ShareButtons({ locale, onShare, t }: ShareButtonsProps) {
         </svg>
         {t('shareResult')}
       </button>
-      <Link href={`/${locale}/pro/game?newGame=true`} className="btn-morandi-accent text-center">
+      <Link href={`/${locale}/pro/game?newGame=true`} className="btn-professional-accent text-center">
         {t('playAgain')}
       </Link>
-      <Link href={`/${locale}`} className="btn-morandi-outline text-center">
+      <Link href={`/${locale}`} className="btn-professional-outline text-center">
         {t('returnHome')}
       </Link>
     </div>

@@ -119,7 +119,7 @@ export default function ResultsPage() {
   if (!persona) return <div className="p-8 text-center">{tResults('calculating')}</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans bg-gradient-morandi">
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans bg-gradient-professional">
       <div className="max-w-3xl w-full space-y-4">
         {displayName && (
           <div className="text-center">
@@ -127,8 +127,8 @@ export default function ResultsPage() {
           </div>
         )}
 
-        <div className="card-morandi rounded-3xl overflow-hidden border-0">
-          <div className="p-8 text-white relative overflow-hidden bg-gradient-morandi-blue">
+        <div className="card-professional rounded-3xl overflow-hidden border-0">
+          <div className="p-8 text-white relative overflow-hidden bg-gradient-professional-blue">
             <div className="relative z-10 text-center">
               <h2 
                 className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
@@ -173,7 +173,7 @@ export default function ResultsPage() {
         <div data-html2canvas-ignore className="flex flex-col sm:flex-row justify-center gap-4">
           <button
             onClick={handleShare}
-            className="btn-morandi-primary flex items-center justify-center gap-2"
+            className="btn-professional-primary flex items-center justify-center gap-2"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
             {tResults('shareResult')}
@@ -181,7 +181,7 @@ export default function ResultsPage() {
 
           <Link 
             href={`/${locale}/standard/resources`}
-            className="btn-morandi-accent text-center"
+            className="btn-professional-accent text-center"
           >
             {tResults('seePitfallsAndTips')}
           </Link>

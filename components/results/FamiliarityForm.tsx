@@ -26,13 +26,13 @@ export function FamiliarityForm({ onSubmit, t }: FamiliarityFormProps) {
   }
 
   return (
-    <div className="card-morandi p-6 mt-8" data-html2canvas-ignore>
+    <div className="card-professional p-6 mt-8" data-html2canvas-ignore>
       <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>{t('confidenceQuestion')}</h3>
       <div className="flex flex-col sm:flex-row gap-4">
         <select
           value={postFamiliarity}
           onChange={(e) => setPostFamiliarity(e.target.value)}
-          className="input-morandi flex-1"
+          className="input-professional flex-1"
         >
           <option value="">{t('selectLevel')}</option>
           <option value="Beginner">{t('beginnerLevel')}</option>
@@ -42,7 +42,7 @@ export function FamiliarityForm({ onSubmit, t }: FamiliarityFormProps) {
         <button
           onClick={handleSubmit}
           disabled={!postFamiliarity}
-          className="btn-morandi-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-professional-primary disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {t('submit')}
         </button>

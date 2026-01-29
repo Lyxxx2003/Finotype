@@ -8,7 +8,7 @@ interface PersonaCardProps {
 
 export function PersonaCard({ profile, netWorth, t }: PersonaCardProps) {
   return (
-    <div className="p-8 md:p-12 text-white relative overflow-hidden bg-gradient-morandi-blue">
+    <div className="p-8 md:p-12 text-white relative overflow-hidden bg-gradient-professional-blue">
       <div className="relative z-10 text-center">
         <h2 
           className="text-sm uppercase tracking-widest font-bold mb-3"

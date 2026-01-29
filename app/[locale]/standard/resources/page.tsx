@@ -31,7 +31,7 @@ export default function AnalysisPage() {
   if (!persona) return <div className="p-8 text-center">{t('loadingAnalysis')}</div>;
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-6 md:p-12 font-sans bg-gradient-morandi">
+    <div className="flex flex-col items-center min-h-screen p-6 md:p-12 font-sans bg-gradient-professional">
       <div className="max-w-4xl w-full">
         <header className="mb-12 border-b pb-8 flex justify-between items-center" style={{ borderColor: 'var(--color-neutral-200)' }}>
           <div className="flex items-center gap-4">
@@ -85,7 +85,7 @@ export default function AnalysisPage() {
           </h2>
           <div className="grid gap-4">
             {persona.tips.map((tip, i) => (
-              <div key={i} className="card-morandi p-4 flex gap-4 items-center">
+              <div key={i} className="card-professional p-4 flex gap-4 items-center">
                  <span className="font-bold text-2xl bg-clip-text" style={{ background: 'var(--gradient-accent)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>0{i+1}</span>
                  <span style={{ color: 'var(--color-text)' }}>{tip}</span>
               </div>
@@ -96,7 +96,7 @@ export default function AnalysisPage() {
         <div className="text-center">
           <Link
              href={`/${locale}`}
-             className="btn-morandi-primary inline-block"
+             className="btn-professional-primary inline-block"
           >
             {t('returnHome')}
           </Link>

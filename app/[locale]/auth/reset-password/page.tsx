@@ -73,14 +73,14 @@ export default function ResetPasswordPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-primary">
-      <div className="card-morandi w-full max-w-md space-y-8 p-10">
+      <div className="card-professional w-full max-w-md space-y-8 p-10">
         <div>
           <div className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 icon-container-accent">
             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
             </svg>
           </div>
-          <h2 className="text-center text-3xl font-extrabold text-gradient-morandi">
+          <h2 className="text-center text-3xl font-extrabold text-gradient-professional">
             {t('setNewPassword')}
           </h2>
           <p className="mt-2 text-center text-sm text-neutral-600">
@@ -102,7 +102,7 @@ export default function ResetPasswordPage() {
         <form className="mt-8 space-y-6" onSubmit={handleResetPassword}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="password" className="label-morandi">
+              <label htmlFor="password" className="label-professional">
                 {t('newPassword')}
               </label>
               <input
@@ -110,14 +110,14 @@ export default function ResetPasswordPage() {
                 type="password"
                 required
                 disabled={!hasValidSession}
-                className="input-morandi disabled:opacity-50"
+                className="input-professional disabled:opacity-50"
                 placeholder={t('newPassword')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div>
-              <label htmlFor="confirmPassword" className="label-morandi">
+              <label htmlFor="confirmPassword" className="label-professional">
                 {t('confirmPassword')}
               </label>
               <input
@@ -125,7 +125,7 @@ export default function ResetPasswordPage() {
                 type="password"
                 required
                 disabled={!hasValidSession}
-                className="input-morandi disabled:opacity-50"
+                className="input-professional disabled:opacity-50"
                 placeholder={t('confirmPassword')}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -137,7 +137,7 @@ export default function ResetPasswordPage() {
             <button
               type="submit"
               disabled={loading || !hasValidSession}
-              className="btn-morandi-primary w-full disabled:opacity-50"
+              className="btn-professional-primary w-full disabled:opacity-50"
             >
               {loading ? t('updating') : t('updatePassword')}
             </button>

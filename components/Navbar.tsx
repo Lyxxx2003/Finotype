@@ -110,7 +110,7 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* Return Home Confirmation Popup - Morandi styled */}
+        {/* Return Home Confirmation Popup - professional styled */}
         {showReturnHomeConfirm && (
           <div 
             className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4"

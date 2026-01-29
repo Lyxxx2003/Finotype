@@ -142,31 +142,31 @@ body {
 
 @layer utilities {
   /* Professional Blue Design System Utilities */
-  .bg-morandi-primary, .bg-primary { background-color: var(--color-primary); }
-  .bg-morandi-accent, .bg-accent { background-color: var(--color-accent); }
-  .bg-morandi-sage { background-color: var(--color-sage); }
-  .bg-morandi-terracotta { background-color: var(--color-terracotta); }
-  .bg-morandi-lavender { background-color: var(--color-lavender); }
+  .bg-professional-primary, .bg-primary { background-color: var(--color-primary); }
+  .bg-professional-accent, .bg-accent { background-color: var(--color-accent); }
+  .bg-professional-sage { background-color: var(--color-sage); }
+  .bg-professional-terracotta { background-color: var(--color-terracotta); }
+  .bg-professional-lavender { background-color: var(--color-lavender); }
 
-  .text-morandi-primary, .text-primary { color: var(--color-primary); }
-  .text-morandi-accent, .text-accent { color: var(--color-accent); }
-  .text-morandi-dark, .text-neutral-900 { color: var(--color-neutral-900); }
+  .text-professional-primary, .text-primary { color: var(--color-primary); }
+  .text-professional-accent, .text-accent { color: var(--color-accent); }
+  .text-professional-dark, .text-neutral-900 { color: var(--color-neutral-900); }
   .text-neutral-700 { color: var(--color-neutral-700); }
   .text-neutral-600 { color: var(--color-neutral-600); }
   .text-neutral-500 { color: var(--color-neutral-500); }
 
-  .border-morandi { border-color: var(--color-neutral-200); }
+  .border-professional { border-color: var(--color-neutral-200); }
 
   /* Gradient backgrounds - Professional Blue */
-  .bg-gradient-morandi {
+  .bg-gradient-professional {
     background: var(--gradient-surface);
   }
 
-  .bg-gradient-morandi-blue, .bg-gradient-primary {
+  .bg-gradient-professional-blue, .bg-gradient-primary {
     background: var(--gradient-primary);
   }
 
-  .bg-gradient-morandi-warm, .bg-gradient-accent {
+  .bg-gradient-professional-warm, .bg-gradient-accent {
     background: var(--gradient-accent);
   }
 
@@ -175,7 +175,7 @@ body {
   }
 
   /* Card styles - Professional */
-  .card-morandi {
+  .card-professional {
     background: var(--color-surface);
     border: 1px solid var(--color-neutral-200);
     border-radius: 16px;
@@ -183,13 +183,13 @@ body {
     transition: all 0.3s ease;
   }
 
-  .card-morandi:hover {
+  .card-professional:hover {
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
     transform: translateY(-2px);
   }
 
   /* Button styles - Professional Blue Theme */
-  .btn-morandi, .btn-morandi-primary {
+  .btn-professional, .btn-professional-primary {
     background: var(--color-primary);
     color: white;
     padding: 0.75rem 1.5rem;
@@ -200,13 +200,13 @@ body {
     cursor: pointer;
   }
 
-  .btn-morandi:hover, .btn-morandi-primary:hover {
+  .btn-professional:hover, .btn-professional-primary:hover {
     background: var(--color-primary-dark);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
   }
 
-  .btn-morandi-accent {
+  .btn-professional-accent {
     background: var(--color-accent);
     color: white;
     padding: 0.75rem 1.5rem;
@@ -217,13 +217,13 @@ body {
     cursor: pointer;
   }
 
-  .btn-morandi-accent:hover {
+  .btn-professional-accent:hover {
     background: var(--color-accent-dark);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
   }
 
-  .btn-morandi-danger {
+  .btn-professional-danger {
     background: var(--color-error);
     color: white;
     padding: 0.625rem 1rem;
@@ -235,11 +235,11 @@ body {
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
   }
 
-  .btn-morandi-danger:hover {
+  .btn-professional-danger:hover {
     transform: scale(1.05);
   }
 
-  .btn-morandi-outline {
+  .btn-professional-outline {
     background: white;
     color: var(--color-primary);
     padding: 0.625rem 1rem;
@@ -250,13 +250,13 @@ body {
     cursor: pointer;
   }
 
-  .btn-morandi-outline:hover {
+  .btn-professional-outline:hover {
     background: var(--color-primary);
     color: white;
     transform: scale(1.05);
   }
 
-  .btn-morandi-secondary {
+  .btn-professional-secondary {
     background: var(--color-neutral-200);
     color: var(--color-text);
     padding: 0.75rem 1.5rem;
@@ -267,12 +267,12 @@ body {
     cursor: pointer;
   }
 
-  .btn-morandi-secondary:hover {
+  .btn-professional-secondary:hover {
     transform: scale(1.05);
   }
 
   /* Input styles */
-  .input-morandi {
+  .input-professional {
     width: 100%;
     border-radius: 12px;
     border: 2px solid var(--color-neutral-300);
@@ -283,7 +283,7 @@ body {
     transition: all 0.3s ease;
   }
 
-  .input-morandi:focus {
+  .input-professional:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
@@ -329,7 +329,7 @@ body {
 
 /* Text styles */
   /* Text styles */
-  .text-gradient-morandi, .text-gradient-blue {
+  .text-gradient-professional, .text-gradient-blue {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -377,7 +377,7 @@ body {
   }
 
   /* Label styles */
-  .label-morandi {
+  .label-professional {
     display: block;
     font-size: 0.875rem;
     font-weight: 600;

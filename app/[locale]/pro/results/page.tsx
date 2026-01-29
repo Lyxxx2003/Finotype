@@ -214,7 +214,7 @@ function ResultsContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-morandi flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-professional flex items-center justify-center">
         <div className="text-center">
           <div className="flex items-center gap-3 px-6 py-3 rounded-full animate-pulse" style={{ background: 'rgba(14,165,233,0.1)' }}>
             <div className="h-2 w-2 rounded-full animate-ping" style={{ background: 'var(--color-accent)' }}></div>
@@ -236,7 +236,7 @@ function ResultsContent() {
       )}
 
       {analysis && (
-        <div className="card-morandi rounded-3xl overflow-hidden border-0">
+        <div className="card-professional rounded-3xl overflow-hidden border-0">
           <PersonaCard profile={analysis.profile} netWorth={netWorth} t={t} />
           
           <div className="p-8 md:p-12 space-y-10">
