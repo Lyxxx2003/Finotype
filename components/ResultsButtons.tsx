@@ -2,16 +2,18 @@
 
 import Link from 'next/link';
 
-interface ShareButtonsProps {
+interface ResultsButtonsProps {
   locale: string;
   onShare: () => void;
   t: any;
+  secondaryButtonText: string;
+  secondaryButtonHref: string;
 }
 
-export function ShareButtons({ locale, onShare, t }: ShareButtonsProps) {
+export function ResultsButtons({ locale, onShare, t, secondaryButtonText, secondaryButtonHref }: ResultsButtonsProps) {
   return (
     <div data-html2canvas-ignore className="flex flex-col sm:flex-row justify-center gap-4">
-      <button 
+      <button
         onClick={onShare}
         className="btn-professional-primary flex items-center justify-center gap-2"
       >
@@ -24,8 +26,8 @@ export function ShareButtons({ locale, onShare, t }: ShareButtonsProps) {
         </svg>
         {t('shareResult')}
       </button>
-      <Link href={`/${locale}/pro/game?newGame=true`} className="btn-professional-accent text-center">
-        {t('playAgain')}
+      <Link href={secondaryButtonHref} className="btn-professional-accent text-center">
+        {secondaryButtonText}
       </Link>
       <Link href={`/${locale}`} className="btn-professional-outline text-center">
         {t('returnHome')}
