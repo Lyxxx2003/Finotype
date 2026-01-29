@@ -11,7 +11,6 @@ import { useTranslations } from 'next-intl';
 
 export default function AnalysisPage() {
   const [persona, setPersona] = useState<Persona | null>(null);
-  const [displayName, setDisplayName] = useState<string>('');
   const params = useParams();
   const locale = params.locale as string;
   const t = useTranslations('analysis');
@@ -22,10 +21,6 @@ export default function AnalysisPage() {
     const type = calculateFinotype(answers);
     setPersona(personas[type]);
     
-    const name = getDisplayName();
-    if (name) {
-      setDisplayName(name);
-    }
   }, []);
 
   if (!persona) return <div className="p-8 text-center">{t('loadingAnalysis')}</div>;
@@ -53,10 +48,10 @@ export default function AnalysisPage() {
               {t('yourStrengths')}
             </h2>
             <ul className="space-y-4">
-              {persona.strengths.map((s, i) => (
+              {persona.strengths.map((_, i) => (
                 <li key={i} className="flex items-start gap-3" style={{ color: 'var(--color-neutral-700)' }}>
                   <span className="mt-1 block w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--color-success)' }}></span>
-                  {s}
+                  {tPersonas(`${persona.id}.strengths.${i}`)}
                 </li>
               ))}
             </ul>
@@ -68,10 +63,10 @@ export default function AnalysisPage() {
               {t('commonPitfalls')}
             </h2>
             <ul className="space-y-4">
-              {persona.pitfalls.map((p, i) => (
+              {persona.pitfalls.map((_, i) => (
                 <li key={i} className="flex items-start gap-3" style={{ color: 'var(--color-neutral-700)' }}>
                   <span className="mt-1 block w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--color-warning)' }}></span>
-                  {p}
+                  {tPersonas(`${persona.id}.pitfalls.${i}`)}
                 </li>
               ))}
             </ul>
@@ -84,10 +79,10 @@ export default function AnalysisPage() {
             {t('tipsForYou')}
           </h2>
           <div className="grid gap-4">
-            {persona.tips.map((tip, i) => (
+            {persona.tips.map((_, i) => (
               <div key={i} className="card-professional p-4 flex gap-4 items-center">
                  <span className="font-bold text-2xl bg-clip-text" style={{ background: 'var(--gradient-accent)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>0{i+1}</span>
-                 <span style={{ color: 'var(--color-text)' }}>{tip}</span>
+                 <span style={{ color: 'var(--color-text)' }}>{tPersonas(`${persona.id}.tips.${i}`)}</span>
               </div>
             ))}
           </div>

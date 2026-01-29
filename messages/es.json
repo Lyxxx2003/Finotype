@@ -269,5 +269,111 @@
     "calculating": "Calculando tu ADN financiero...",
     "questionOf": "Pregunta {current} de {total}",
     "back": "Atrás"
+  },
+  "questions": {
+    "1": {
+      "text": "Cuando recibes tu cheque de pago, ¿cuál es tu primer instinto?",
+      "options": {
+        "F": "Transferir inmediatamente una parte al ahorro",
+        "L": "Revisar mi lista de deseos y darme un gusto"
+      }
+    },
+    "2": {
+      "text": "¿Cómo manejas las compras de supermercado?",
+      "options": {
+        "F": "Me aferro a una lista estricta y busco descuentos",
+        "L": "Compro lo que se ve bien o me inspira"
+      }
+    },
+    "3": {
+      "text": "Acaba de salir un modelo nuevo de teléfono. Tú...",
+      "options": {
+        "F": "Espero hasta que el actual se rompa completamente",
+        "L": "Considero actualizar si tiene nuevas características geniales"
+      }
+    },
+    "4": {
+      "text": "Tus amigos te invitan a una cena cara. Tú...",
+      "options": {
+        "F": "Sugiero una alternativa más barata o declino educadamente",
+        "L": "¡Voy! Las experiencias valen la pena"
+      }
+    },
+    "5": {
+      "text": "¿Qué significa 'presupuestar' para ti?",
+      "options": {
+        "F": "Un ritual diario que sigo estrictamente",
+        "L": "Una guía vaga que intento tener en mente"
+      }
+    },
+    "6": {
+      "text": "Si tuvieras $10,000 para invertir, ¿dónde los pondrías?",
+      "options": {
+        "C": "Una cuenta de ahorros de alto rendimiento o bonos",
+        "A": "Criptomonedas o una startup de acciones de alto crecimiento"
+      }
+    },
+    "7": {
+      "text": "¿Cómo te sientes sobre el desplome del mercado de valores?",
+      "options": {
+        "C": "Aterrorizado, podría retirar mi dinero",
+        "A": "¡Emocionado, es una oportunidad de compra!"
+      }
+    },
+    "8": {
+      "text": "Escuchas sobre una inversión arriesgada con retornos potenciales de 10x. Tú...",
+      "options": {
+        "C": "Me mantengo alejado, suena como una estafa o apuesta",
+        "A": "Invierto una pequeña cantidad solo para ver qué pasa"
+      }
+    },
+    "9": {
+      "text": "Al planificar para la jubilación, prefieres...",
+      "options": {
+        "C": "Ingresos estables garantizados",
+        "A": "Máximo crecimiento posible, incluso si es arriesgado"
+      }
+    },
+    "10": {
+      "text": "Tu conocimiento financiero proviene principalmente de...",
+      "options": {
+        "C": "Libros establecidos y asesores certificados",
+        "A": "Foros en línea, Twitter/X y tendencias"
+      }
+    }
+  },
+  "personas": {
+    "FC": {
+      "name": "El Guardián",
+      "mascot": "🛡️",
+      "description": "Eres la base de la estabilidad financiera. Valoras la seguridad sobre el lujo y prefieres un crecimiento constante y predecible.",
+      "strengths": ["Excelente ahorrador", "Preparado para emergencias", "Disciplinado"],
+      "pitfalls": ["La aversión al riesgo puede llevar a pérdidas por inflación", "Oportunidades de crecimiento perdidas", "Puede ser demasiado frugal para disfrutar la vida"],
+      "tips": ["Asigna un pequeño 'presupuesto de diversión' sin culpa", "Explora fondos indexados de bajo costo para vencer la inflación", "Recuerda que el dinero es una herramienta, no solo un marcador"]
+    },
+    "FA": {
+      "name": "El Estratega",
+      "mascot": "♟️",
+      "description": "Eres disciplinado con el gasto pero audaz con la inversión. Ahorras agresivamente para alimentar tus ambiciones de alto crecimiento.",
+      "strengths": ["Alta tasa de ahorro", "Visionario", "Capitaliza el interés compuesto"],
+      "pitfalls": ["Podría tomar riesgos no calculados con ahorros ganados con esfuerzo", "Puede pasar por alto necesidades de liquidez", "Sobreconfianza"],
+      "tips": ["Asegúrate de tener un fondo de emergencia líquido antes de invertir mucho", "Diversifica tus apuestas de alto riesgo", "Equilibra tu portafolio con algunos activos estables"]
+    },
+    "LC": {
+      "name": "El Entusiasta",
+      "mascot": "🎉",
+      "description": "Te encanta disfrutar el momento presente y prefieres que tus inversiones sean seguras y sólidas. Trabajas duro para gastar bien.",
+      "strengths": ["Generoso", "Disfruta la vida", "Evita apostar con dinero"],
+      "pitfalls": ["Baja tasa de ahorro", "Inflación del estilo de vida", "Estrés financiero por falta de colchón"],
+      "tips": ["Automatiza el ahorro antes de ver el dinero", "Usa la regla 50/30/20 para estructurar el gasto", "Encuentra formas de bajo costo de disfrutar tus pasatiempos"]
+    },
+    "LA": {
+      "name": "El Inconformista",
+      "mascot": "🚀",
+      "description": "Vives rápido e inviertes rápido. Alto potencial de ingresos, alto gasto y alta tolerancia al riesgo definen tu estilo.",
+      "strengths": ["No tiene miedo al fracaso", "Ambicioso", "Adaptable"],
+      "pitfalls": ["Alta volatilidad en el patrimonio neto", "Acumulación de deuda", "Falta de seguridad a largo plazo"],
+      "tips": ["Enfócate en la gestión del flujo de caja", "Paga la deuda de alto interés inmediatamente", "Crea una cuenta de red de seguridad 'no tocar'"]
+    }
   }
 }
