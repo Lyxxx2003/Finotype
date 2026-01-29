@@ -7,11 +7,11 @@ import { generateJobs, generateLifeOptions } from '@/lib/gemini'
 import {UserProfile, JobOption, LifeOption, SimulationResult } from '@/types';
 import { createClient } from '@/lib/supabase/client';
 import { User } from '@supabase/supabase-js';
-import { JobCard } from '@/components/game/JobCard';
-import { OptionCard } from '@/components/game/OptionCard';
-import { ErrorModal } from '@/components/game/ErrorModal';
-import { AnalysisModal } from '@/components/game/AnalysisModal';
-import { ProfileForm } from '@/components/game/ProfileForm';
+import { JobCard } from '@/components/pro/game/JobCard';
+import { OptionCard } from '@/components/pro/game/OptionCard';
+import { ErrorModal } from '@/components/pro/game/ErrorModal';
+import { AnalysisModal } from '@/components/pro/game/AnalysisModal';
+import { ProfileForm } from '@/components/pro/game/ProfileForm';
 
 const TOPICS = [
   { id: 'Housing', name: 'Housing' },

@@ -5,10 +5,10 @@ import { useSearchParams, useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { createClient } from '@/lib/supabase/client';
 import { simulateYear } from '@/lib/gemini';
-import { PersonaCard } from '@/components/results/PersonaCard';
-import { TipsSection } from '@/components/results/TipsSection';
-import { FamiliarityForm } from '@/components/results/FamiliarityForm';
-import { ShareButtons } from '@/components/results/ShareButtons';
+import { PersonaCard } from '@/components/pro/results/PersonaCard';
+import { TipsSection } from '@/components/pro/results/TipsSection';
+import { FamiliarityForm } from '@/components/pro/results/FamiliarityForm';
+import { ShareButtons } from '@/components/pro/results/ShareButtons';
 import { AnalysisState } from '@/types';
 
 const DEMO_ANALYSIS = {
