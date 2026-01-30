@@ -2,20 +2,19 @@
 
 interface TipsSectionProps {
   tips: string[];
-  t: any;
 }
 
-export function TipsSection({ tips, t }: TipsSectionProps) {
+export function TipsSection({ tips }: TipsSectionProps) {
   if (!tips || tips.length === 0) return null;
 
   return (
     <div>
       <div className="grid gap-4">
         {tips.map((tip, idx) => (
-          <div 
-            key={idx} 
+          <div
+            key={idx}
             className="flex gap-4 items-start p-5 rounded-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-            style={{ 
+            style={{
               background: 'rgba(14,165,233,0.08)',
               borderColor: 'var(--color-accent)',
               border: '1px solid',
@@ -23,7 +22,7 @@ export function TipsSection({ tips, t }: TipsSectionProps) {
               boxShadow: '0 2px 8px rgba(14,165,233,0.1)'
             }}
           >
-            <span 
+            <span
               className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg text-white"
               style={{ background: 'var(--gradient-accent)', boxShadow: '0 2px 8px rgba(14,165,233,0.3)' }}
             >

@@ -14,12 +14,12 @@ interface AnalysisModalProps {
 
 export function AnalysisModal({ selectedJob, selectedTopicOption, onConfirm, onCancel, t }: AnalysisModalProps) {
   return (
-    <div 
+    <div
       className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn"
       style={{ background: 'rgba(42,38,34,0.5)' }}
       onClick={onCancel}
     >
-      <div 
+      <div
         className="card-professional p-8 md:p-12 max-w-2xl w-full border-0 rounded-3xl overflow-hidden"
         style={{ boxShadow: '0 20px 60px rgba(14,165,233,0.3)' }}
         onClick={e => e.stopPropagation()}
@@ -46,7 +46,7 @@ export function AnalysisModal({ selectedJob, selectedTopicOption, onConfirm, onC
               </div>
             )}
           </div>
-          
+
           <div className="p-6 rounded-2xl" style={{ background: 'rgba(14,165,233,0.05)', border: '1px solid rgba(14,165,233,0.2)' }}>
             <h4 className="font-bold text-lg mb-3" style={{ color: 'var(--color-accent)' }}>
               {t('aiAnalysis')}
@@ -57,21 +57,21 @@ export function AnalysisModal({ selectedJob, selectedTopicOption, onConfirm, onC
           </div>
 
           <div className="flex gap-4 pt-4">
-            <button 
+            <button
               onClick={onCancel}
               className="flex-1 py-4 px-6 border-2 rounded-xl font-bold text-lg transition-all hover:scale-105"
-              style={{ 
-                borderColor: 'var(--color-neutral-300)', 
+              style={{
+                borderColor: 'var(--color-neutral-300)',
                 color: 'var(--color-text-secondary)',
                 background: 'white'
               }}
             >
               {t('goBack')}
             </button>
-            <button 
+            <button
               onClick={onConfirm}
               className="flex-1 py-4 px-6 rounded-xl font-bold text-lg text-white transition-all hover:scale-105 shadow-lg"
-              style={{ 
+              style={{
                 background: 'var(--gradient-accent)',
                 boxShadow: '0 4px 16px rgba(14,165,233,0.3)'
               }}

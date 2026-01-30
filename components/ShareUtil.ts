@@ -20,8 +20,8 @@ export const generateShareImage = async (options: ShareImageOptions) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     if (!ctx) {
-        alert("Could not create canvas context");
-        return;
+      alert("Could not create canvas context");
+      return;
     };
 
     const width = options.width ?? 1080;

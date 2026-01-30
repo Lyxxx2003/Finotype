@@ -27,7 +27,7 @@ function ResultsContent() {
   const [loading, setLoading] = useState(true);
   const [netWorth, setNetWorth] = useState<string>('0');
   const [displayName, setDisplayName] = useState<string>('');
-  
+
   const searchParams = useSearchParams();
   const router = useRouter();
   const params = useParams();
@@ -41,9 +41,9 @@ function ResultsContent() {
   const handlePostFamiliaritySubmit = async (familiarity: string) => {
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
-        await supabase.from('profiles').update({
-            post_familiarity: familiarity
-        }).eq('id', user.id);
+      await supabase.from('profiles').update({
+        post_familiarity: familiarity
+      }).eq('id', user.id);
     }
   };
 
@@ -76,7 +76,7 @@ function ResultsContent() {
           .select('display_name')
           .eq('id', user.id)
           .single();
-        
+
         if (profile?.display_name) {
           setDisplayName(profile.display_name);
         }
@@ -88,10 +88,10 @@ function ResultsContent() {
           .select('*')
           .eq('id', id)
           .single();
-        
+
         if (data) {
           setNetWorth(data.final_balance?.toFixed(2) || '0');
-          
+
           // If analysis exists, use it
           if (data.gemini_analysis) {
             const analysisData = data.gemini_analysis as any;
@@ -108,7 +108,7 @@ function ResultsContent() {
             setLoading(false);
             return;
           }
-          
+
           // No analysis yet - need to run simulation
           const gameHistory = data.game_history;
           if (gameHistory?.profile && gameHistory?.job && gameHistory?.choices) {
@@ -120,25 +120,25 @@ function ResultsContent() {
               forceDemo,
               locale
             );
-            
+
             if (res.error && res.error !== 'SIMULATION_ERROR') {
               console.error('Simulation error:', res.error);
               // Still show results with fallback data if available
             }
-            
+
             const result = {
               profile: res.finotype,
               summary: res.narrative,
               tips: res.tips,
               analysisByTopic: res.analysisByTopic
             };
-            
+
             setNetWorth(res.finalBalance.toFixed(2));
             setAnalysis(result);
-            
+
             // Update DB with the analysis
             if (!isDemo) {
-              await supabase.from('simulations').update({ 
+              await supabase.from('simulations').update({
                 gemini_analysis: res,
                 final_balance: res.finalBalance
               }).eq('id', id);
@@ -148,10 +148,10 @@ function ResultsContent() {
       } else if (isDemo) {
         setAnalysis(DEMO_ANALYSIS);
       }
-      
+
       setLoading(false);
     };
-    
+
     loadData();
   }, [id, isDemo]);
 
@@ -174,21 +174,21 @@ function ResultsContent() {
     <div className="max-w-3xl mx-auto space-y-8 py-12 px-4">
       {displayName && (
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-neutral-900">{t('hey', {name: displayName})} {t('title')}</h1>
+          <h1 className="text-3xl font-bold text-neutral-900">{t('hey', { name: displayName })} {t('title')}</h1>
         </div>
       )}
 
       {analysis && (
         <div className="card-professional rounded-3xl overflow-hidden border-0">
           <PersonaCard profile={analysis.profile} netWorth={netWorth} t={t} />
-          
+
           <div className="p-8 md:p-12 space-y-10">
             <div>
               <h3 className="text-2xl font-bold mb-4 text-neutral-900">{t('behavioralSummary')}</h3>
               <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{analysis.summary}</p>
             </div>
 
-            <TipsSection tips={analysis.tips} t={t} />
+            <TipsSection tips={analysis.tips} />
 
             <FamiliarityForm onSubmit={handlePostFamiliaritySubmit} t={t} />
           </div>

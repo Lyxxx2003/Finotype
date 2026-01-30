@@ -42,15 +42,14 @@ export default function Home() {
 
       <div className="relative flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
         {/* Main content */}
-        <main 
-          className={`flex flex-col gap-6 sm:gap-8 items-center text-center max-w-5xl transition-all duration-1000 ${
-            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+        <main
+          className={`flex flex-col gap-6 sm:gap-8 items-center text-center max-w-5xl transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           {/* Main card with Professional aesthetics */}
-          <div 
+          <div
             className="relative backdrop-blur-md rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden"
-            style={{ 
+            style={{
               background: 'rgba(255,255,255,0.95)',
               border: '1px solid var(--color-neutral-200)',
               boxShadow: '0 8px 32px rgba(15,23,42,0.08), 0 2px 8px rgba(15,23,42,0.04)'
@@ -59,11 +58,11 @@ export default function Home() {
             {/* Decorative corner elements */}
             <div className="absolute top-0 right-0 w-32 h-32 opacity-5" style={{ background: 'var(--color-accent)', borderRadius: '0 0 0 100%' }} />
             <div className="absolute bottom-0 left-0 w-24 h-24 opacity-5" style={{ background: 'var(--color-primary)', borderRadius: '0 100% 0 0' }} />
-            
+
             {/* Badge - professional */}
-            <div 
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold mb-6 sm:mb-8 relative z-10" 
-              style={{ 
+            <div
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold mb-6 sm:mb-8 relative z-10"
+              style={{
                 animation: 'scaleIn 0.6s ease-out 0.2s both',
                 background: 'var(--gradient-primary)',
                 color: 'white',
@@ -77,9 +76,9 @@ export default function Home() {
             </div>
 
             {/* Title with professional gradient */}
-            <h1 
+            <h1
               className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4 sm:mb-6 relative z-10"
-              style={{ 
+              style={{
                 animation: 'fadeInUp 0.8s ease-out 0.4s both',
                 background: 'var(--gradient-primary)',
                 WebkitBackgroundClip: 'text',
@@ -90,25 +89,25 @@ export default function Home() {
             >
               {t('title')}
             </h1>
-            
-            <p 
+
+            <p
               className="text-lg sm:text-xl mb-8 sm:mb-10 max-w-2xl leading-relaxed relative z-10 font-medium"
-              style={{ 
+              style={{
                 animation: 'fadeInUp 0.8s ease-out 0.6s both',
                 color: 'var(--color-neutral-600)'
               }}
             >
               {t('subtitle')}
             </p>
-            
+
             {/* Feature badges - professional color palette */}
-            <div 
+            <div
               className="flex flex-wrap gap-3 justify-center mb-8 sm:mb-10 relative z-10"
               style={{ animation: 'fadeInUp 0.8s ease-out 0.8s both' }}
             >
-              <span 
+              <span
                 className="px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
-                style={{ 
+                style={{
                   background: 'rgba(30,64,175,0.1)',
                   color: 'var(--color-primary)',
                   border: '1px solid rgba(30,64,175,0.2)'
@@ -119,9 +118,9 @@ export default function Home() {
                 </svg>
                 {t('behavioralAnalysis')}
               </span>
-              <span 
+              <span
                 className="px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
-                style={{ 
+                style={{
                   background: 'rgba(14,165,233,0.1)',
                   color: 'var(--color-accent)',
                   border: '1px solid rgba(14,165,233,0.2)'
@@ -132,9 +131,9 @@ export default function Home() {
                 </svg>
                 {t('personalizedInsights')}
               </span>
-              <span 
+              <span
                 className="px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
-                style={{ 
+                style={{
                   background: 'rgba(16,185,129,0.1)',
                   color: 'var(--color-success)',
                   border: '1px solid rgba(16,185,129,0.2)'
@@ -148,14 +147,14 @@ export default function Home() {
             </div>
 
             {/* Action buttons */}
-            <div 
+            <div
               className="flex gap-4 items-center flex-col sm:flex-row justify-center relative z-10"
               style={{ animation: 'scaleIn 0.8s ease-out 1s both' }}
             >
               <button
                 onClick={startTest}
                 className="group relative cursor-pointer rounded-2xl text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 overflow-hidden w-full sm:w-auto"
-                style={{ 
+                style={{
                   background: 'var(--gradient-primary)',
                   boxShadow: '0 8px 24px rgba(30,64,175,0.35), 0 2px 8px rgba(30,64,175,0.2)'
                 }}
@@ -166,12 +165,12 @@ export default function Home() {
                   </svg>
                   {t('standardTest')}
                 </span>
-                <div 
+                <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: 'linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%)' }}
                 />
               </button>
-              
+
               <Link
                 href={`/${locale}/pro/game`}
                 className="group cursor-pointer rounded-2xl px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto flex items-center gap-2 justify-center"
@@ -232,9 +231,9 @@ export default function Home() {
         </main>
 
         {/* Footer */}
-        <footer 
+        <footer
           className="mt-12 text-sm font-medium transition-all duration-1000"
-          style={{ 
+          style={{
             animation: 'fadeInUp 0.8s ease-out 1.4s both',
             color: 'var(--color-neutral-500)'
           }}

@@ -8,42 +8,42 @@ const apiKey = process.env.GEMINI_API_KEY || "";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 function getLanguageName(code: string): string {
-  const languageMap: Record<string, string> = {
-    'en': 'English',
-    'zh': 'Chinese (Simplified)',
-    'es': 'Spanish',
-    'fr': 'French',
-    'de': 'German',
-    'ja': 'Japanese'
-  };
-  return languageMap[code] || 'English';
+    const languageMap: Record<string, string> = {
+        'en': 'English',
+        'zh': 'Chinese (Simplified)',
+        'es': 'Spanish',
+        'fr': 'French',
+        'de': 'German',
+        'ja': 'Japanese'
+    };
+    return languageMap[code] || 'English';
 }
 
 function getCurrencyInfo(locale: string): { symbol: string, code: string, name: string } {
-  const currencyMap: Record<string, { symbol: string, code: string, name: string }> = {
-    'en': { symbol: '$', code: 'USD', name: 'US Dollars' },
-    'zh': { symbol: '¥', code: 'CNY', name: 'Chinese Yuan' },
-    'es': { symbol: '€', code: 'EUR', name: 'Euros' },
-    'fr': { symbol: '€', code: 'EUR', name: 'Euros' },
-    'de': { symbol: '€', code: 'EUR', name: 'Euros' },
-    'ja': { symbol: '¥', code: 'JPY', name: 'Japanese Yen' }
-  };
-  return currencyMap[locale] || currencyMap['en'];
+    const currencyMap: Record<string, { symbol: string, code: string, name: string }> = {
+        'en': { symbol: '$', code: 'USD', name: 'US Dollars' },
+        'zh': { symbol: '¥', code: 'CNY', name: 'Chinese Yuan' },
+        'es': { symbol: '€', code: 'EUR', name: 'Euros' },
+        'fr': { symbol: '€', code: 'EUR', name: 'Euros' },
+        'de': { symbol: '€', code: 'EUR', name: 'Euros' },
+        'ja': { symbol: '¥', code: 'JPY', name: 'Japanese Yen' }
+    };
+    return currencyMap[locale] || currencyMap['en'];
 }
 
 function normalizeToAnnualSalary(salary: string, paymentFreq: string = 'Monthly'): number {
-  const numericSalary = parseFloat(salary.replace(/[^0-9.]/g, ''));
-  if (isNaN(numericSalary)) return 0;
-  
-  switch (paymentFreq) {
-    case 'Weekly':
-      return numericSalary * 52;
-    case 'Biweekly':
-      return numericSalary * 26;
-    case 'Monthly':
-    default:
-      return numericSalary * 12;
-  }
+    const numericSalary = parseFloat(salary.replace(/[^0-9.]/g, ''));
+    if (isNaN(numericSalary)) return 0;
+
+    switch (paymentFreq) {
+        case 'Weekly':
+            return numericSalary * 52;
+        case 'Biweekly':
+            return numericSalary * 26;
+        case 'Monthly':
+        default:
+            return numericSalary * 12;
+    }
 }
 
 function getFallbackJobs(profile: UserProfile): JobOption[] {
@@ -81,12 +81,12 @@ function getFallbackLifeOptions(topic: string): { description: string, options: 
             ]
         },
         "Loans": {
-                description: "Sometimes you need leverage. Be careful with interest rates.",
-                options: [
-                    { id: "opt1", title: "No Loans", description: "Live completely debt-free.", analysis: "Excellent for cash flow.", cost: 0, type: "monthly" },
-                    { id: "opt2", title: "Car Loan", description: "Buy a new car.", analysis: "Depreciating asset, be careful.", cost: 400, type: "monthly" },
-                    { id: "opt3", title: "Personal Loan for Vacation", description: "Borrow for a trip.", analysis: "Avoid borrowing for leisure.", cost: 200, type: "monthly" }
-                ]
+            description: "Sometimes you need leverage. Be careful with interest rates.",
+            options: [
+                { id: "opt1", title: "No Loans", description: "Live completely debt-free.", analysis: "Excellent for cash flow.", cost: 0, type: "monthly" },
+                { id: "opt2", title: "Car Loan", description: "Buy a new car.", analysis: "Depreciating asset, be careful.", cost: 400, type: "monthly" },
+                { id: "opt3", title: "Personal Loan for Vacation", description: "Borrow for a trip.", analysis: "Avoid borrowing for leisure.", cost: 200, type: "monthly" }
+            ]
         }
     };
     const data = fallbacks[topic] || fallbacks["Housing"];
@@ -100,13 +100,13 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
 
     const language = locale || 'en';
     const currency = getCurrencyInfo(language);
-    const languageInstruction = language !== 'en' 
-        ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The job titles, analysis, and all descriptions should be in ${getLanguageName(language)}.` 
+    const languageInstruction = language !== 'en'
+        ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The job titles, analysis, and all descriptions should be in ${getLanguageName(language)}.`
         : '';
 
     // Normalize salary to annual amount
     const annualSalary = profile.salary ? normalizeToAnnualSalary(profile.salary, profile.paymentFreq) : 0;
-    const salaryContext = annualSalary > 0 
+    const salaryContext = annualSalary > 0
         ? `They expect approximately ${currency.symbol}${annualSalary.toLocaleString()} per year (${profile.paymentFreq || 'Monthly'} payment frequency: ${currency.symbol}${profile.salary}).`
         : 'They are open to market rate salaries.';
 
@@ -161,39 +161,39 @@ export async function generateJobs(profile: UserProfile, isDemo: boolean = false
             errorDetails: error.errorDetails || error.toString(),
             stack: error.stack
         });
-        
+
         let errorType = "FALLBACK_USED";
-        
+
         // Location/Region blocking (400, 403)
-        if (error.status === 400 || error.status === 403 || 
-            error.toString().includes("400") || 
+        if (error.status === 400 || error.status === 403 ||
+            error.toString().includes("400") ||
             error.toString().includes("403") ||
             error.toString().includes("User location is not supported") ||
             error.toString().includes("PERMISSION_DENIED")) {
             errorType = "REGION_BLOCKED";
         }
-        
+
         // Rate limiting (429)
-        if (error.status === 429 || 
-            error.toString().includes("429") || 
+        if (error.status === 429 ||
+            error.toString().includes("429") ||
             error.toString().includes("RESOURCE_EXHAUSTED")) {
             errorType = "RATE_LIMIT_EXCEEDED";
         }
-        
+
         // API key issues
-        if (error.status === 401 || 
+        if (error.status === 401 ||
             error.toString().includes("API key") ||
             error.toString().includes("UNAUTHENTICATED")) {
             errorType = "INVALID_API_KEY";
         }
-        
+
         // Safety/content filter
         if (error.toString().includes("SAFETY") ||
             error.toString().includes("content filter")) {
             errorType = "SAFETY_FILTER";
         }
-        
-        return { 
+
+        return {
             jobs: getFallbackJobs(profile),
             error: errorType
         };
@@ -206,8 +206,8 @@ export async function generateLifeOptions(topic: string, context: any, isDemo: b
     }
 
     const language = locale || 'en';
-    const languageInstruction = language !== 'en' 
-        ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The description, option titles, descriptions, and analysis should all be in ${getLanguageName(language)}.` 
+    const languageInstruction = language !== 'en'
+        ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The description, option titles, descriptions, and analysis should all be in ${getLanguageName(language)}.`
         : '';
 
     // Build context string with previous choices
@@ -271,38 +271,38 @@ export async function generateLifeOptions(topic: string, context: any, isDemo: b
             errorDetails: error.errorDetails || error.toString(),
             stack: error.stack
         });
-        
+
         let errorType = "FALLBACK_USED";
-        
+
         // Location/Region blocking (400, 403)
-        if (error.status === 400 || error.status === 403 || 
-            error.toString().includes("400") || 
+        if (error.status === 400 || error.status === 403 ||
+            error.toString().includes("400") ||
             error.toString().includes("403") ||
             error.toString().includes("User location is not supported") ||
             error.toString().includes("PERMISSION_DENIED")) {
             errorType = "REGION_BLOCKED";
         }
-        
+
         // Rate limiting (429)
-        if (error.status === 429 || 
-            error.toString().includes("429") || 
+        if (error.status === 429 ||
+            error.toString().includes("429") ||
             error.toString().includes("RESOURCE_EXHAUSTED")) {
             errorType = "RATE_LIMIT_EXCEEDED";
         }
-        
+
         // API key issues
-        if (error.status === 401 || 
+        if (error.status === 401 ||
             error.toString().includes("API key") ||
             error.toString().includes("UNAUTHENTICATED")) {
             errorType = "INVALID_API_KEY";
         }
-        
+
         // Safety/content filter
         if (error.toString().includes("SAFETY") ||
             error.toString().includes("content filter")) {
             errorType = "SAFETY_FILTER";
         }
-        
+
         const fallback = getFallbackLifeOptions(topic);
         return {
             ...fallback,
@@ -312,9 +312,9 @@ export async function generateLifeOptions(topic: string, context: any, isDemo: b
 }
 
 export async function simulateYear(
-    profile: UserProfile, 
-    job: JobOption, 
-    choices: Record<string, LifeOption>, 
+    profile: UserProfile,
+    job: JobOption,
+    choices: Record<string, LifeOption>,
     isDemo: boolean = false,
     locale: string = 'en'
 ): Promise<SimulationResult> {
@@ -333,7 +333,7 @@ export async function simulateYear(
         // Simple "market" effect +5% to -5%
         const marketEffect = 1 + (Math.random() * 0.1 - 0.05);
         const finalBalance = Math.round(netAnnual * marketEffect);
-        
+
         return {
             finalBalance: finalBalance > 0 ? finalBalance : 0,
             netWorth: Math.round(finalBalance + (Math.random() * 5000)), // Assuming some assets
@@ -354,8 +354,8 @@ export async function simulateYear(
     }
 
     const language = locale || 'en';
-    const languageInstruction = language !== 'en' 
-        ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The narrative, finotype, tips, and analysisByTopic should all be in ${getLanguageName(language)}.` 
+    const languageInstruction = language !== 'en'
+        ? `\n\nIMPORTANT: Generate ALL text content in ${getLanguageName(language)}. The narrative, finotype, tips, and analysisByTopic should all be in ${getLanguageName(language)}.`
         : '';
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
@@ -398,38 +398,38 @@ export async function simulateYear(
             errorDetails: error.errorDetails || error.toString(),
             stack: error.stack
         });
-        
+
         let errorType = "SIMULATION_ERROR";
-        
+
         // Location/Region blocking (400, 403)
-        if (error.status === 400 || error.status === 403 || 
-            error.toString().includes("400") || 
+        if (error.status === 400 || error.status === 403 ||
+            error.toString().includes("400") ||
             error.toString().includes("403") ||
             error.toString().includes("User location is not supported") ||
             error.toString().includes("PERMISSION_DENIED")) {
             errorType = "REGION_BLOCKED";
         }
-        
+
         // Rate limiting (429)
-        if (error.status === 429 || 
-            error.toString().includes("429") || 
+        if (error.status === 429 ||
+            error.toString().includes("429") ||
             error.toString().includes("RESOURCE_EXHAUSTED")) {
             errorType = "RATE_LIMIT_EXCEEDED";
         }
-        
+
         // API key issues
-        if (error.status === 401 || 
+        if (error.status === 401 ||
             error.toString().includes("API key") ||
             error.toString().includes("UNAUTHENTICATED")) {
             errorType = "INVALID_API_KEY";
         }
-        
+
         // Safety/content filter
         if (error.toString().includes("SAFETY") ||
             error.toString().includes("content filter")) {
             errorType = "SAFETY_FILTER";
         }
-        
+
         return {
             ...calculateFallback(),
             error: errorType

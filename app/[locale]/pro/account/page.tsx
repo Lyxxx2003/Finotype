@@ -89,10 +89,10 @@ export default function AccountPage() {
       if (!response.ok) {
         throw new Error(data.error || t('deleteError'));
       }
-      
+
       setMessageType('success');
       setMessage(t('deleteSuccess'));
-      
+
       // Sign out and redirect
       await supabase.auth.signOut();
       router.push('/');
@@ -117,7 +117,7 @@ export default function AccountPage() {
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold text-gradient-professional">{t('title')}</h1>
-          <Link 
+          <Link
             href={`/${locale}/pro/game`}
             className="btn-professional-outline text-sm"
           >
@@ -126,55 +126,54 @@ export default function AccountPage() {
         </div>
 
         <div className="card-professional p-8 space-y-6">
-        {/* Email */}
-        <div>
-          <label className="label-professional">
-            {t('email')}
-          </label>
-          <div className="display-box">
-            {user?.email}
-          </div>
-        </div>
-
-        {/* Display Name */}
-        <form onSubmit={handleSave}>
+          {/* Email */}
           <div>
             <label className="label-professional">
-              {t('displayName')}
+              {t('email')}
             </label>
-            <input
-              type="text"
-              maxLength={50}
-              className="input-professional"
-              placeholder="Enter your display name"
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-            />
-            <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              {t('displayNameNote')}
-            </p>
+            <div className="display-box">
+              {user?.email}
+            </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={saving}
-            className="mt-4 btn-professional-primary disabled:opacity-50"
-          >
-            {saving ? t('saving') : t('save')}
-          </button>
-        </form>
+          {/* Display Name */}
+          <form onSubmit={handleSave}>
+            <div>
+              <label className="label-professional">
+                {t('displayName')}
+              </label>
+              <input
+                type="text"
+                maxLength={50}
+                className="input-professional"
+                placeholder="Enter your display name"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+              />
+              <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                {t('displayNameNote')}
+              </p>
+            </div>
 
-        {message && (
-          <div className={`${
-            messageType === 'success' ? 'alert-success' :
-            messageType === 'error' ? 'alert-error' :
-            messageType === 'warning' ? 'alert-warning' :
-            'alert-info'
-          }`}>
-            {message}
-          </div>
-        )}
-      </div>
+            <button
+              type="submit"
+              disabled={saving}
+              className="mt-4 btn-professional-primary disabled:opacity-50"
+            >
+              {saving ? t('saving') : t('save')}
+            </button>
+          </form>
+
+          {message && (
+            <div className={`${messageType === 'success' ? 'alert-success' :
+                messageType === 'error' ? 'alert-error' :
+                  messageType === 'warning' ? 'alert-warning' :
+                    'alert-info'
+              }`}>
+              {message}
+            </div>
+          )}
+        </div>
 
         {/* Danger Zone */}
         <div className="card-danger mt-8">
@@ -193,11 +192,11 @@ export default function AccountPage() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
-        <div 
+        <div
           className="modal-backdrop"
           onClick={() => setShowDeleteConfirm(false)}
         >
-          <div 
+          <div
             className="modal-content"
             onClick={e => e.stopPropagation()}
           >
@@ -211,14 +210,14 @@ export default function AccountPage() {
               {t('deleteWarning')}
             </p>
             <div className="flex gap-3">
-              <button 
+              <button
                 onClick={() => setShowDeleteConfirm(false)}
                 disabled={deleting}
                 className="btn-professional-secondary flex-1 py-3 disabled:opacity-50"
               >
                 {t('cancel')}
               </button>
-              <button 
+              <button
                 onClick={handleDeleteAccount}
                 disabled={deleting}
                 className="btn-professional-danger flex-1 py-3 disabled:opacity-50"

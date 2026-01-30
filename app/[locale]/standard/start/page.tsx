@@ -36,7 +36,7 @@ export default function StartPage() {
             {t('prompt')}
           </p>
         </div>
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleStart}>
           <div>
             <input
@@ -44,7 +44,7 @@ export default function StartPage() {
               required
               maxLength={50}
               className="relative block w-full rounded-xl border-2 py-3 px-4 outline-none transition-all duration-300"
-              style={{ 
+              style={{
                 borderColor: 'var(--color-neutral-300)',
                 color: 'var(--color-text)'
               }}

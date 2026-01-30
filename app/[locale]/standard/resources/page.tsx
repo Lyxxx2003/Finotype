@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getAnswers, getDisplayName } from '@/lib/storage';
+import { getAnswers } from '@/lib/storage';
 import { calculateFinotype } from '@/lib/logic';
 import { personas } from '@/lib/data';
 import Link from 'next/link';

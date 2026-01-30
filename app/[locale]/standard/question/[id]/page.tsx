@@ -17,7 +17,7 @@ export default function QuestionPage() {
   const idParam = Array.isArray(params.id) ? params.id[0] : params.id;
   const questionId = parseInt(idParam || '1', 10);
   const locale = params.locale as string;
-  
+
   const question = questions.find(q => q.id === questionId);
 
   // Load existing answer if any
@@ -42,7 +42,7 @@ export default function QuestionPage() {
   const handleOptionSelect = (value: string) => {
     setSelectedOption(value);
     saveAnswer(questionId, value);
-    
+
     // Small delay for better UX
     setTimeout(() => {
       if (questionId < questions.length) {
@@ -77,8 +77,8 @@ export default function QuestionPage() {
                 key={index}
                 onClick={() => handleOptionSelect(option.value)}
                 className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer
-                  ${selectedOption === option.value 
-                    ? 'text-white bg-gradient-professional-blue' 
+                  ${selectedOption === option.value
+                    ? 'text-white bg-gradient-professional-blue'
                     : 'hover:scale-[1.02]'
                   }`}
                 style={{
@@ -93,17 +93,17 @@ export default function QuestionPage() {
         </div>
 
         <div className="mt-8 flex justify-between">
-           {questionId > 1 && (
-             <button 
-               onClick={() => router.push(`/${locale}/standard/question/${questionId - 1}`)}
-               className="font-medium cursor-pointer"
-               style={{ color: 'var(--color-text-secondary)' }}
-               onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-text)'}
-               onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
-             >
-               {tResults('back')}
-             </button>
-           )}
+          {questionId > 1 && (
+            <button
+              onClick={() => router.push(`/${locale}/standard/question/${questionId - 1}`)}
+              className="font-medium cursor-pointer"
+              style={{ color: 'var(--color-text-secondary)' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-text)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+            >
+              {tResults('back')}
+            </button>
+          )}
         </div>
       </div>
     </div>
