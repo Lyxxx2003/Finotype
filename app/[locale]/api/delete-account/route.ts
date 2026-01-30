@@ -5,10 +5,10 @@ import { NextResponse } from 'next/server';
 export async function POST() {
   try {
     const supabase = await createClient();
-    
+
     // Get the current user
     const { data: { user }, error: userError } = await supabase.auth.getUser();
-    
+
     if (userError || !user) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
@@ -27,13 +27,13 @@ export async function POST() {
 
     // Delete user profile
     await supabaseAdmin.from('profiles').delete().eq('id', user.id);
-    
+
     // Delete user simulations
     await supabaseAdmin.from('simulations').delete().eq('user_id', user.id);
-    
+
     // Delete the auth user using admin API
     const { error: deleteError } = await supabaseAdmin.auth.admin.deleteUser(user.id);
-    
+
     if (deleteError) {
       console.error('Error deleting user:', deleteError);
       return NextResponse.json({ error: deleteError.message }, { status: 500 });

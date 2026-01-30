@@ -22,7 +22,7 @@ export default function ResultsPage() {
     const answers = getAnswers();
     const type = calculateFinotype(answers);
     setPersona(personas[type]);
-    
+
     const name = getDisplayName();
     if (name) {
       setDisplayName(name);
@@ -62,7 +62,7 @@ export default function ResultsPage() {
         <div className="card-professional rounded-3xl overflow-hidden border-0">
           <div className="p-8 text-white relative overflow-hidden bg-gradient-professional-blue">
             <div className="relative z-10 text-center">
-              <h2 
+              <h2
                 className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
                 style={{ opacity: 0.9 }}
               >
@@ -70,12 +70,12 @@ export default function ResultsPage() {
               </h2>
               <div className="text-6xl mb-4">{persona.mascot}</div>
               <div className="text-4xl md:text-5xl font-bold mb-6">{tPersonas(`${persona.id}.name`)}</div>
-              
-              <div 
+
+              <div
                 className="inline-block backdrop-blur-sm rounded-xl px-6 py-3 border"
                 style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderColor: 'rgba(255,255,255,0.3)' }}
               >
-                <p 
+                <p
                   className="text-xs font-bold uppercase tracking-wider"
                   style={{ color: '#dbeafe' }}
                 >
@@ -84,16 +84,16 @@ export default function ResultsPage() {
               </div>
             </div>
             {/* Decorative circles */}
-            <div 
+            <div
               className="absolute top-0 left-0 w-64 h-64 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-20"
               style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)' }}
             ></div>
-            <div 
+            <div
               className="absolute bottom-0 right-0 w-48 h-48 rounded-full translate-x-1/3 translate-y-1/3 opacity-20"
               style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)' }}
             ></div>
           </div>
-          
+
           <div className="p-8 space-y-8">
             <div>
               <h3 className="text-xl font-semibold mb-2 text-neutral-900">{tResults('aboutYourType')}</h3>

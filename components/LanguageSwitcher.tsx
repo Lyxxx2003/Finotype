@@ -11,12 +11,12 @@ export default function LanguageSwitcher() {
 
   const switchLocale = (newLocale: Locale) => {
     if (!pathname) return;
-    
+
     // Replace the locale in the pathname
     const segments = pathname.split('/');
     segments[1] = newLocale;
     const newPath = segments.join('/');
-    
+
     router.push(newPath);
   };
 

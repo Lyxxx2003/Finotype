@@ -12,7 +12,7 @@ interface OptionCardProps {
 
 export function OptionCard({ option, onSelect, selected, disabled, t }: OptionCardProps) {
   return (
-    <div 
+    <div
       className={`h-80 w-full group ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
       onClick={() => {
         if (!disabled && !selected) {

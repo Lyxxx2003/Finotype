@@ -1,4 +1,4 @@
-import { questions, personas } from './data';
+import { questions } from './data';
 import { FinancialType } from '@/types';
 
 export function calculateFinotype(answers: Record<number, string>): FinancialType {

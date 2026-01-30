@@ -54,9 +54,9 @@ export default function ResetPasswordPage() {
       const { error } = await supabase.auth.updateUser({
         password: password
       })
-      
+
       if (error) throw error
-      
+
       setMessage(t('passwordUpdated'))
       setMessageType('success')
       setTimeout(() => {
@@ -89,12 +89,11 @@ export default function ResetPasswordPage() {
         </div>
 
         {message && (
-          <div className={`rounded-2xl ${
-            messageType === 'success' ? 'alert-success' :
-            messageType === 'warning' ? 'alert-warning' :
-            messageType === 'info' ? 'alert-info' :
-            'alert-error'
-          }`}>
+          <div className={`rounded-2xl ${messageType === 'success' ? 'alert-success' :
+              messageType === 'warning' ? 'alert-warning' :
+                messageType === 'info' ? 'alert-info' :
+                  'alert-error'
+            }`}>
             <div className="text-sm font-medium">{message}</div>
           </div>
         )}

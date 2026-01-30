@@ -12,12 +12,12 @@ interface JobCardProps {
 }
 
 export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) {
-  const [showTooltip, setShowTooltip] = useState<{title: string, content: string} | null>(null);
-  const [showDetail, setShowDetail] = useState<{title: string, content: string} | null>(null);
+  const [showTooltip, setShowTooltip] = useState<{ title: string, content: string } | null>(null);
+  const [showDetail, setShowDetail] = useState<{ title: string, content: string } | null>(null);
 
   return (
     <>
-      <div 
+      <div
         className={`h-96 w-full group ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
         onClick={() => {
           if (!disabled && !selected) onSelect(job);
@@ -28,20 +28,20 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
           <div className="text-2xl text-blue-600 font-bold mb-4">{job.salaryLabel}</div>
           <div className="space-y-3 text-sm text-gray-600 flex-grow">
             <p className="flex justify-between items-center border-b border-gray-50 pb-2">
-              <span className="font-medium">{t('monthlySalary')}</span> 
+              <span className="font-medium">{t('monthlySalary')}</span>
               <span>${(job.salary / 12).toLocaleString()}</span>
             </p>
             <div className="flex justify-between items-center gap-2 border-b border-gray-50 pb-2">
               <span className="font-medium text-blue-600 flex items-center gap-1.5">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="14" 
-                  height="14" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                   className="cursor-pointer hover:scale-125 transition-transform"
                   onClick={(e) => {
@@ -85,15 +85,15 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
             </div>
             <div className="flex justify-between items-center gap-2">
               <span className="font-medium text-blue-600 flex items-center gap-1.5">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="14" 
-                  height="14" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                   className="cursor-pointer hover:scale-125 transition-transform"
                   onClick={(e) => {
@@ -112,11 +112,11 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
                   height="14"
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                   className="cursor-pointer hover:scale-125 transition-transform"
                   onClick={(e) => {
@@ -140,9 +140,9 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
           </div>
         </div>
       </div>
-      
+
       {showTooltip && (
-        <div 
+        <div
           className="fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-[100] animate-fadeIn"
           style={{ background: 'rgba(42,38,34,0.4)' }}
           onClick={(e) => {
@@ -153,7 +153,7 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
           <div className="bg-white p-8 rounded-2xl max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
             <h3 className="text-xl font-bold text-gray-900 mb-3">{showTooltip.title}</h3>
             <p className="text-gray-600 mb-8 leading-relaxed">{showTooltip.content}</p>
-            <button 
+            <button
               onClick={(e) => {
                 e.stopPropagation();
                 setShowTooltip(null);
@@ -165,9 +165,9 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
           </div>
         </div>
       )}
-      
+
       {showDetail && (
-        <div 
+        <div
           className="fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-[100] animate-fadeIn"
           style={{ background: 'rgba(42,38,34,0.4)' }}
           onClick={(e) => {
@@ -178,7 +178,7 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
           <div className="bg-white p-8 rounded-2xl max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
             <h3 className="text-xl font-bold text-gray-900 mb-3">{showDetail.title}</h3>
             <p className="text-gray-600 mb-8 leading-relaxed">{showDetail.content}</p>
-            <button 
+            <button
               onClick={(e) => {
                 e.stopPropagation();
                 setShowDetail(null);

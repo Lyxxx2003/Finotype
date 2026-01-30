@@ -17,7 +17,7 @@ export function ErrorModal({ errorMessage, onRetry, onDemo, onQA, t }: ErrorModa
         <div className="text-4xl mb-4 text-center" style={{ color: 'var(--color-terracotta)' }}>⚠️</div>
         <h3 className="text-xl font-bold text-center text-neutral-900 mb-2">{t('errorTitle')}</h3>
         <p className="text-center mb-6" style={{ color: 'var(--color-text-secondary)' }}>{errorMessage}</p>
-        
+
         <div className="space-y-3">
           <button onClick={onRetry} className="btn-professional-accent w-full">
             {t('retry')}
