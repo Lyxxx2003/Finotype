@@ -9,6 +9,7 @@ import Link from 'next/link'
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [displayName, setDisplayName] = useState('')
   const [isSignUp, setIsSignUp] = useState(false)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -37,14 +38,18 @@ export default function LoginPage() {
       return
     }
 
+    if (isSignUp && !displayName.trim()) {
+      setMessageType('error')
+      setMessage('Please enter a display name')
+      setLoading(false)
+      return
+    }
+
     try {
       if (isSignUp) {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: {
-            emailRedirectTo: `${location.origin}/auth/callback`,
-          },
         })
 
         if (error) {
@@ -60,12 +65,25 @@ export default function LoginPage() {
           throw error
         }
 
-        // Additional check: if user exists and is already confirmed (Supabase might not throw error)
-        if (data.user && data.user.identities && data.user.identities.length === 0) {
-          setMessage(t('accountExists'))
-          setMessageType('warning')
-          setLoading(false)
-          return
+        // Create profile with display name for new email sign-ups
+        if (data.user) {
+          // Create profile, marking as NOT verified initially
+          await supabase.from('profiles').insert({
+            id: data.user.id,
+            display_name: displayName.trim(),
+            email_verified: false
+          })
+          
+          // Send verification link (magic link acts as verification)
+          await supabase.auth.signInWithOtp({
+            email,
+            options: {
+              emailRedirectTo: `${location.origin}/auth/callback`,
+            },
+          })
+          
+          // Sign out immediately so they can't log in without verifying
+          await supabase.auth.signOut()
         }
 
         setMessageType('success')
@@ -77,12 +95,20 @@ export default function LoginPage() {
         })
         if (error) throw error
 
-        // Check if email is verified
-        if (data.user && !data.user.email_confirmed_at) {
+        // Check if profile is verified
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('email_verified')
+          .eq('id', data.user.id)
+          .single()
+
+        // Check verification (default to false if not set)
+        if (!profile?.email_verified) {
           await supabase.auth.signOut()
           setMessage(t('verifyEmail'))
           setMessageType('warning')
           setShowResendVerification(true)
+          setLoading(false)
           return
         }
 
@@ -116,8 +142,7 @@ export default function LoginPage() {
     setMessage('')
     setMessageType('info')
     try {
-      const { error } = await supabase.auth.resend({
-        type: 'signup',
+      const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
           emailRedirectTo: `${location.origin}/auth/callback`
@@ -255,6 +280,18 @@ export default function LoginPage() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
+                  {isSignUp && (
+                    <div>
+                      <input
+                        type="text"
+                        required
+                        className="input-professional"
+                        placeholder={t('displayName')}
+                        value={displayName}
+                        onChange={(e) => setDisplayName(e.target.value)}
+                      />
+                    </div>
+                  )}
                   <div>
                     <input
                       type="password"
@@ -315,9 +352,9 @@ export default function LoginPage() {
 
               {isSignUp && (
                 <div className="space-y-3">
-                  <div className="text-center text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                  {/* <div className="text-center text-sm" style={{ color: 'var(--color-text-secondary)' }}>
                     {t('verifyEmail')}
-                  </div>
+                  </div> */}
                   <button
                     onClick={handleResendVerification}
                     disabled={resending}

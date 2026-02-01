@@ -9,8 +9,34 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = await createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (!error) {
+    const { error, data } = await supabase.auth.exchangeCodeForSession(code)
+    if (!error && data.user) {
+      // Create or update profile to mark as verified
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('id', data.user.id)
+        .single()
+
+      if (!profileData) {
+        // Create new profile
+        const displayName = data.user.user_metadata?.full_name || 
+                           data.user.user_metadata?.name || 
+                           data.user.email?.split('@')[0] || 
+                           'User'
+        
+        await supabase.from('profiles').insert({
+          id: data.user.id,
+          display_name: displayName,
+          email_verified: true
+        })
+      } else {
+        // Mark existing profile as verified
+        await supabase.from('profiles').update({
+          email_verified: true
+        }).eq('id', data.user.id)
+      }
+
       const forwardedHost = request.headers.get('x-forwarded-host')
       const isLocalEnv = process.env.NODE_ENV === 'development'
       if (isLocalEnv) {

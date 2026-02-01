@@ -16,6 +16,7 @@ export default function ResultsPage() {
   const params = useParams();
   const locale = params.locale as string;
   const tPersonas = useTranslations('personas');
+  const tAnalysis = useTranslations('analysis');
   const tResults = useTranslations('results');
 
   useEffect(() => {
@@ -118,7 +119,7 @@ export default function ResultsPage() {
           locale={locale}
           onShare={handleShare}
           onDownload={handleDownload}
-          t={tResults}
+          t={tAnalysis}
           secondaryButtonText={tResults('seePitfallsAndTips')}
           secondaryButtonHref={`/${locale}/standard/resources`}
         />
