@@ -8,7 +8,7 @@ import { simulateYear } from '@/lib/gemini';
 import { PersonaCard } from '@/components/pro/results/PersonaCard';
 import { TipsSection } from '@/components/pro/results/TipsSection';
 import { FamiliarityForm } from '@/components/pro/results/FamiliarityForm';
-import { generateShareImage } from '@/components/ShareUtil';
+import { generateShareImage, downloadShareImage } from '@/components/ShareUtil';
 import { AnalysisState } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
 
@@ -47,24 +47,28 @@ function ResultsContent() {
     }
   };
 
+  const shareImageOptions = {
+    gradientColors: ['#0f172a', '#1e293b'] as [string, string],
+    circleColor1: 'rgba(59, 130, 246, 0.1)',
+    circleColor2: 'rgba(34, 197, 94, 0.1)',
+    mascot: '💰',
+    title: 'Simulate your financial future',
+    titleFontSize: 56,
+    subtitle: 'finotype.vercel.app',
+    brandText: 'Interactive financial personality game',
+    filename: `finotype-pro-${Date.now()}.png`,
+    shareTitle: "Finotype - Financial Personality Game",
+    shareText: `Simulate your financial future! https://finotype.vercel.app/${locale}`,
+  };
+
   const handleShare = async () => {
     if (!analysis) return;
+    await generateShareImage(shareImageOptions);
+  };
 
-    const shareUrl = `https://finotype.vercel.app/${locale}`;
-
-    await generateShareImage({
-      gradientColors: ['#0f172a', '#1e293b'],
-      circleColor1: 'rgba(59, 130, 246, 0.1)',
-      circleColor2: 'rgba(34, 197, 94, 0.1)',
-      mascot: '💰',
-      title: 'Simulate your financial future',
-      titleFontSize: 56,
-      subtitle: 'finotype.vercel.app',
-      brandText: 'Interactive financial personality game',
-      filename: `finotype-pro-${Date.now()}.png`,
-      shareTitle: "Finotype - Financial Personality Game",
-      shareText: `Simulate your financial future! ${shareUrl}`,
-    });
+  const handleDownload = async () => {
+    if (!analysis) return;
+    await downloadShareImage(shareImageOptions);
   };
 
   useEffect(() => {
@@ -198,6 +202,7 @@ function ResultsContent() {
       <ResultsButtons
         locale={locale}
         onShare={handleShare}
+        onDownload={handleDownload}
         t={t}
         secondaryButtonText={t('playAgain')}
         secondaryButtonHref={`/${locale}/pro/game?newGame=true`}

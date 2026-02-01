@@ -6,7 +6,7 @@ import { calculateFinotype } from '@/lib/logic';
 import { personas } from '@/lib/data';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { generateShareImage } from '@/components/ShareUtil';
+import { generateShareImage, downloadShareImage } from '@/components/ShareUtil';
 import { Persona } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
 
@@ -29,23 +29,27 @@ export default function ResultsPage() {
     }
   }, []);
 
+  const getShareImageOptions = () => ({
+    gradientColors: ['#2563eb', '#1e40af'] as [string, string],
+    circleColor1: 'rgba(255, 255, 255, 0.05)',
+    circleColor2: 'rgba(255, 255, 255, 0.08)',
+    mascot: persona?.mascot || '💰',
+    title: "What's your Finotype?",
+    subtitle: 'finotype.vercel.app',
+    brandText: 'Discover your financial personality',
+    filename: `finotype-${persona?.id}-${Date.now()}.png`,
+    shareTitle: "What's your Finotype?",
+    shareText: `Discover your financial personality! https://finotype.vercel.app/${locale}`,
+  });
+
   const handleShare = async () => {
     if (!persona) return;
+    await generateShareImage(getShareImageOptions());
+  };
 
-    const shareUrl = `https://finotype.vercel.app/${locale}`;
-
-    await generateShareImage({
-      gradientColors: ['#2563eb', '#1e40af'],
-      circleColor1: 'rgba(255, 255, 255, 0.05)',
-      circleColor2: 'rgba(255, 255, 255, 0.08)',
-      mascot: persona.mascot,
-      title: "What's your Finotype?",
-      subtitle: 'finotype.vercel.app',
-      brandText: 'Discover your financial personality',
-      filename: `finotype-${persona.id}-${Date.now()}.png`,
-      shareTitle: "What's your Finotype?",
-      shareText: `Discover your financial personality! ${shareUrl}`,
-    });
+  const handleDownload = async () => {
+    if (!persona) return;
+    await downloadShareImage(getShareImageOptions());
   };
 
   if (!persona) return <div className="p-8 text-center">{tResults('calculating')}</div>;
@@ -68,7 +72,15 @@ export default function ResultsPage() {
               >
                 {tResults('yourFinotype')}
               </h2>
-              <div className="text-6xl mb-4">{persona.mascot}</div>
+              <div className="flex justify-center mb-6">
+                <div className="bg-white/20 p-4 rounded-full backdrop-blur-sm">
+                  <img
+                    src="/image/ostrich.png"
+                    alt="Ostrich Mascot"
+                    className="w-24 h-24 object-cover rounded-full"
+                  />
+                </div>
+              </div>
               <div className="text-4xl md:text-5xl font-bold mb-6">{tPersonas(`${persona.id}.name`)}</div>
 
               <div
@@ -105,6 +117,7 @@ export default function ResultsPage() {
         <ResultsButtons
           locale={locale}
           onShare={handleShare}
+          onDownload={handleDownload}
           t={tResults}
           secondaryButtonText={tResults('seePitfallsAndTips')}
           secondaryButtonHref={`/${locale}/standard/resources`}

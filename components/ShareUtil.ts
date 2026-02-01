@@ -15,63 +15,68 @@ export interface ShareImageOptions {
   shareText: string;
 }
 
+const createCanvas = (options: ShareImageOptions): HTMLCanvasElement => {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    throw new Error("Could not create canvas context");
+  }
+
+  const width = options.width ?? 1080;
+  const height = options.height ?? 1080;
+  const titleFontSize = options.titleFontSize ?? 64;
+
+  canvas.width = width;
+  canvas.height = height;
+
+  // Background gradient
+  const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  gradient.addColorStop(0, options.gradientColors[0]);
+  gradient.addColorStop(1, options.gradientColors[1]);
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Decorative circles
+  ctx.fillStyle = options.circleColor1;
+  ctx.beginPath();
+  ctx.arc(150, 150, 300, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = options.circleColor2;
+  ctx.beginPath();
+  ctx.arc(900, 900, 250, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Mascot emoji (large)
+  ctx.font = 'bold 280px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText(options.mascot, canvas.width / 2, 420);
+
+  // Title text
+  ctx.font = `bold ${titleFontSize}px system-ui, -apple-system, sans-serif`;
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText(options.title, canvas.width / 2, 680);
+
+  // Website URL
+  ctx.font = '48px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+  ctx.fillText(options.subtitle, canvas.width / 2, 820);
+
+  // Small branding at bottom
+  ctx.font = '28px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+  ctx.fillText(options.brandText, canvas.width / 2, 950);
+
+  return canvas;
+};
+
 export const generateShareImage = async (options: ShareImageOptions) => {
   try {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-      alert("Could not create canvas context");
-      return;
-    };
+    const canvas = createCanvas(options);
 
-    const width = options.width ?? 1080;
-    const height = options.height ?? 1080;
-    const titleFontSize = options.titleFontSize ?? 64;
-
-    canvas.width = width;
-    canvas.height = height;
-
-    // Background gradient
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0, options.gradientColors[0]);
-    gradient.addColorStop(1, options.gradientColors[1]);
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Decorative circles
-    ctx.fillStyle = options.circleColor1;
-    ctx.beginPath();
-    ctx.arc(150, 150, 300, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = options.circleColor2;
-    ctx.beginPath();
-    ctx.arc(900, 900, 250, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Mascot emoji (large)
-    ctx.font = 'bold 280px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText(options.mascot, canvas.width / 2, 420);
-
-    // Title text
-    ctx.font = `bold ${titleFontSize}px system-ui, -apple-system, sans-serif`;
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText(options.title, canvas.width / 2, 680);
-
-    // Website URL
-    ctx.font = '48px system-ui, -apple-system, sans-serif';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-    ctx.fillText(options.subtitle, canvas.width / 2, 820);
-
-    // Small branding at bottom
-    ctx.font = '28px system-ui, -apple-system, sans-serif';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-    ctx.fillText(options.brandText, canvas.width / 2, 950);
-
-    // Convert to blob and share
+    // Convert to blob and share (Messages, Email, AirDrop on macOS/iOS)
     canvas.toBlob(async (blob) => {
       if (!blob) {
         alert("Could not generate image");
@@ -88,18 +93,29 @@ export const generateShareImage = async (options: ShareImageOptions) => {
             files: [file]
           });
         } catch (err) {
-          console.log('Share canceled or failed', err);
+          if ((err as Error).name !== 'AbortError') {
+            console.log('Share failed', err);
+          }
         }
       } else {
-        // Fallback download
-        const link = document.createElement('a');
-        link.download = options.filename;
-        link.href = canvas.toDataURL();
-        link.click();
+        alert('Sharing is not supported on this device. Please use the Download button instead.');
       }
     }, 'image/png');
   } catch (err) {
     console.error('Failed to generate share image', err);
     alert('Failed to generate share image. Please try again.');
+  }
+};
+
+export const downloadShareImage = async (options: ShareImageOptions) => {
+  try {
+    const canvas = createCanvas(options);
+    const link = document.createElement('a');
+    link.download = options.filename;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } catch (err) {
+    console.error('Failed to download image', err);
+    alert('Failed to download image. Please try again.');
   }
 };
