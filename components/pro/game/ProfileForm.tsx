@@ -15,11 +15,11 @@ interface ProfileFormProps {
 export function ProfileForm({ profile, setProfile, onSubmit, loading, hasExistingJobs, onEditProfile, t }: ProfileFormProps) {
   return (
     <form onSubmit={onSubmit} className="card-professional p-8 space-y-6">
-      <h2 className="text-xl font-bold text-neutral-900 mb-4 border-b pb-2" style={{ borderColor: 'var(--color-neutral-200)' }}>{t('setupProfile')}</h2>
+      <h2 className="text-xl font-bold mb-4 border-b pb-2" style={{ color: 'var(--color-text)', borderColor: 'var(--color-neutral-200)' }}>{t('setupProfile')}</h2>
 
       <div className="space-y-4">
         <div>
-          <label className="block font-medium mb-2 text-neutral-900">{t('industry')}</label>
+          <label className="block font-medium mb-2" style={{ color: 'var(--color-text)' }}>{t('industry')}</label>
           <input
             required
             type="text"
@@ -34,7 +34,7 @@ export function ProfileForm({ profile, setProfile, onSubmit, loading, hasExistin
         </div>
 
         <div>
-          <label className="block font-medium mb-2 text-neutral-900">{t('familiarity')}</label>
+          <label className="block font-medium mb-2" style={{ color: 'var(--color-text)' }}>{t('familiarity')}</label>
           <select
             required
             value={profile.familiarity}
@@ -53,7 +53,7 @@ export function ProfileForm({ profile, setProfile, onSubmit, loading, hasExistin
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block font-medium mb-2 text-neutral-900">{t('salary')}</label>
+            <label className="block font-medium mb-2" style={{ color: 'var(--color-text)' }}>{t('salary')}</label>
             <input
               type="number"
               value={profile.salary}
@@ -66,7 +66,7 @@ export function ProfileForm({ profile, setProfile, onSubmit, loading, hasExistin
             />
           </div>
           <div>
-            <label className="block font-medium mb-2 text-neutral-900">{t('paymentFreq')}</label>
+            <label className="block font-medium mb-2" style={{ color: 'var(--color-text)' }}>{t('paymentFreq')}</label>
             <select
               value={profile.paymentFreq}
               onChange={e => setProfile({ ...profile, paymentFreq: e.target.value as any })}

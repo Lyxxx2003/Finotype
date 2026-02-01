@@ -58,7 +58,7 @@ export default function QuestionPage() {
   const progress = (currentStep / totalSteps) * 100;
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-6 bg-gradient-professional">
+    <div className="flex flex-col items-center min-h-screen p-6" style={{ background: 'var(--gradient-surface)' }}>
       <div className="w-full max-w-xl mt-10">
         {/* Progress Bar */}
         <div className="w-full rounded-full h-2.5 mb-8" style={{ backgroundColor: 'var(--color-neutral-200)' }}>
@@ -66,8 +66,8 @@ export default function QuestionPage() {
         </div>
 
         <div className="card-professional p-8">
-          <span className="text-sm font-semibold text-primary uppercase tracking-wider">{tResults('questionOf', { current: currentStep, total: totalSteps })}</span>
-          <h2 className="text-2xl font-bold text-neutral-900 mt-4 mb-8">
+          <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--color-primary)' }}>{tResults('questionOf', { current: currentStep, total: totalSteps })}</span>
+          <h2 className="text-2xl font-bold mt-4 mb-8" style={{ color: 'var(--color-text)' }}>
             {t(`${questionId}.text`)}
           </h2>
 

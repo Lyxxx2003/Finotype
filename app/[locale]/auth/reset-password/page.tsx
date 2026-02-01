@@ -72,7 +72,7 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-primary">
+    <div className="flex min-h-screen flex-col items-center justify-center p-4" style={{ background: 'var(--gradient-primary)' }}>
       <div className="card-professional w-full max-w-md space-y-8 p-10">
         <div>
           <div className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 icon-container-accent">
@@ -80,10 +80,10 @@ export default function ResetPasswordPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
             </svg>
           </div>
-          <h2 className="text-center text-3xl font-extrabold text-gradient-professional">
+          <h2 className="text-center text-3xl font-extrabold" style={{ background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
             {t('setNewPassword')}
           </h2>
-          <p className="mt-2 text-center text-sm text-neutral-600">
+          <p className="mt-2 text-center text-sm" style={{ color: 'var(--color-text-secondary)' }}>
             {t('enterNewPassword')}
           </p>
         </div>

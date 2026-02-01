@@ -1,14 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter, useParams } from 'next/navigation'
+import { useRouter, useParams, useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [displayName, setDisplayName] = useState('')
   const [isSignUp, setIsSignUp] = useState(false)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -19,6 +20,7 @@ export default function LoginPage() {
   const [showResendVerification, setShowResendVerification] = useState(false)
   const router = useRouter()
   const params = useParams()
+  const searchParams = useSearchParams()
   const locale = params.locale as string
   const t = useTranslations('login')
   const supabase = createClient()
@@ -37,14 +39,24 @@ export default function LoginPage() {
       return
     }
 
+    if (isSignUp && !displayName.trim()) {
+      setMessageType('error')
+      setMessage('Please enter a display name')
+      setLoading(false)
+      return
+    }
+
     try {
       if (isSignUp) {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
-            emailRedirectTo: `${location.origin}/auth/callback`,
-          },
+            emailRedirectTo: `${location.origin}/${locale}/auth/callback`,
+            data: {
+              display_name: displayName.trim(),
+            }
+          }
         })
 
         if (error) {
@@ -60,14 +72,18 @@ export default function LoginPage() {
           throw error
         }
 
-        // Additional check: if user exists and is already confirmed (Supabase might not throw error)
-        if (data.user && data.user.identities && data.user.identities.length === 0) {
-          setMessage(t('accountExists'))
-          setMessageType('warning')
-          setLoading(false)
-          return
-        }
+        // TODO: maybe allow users to be able to use both email and google
+        // Check if user already exists (no error but no session created)
+        // This happens when email enumeration protection is enabled
+        // if (data?.user && !data.session && data.user.identities?.length === 0) {
+        //   setMessageType('warning')
+        //   setMessage(t('accountExists'))
+        //   setLoading(false)
+        //   return
+        // }
 
+        // Profile will be created in the callback after email confirmation
+        // Supabase automatically sends a confirmation email
         setMessageType('success')
         setMessage(t('checkEmail'))
       } else {
@@ -75,17 +91,21 @@ export default function LoginPage() {
           email,
           password,
         })
-        if (error) throw error
-
-        // Check if email is verified
-        if (data.user && !data.user.email_confirmed_at) {
-          await supabase.auth.signOut()
-          setMessage(t('verifyEmail'))
-          setMessageType('warning')
-          setShowResendVerification(true)
-          return
+        
+        if (error) {
+          // Check if error is due to unconfirmed email
+          if (error.message.toLowerCase().includes('email not confirmed')) {
+            setMessageType('warning')
+            setMessage(t('verifyEmail'))
+            setShowResendVerification(true)
+            setLoading(false)
+            return
+          }
+          throw error
         }
 
+        // Successfully signed in - let them in
+        // verified_email is set to TRUE in the callback after they click confirmation email
         router.push(`/${locale}/pro/game`)
       }
     } catch (error: any) {
@@ -120,7 +140,7 @@ export default function LoginPage() {
         type: 'signup',
         email,
         options: {
-          emailRedirectTo: `${location.origin}/auth/callback`
+          emailRedirectTo: `${location.origin}/${locale}/auth/callback`
         },
       })
       if (error) throw error
@@ -138,7 +158,7 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${location.origin}/auth/callback`
+        redirectTo: `${location.origin}/${locale}/auth/callback`
       }
     })
     if (error) {
@@ -176,7 +196,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-4 bg-gradient-professional">
+      <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-4" style={{ background: 'var(--gradient-surface)' }}>
         <div className="card-professional w-full max-w-md space-y-8 backdrop-blur-md p-10">
           {showForgotPassword ? (
             // Forgot Password Form with professional styling
@@ -255,6 +275,18 @@ export default function LoginPage() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
+                  {isSignUp && (
+                    <div>
+                      <input
+                        type="text"
+                        required
+                        className="input-professional"
+                        placeholder={t('displayName')}
+                        value={displayName}
+                        onChange={(e) => setDisplayName(e.target.value)}
+                      />
+                    </div>
+                  )}
                   <div>
                     <input
                       type="password"
@@ -315,9 +347,9 @@ export default function LoginPage() {
 
               {isSignUp && (
                 <div className="space-y-3">
-                  <div className="text-center text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                  {/* <div className="text-center text-sm" style={{ color: 'var(--color-text-secondary)' }}>
                     {t('verifyEmail')}
-                  </div>
+                  </div> */}
                   <button
                     onClick={handleResendVerification}
                     disabled={resending}
@@ -362,7 +394,7 @@ export default function LoginPage() {
                 <>
                   <div className="relative">
                     <div className="absolute inset-0 flex items-center"><div className="w-full border-t" style={{ borderColor: 'var(--color-neutral-300)' }}></div></div>
-                    <div className="relative flex justify-center text-sm"><span className="bg-white px-2" style={{ color: 'var(--color-text-muted)' }}>{t('signInWith', { provider: '' }).replace('', '')}</span></div>
+                    <div className="relative flex justify-center text-sm"><span className="px-2" style={{ background: 'var(--color-surface)', color: 'var(--color-text-secondary)' }}>{t('signInWith', { provider: '' }).replace('', '')}</span></div>
                   </div>
 
                   <button

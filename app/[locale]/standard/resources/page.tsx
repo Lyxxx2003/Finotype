@@ -26,17 +26,17 @@ export default function AnalysisPage() {
   if (!persona) return <div className="p-8 text-center">{t('loadingAnalysis')}</div>;
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-6 md:p-12 font-sans bg-gradient-professional">
+    <div className="flex flex-col items-center min-h-screen p-6 md:p-12 font-sans" style={{ background: 'var(--gradient-surface)' }}>
       <div className="max-w-4xl w-full">
         <header className="mb-12 border-b pb-8 flex justify-between items-center" style={{ borderColor: 'var(--color-neutral-200)' }}>
           <div className="flex items-center gap-4">
             <span className="text-4xl">{persona.mascot}</span>
             <div>
-              <h1 className="text-3xl font-bold text-neutral-900">{t('typeAnalysis', { name: tPersonas(`${persona.id}.name`) })}</h1>
+              <h1 className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{t('typeAnalysis', { name: tPersonas(`${persona.id}.name`) })}</h1>
               <p style={{ color: 'var(--color-text-secondary)' }}>{t('finotypeLabel', { type: persona.id })}</p>
             </div>
           </div>
-          <Link href={`/${locale}/standard/results`} className="text-primary font-medium hover:underline cursor-pointer">
+          <Link href={`/${locale}/standard/results`} className="font-medium hover:underline cursor-pointer" style={{ color: 'var(--color-primary)' }}>
             {t('backToSummary')}
           </Link>
         </header>

@@ -49,17 +49,8 @@ export async function updateSession(request: NextRequest, response?: NextRespons
     return NextResponse.redirect(url)
   }
 
-  // Check if user is logged in but email is not verified
-  if (
-    user &&
-    !user.email_confirmed_at &&
-    request.nextUrl.pathname.startsWith('/pro')
-  ) {
-    // User is not verified, redirect to login
-    const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    return NextResponse.redirect(url)
-  }
+  // Don't check email_confirmed_at - OAuth users (Google) should always be able to sign in
+  // Email/password verification is handled in the login flow, not here
 
   return supabaseResponse
 }

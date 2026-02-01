@@ -50,7 +50,7 @@ export default function Home() {
           <div
             className="relative backdrop-blur-md rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden"
             style={{
-              background: 'rgba(255,255,255,0.95)',
+              background: 'var(--color-surface)',
               border: '1px solid var(--color-neutral-200)',
               boxShadow: '0 8px 32px rgba(15,23,42,0.08), 0 2px 8px rgba(15,23,42,0.04)'
             }}
@@ -94,7 +94,7 @@ export default function Home() {
               className="text-lg sm:text-xl mb-8 sm:mb-10 max-w-2xl leading-relaxed relative z-10 font-medium"
               style={{
                 animation: 'fadeInUp 0.8s ease-out 0.6s both',
-                color: 'var(--color-neutral-600)'
+                color: 'var(--color-text-secondary)'
               }}
             >
               {t('subtitle')}

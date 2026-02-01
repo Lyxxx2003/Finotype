@@ -8,7 +8,7 @@ import { simulateYear } from '@/lib/gemini';
 import { PersonaCard } from '@/components/pro/results/PersonaCard';
 import { TipsSection } from '@/components/pro/results/TipsSection';
 import { FamiliarityForm } from '@/components/pro/results/FamiliarityForm';
-import { generateShareImage } from '@/components/ShareUtil';
+import { generateShareImage, downloadShareImage } from '@/components/ShareUtil';
 import { AnalysisState } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
 
@@ -47,24 +47,28 @@ function ResultsContent() {
     }
   };
 
+  const shareImageOptions = {
+    gradientColors: ['#0f172a', '#1e293b'] as [string, string],
+    circleColor1: 'rgba(59, 130, 246, 0.1)',
+    circleColor2: 'rgba(34, 197, 94, 0.1)',
+    mascot: '💰',
+    title: 'Simulate your financial future',
+    titleFontSize: 56,
+    subtitle: 'finotype.vercel.app',
+    brandText: 'Interactive financial personality game',
+    filename: `finotype-pro-${Date.now()}.png`,
+    shareTitle: "Finotype - Financial Personality Game",
+    shareText: `Simulate your financial future! https://finotype.vercel.app/${locale}`,
+  };
+
   const handleShare = async () => {
     if (!analysis) return;
+    await generateShareImage(shareImageOptions);
+  };
 
-    const shareUrl = `https://finotype.vercel.app/${locale}`;
-
-    await generateShareImage({
-      gradientColors: ['#0f172a', '#1e293b'],
-      circleColor1: 'rgba(59, 130, 246, 0.1)',
-      circleColor2: 'rgba(34, 197, 94, 0.1)',
-      mascot: '💰',
-      title: 'Simulate your financial future',
-      titleFontSize: 56,
-      subtitle: 'finotype.vercel.app',
-      brandText: 'Interactive financial personality game',
-      filename: `finotype-pro-${Date.now()}.png`,
-      shareTitle: "Finotype - Financial Personality Game",
-      shareText: `Simulate your financial future! ${shareUrl}`,
-    });
+  const handleDownload = async () => {
+    if (!analysis) return;
+    await downloadShareImage(shareImageOptions);
   };
 
   useEffect(() => {
@@ -157,7 +161,7 @@ function ResultsContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-professional flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--gradient-surface)' }}>
         <div className="text-center">
           <div className="flex items-center gap-3 px-6 py-3 rounded-full animate-pulse" style={{ background: 'rgba(14,165,233,0.1)' }}>
             <div className="h-2 w-2 rounded-full animate-ping" style={{ background: 'var(--color-accent)' }}></div>
@@ -174,7 +178,7 @@ function ResultsContent() {
     <div className="max-w-3xl mx-auto space-y-8 py-12 px-4">
       {displayName && (
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-neutral-900">{t('hey', { name: displayName })} {t('title')}</h1>
+          <h1 className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{t('hey', { name: displayName })} {t('title')}</h1>
         </div>
       )}
 
@@ -184,7 +188,7 @@ function ResultsContent() {
 
           <div className="p-8 md:p-12 space-y-10">
             <div>
-              <h3 className="text-2xl font-bold mb-4 text-neutral-900">{t('behavioralSummary')}</h3>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>{t('behavioralSummary')}</h3>
               <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{analysis.summary}</p>
             </div>
 
@@ -198,6 +202,7 @@ function ResultsContent() {
       <ResultsButtons
         locale={locale}
         onShare={handleShare}
+        onDownload={handleDownload}
         t={t}
         secondaryButtonText={t('playAgain')}
         secondaryButtonHref={`/${locale}/pro/game?newGame=true`}

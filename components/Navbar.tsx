@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { clearAnswers } from '@/lib/storage';
 import LanguageSwitcher from './LanguageSwitcher';
+import { ThemeToggle } from './ThemeToggle';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -76,6 +77,7 @@ export default function Navbar() {
                   </button>
                 </>
               )}
+              <ThemeToggle />
               <LanguageSwitcher />
             </div>
           </div>
@@ -103,7 +105,8 @@ export default function Navbar() {
                   Finotype Standard
                 </button>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center gap-4">
+                <ThemeToggle />
                 <LanguageSwitcher />
               </div>
             </div>
@@ -118,8 +121,9 @@ export default function Navbar() {
             onClick={() => setShowReturnHomeConfirm(false)}
           >
             <div
-              className="bg-white rounded-3xl p-8 max-w-md w-full"
+              className="rounded-3xl p-8 max-w-md w-full"
               style={{
+                background: 'var(--color-surface)',
                 boxShadow: '0 20px 60px rgba(15,23,42,0.2)',
                 border: '2px solid var(--color-neutral-200)'
               }}
@@ -189,7 +193,8 @@ export default function Navbar() {
               Finotype
             </Link>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
         </div>

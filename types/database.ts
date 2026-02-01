@@ -19,6 +19,7 @@ export interface Database {
           post_familiarity: string | null
           salary: string | null
           payment_freq: string | null
+          email_verified: boolean
         }
         Insert: {
           id: string
@@ -29,6 +30,7 @@ export interface Database {
           post_familiarity?: string | null
           salary?: string | null
           payment_freq?: string | null
+          email_verified?: boolean
         }
         Update: {
           id?: string
@@ -39,6 +41,7 @@ export interface Database {
           post_familiarity?: string | null
           salary?: string | null
           payment_freq?: string | null
+          email_verified?: boolean
         }
       }
       simulations: {

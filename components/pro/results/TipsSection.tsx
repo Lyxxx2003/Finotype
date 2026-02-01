@@ -18,7 +18,7 @@ export function TipsSection({ tips }: TipsSectionProps) {
               background: 'rgba(14,165,233,0.08)',
               borderColor: 'var(--color-accent)',
               border: '1px solid',
-              color: 'var(--color-neutral-700)',
+              color: 'var(--color-text)',
               boxShadow: '0 2px 8px rgba(14,165,233,0.1)'
             }}
           >

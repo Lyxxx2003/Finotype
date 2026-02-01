@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Sans } from 'next/font/google';
 import { locales } from '@/i18n';
 import Navbar from '@/components/Navbar';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const ibmPlexSans = IBM_Plex_Sans({
   weight: ['300', '400', '500', '600', '700'],
@@ -41,15 +42,17 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={ibmPlexSans.className}>
         <NextIntlClientProvider messages={messages}>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-1">
-              {children}
-            </main>
-          </div>
+          <ThemeProvider defaultTheme="system" storageKey="finotype-theme">
+            <div className="min-h-screen flex flex-col">
+              <Navbar />
+              <main className="flex-1">
+                {children}
+              </main>
+            </div>
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

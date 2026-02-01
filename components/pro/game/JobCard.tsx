@@ -23,10 +23,10 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
           if (!disabled && !selected) onSelect(job);
         }}
       >
-        <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-lg hover:border-blue-200 transition-all h-full flex flex-col">
-          <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{job.title}</h3>
-          <div className="text-2xl text-blue-600 font-bold mb-4">{job.salaryLabel}</div>
-          <div className="space-y-3 text-sm text-gray-600 flex-grow">
+        <div className="border p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all h-full flex flex-col" style={{ background: 'var(--color-surface)', borderColor: 'var(--color-neutral-200)' }}>
+          <h3 className="text-lg font-bold mb-2 group-hover:text-blue-600 transition-colors" style={{ color: 'var(--color-text)' }}>{job.title}</h3>
+          <div className="text-2xl font-bold mb-4" style={{ color: 'var(--color-primary)' }}>{job.salaryLabel}</div>
+          <div className="space-y-3 text-sm flex-grow" style={{ color: 'var(--color-text-secondary)' }}>
             <p className="flex justify-between items-center border-b border-gray-50 pb-2">
               <span className="font-medium">{t('monthlySalary')}</span>
               <span>${(job.salary / 12).toLocaleString()}</span>
@@ -150,15 +150,16 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
             setShowTooltip(null);
           }}
         >
-          <div className="bg-white p-8 rounded-2xl max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">{showTooltip.title}</h3>
-            <p className="text-gray-600 mb-8 leading-relaxed">{showTooltip.content}</p>
+          <div className="p-8 rounded-2xl max-w-md w-full shadow-2xl" style={{ background: 'var(--color-surface)' }} onClick={e => e.stopPropagation()}>
+            <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text)' }}>{showTooltip.title}</h3>
+            <p className="mb-8 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>{showTooltip.content}</p>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setShowTooltip(null);
               }}
-              className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl text-white font-bold transition-colors"
+              className="w-full py-3 rounded-xl text-white font-bold transition-colors"
+              style={{ background: 'var(--color-primary)' }}
             >
               {t('gotIt')}
             </button>
@@ -175,15 +176,16 @@ export function JobCard({ job, onSelect, selected, disabled, t }: JobCardProps) 
             setShowDetail(null);
           }}
         >
-          <div className="bg-white p-8 rounded-2xl max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">{showDetail.title}</h3>
-            <p className="text-gray-600 mb-8 leading-relaxed">{showDetail.content}</p>
+          <div className="p-8 rounded-2xl max-w-md w-full shadow-2xl" style={{ background: 'var(--color-surface)' }} onClick={e => e.stopPropagation()}>
+            <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text)' }}>{showDetail.title}</h3>
+            <p className="mb-8 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>{showDetail.content}</p>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setShowDetail(null);
               }}
-              className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl text-white font-bold transition-colors"
+              className="w-full py-3 rounded-xl text-white font-bold transition-colors"
+              style={{ background: 'var(--color-primary)' }}
             >
               {t('gotIt')}
             </button>

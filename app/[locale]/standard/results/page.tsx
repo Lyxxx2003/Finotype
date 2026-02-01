@@ -6,7 +6,7 @@ import { calculateFinotype } from '@/lib/logic';
 import { personas } from '@/lib/data';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { generateShareImage } from '@/components/ShareUtil';
+import { generateShareImage, downloadShareImage } from '@/components/ShareUtil';
 import { Persona } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
 
@@ -16,6 +16,7 @@ export default function ResultsPage() {
   const params = useParams();
   const locale = params.locale as string;
   const tPersonas = useTranslations('personas');
+  const tAnalysis = useTranslations('analysis');
   const tResults = useTranslations('results');
 
   useEffect(() => {
@@ -29,38 +30,42 @@ export default function ResultsPage() {
     }
   }, []);
 
+  const getShareImageOptions = () => ({
+    gradientColors: ['#2563eb', '#1e40af'] as [string, string],
+    circleColor1: 'rgba(255, 255, 255, 0.05)',
+    circleColor2: 'rgba(255, 255, 255, 0.08)',
+    mascot: persona?.mascot || '💰',
+    title: "What's your Finotype?",
+    subtitle: 'finotype.vercel.app',
+    brandText: 'Discover your financial personality',
+    filename: `finotype-${persona?.id}-${Date.now()}.png`,
+    shareTitle: "What's your Finotype?",
+    shareText: `Discover your financial personality! https://finotype.vercel.app/${locale}`,
+  });
+
   const handleShare = async () => {
     if (!persona) return;
+    await generateShareImage(getShareImageOptions());
+  };
 
-    const shareUrl = `https://finotype.vercel.app/${locale}`;
-
-    await generateShareImage({
-      gradientColors: ['#2563eb', '#1e40af'],
-      circleColor1: 'rgba(255, 255, 255, 0.05)',
-      circleColor2: 'rgba(255, 255, 255, 0.08)',
-      mascot: persona.mascot,
-      title: "What's your Finotype?",
-      subtitle: 'finotype.vercel.app',
-      brandText: 'Discover your financial personality',
-      filename: `finotype-${persona.id}-${Date.now()}.png`,
-      shareTitle: "What's your Finotype?",
-      shareText: `Discover your financial personality! ${shareUrl}`,
-    });
+  const handleDownload = async () => {
+    if (!persona) return;
+    await downloadShareImage(getShareImageOptions());
   };
 
   if (!persona) return <div className="p-8 text-center">{tResults('calculating')}</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans bg-gradient-professional">
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans" style={{ background: 'var(--gradient-surface)' }}>
       <div className="max-w-3xl w-full space-y-4">
         {displayName && (
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-neutral-900">{tResults('hey', { name: displayName })}, {tResults('yourResults')}</h1>
+            <h1 className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{tResults('hey', { name: displayName })}, {tResults('yourResults')}</h1>
           </div>
         )}
 
         <div className="card-professional rounded-3xl overflow-hidden border-0">
-          <div className="p-8 text-white relative overflow-hidden bg-gradient-professional-blue">
+          <div className="p-8 text-white relative overflow-hidden" style={{ background: 'var(--gradient-primary)' }}>
             <div className="relative z-10 text-center">
               <h2
                 className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
@@ -68,7 +73,15 @@ export default function ResultsPage() {
               >
                 {tResults('yourFinotype')}
               </h2>
-              <div className="text-6xl mb-4">{persona.mascot}</div>
+              <div className="flex justify-center mb-6">
+                <div className="bg-white/20 p-4 rounded-full backdrop-blur-sm">
+                  <img
+                    src="/image/ostrich.png"
+                    alt="Ostrich Mascot"
+                    className="w-24 h-24 object-cover rounded-full"
+                  />
+                </div>
+              </div>
               <div className="text-4xl md:text-5xl font-bold mb-6">{tPersonas(`${persona.id}.name`)}</div>
 
               <div
@@ -96,7 +109,7 @@ export default function ResultsPage() {
 
           <div className="p-8 space-y-8">
             <div>
-              <h3 className="text-xl font-semibold mb-2 text-neutral-900">{tResults('aboutYourType')}</h3>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text)' }}>{tResults('aboutYourType')}</h3>
               <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{tPersonas(`${persona.id}.description`)}</p>
             </div>
           </div>
@@ -105,7 +118,8 @@ export default function ResultsPage() {
         <ResultsButtons
           locale={locale}
           onShare={handleShare}
-          t={tResults}
+          onDownload={handleDownload}
+          t={tAnalysis}
           secondaryButtonText={tResults('seePitfallsAndTips')}
           secondaryButtonHref={`/${locale}/standard/resources`}
         />
