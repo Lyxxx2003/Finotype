@@ -106,17 +106,17 @@ export default function AccountPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-professional">
-        <div className="text-neutral-900" style={{ color: 'var(--color-text-muted)' }}>{t('loading')}</div>
+      <div className="flex items-center justify-center min-h-screen" style={{ background: 'var(--gradient-surface)' }}>
+        <div style={{ color: 'var(--color-text-muted)' }}>{t('loading')}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-professional py-12 px-4">
+    <div className="min-h-screen py-12 px-4" style={{ background: 'var(--gradient-surface)' }}>
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gradient-professional">{t('title')}</h1>
+          <h1 className="text-3xl font-bold" style={{ background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{t('title')}</h1>
           <Link
             href={`/${locale}/pro/game`}
             className="btn-professional-outline text-sm"

@@ -201,7 +201,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-4 bg-gradient-professional">
+      <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-4" style={{ background: 'var(--gradient-surface)' }}>
         <div className="card-professional w-full max-w-md space-y-8 backdrop-blur-md p-10">
           {showForgotPassword ? (
             // Forgot Password Form with professional styling

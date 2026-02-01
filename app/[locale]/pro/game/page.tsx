@@ -334,11 +334,11 @@ export default function GamePage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-professional text-gray-900 p-6 md:p-12 font-sans flex justify-center">
+        <div className="min-h-screen p-6 md:p-12 font-sans flex justify-center" style={{ background: 'var(--gradient-surface)', color: 'var(--color-text)' }}>
             <div className="max-w-4xl w-full">
                 <header className="mb-8 text-center md:text-left flex justify-between items-start">
                     <div>
-                        <h1 className="text-3xl font-bold text-primary mb-2">{t('title')}</h1>
+                        <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--color-primary)' }}>{t('title')}</h1>
                         {isDemoMode && <span className="text-xs font-bold px-2 py-1 rounded-full border" style={{ background: 'rgba(14,165,233,0.1)', color: 'var(--color-accent)', borderColor: 'var(--color-accent)' }}>{t('demoMode')}</span>}
                         <p className="mt-1" style={{ color: 'var(--color-text-secondary)' }}>{t('subtitle')}</p>
                     </div>

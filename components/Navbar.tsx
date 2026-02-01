@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { clearAnswers } from '@/lib/storage';
 import LanguageSwitcher from './LanguageSwitcher';
+import { ThemeToggle } from './ThemeToggle';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -76,6 +77,7 @@ export default function Navbar() {
                   </button>
                 </>
               )}
+              <ThemeToggle />
               <LanguageSwitcher />
             </div>
           </div>
@@ -103,7 +105,8 @@ export default function Navbar() {
                   Finotype Standard
                 </button>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center gap-4">
+                <ThemeToggle />
                 <LanguageSwitcher />
               </div>
             </div>
@@ -189,7 +192,8 @@ export default function Navbar() {
               Finotype
             </Link>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
         </div>

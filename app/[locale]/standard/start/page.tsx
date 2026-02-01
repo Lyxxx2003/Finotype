@@ -21,15 +21,15 @@ export default function StartPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 font-sans bg-gradient-professional">
-      <div className="w-full max-w-md space-y-8 rounded-3xl backdrop-blur-xl border p-10" style={{ background: 'rgba(255,255,255,0.9)', borderColor: 'var(--color-neutral-200)', boxShadow: '0 20px 40px rgba(42,38,34,0.12)' }}>
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 font-sans" style={{ background: 'var(--gradient-surface)' }}>
+      <div className="w-full max-w-md space-y-8 rounded-3xl backdrop-blur-xl border p-10" style={{ background: 'var(--color-surface)', borderColor: 'var(--color-neutral-200)', boxShadow: '0 20px 40px rgba(15,23,42,0.12)' }}>
         <div>
-          <div className="mx-auto w-16 h-16 bg-gradient-professional-blue rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+          <div className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg" style={{ background: 'var(--gradient-primary)' }}>
             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </div>
-          <h2 className="text-center text-3xl font-extrabold text-primary">
+          <h2 className="text-center text-3xl font-extrabold" style={{ color: 'var(--color-primary)' }}>
             {t('welcome')}
           </h2>
           <p className="mt-2 text-center text-sm" style={{ color: 'var(--color-text-secondary)' }}>

@@ -56,16 +56,16 @@ export default function ResultsPage() {
   if (!persona) return <div className="p-8 text-center">{tResults('calculating')}</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans bg-gradient-professional">
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans" style={{ background: 'var(--gradient-surface)' }}>
       <div className="max-w-3xl w-full space-y-4">
         {displayName && (
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-neutral-900">{tResults('hey', { name: displayName })}, {tResults('yourResults')}</h1>
+            <h1 className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{tResults('hey', { name: displayName })}, {tResults('yourResults')}</h1>
           </div>
         )}
 
         <div className="card-professional rounded-3xl overflow-hidden border-0">
-          <div className="p-8 text-white relative overflow-hidden bg-gradient-professional-blue">
+          <div className="p-8 text-white relative overflow-hidden" style={{ background: 'var(--gradient-primary)' }}>
             <div className="relative z-10 text-center">
               <h2
                 className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
@@ -109,7 +109,7 @@ export default function ResultsPage() {
 
           <div className="p-8 space-y-8">
             <div>
-              <h3 className="text-xl font-semibold mb-2 text-neutral-900">{tResults('aboutYourType')}</h3>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text)' }}>{tResults('aboutYourType')}</h3>
               <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{tPersonas(`${persona.id}.description`)}</p>
             </div>
           </div>
