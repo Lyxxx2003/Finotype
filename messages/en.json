@@ -28,6 +28,7 @@
     "resendVerification": "Resend Verification Email",
     "checkEmail": "Check your email for the confirmation link.",
     "verifyEmail": "Please verify your email before signing in. Check your inbox for the confirmation link.",
+    "emailVerified": "Email verified! You can now sign in.",
     "accountExists": "Looks like you already have an account! [reset password] to use email login, or continue with [Google].",
     "verificationSent": "Verification email sent! Please check your inbox.",
     "resetLinkSent": "Password reset link sent! Check your email.",

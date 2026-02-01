@@ -29,7 +29,7 @@ export function AnalysisModal({ selectedJob, selectedTopicOption, onConfirm, onC
             <div className="text-6xl mb-6">
               {selectedJob ? '💼' : '🏠'}
             </div>
-            <h3 className="text-3xl font-bold text-neutral-900 mb-4">
+            <h3 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>
               {selectedJob ? selectedJob.title : selectedTopicOption?.title}
             </h3>
             {selectedJob && (
@@ -63,7 +63,7 @@ export function AnalysisModal({ selectedJob, selectedTopicOption, onConfirm, onC
               style={{
                 borderColor: 'var(--color-neutral-300)',
                 color: 'var(--color-text-secondary)',
-                background: 'white'
+                background: 'var(--color-surface)'
               }}
             >
               {t('goBack')}

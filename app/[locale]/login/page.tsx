@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter, useParams } from 'next/navigation'
+import { useRouter, useParams, useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
@@ -20,6 +20,7 @@ export default function LoginPage() {
   const [showResendVerification, setShowResendVerification] = useState(false)
   const router = useRouter()
   const params = useParams()
+  const searchParams = useSearchParams()
   const locale = params.locale as string
   const t = useTranslations('login')
   const supabase = createClient()
@@ -50,6 +51,12 @@ export default function LoginPage() {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            emailRedirectTo: `${location.origin}/${locale}/auth/callback`,
+            data: {
+              display_name: displayName.trim(),
+            }
+          }
         })
 
         if (error) {
@@ -65,27 +72,18 @@ export default function LoginPage() {
           throw error
         }
 
-        // Create profile with display name for new email sign-ups
-        if (data.user) {
-          // Create profile, marking as NOT verified initially
-          await supabase.from('profiles').insert({
-            id: data.user.id,
-            display_name: displayName.trim(),
-            email_verified: false
-          })
-          
-          // Send verification link (magic link acts as verification)
-          await supabase.auth.signInWithOtp({
-            email,
-            options: {
-              emailRedirectTo: `${location.origin}/auth/callback`,
-            },
-          })
-          
-          // Sign out immediately so they can't log in without verifying
-          await supabase.auth.signOut()
-        }
+        // TODO: maybe allow users to be able to use both email and google
+        // Check if user already exists (no error but no session created)
+        // This happens when email enumeration protection is enabled
+        // if (data?.user && !data.session && data.user.identities?.length === 0) {
+        //   setMessageType('warning')
+        //   setMessage(t('accountExists'))
+        //   setLoading(false)
+        //   return
+        // }
 
+        // Profile will be created in the callback after email confirmation
+        // Supabase automatically sends a confirmation email
         setMessageType('success')
         setMessage(t('checkEmail'))
       } else {
@@ -93,25 +91,21 @@ export default function LoginPage() {
           email,
           password,
         })
-        if (error) throw error
-
-        // Check if profile is verified
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('email_verified')
-          .eq('id', data.user.id)
-          .single()
-
-        // Check verification (default to false if not set)
-        if (!profile?.email_verified) {
-          await supabase.auth.signOut()
-          setMessage(t('verifyEmail'))
-          setMessageType('warning')
-          setShowResendVerification(true)
-          setLoading(false)
-          return
+        
+        if (error) {
+          // Check if error is due to unconfirmed email
+          if (error.message.toLowerCase().includes('email not confirmed')) {
+            setMessageType('warning')
+            setMessage(t('verifyEmail'))
+            setShowResendVerification(true)
+            setLoading(false)
+            return
+          }
+          throw error
         }
 
+        // Successfully signed in - let them in
+        // verified_email is set to TRUE in the callback after they click confirmation email
         router.push(`/${locale}/pro/game`)
       }
     } catch (error: any) {
@@ -142,10 +136,11 @@ export default function LoginPage() {
     setMessage('')
     setMessageType('info')
     try {
-      const { error } = await supabase.auth.signInWithOtp({
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
         email,
         options: {
-          emailRedirectTo: `${location.origin}/auth/callback`
+          emailRedirectTo: `${location.origin}/${locale}/auth/callback`
         },
       })
       if (error) throw error
@@ -163,7 +158,7 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${location.origin}/auth/callback`
+        redirectTo: `${location.origin}/${locale}/auth/callback`
       }
     })
     if (error) {
@@ -399,7 +394,7 @@ export default function LoginPage() {
                 <>
                   <div className="relative">
                     <div className="absolute inset-0 flex items-center"><div className="w-full border-t" style={{ borderColor: 'var(--color-neutral-300)' }}></div></div>
-                    <div className="relative flex justify-center text-sm"><span className="bg-white px-2" style={{ color: 'var(--color-text-muted)' }}>{t('signInWith', { provider: '' }).replace('', '')}</span></div>
+                    <div className="relative flex justify-center text-sm"><span className="px-2" style={{ background: 'var(--color-surface)', color: 'var(--color-text-secondary)' }}>{t('signInWith', { provider: '' }).replace('', '')}</span></div>
                   </div>
 
                   <button

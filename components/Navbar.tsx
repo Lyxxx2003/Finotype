@@ -121,8 +121,9 @@ export default function Navbar() {
             onClick={() => setShowReturnHomeConfirm(false)}
           >
             <div
-              className="bg-white rounded-3xl p-8 max-w-md w-full"
+              className="rounded-3xl p-8 max-w-md w-full"
               style={{
+                background: 'var(--color-surface)',
                 boxShadow: '0 20px 60px rgba(15,23,42,0.2)',
                 border: '2px solid var(--color-neutral-200)'
               }}

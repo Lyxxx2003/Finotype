@@ -38,14 +38,13 @@ export function FamiliarityForm({ onSubmit, t }: FamiliarityFormProps) {
             <button
               key={rating}
               onClick={() => setPostFamiliarity(rating)}
-              className={`flex-1 aspect-square flex items-center justify-center rounded-lg font-semibold text-lg transition-all ${
-                postFamiliarity === rating
-                  ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg scale-110'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-              }`}
+              className="flex-1 aspect-square flex items-center justify-center rounded-lg font-semibold text-lg transition-all"
               style={{
                 minWidth: '40px',
                 maxWidth: '60px',
+                ...(postFamiliarity === rating
+                  ? { background: 'var(--gradient-primary)', color: 'white', boxShadow: '0 4px 12px rgba(59,130,246,0.4)', transform: 'scale(1.1)' }
+                  : { background: 'var(--color-neutral-200)', color: 'var(--color-text-secondary)' })
               }}
             >
               {rating}

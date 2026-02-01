@@ -27,7 +27,7 @@ export default function LanguageSwitcher() {
         onChange={(e) => switchLocale(e.target.value as Locale)}
         className="appearance-none rounded-xl px-4 py-2 pr-8 text-sm font-medium cursor-pointer transition-all duration-300 border-2 hover:shadow-md"
         style={{
-          background: 'white',
+          background: 'var(--color-surface)',
           borderColor: 'var(--color-neutral-300)',
           color: 'var(--color-text)'
         }}

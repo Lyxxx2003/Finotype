@@ -21,7 +21,7 @@ export function EditProfileConfirm({ onConfirm, onCancel, t }: EditProfileConfir
         onClick={e => e.stopPropagation()}
       >
         <div className="text-4xl mb-4 text-center" style={{ color: 'var(--color-accent)' }}>⚠️</div>
-        <h3 className="text-xl font-bold text-center text-neutral-900 mb-2">{t('editProfileTitle')}</h3>
+        <h3 className="text-xl font-bold text-center mb-2" style={{ color: 'var(--color-text)' }}>{t('editProfileTitle')}</h3>
         <p className="text-center mb-6" style={{ color: 'var(--color-text-secondary)' }}>{t('editProfileMessage')}</p>
 
         <div className="space-y-3">

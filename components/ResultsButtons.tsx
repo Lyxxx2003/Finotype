@@ -69,8 +69,10 @@ export function ResultsButtons({ locale, onShare, onDownload, t, secondaryButton
           <div className="absolute bottom-full mb-2 left-0 w-full sm:w-auto sm:min-w-[240px] card-professional overflow-hidden">
             <button
               onClick={() => handleShareOption('share')}
-              className="w-full px-4 py-3 text-left hover:bg-neutral-100 dark:hover:bg-neutral-700 flex items-center gap-3 transition-colors"
+              className="w-full px-4 py-3 text-left flex items-center gap-3 transition-colors"
               style={{ color: 'var(--color-text)' }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-neutral-100)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="18" cy="5" r="3"></circle>
@@ -83,8 +85,10 @@ export function ResultsButtons({ locale, onShare, onDownload, t, secondaryButton
             </button>
             <button
               onClick={() => handleShareOption('download')}
-              className="w-full px-4 py-3 text-left hover:bg-neutral-100 dark:hover:bg-neutral-700 flex items-center gap-3 transition-colors border-t"
+              className="w-full px-4 py-3 text-left flex items-center gap-3 transition-colors border-t"
               style={{ color: 'var(--color-text)', borderColor: 'var(--color-neutral-200)' }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-neutral-100)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>

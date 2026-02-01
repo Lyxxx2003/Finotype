@@ -28,6 +28,7 @@
     "resendVerification": "重新发送验证邮件",
     "checkEmail": "请查看您的邮箱以获取确认链接。",
     "verifyEmail": "登录前请先验证您的邮箱。请查看收件箱中的确认链接。",
+    "emailVerified": "邮箱已验证！您现在可以登录了。",
     "accountExists": "看起来您已经有账户了！[重置密码]以使用邮箱登录，或继续使用[Google]登录。",
     "verificationSent": "验证邮件已发送！请查看您的收件箱。",
     "resetLinkSent": "密码重置链接已发送！请查看您的邮箱。",
