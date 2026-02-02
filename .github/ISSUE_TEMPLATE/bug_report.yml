@@ -20,3 +20,10 @@ body:
     attributes:
       label: Environment
       placeholder: local / Vercel
+
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Screenshots, links, or extra details
+    validations:
+      required: false
