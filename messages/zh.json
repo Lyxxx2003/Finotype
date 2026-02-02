@@ -29,6 +29,8 @@
     "checkEmail": "请查看您的邮箱以获取确认链接。",
     "verifyEmail": "登录前请先验证您的邮箱。请查看收件箱中的确认链接。",
     "emailVerified": "邮箱已验证！您现在可以登录了。",
+    "noAccountExists": "看起来您还没有账户。[注册]或使用[Google]登录。",
+    "wrongPassword": "密码错误。请重试或[重置密码]。",
     "accountExists": "看起来您已经有账户了！[重置密码]以使用邮箱登录，或继续使用[Google]登录。",
     "accountExistsLogin": "看起来您已经有账户了！请[登录]。",
     "accountExistsGoogle": "看起来您使用过 Google。请[使用 Google 登录]或[创建密码]。",

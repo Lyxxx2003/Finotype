@@ -129,6 +129,7 @@ export default function LoginPage() {
         setMessageType('success')
         setMessage(t('checkEmail'))
       } else {
+        // Sign in flow - check if user exists first
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -143,6 +144,41 @@ export default function LoginPage() {
             setLoading(false)
             return
           }
+          
+          // Check if user doesn't exist
+          if (error.message.toLowerCase().includes('invalid login credentials')) {
+            // Try to determine if it's a non-existent user or wrong password
+            try {
+              const checkResponse = await fetch(`/${locale}/api/check-user`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+              })
+              
+              if (checkResponse.ok) {
+                const checkData = await checkResponse.json()
+                
+                if (!checkData.exists) {
+                  // User doesn't exist
+                  setMessageType('warning')
+                  setMessage(t('noAccountExists'))
+                  setLoading(false)
+                  return
+                } else {
+                  // User exists but password is wrong
+                  setMessageType('error')
+                  setMessage(t('wrongPassword'))
+                  setLoading(false)
+                  return
+                }
+              }
+            } catch (checkError) {
+              console.error('Error checking user:', checkError)
+            }
+          }
+          
           throw error
         }
 
@@ -414,6 +450,42 @@ export default function LoginPage() {
                         {t('accountExistsLogin').split('[')[1].split(']')[0]}
                       </button>
                       {t('accountExistsLogin').split(']')[1]}
+                    </>
+                  ) : message === t('noAccountExists') ? (
+                    <>
+                      {t('noAccountExists').split('[')[0]}
+                      <button
+                        onClick={() => {
+                          setIsSignUp(true)
+                          setMessage('')
+                        }}
+                        className="font-semibold underline hover:no-underline"
+                      >
+                        {t('noAccountExists').split('[')[1].split(']')[0]}
+                      </button>
+                      {t('noAccountExists').split(']')[1].split('[')[0]}
+                      <button
+                        onClick={handleGoogleLogin}
+                        className="font-semibold underline hover:no-underline"
+                      >
+                        {t('noAccountExists').split('[')[2].split(']')[0]}
+                      </button>
+                      {t('noAccountExists').split(']')[2]}
+                    </>
+                  ) : message === t('wrongPassword') ? (
+                    <>
+                      {t('wrongPassword').split('[')[0]}
+                      <button
+                        onClick={() => {
+                          setShowForgotPassword(true)
+                          setResetEmail(email)
+                          setMessage('')
+                        }}
+                        className="font-semibold underline hover:no-underline"
+                      >
+                        {t('wrongPassword').split('[')[1].split(']')[0]}
+                      </button>
+                      {t('wrongPassword').split(']')[1]}
                     </>
                   ) : message === t('accountExistsGoogle') ? (
                     <>

@@ -29,6 +29,8 @@
     "checkEmail": "Check your email for the confirmation link.",
     "verifyEmail": "Please verify your email before signing in. Check your inbox for the confirmation link.",
     "emailVerified": "Email verified! You can now sign in.",
+    "noAccountExists": "Looks like you don't have an account. [Sign up] or use [Google].",
+    "wrongPassword": "Wrong password. Try again or [reset password].",
     "accountExists": "Looks like you already have an account! [reset password] to use email login, or continue with [Google].",
     "accountExistsLogin": "Looks like you already have an account. Please [log in].",
     "accountExistsGoogle": "Looks like you used Google. Please [sign in with Google] or [create a password].",
