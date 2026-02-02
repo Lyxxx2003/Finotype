@@ -35,20 +35,31 @@ export function ProfileForm({ profile, setProfile, onSubmit, loading, hasExistin
 
         <div>
           <label className="block font-medium mb-2" style={{ color: 'var(--color-text)' }}>{t('familiarity')}</label>
-          <select
-            required
-            value={profile.familiarity}
-            onChange={e => setProfile({ ...profile, familiarity: e.target.value })}
-            className="w-full border-2 p-3 rounded-xl outline-none transition"
-            style={{ borderColor: 'var(--color-neutral-300)', color: 'var(--color-text)' }}
-            onFocus={(e) => e.currentTarget.style.borderColor = 'var(--color-primary)'}
-            onBlur={(e) => e.currentTarget.style.borderColor = 'var(--color-neutral-300)'}
-          >
-            <option value="">{t('selectFamiliarity')}</option>
-            <option value="Beginner">{t('beginnerLevel')}</option>
-            <option value="Intermediate">{t('intermediateLevel')}</option>
-            <option value="Advanced">{t('advancedLevel')}</option>
-          </select>
+          <div className="space-y-4">
+            <div className="flex justify-between text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+              <span>{t('ratingLow')}</span>
+              <span>{t('ratingHigh')}</span>
+            </div>
+            <div className="flex gap-2 justify-between">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
+                <button
+                  key={rating}
+                  type="button"
+                  onClick={() => setProfile({ ...profile, familiarity: rating.toString() })}
+                  className="flex-1 aspect-square flex items-center justify-center rounded-lg font-semibold text-lg transition-all"
+                  style={{
+                    minWidth: '40px',
+                    maxWidth: '60px',
+                    ...(profile.familiarity === rating.toString()
+                      ? { background: 'var(--gradient-primary)', color: 'white', boxShadow: '0 4px 12px rgba(59,130,246,0.4)', transform: 'scale(1.1)' }
+                      : { background: 'var(--color-neutral-200)', color: 'var(--color-text-secondary)' })
+                  }}
+                >
+                  {rating}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

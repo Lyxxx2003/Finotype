@@ -30,6 +30,8 @@
     "verifyEmail": "Please verify your email before signing in. Check your inbox for the confirmation link.",
     "emailVerified": "Email verified! You can now sign in.",
     "accountExists": "Looks like you already have an account! [reset password] to use email login, or continue with [Google].",
+    "accountExistsLogin": "Looks like you already have an account. Please [log in].",
+    "accountExistsGoogle": "Looks like you used Google. Please [sign in with Google] or [create a password].",
     "verificationSent": "Verification email sent! Please check your inbox.",
     "resetLinkSent": "Password reset link sent! Check your email.",
     "enterEmail": "Enter your email to resend verification link.",
@@ -158,6 +160,8 @@
     "viewFullReport": "View Full Report"
   },
   "game": {
+    "ratingLow": "Not confident at all",
+    "ratingHigh": "Very confident",
     "Housing": "Housing",
     "Credit Cards": "Credit Cards",
     "Investment": "Investments",
