@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter, useParams, useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -48,6 +47,59 @@ export default function LoginPage() {
 
     try {
       if (isSignUp) {
+        // Check if user exists before attempting signup
+        try {
+          const checkResponse = await fetch(`/${locale}/api/check-user`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+          })
+
+          if (checkResponse.ok) {
+            const checkData = await checkResponse.json()
+            
+            if (checkData.exists) {
+              setMessageType('warning')
+              
+              // User has only email/password account
+              if (checkData.hasPassword && !checkData.hasGoogleAuth) {
+                console.log('User has email/password account')
+                setMessage(t('accountExistsLogin'))
+                setLoading(false)
+                return
+              }
+              
+              // User only has Google account
+              if (checkData.hasGoogleAuth && !checkData.hasPassword) {
+                console.log('User has Google account only')
+                setMessage(t('accountExistsGoogle'))
+                setLoading(false)
+                return
+              }
+              
+              // User has both - show general message
+              if (checkData.hasPassword && checkData.hasGoogleAuth) {
+                console.log('User has both email and Google accounts')
+                setMessage(t('accountExists'))
+                setLoading(false)
+                return
+              }
+            } else {
+              console.log('User does not exist, proceeding with signup')
+            }
+          } else {
+            const errorText = await checkResponse.text()
+            console.error('Failed to check user:', errorText)
+            // Continue with signup if check fails - better UX than blocking
+          }
+        } catch (checkError) {
+          console.error('Error checking user:', checkError)
+          // Continue with signup if check fails - better UX than blocking
+        }
+
+        // Proceed with signup if user doesn't exist or check failed
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
@@ -72,21 +124,12 @@ export default function LoginPage() {
           throw error
         }
 
-        // TODO: maybe allow users to be able to use both email and google
-        // Check if user already exists (no error but no session created)
-        // This happens when email enumeration protection is enabled
-        // if (data?.user && !data.session && data.user.identities?.length === 0) {
-        //   setMessageType('warning')
-        //   setMessage(t('accountExists'))
-        //   setLoading(false)
-        //   return
-        // }
-
         // Profile will be created in the callback after email confirmation
         // Supabase automatically sends a confirmation email
         setMessageType('success')
         setMessage(t('checkEmail'))
       } else {
+        // Sign in flow - check if user exists first
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -101,11 +144,63 @@ export default function LoginPage() {
             setLoading(false)
             return
           }
+          
+          // Check if user doesn't exist
+          if (error.message.toLowerCase().includes('invalid login credentials')) {
+            // Try to determine if it's a non-existent user or wrong password
+            try {
+              const checkResponse = await fetch(`/${locale}/api/check-user`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+              })
+              
+              if (checkResponse.ok) {
+                const checkData = await checkResponse.json()
+                
+                if (!checkData.exists) {
+                  // User doesn't exist
+                  setMessageType('warning')
+                  setMessage(t('noAccountExists'))
+                  setLoading(false)
+                  return
+                } else {
+                  // User exists but password is wrong
+                  setMessageType('error')
+                  setMessage(t('wrongPassword'))
+                  setLoading(false)
+                  return
+                }
+              }
+            } catch (checkError) {
+              console.error('Error checking user:', checkError)
+            }
+          }
+          
           throw error
         }
 
+        // Check if email is verified in profiles table
+        if (data?.user) {
+          const { data: profileData } = await supabase
+            .from('profiles')
+            .select('email_verified')
+            .eq('id', data.user.id)
+            .single()
+
+          if (profileData && !profileData.email_verified) {
+            setMessageType('warning')
+            setMessage(t('verifyEmail'))
+            setShowResendVerification(true)
+            setLoading(false)
+            return
+          }
+        }
+
         // Successfully signed in - let them in
-        // verified_email is set to TRUE in the callback after they click confirmation email
+        // email_verified is set to TRUE in the callback after they click confirmation email
         router.push(`/${locale}/pro/game`)
       }
     } catch (error: any) {
@@ -136,19 +231,45 @@ export default function LoginPage() {
     setMessage('')
     setMessageType('info')
     try {
-      const { error } = await supabase.auth.resend({
+      console.log('Resending verification email for:', email)
+      
+      // Check current session before resend
+      const { data: { session: beforeSession } } = await supabase.auth.getSession()
+      console.log('Session before resend:', beforeSession)
+      
+      // Note: Supabase resend doesn't create a session, it just sends the email
+      // The session will be created when the user clicks the confirmation link
+      const { data, error } = await supabase.auth.resend({
         type: 'signup',
         email,
         options: {
           emailRedirectTo: `${location.origin}/${locale}/auth/callback`
         },
       })
+      
+      console.log('Resend response:', { data, error })
+      
+      // Check session after resend
+      const { data: { session: afterSession } } = await supabase.auth.getSession()
+      console.log('Session after resend:', afterSession)
+      
       if (error) throw error
+      
       setMessageType('success')
       setMessage(t('verificationSent'))
+      console.log('Verification email resent successfully. No session expected - user will get session after clicking link.')
     } catch (error: any) {
+      console.error('Resend verification error:', error)
       setMessageType('error')
-      setMessage(error.message || t('resending'))
+      
+      // Handle rate limit error specifically
+      if (error.message && error.message.toLowerCase().includes('seconds')) {
+        const match = error.message.match(/(\d+)\s+seconds?/)
+        const seconds = match ? match[1] : '60'
+        setMessage(t('rateLimitError', { seconds }))
+      } else {
+        setMessage(error.message || t('resending'))
+      }
     } finally {
       setResending(false)
     }
@@ -316,7 +437,79 @@ export default function LoginPage() {
                       messageType === 'info' ? 'alert-info' :
                         'alert-error'
                   }`}>
-                  {message === t('accountExists') ? (
+                  {message === t('accountExistsLogin') ? (
+                    <>
+                      {t('accountExistsLogin').split('[')[0]}
+                      <button
+                        onClick={() => {
+                          setIsSignUp(false)
+                          setMessage('')
+                        }}
+                        className="font-semibold underline hover:no-underline"
+                      >
+                        {t('accountExistsLogin').split('[')[1].split(']')[0]}
+                      </button>
+                      {t('accountExistsLogin').split(']')[1]}
+                    </>
+                  ) : message === t('noAccountExists') ? (
+                    <>
+                      {t('noAccountExists').split('[')[0]}
+                      <button
+                        onClick={() => {
+                          setIsSignUp(true)
+                          setMessage('')
+                        }}
+                        className="font-semibold underline hover:no-underline"
+                      >
+                        {t('noAccountExists').split('[')[1].split(']')[0]}
+                      </button>
+                      {t('noAccountExists').split(']')[1].split('[')[0]}
+                      <button
+                        onClick={handleGoogleLogin}
+                        className="font-semibold underline hover:no-underline"
+                      >
+                        {t('noAccountExists').split('[')[2].split(']')[0]}
+                      </button>
+                      {t('noAccountExists').split(']')[2]}
+                    </>
+                  ) : message === t('wrongPassword') ? (
+                    <>
+                      {t('wrongPassword').split('[')[0]}
+                      <button
+                        onClick={() => {
+                          setShowForgotPassword(true)
+                          setResetEmail(email)
+                          setMessage('')
+                        }}
+                        className="font-semibold underline hover:no-underline"
+                      >
+                        {t('wrongPassword').split('[')[1].split(']')[0]}
+                      </button>
+                      {t('wrongPassword').split(']')[1]}
+                    </>
+                  ) : message === t('accountExistsGoogle') ? (
+                    <>
+                      {t('accountExistsGoogle').split('[')[0]}
+                      <button
+                        onClick={handleGoogleLogin}
+                        className="font-semibold underline hover:no-underline"
+                      >
+                        {t('accountExistsGoogle').split('[')[1].split(']')[0]}
+                      </button>
+                      {t('accountExistsGoogle').split(']')[1].split('[')[0]}
+                      <button
+                        onClick={() => {
+                          setShowForgotPassword(true)
+                          setResetEmail(email)
+                          setMessage('')
+                        }}
+                        className="font-semibold underline hover:no-underline"
+                      >
+                        {t('accountExistsGoogle').split('[')[2].split(']')[0]}
+                      </button>
+                      {t('accountExistsGoogle').split(']')[2]}
+                    </>
+                  ) : message === t('accountExists') ? (
                     <>
                       {t('accountExists').split('[')[0]}
                       <button
@@ -362,9 +555,9 @@ export default function LoginPage() {
 
               {!isSignUp && showResendVerification && (
                 <div className="space-y-3">
-                  <div className="text-center text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                  {/* <div className="text-center text-sm" style={{ color: 'var(--color-text-secondary)' }}>
                     {t('enterEmail')}
-                  </div>
+                  </div> */}
                   <button
                     onClick={handleResendVerification}
                     disabled={resending}
