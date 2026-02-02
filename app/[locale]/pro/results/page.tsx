@@ -9,6 +9,7 @@ import { PersonaCard } from '@/components/pro/results/PersonaCard';
 import { TipsSection } from '@/components/pro/results/TipsSection';
 import { FamiliarityForm } from '@/components/pro/results/FamiliarityForm';
 import { generateShareImage, downloadShareImage } from '@/components/ShareUtil';
+import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
 import { AnalysisState } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
 
@@ -58,17 +59,56 @@ function ResultsContent() {
     brandText: 'Interactive financial personality game',
     filename: `finotype-pro-${Date.now()}.png`,
     shareTitle: "Finotype - Financial Personality Game",
-    shareText: `Simulate your financial future! https://finotype.vercel.app/${locale}`,
+    shareText: `Simulate your financial future! https://finotype.vercel.app`,
+    shareUrl: `https://finotype.vercel.app/${locale}/pro/results?id=${id}`,
   };
 
   const handleShare = async () => {
     if (!analysis) return;
-    await generateShareImage(shareImageOptions);
+    await nativeShare(shareImageOptions);
   };
 
   const handleDownload = async () => {
     if (!analysis) return;
     await downloadShareImage(shareImageOptions);
+  };
+
+  const handleShareLink = async () => {
+    if (!id) return;
+    try {
+      // Call the share API to get shareable link
+      const response = await fetch(`/${locale}/api/share-link`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          resultId: id, 
+          type: 'pro', 
+          locale 
+        }),
+      });
+
+      if (response.ok) {
+        const { shareUrl } = await response.json();
+        await copyShareLink(shareUrl);
+      } else {
+        // Fallback to current URL
+        await copyShareLink(window.location.href);
+      }
+    } catch (error) {
+      console.error('Failed to get share link:', error);
+      // Fallback to current URL
+      await copyShareLink(window.location.href);
+    }
+  };
+
+  const handleShareX = () => {
+    if (!analysis) return;
+    shareToX(shareImageOptions);
+  };
+
+  const handleShareFacebook = () => {
+    if (!analysis) return;
+    shareToFacebook(shareImageOptions);
   };
 
   useEffect(() => {
@@ -203,6 +243,9 @@ function ResultsContent() {
         locale={locale}
         onShare={handleShare}
         onDownload={handleDownload}
+        onShareLink={handleShareLink}
+        onShareX={handleShareX}
+        onShareFacebook={handleShareFacebook}
         t={t}
         secondaryButtonText={t('playAgain')}
         secondaryButtonHref={`/${locale}/pro/game?newGame=true`}
