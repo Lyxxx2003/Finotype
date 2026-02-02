@@ -195,19 +195,45 @@ export default function LoginPage() {
     setMessage('')
     setMessageType('info')
     try {
-      const { error } = await supabase.auth.resend({
+      console.log('Resending verification email for:', email)
+      
+      // Check current session before resend
+      const { data: { session: beforeSession } } = await supabase.auth.getSession()
+      console.log('Session before resend:', beforeSession)
+      
+      // Note: Supabase resend doesn't create a session, it just sends the email
+      // The session will be created when the user clicks the confirmation link
+      const { data, error } = await supabase.auth.resend({
         type: 'signup',
         email,
         options: {
           emailRedirectTo: `${location.origin}/${locale}/auth/callback`
         },
       })
+      
+      console.log('Resend response:', { data, error })
+      
+      // Check session after resend
+      const { data: { session: afterSession } } = await supabase.auth.getSession()
+      console.log('Session after resend:', afterSession)
+      
       if (error) throw error
+      
       setMessageType('success')
       setMessage(t('verificationSent'))
+      console.log('Verification email resent successfully. No session expected - user will get session after clicking link.')
     } catch (error: any) {
+      console.error('Resend verification error:', error)
       setMessageType('error')
-      setMessage(error.message || t('resending'))
+      
+      // Handle rate limit error specifically
+      if (error.message && error.message.toLowerCase().includes('seconds')) {
+        const match = error.message.match(/(\d+)\s+seconds?/)
+        const seconds = match ? match[1] : '60'
+        setMessage(t('rateLimitError', { seconds }))
+      } else {
+        setMessage(error.message || t('resending'))
+      }
     } finally {
       setResending(false)
     }

@@ -36,8 +36,7 @@
     "resetLinkSent": "密码重置链接已发送！请查看您的邮箱。",
     "enterEmail": "输入您的邮箱以重新发送验证链接。",
     "loading": "处理中...",
-    "resending": "发送中...",
-    "passwordTooShort": "密码必须至少为 6 个字符。",
+    "resending": "发送中...",    "rateLimitError": "出于安全考虑，请等待 {seconds} 秒后再请求另一封验证邮件。",    "passwordTooShort": "密码必须至少为 6 个字符。",
     "invalidEmail": "请输入有效的邮箱地址。",
     "authError": "身份验证错误。请重试。"
   },

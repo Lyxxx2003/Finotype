@@ -37,6 +37,7 @@
     "enterEmail": "Enter your email to resend verification link.",
     "loading": "Processing...",
     "resending": "Sending...",
+    "rateLimitError": "For security purposes, please wait {seconds} seconds before requesting another verification email.",
     "passwordTooShort": "Password must be at least 6 characters long.",
     "invalidEmail": "Please enter a valid email address.",
     "authError": "Authentication error occurred. Please try again."

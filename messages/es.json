@@ -35,8 +35,7 @@
     "resetLinkSent": "¡Enlace de restablecimiento de contraseña enviado! Revisa tu correo.",
     "enterEmail": "Ingresa tu correo electrónico para reenviar el enlace de verificación.",
     "loading": "Procesando...",
-    "resending": "Enviando...",
-    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres.",
+    "resending": "Enviando...",    "rateLimitError": "Por razones de seguridad, espera {seconds} segundos antes de solicitar otro correo de verificación.",    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres.",
     "invalidEmail": "Por favor ingresa una dirección de correo válida.",
     "authError": "Error de autenticación. Por favor intenta de nuevo."
   },
