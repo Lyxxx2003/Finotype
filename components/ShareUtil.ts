@@ -13,6 +13,7 @@ export interface ShareImageOptions {
   filename: string;
   shareTitle: string;
   shareText: string;
+  shareUrl?: string; // For link sharing
 }
 
 const createCanvas = (options: ShareImageOptions): HTMLCanvasElement => {
@@ -117,5 +118,105 @@ export const downloadShareImage = async (options: ShareImageOptions) => {
   } catch (err) {
     console.error('Failed to download image', err);
     alert('Failed to download image. Please try again.');
+  }
+};
+
+// Copy share link to clipboard
+export const copyShareLink = async (shareUrl: string) => {
+  try {
+    await navigator.clipboard.writeText(shareUrl);
+    return true;
+  } catch (err) {
+    console.error('Failed to copy link', err);
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = shareUrl;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      return true;
+    } catch (fallbackErr) {
+      document.body.removeChild(textArea);
+      return false;
+    }
+  }
+};
+
+// Share to X (Twitter)
+export const shareToX = (options: ShareImageOptions) => {
+  const text = encodeURIComponent(options.shareText);
+  const url = encodeURIComponent(options.shareUrl || window.location.href);
+  const xUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+  window.open(xUrl, '_blank', 'width=550,height=420');
+};
+
+// Share to Facebook
+export const shareToFacebook = (options: ShareImageOptions) => {
+  const url = encodeURIComponent(options.shareUrl || window.location.href);
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  window.open(facebookUrl, '_blank', 'width=550,height=420');
+};
+
+// Native share (works on macOS/iOS and other supporting browsers)
+export const nativeShare = async (options: ShareImageOptions) => {
+  try {
+    const canvas = createCanvas(options);
+
+    // Convert to blob and share (Messages, Email, AirDrop on macOS/iOS)
+    return new Promise<boolean>((resolve) => {
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          alert("Could not generate image");
+          resolve(false);
+          return;
+        }
+
+        const file = new File([blob], options.filename, { type: 'image/png' });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              title: options.shareTitle,
+              text: options.shareText,
+              files: [file]
+            });
+            resolve(true);
+          } catch (err) {
+            if ((err as Error).name !== 'AbortError') {
+              console.log('Share failed', err);
+            }
+            resolve(false);
+          }
+        } else {
+          // Fallback to URL sharing if file sharing is not supported
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: options.shareTitle,
+                text: options.shareText,
+                url: options.shareUrl || window.location.href,
+              });
+              resolve(true);
+            } catch (err) {
+              if ((err as Error).name !== 'AbortError') {
+                console.log('Share failed', err);
+              }
+              resolve(false);
+            }
+          } else {
+            alert('Sharing is not supported on this device. Please use the Download button instead.');
+            resolve(false);
+          }
+        }
+      }, 'image/png');
+    });
+  } catch (err) {
+    console.error('Failed to generate share image', err);
+    alert('Failed to generate share image. Please try again.');
+    return false;
   }
 };

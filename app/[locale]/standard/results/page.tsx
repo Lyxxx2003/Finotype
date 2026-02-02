@@ -7,6 +7,7 @@ import { personas } from '@/lib/data';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { generateShareImage, downloadShareImage } from '@/components/ShareUtil';
+import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
 import { Persona } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
 
@@ -40,17 +41,33 @@ export default function ResultsPage() {
     brandText: 'Discover your financial personality',
     filename: `finotype-${persona?.id}-${Date.now()}.png`,
     shareTitle: "What's your Finotype?",
-    shareText: `Discover your financial personality! https://finotype.vercel.app/${locale}`,
+    shareText: `Discover your financial personality! https://finotype.vercel.app`,
+    shareUrl: `https://finotype.vercel.app/${locale}/standard/start`,
   });
 
   const handleShare = async () => {
     if (!persona) return;
-    await generateShareImage(getShareImageOptions());
+    await nativeShare(getShareImageOptions());
   };
 
   const handleDownload = async () => {
     if (!persona) return;
     await downloadShareImage(getShareImageOptions());
+  };
+
+  const handleShareLink = async () => {
+    const shareUrl = `https://finotype.vercel.app/${locale}/standard/start`;
+    await copyShareLink(shareUrl);
+  };
+
+  const handleShareX = () => {
+    if (!persona) return;
+    shareToX(getShareImageOptions());
+  };
+
+  const handleShareFacebook = () => {
+    if (!persona) return;
+    shareToFacebook(getShareImageOptions());
   };
 
   if (!persona) return <div className="p-8 text-center">{tResults('calculating')}</div>;
@@ -119,6 +136,9 @@ export default function ResultsPage() {
           locale={locale}
           onShare={handleShare}
           onDownload={handleDownload}
+          onShareLink={handleShareLink}
+          onShareX={handleShareX}
+          onShareFacebook={handleShareFacebook}
           t={tAnalysis}
           secondaryButtonText={tResults('seePitfallsAndTips')}
           secondaryButtonHref={`/${locale}/standard/resources`}
