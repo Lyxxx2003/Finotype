@@ -429,7 +429,7 @@
   "personas": {
     "AFDE": {
       "name": "AFDE",
-      "mascot": "image/AFDE.png",
+      "mascot": "mascot/afde.png",
       "description": "You lean adventurous, future-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -449,7 +449,7 @@
     },
     "AFDN": {
       "name": "AFDN",
-      "mascot": "image/AFDN.png",
+      "mascot": "mascot/afdn.png",
       "description": "You lean adventurous, future-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -469,7 +469,7 @@
     },
     "AFIE": {
       "name": "AFIE",
-      "mascot": "image/AFIE.png",
+      "mascot": "mascot/afie.png",
       "description": "You lean adventurous, future-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -489,7 +489,7 @@
     },
     "AFIN": {
       "name": "AFIN",
-      "mascot": "image/AFIN.png",
+      "mascot": "mascot/afin.png",
       "description": "You lean adventurous, future-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -509,7 +509,7 @@
     },
     "APDE": {
       "name": "APDE",
-      "mascot": "image/APDE.png",
+      "mascot": "mascot/apde.png",
       "description": "You lean adventurous, present-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -529,7 +529,7 @@
     },
     "APDN": {
       "name": "APDN",
-      "mascot": "image/APDN.png",
+      "mascot": "mascot/apdn.png",
       "description": "You lean adventurous, present-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -549,7 +549,7 @@
     },
     "APIE": {
       "name": "APIE",
-      "mascot": "image/APIE.png",
+      "mascot": "mascot/apie.png",
       "description": "You lean adventurous, present-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -569,7 +569,7 @@
     },
     "APIN": {
       "name": "APIN",
-      "mascot": "image/APIN.png",
+      "mascot": "mascot/apin.png",
       "description": "You lean adventurous, present-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -589,7 +589,7 @@
     },
     "GFDE": {
       "name": "GFDE",
-      "mascot": "image/GFDE.png",
+      "mascot": "mascot/gfde.png",
       "description": "You lean guarded, future-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -609,7 +609,7 @@
     },
     "GFDN": {
       "name": "GFDN",
-      "mascot": "image/GFDN.png",
+      "mascot": "mascot/gfdn.png",
       "description": "You lean guarded, future-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -629,7 +629,7 @@
     },
     "GFIE": {
       "name": "GFIE",
-      "mascot": "image/GFIE.png",
+      "mascot": "mascot/gfie.png",
       "description": "You lean guarded, future-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -649,7 +649,7 @@
     },
     "GFIN": {
       "name": "GFIN",
-      "mascot": "image/GFIN.png",
+      "mascot": "mascot/gfin.png",
       "description": "You lean guarded, future-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -669,7 +669,7 @@
     },
     "GPDE": {
       "name": "GPDE",
-      "mascot": "image/GPDE.png",
+      "mascot": "mascot/gpde.png",
       "description": "You lean guarded, present-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -689,7 +689,7 @@
     },
     "GPDN": {
       "name": "GPDN",
-      "mascot": "image/GPDN.png",
+      "mascot": "mascot/gpdn.png",
       "description": "You lean guarded, present-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -709,7 +709,7 @@
     },
     "GPIE": {
       "name": "GPIE",
-      "mascot": "image/GPIE.png",
+      "mascot": "mascot/gpie.png",
       "description": "You lean guarded, present-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",
@@ -729,7 +729,7 @@
     },
     "GPIN": {
       "name": "GPIN",
-      "mascot": "image/GPIN.png",
+      "mascot": "mascot/gpin.png",
       "description": "You lean guarded, present-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
       "strengths": [
         "Clear awareness of your priorities",

@@ -427,7 +427,7 @@
   "personas": {
     "AFDE": {
       "name": "AFDE",
-      "mascot": "image/AFDE.png",
+      "mascot": "mascot/afde.png",
       "description": "Te inclinas a ser aventurero, orientado al futuro, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -447,7 +447,7 @@
     },
     "AFDN": {
       "name": "AFDN",
-      "mascot": "image/AFDN.png",
+      "mascot": "mascot/afdn.png",
       "description": "Te inclinas a ser aventurero, orientado al futuro, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -467,7 +467,7 @@
     },
     "AFIE": {
       "name": "AFIE",
-      "mascot": "image/AFIE.png",
+      "mascot": "mascot/afie.png",
       "description": "Te inclinas a ser aventurero, orientado al futuro, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -487,7 +487,7 @@
     },
     "AFIN": {
       "name": "AFIN",
-      "mascot": "image/AFIN.png",
+      "mascot": "mascot/afin.png",
       "description": "Te inclinas a ser aventurero, orientado al futuro, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -507,7 +507,7 @@
     },
     "APDE": {
       "name": "APDE",
-      "mascot": "image/APDE.png",
+      "mascot": "mascot/apde.png",
       "description": "Te inclinas a ser aventurero, orientado al presente, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -527,7 +527,7 @@
     },
     "APDN": {
       "name": "APDN",
-      "mascot": "image/APDN.png",
+      "mascot": "mascot/apdn.png",
       "description": "Te inclinas a ser aventurero, orientado al presente, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -547,7 +547,7 @@
     },
     "APIE": {
       "name": "APIE",
-      "mascot": "image/APIE.png",
+      "mascot": "mascot/apie.png",
       "description": "Te inclinas a ser aventurero, orientado al presente, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -567,7 +567,7 @@
     },
     "APIN": {
       "name": "APIN",
-      "mascot": "image/APIN.png",
+      "mascot": "mascot/apin.png",
       "description": "Te inclinas a ser aventurero, orientado al presente, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -587,7 +587,7 @@
     },
     "GFDE": {
       "name": "GFDE",
-      "mascot": "image/GFDE.png",
+      "mascot": "mascot/gfde.png",
       "description": "Te inclinas a ser prudente, orientado al futuro, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -607,7 +607,7 @@
     },
     "GFDN": {
       "name": "GFDN",
-      "mascot": "image/GFDN.png",
+      "mascot": "mascot/gfdn.png",
       "description": "Te inclinas a ser prudente, orientado al futuro, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -627,7 +627,7 @@
     },
     "GFIE": {
       "name": "GFIE",
-      "mascot": "image/GFIE.png",
+      "mascot": "mascot/gfie.png",
       "description": "Te inclinas a ser prudente, orientado al futuro, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -647,7 +647,7 @@
     },
     "GFIN": {
       "name": "GFIN",
-      "mascot": "image/GFIN.png",
+      "mascot": "mascot/gfin.png",
       "description": "Te inclinas a ser prudente, orientado al futuro, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -667,7 +667,7 @@
     },
     "GPDE": {
       "name": "GPDE",
-      "mascot": "image/GPDE.png",
+      "mascot": "mascot/gpde.png",
       "description": "Te inclinas a ser prudente, orientado al presente, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -687,7 +687,7 @@
     },
     "GPDN": {
       "name": "GPDN",
-      "mascot": "image/GPDN.png",
+      "mascot": "mascot/gpdn.png",
       "description": "Te inclinas a ser prudente, orientado al presente, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -707,7 +707,7 @@
     },
     "GPIE": {
       "name": "GPIE",
-      "mascot": "image/GPIE.png",
+      "mascot": "mascot/gpie.png",
       "description": "Te inclinas a ser prudente, orientado al presente, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
@@ -727,7 +727,7 @@
     },
     "GPIN": {
       "name": "GPIN",
-      "mascot": "image/GPIN.png",
+      "mascot": "mascot/gpin.png",
       "description": "Te inclinas a ser prudente, orientado al presente, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
       "strengths": [
         "Claridad sobre tus prioridades",
