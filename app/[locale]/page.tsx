@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import { clearAnswers } from "@/lib/psych/storage";
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
+import MascotGallery from '@/components/MascotGallery';
 
 export default function Home() {
   const router = useRouter();
@@ -188,8 +189,72 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </main>
 
-          {/* TODO: Stats section */}
+        {/* Scroll indicator - Animated arrows */}
+        <div 
+          className="mt-6 flex flex-col items-center gap-2 cursor-pointer"
+          style={{ animation: 'fadeInUp 0.8s ease-out 1s both' }}
+          onClick={() => {
+            const gallery = document.querySelector('#mascot-gallery');
+            if (gallery) {
+              window.scrollTo({ top: gallery.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+            }
+          }}
+        >
+          <div className="relative h-8 flex items-center">
+            <svg 
+              width="20" 
+              height="32" 
+              viewBox="0 0 20 32" 
+              className="overflow-visible"
+            >
+              <g style={{ animation: 'arrowDown 1.5s ease-in-out infinite' }}>
+                <path 
+                  d="M 10 0 L 10 20 M 3 13 L 10 20 L 17 13" 
+                  stroke="url(#arrowGradient)" 
+                  strokeWidth="2" 
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </g>
+              <g style={{ animation: 'arrowDown 3s ease-in-out infinite', animationDelay: '0.5s' }}>
+                <path 
+                  d="M 10 0 L 10 20 M 3 13 L 10 20 L 17 13" 
+                  stroke="url(#arrowGradient)" 
+                  strokeWidth="2" 
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  opacity="0.6"
+                />
+              </g>
+              <g style={{ animation: 'arrowDown 1.5s ease-in-out infinite', animationDelay: '1s' }}>
+                <path 
+                  d="M 10 0 L 10 20 M 3 13 L 10 20 L 17 13" 
+                  stroke="url(#arrowGradient)" 
+                  strokeWidth="2" 
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  opacity="0.3"
+                />
+              </g>
+              <defs>
+                <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="rgb(30,64,175)" />
+                  <stop offset="100%" stopColor="rgb(59,130,246)" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+
+        {/* Mascot Gallery Section */}
+        <MascotGallery />
+
+        {/* TODO: Stats section */}
           {/* <div 
             className="grid grid-cols-3 gap-4 sm:gap-6 w-full mt-8"
             style={{ animation: 'fadeInUp 0.8s ease-out 1.2s both' }}
@@ -228,11 +293,11 @@ export default function Home() {
               <div className="text-xs sm:text-sm" style={{ color: 'var(--color-neutral-500)' }}>Rating</div>
             </div>
           </div> */}
-        </main>
+
 
         {/* Footer */}
         <footer
-          className="mt-12 text-sm font-medium transition-all duration-1000"
+          className="mt-8 text-sm font-medium transition-all duration-1000"
           style={{
             animation: 'fadeInUp 0.8s ease-out 1.4s both',
             color: 'var(--color-neutral-500)'
@@ -241,6 +306,23 @@ export default function Home() {
           {t('footer', { year: new Date().getFullYear() })}
         </footer>
       </div>
+
+      {/* Custom CSS for animations */}
+      <style jsx>{`
+        @keyframes arrowDown {
+          0% {
+            transform: translateY(-8px);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(8px);
+            opacity: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 }
