@@ -94,6 +94,7 @@ const loadAndDrawMascot = (canvas: HTMLCanvasElement, mascotPath: string): Promi
       
       resolve();
     };
+    // Fallback if errors
     img.onerror = () => {
       // Fallback to text if image fails
       ctx.font = 'bold 280px Arial';

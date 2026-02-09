@@ -2,28 +2,31 @@
 
 import { useEffect, useState } from 'react';
 import { getAnswers, getDisplayName } from '@/lib/psych/storage';
-import { calculateFinotype } from '@/lib/psych/logic';
+import { calculateFinotype, TraitPercentages } from '@/lib/psych/logic';
 import { personas } from '@/lib/psych/data';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { downloadShareImage } from '@/components/ShareUtil';
 import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
-import { Persona } from '@/types';
+import { Persona, FinancialType } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
 
 export default function ResultsPage() {
   const [persona, setPersona] = useState<Persona | null>(null);
+  const [percentages, setPercentages] = useState<TraitPercentages | null>(null);
   const [displayName, setDisplayName] = useState<string>('');
   const params = useParams();
   const locale = params.locale as string;
   const tPersonas = useTranslations('personas');
   const tAnalysis = useTranslations('analysis');
   const tResults = useTranslations('results');
+  const tTraits = useTranslations('traits');
 
   useEffect(() => {
     const answers = getAnswers();
-    const type = calculateFinotype(answers);
-    setPersona(personas[type]);
+    const result = calculateFinotype(answers);
+    setPersona(personas[result.type]);
+    setPercentages(result.percentages);
 
     const name = getDisplayName();
     if (name) {
@@ -70,7 +73,14 @@ export default function ResultsPage() {
     shareToFacebook(getShareImageOptions());
   };
 
-  if (!persona) return <div className="p-8 text-center">{tResults('calculating')}</div>;
+  if (!persona || !percentages) return <div className="p-8 text-center">{tResults('calculating')}</div>;
+
+  const traitDimensions = [
+    { positive: 'A', negative: 'G' },
+    { positive: 'F', negative: 'P' },
+    { positive: 'D', negative: 'I' },
+    { positive: 'E', negative: 'N' },
+  ];
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans" style={{ background: 'var(--gradient-surface)' }}>
@@ -127,6 +137,43 @@ export default function ResultsPage() {
             <div>
               <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text)' }}>{tResults('aboutYourType')}</h3>
               <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{tPersonas(`${persona.id}.description`)}</p>
+            </div>
+
+            {/* Trait Percentages */}
+            <div>
+              <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--color-text)' }}>{tResults('yourTraits')}</h3>
+              <div className="space-y-4">
+                {traitDimensions.map(({ positive, negative }) => {
+                  const posPercent = percentages[positive as keyof TraitPercentages];
+                  const negPercent = percentages[negative as keyof TraitPercentages];
+                  
+                  return (
+                    <div key={`${positive}-${negative}`} className="space-y-2">
+                      <div className="flex justify-between text-sm font-medium" style={{ color: 'var(--color-text-secondary)' }}>
+                        <span>{tTraits(positive)}</span>
+                        <span>{tTraits(negative)}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold min-w-[3rem]" style={{ color: 'var(--color-text-secondary)' }}>
+                          {posPercent}%
+                        </span>
+                        <div className="flex-1 h-3 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--color-border)' }}>
+                          <div
+                            className="h-full rounded-full transition-all duration-500"
+                            style={{
+                              width: `${posPercent}%`,
+                              background: 'var(--gradient-primary)',
+                            }}
+                          ></div>
+                        </div>
+                        <span className="text-xs font-bold min-w-[3rem] text-right" style={{ color: 'var(--color-text-secondary)' }}>
+                          {negPercent}%
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

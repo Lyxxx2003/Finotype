@@ -121,7 +121,7 @@ export default function QuestionPage() {
 
           {/* Scale Display */}
           {isScale ? (
-            <div className="flex justify-center items-end gap-6 py-8">
+            <div className="flex justify-center items-center gap-6 py-8">
               {question.options.map((option) => {
                 const scaleValue = parseInt(option.value);
                 // Symmetric sizing: 1 and 7 are biggest, 4 is smallest

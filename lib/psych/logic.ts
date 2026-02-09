@@ -19,7 +19,23 @@ const toScale = (answer?: AnswerValue): number | null => {
 const isHigh = (value: number | null) => value !== null && value >= HIGH_THRESHOLD;
 const isLow = (value: number | null) => value !== null && value <= LOW_THRESHOLD;
 
-export function calculateFinotype(answers: Record<number, AnswerValue>): FinancialType {
+export interface TraitPercentages {
+  A: number;
+  G: number;
+  F: number;
+  P: number;
+  D: number;
+  I: number;
+  E: number;
+  N: number;
+}
+
+export interface FinotypeResult {
+  type: FinancialType;
+  percentages: TraitPercentages;
+}
+
+export function calculateFinotype(answers: Record<number, AnswerValue>): FinotypeResult {
   const scores: Record<Trait, number> = {
     A: 0,
     G: 0,
@@ -99,5 +115,33 @@ export function calculateFinotype(answers: Record<number, AnswerValue>): Financi
   const di = pick('D', 'I', 'D');
   const en = pick('E', 'N', 'E');
 
-  return `${ag}${fp}${di}${en}` as FinancialType;
+  // Calculate percentages for each dimension (rescaled)
+  const calculatePercentage = (trait1: Trait, trait2: Trait): [number, number] => {
+    const total = scores[trait1] + scores[trait2];
+    if (total === 0) return [50, 50]; // Default to 50/50 if no data
+    const percent1 = Math.round((scores[trait1] / total) * 100);
+    const percent2 = 100 - percent1;
+    return [percent1, percent2];
+  };
+
+  const [aPercent, gPercent] = calculatePercentage('A', 'G');
+  const [fPercent, pPercent] = calculatePercentage('F', 'P');
+  const [dPercent, iPercent] = calculatePercentage('D', 'I');
+  const [ePercent, nPercent] = calculatePercentage('E', 'N');
+
+  const percentages: TraitPercentages = {
+    A: aPercent,
+    G: gPercent,
+    F: fPercent,
+    P: pPercent,
+    D: dPercent,
+    I: iPercent,
+    E: ePercent,
+    N: nPercent,
+  };
+
+  return {
+    type: `${ag}${fp}${di}${en}` as FinancialType,
+    percentages,
+  };
 }

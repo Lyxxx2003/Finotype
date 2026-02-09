@@ -150,55 +150,12 @@ export const questions: Question[] = [
   },
 ];
 
-const defaultStrengths = [
-  'Clear awareness of your priorities',
-  'Consistent decision patterns you can improve',
-  'Good starting point for targeted financial habits',
-];
-
-const defaultPitfalls = [
-  'Blind spots in the opposite traits',
-  'Overusing one style in all situations',
-  'Letting bias override data',
-];
-
-const defaultTips = [
-  'Balance your dominant traits with small experiments',
-  'Set one measurable money goal per month',
-  'Review decisions quarterly and adjust',
-];
-
-const traitNames: Record<string, string> = {
-  A: 'Adventurous',
-  G: 'Guarded',
-  F: 'Future',
-  P: 'Present',
-  D: 'Disciplined',
-  I: 'Impulsive',
-  E: 'Expert',
-  N: 'Novice',
-};
-
-const traitMascots: Record<string, string> = {
-  A: '🚀',
-  G: '🛡️',
-  F: '🧭',
-  P: '🎯',
-  D: '📏',
-  I: '⚡️',
-  E: '📚',
-  N: '🌱',
-};
-
 const buildPersona = (id: string): Persona => {
   return {
     id: id as Persona['id'],
     name: id,
-    mascot: `image/${id}.png`,
-    description: `You lean ${id}. This combination shapes how you spend, plan, control impulses, and build expertise.`,
-    strengths: defaultStrengths,
-    pitfalls: defaultPitfalls,
-    tips: defaultTips,
+    mascot: `mascot/${id}.png`,
+    description: '', // Description comes from i18n
   };
 };
 

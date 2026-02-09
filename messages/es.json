@@ -275,10 +275,12 @@
     "success": "¡Éxito!",
     "monthly": "por mes",
     "oneTime": "única vez",
-    "account": "Cuenta",    "singleChoice": "Seleccione una opción",
+    "account": "Cuenta",
+    "singleChoice": "Seleccione una opción",
     "selectAll": "Seleccione todas las que apliquen",
     "stronglyDisagree": "Muy en desacuerdo",
-    "stronglyAgree": "Muy de acuerdo",    "signOut": "Cerrar Sesión"
+    "stronglyAgree": "Muy de acuerdo",
+    "signOut": "Cerrar Sesión"
   },
   "results": {
     "hey": "¡Hola {name}! 👋",
@@ -290,7 +292,8 @@
     "returnHome": "Volver al Inicio",
     "calculating": "Calculando tu ADN financiero...",
     "questionOf": "Pregunta {current} de {total}",
-    "back": "Atrás"
+    "back": "Atrás",
+    "yourTraits": "Tus Rasgos Financieros"
   },
   "questions": {
     "1": {
@@ -426,324 +429,62 @@
   },
   "personas": {
     "AFDE": {
-      "name": "AFDE",
-      "mascot": "mascot/afde.png",
-      "description": "Te inclinas a ser aventurero, orientado al futuro, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Estratega principal que utiliza disciplina extrema para navegar el riesgo y construir un imperio financiero."
     },
     "AFDN": {
-      "name": "AFDN",
-      "mascot": "mascot/afdn.png",
-      "description": "Te inclinas a ser aventurero, orientado al futuro, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Ambicioso pero sin experiencia, confía en la intuición y una perseverancia notable para inversiones a largo plazo."
     },
     "AFIE": {
-      "name": "AFIE",
-      "mascot": "mascot/afie.png",
-      "description": "Te inclinas a ser aventurero, orientado al futuro, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Con conocimientos pero ocasionalmente impulsivo, apostará todo por oportunidades futuras que cambien el juego."
     },
     "AFIN": {
-      "name": "AFIN",
-      "mascot": "mascot/afin.png",
-      "description": "Te inclinas a ser aventurero, orientado al futuro, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Sueña con riqueza futura pero tiene memoria corta. No puede controlar los impulsos de gasto y cae repetidamente en esquemas financieros de alto riesgo."
     },
     "APDE": {
-      "name": "APDE",
-      "mascot": "mascot/apde.png",
-      "description": "Te inclinas a ser aventurero, orientado al presente, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Experto de corto plazo extremadamente disciplinado que captura ganancias con precisión en la volatilidad del mercado."
     },
     "APDN": {
-      "name": "APDN",
-      "mascot": "mascot/apdn.png",
-      "description": "Te inclinas a ser aventurero, orientado al presente, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Disfruta de oportunidades frescas para ganar dinero. No muy profesional pero lo suficientemente disciplinado para evitar grandes pérdidas."
     },
     "APIE": {
-      "name": "APIE",
-      "mascot": "mascot/apie.png",
-      "description": "Te inclinas a ser aventurero, orientado al presente, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Entiende el dinero y ama la emoción que trae. Gasta pródigamente mientras gana a través de empresas de alto riesgo."
     },
     "APIN": {
-      "name": "APIN",
-      "mascot": "mascot/apin.png",
-      "description": "Te inclinas a ser aventurero, orientado al presente, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Hedonista clásico que ni entiende ni controla el dinero. Vive el momento."
     },
     "GFDE": {
-      "name": "GFDE",
-      "mascot": "mascot/gfde.png",
-      "description": "Te inclinas a ser prudente, orientado al futuro, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Inversor a largo plazo altamente profesional y disciplinado. Una máquina de capitalización."
     },
     "GFDN": {
-      "name": "GFDN",
-      "mascot": "mascot/gfdn.png",
-      "description": "Te inclinas a ser prudente, orientado al futuro, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "No entiende las finanzas complejas pero acumula riqueza a través de instintos de ahorro y frugalidad."
     },
     "GFIE": {
-      "name": "GFIE",
-      "mascot": "mascot/gfie.png",
-      "description": "Te inclinas a ser prudente, orientado al futuro, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Entiende las finanzas pero tiene resistencia psicológica débil. Piensa a largo plazo pero a menudo ansioso por las oscilaciones del mercado."
     },
     "GFIN": {
-      "name": "GFIN",
-      "mascot": "mascot/gfin.png",
-      "description": "Te inclinas a ser prudente, orientado al futuro, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Extremadamente reacio al riesgo con poco autocontrol. Se niega a participar en finanzas y solo confía en depósitos bancarios."
     },
     "GPDE": {
-      "name": "GPDE",
-      "mascot": "mascot/gpde.png",
-      "description": "Te inclinas a ser prudente, orientado al presente, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Extremadamente astuto, escrutando cada gasto con perspicacia profesional. Vive con rigor extremo."
     },
     "GPDN": {
-      "name": "GPDN",
-      "mascot": "mascot/gpdn.png",
-      "description": "Te inclinas a ser prudente, orientado al presente, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "No quiere estudiar dinero. Vive una vida simple y estable a través de bajos deseos y autodisciplina."
     },
     "GPIE": {
-      "name": "GPIE",
-      "mascot": "mascot/gpie.png",
-      "description": "Te inclinas a ser prudente, orientado al presente, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Conoce todos los trucos financieros pero prioriza los deseos actuales sobre el conocimiento profesional."
     },
     "GPIN": {
-      "name": "GPIN",
-      "mascot": "mascot/gpin.png",
-      "description": "Te inclinas a ser prudente, orientado al presente, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
-      "strengths": [
-        "Claridad sobre tus prioridades",
-        "Patrones de decisión consistentes que puedes mejorar",
-        "Buen punto de partida para hábitos financieros específicos"
-      ],
-      "pitfalls": [
-        "Puntos ciegos en los rasgos opuestos",
-        "Usar un solo estilo en todas las situaciones",
-        "Dejar que el sesgo reemplace los datos"
-      ],
-      "tips": [
-        "Equilibra tus rasgos dominantes con pequeños experimentos",
-        "Establece una meta financiera medible al mes",
-        "Revisa tus decisiones cada trimestre y ajusta"
-      ]
+      "description": "Sigue a la multitud con las finanzas. Teme perder pero quiere comprar. El estado financiero depende completamente del estado de ánimo de hoy."
     }
+  },
+  "traits": {
+    "A": "Aventurero",
+    "G": "Cauteloso",
+    "F": "Orientado al Futuro",
+    "P": "Orientado al Presente",
+    "D": "Disciplinado",
+    "I": "Impulsivo",
+    "E": "Experto",
+    "N": "Novato"
   }
 }
