@@ -84,7 +84,10 @@
     "returnHome": "Return Home",
     "calculating": "Calculating your financial DNA...",
     "questionOf": "Question {current} of {total}",
-    "back": "← Back"
+    "back": "← Back",
+    "loading": "Loading to see how many people are like you...",
+    "percentageLike": "{percentage}% of people are like you!",
+    "firstTest": "You're the very first to test!!"
   },
   "traits": {
     "A": "Adventurous",
