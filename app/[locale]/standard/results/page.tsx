@@ -35,14 +35,14 @@ export default function ResultsPage() {
     gradientColors: ['#2563eb', '#1e40af'] as [string, string],
     circleColor1: 'rgba(255, 255, 255, 0.05)',
     circleColor2: 'rgba(255, 255, 255, 0.08)',
-    mascot: persona?.mascot || '💰',
+    mascot: persona?.mascot || 'image/AFDE.png',
     title: "What's your Finotype?",
     subtitle: 'finotype.vercel.app',
     brandText: 'Discover your financial personality',
     filename: `finotype-${persona?.id}-${Date.now()}.png`,
     shareTitle: "What's your Finotype?",
-    shareText: `Discover your financial personality! https://finotype.vercel.app`,
-    shareUrl: `https://finotype.vercel.app/${locale}/standard/start`,
+    shareText: `I just discovered my Finotype: ${persona?.name}! Discover your financial personality at https://finotype.vercel.app`,
+    shareUrl: `https://finotype.vercel.app/`,
   });
 
   const handleShare = async () => {
@@ -56,7 +56,7 @@ export default function ResultsPage() {
   };
 
   const handleShareLink = async () => {
-    const shareUrl = `https://finotype.vercel.app/${locale}/standard/start`;
+    const shareUrl = `https://finotype.vercel.app/`;
     await copyShareLink(shareUrl);
   };
 
