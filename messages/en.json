@@ -78,12 +78,23 @@
     "yourResults": "Your Results",
     "yourFinotype": "Your Finotype",
     "aboutYourType": "About Your Type",
+    "yourTraits": "Your Financial Traits",
     "shareResult": "Share My Result",
     "seePitfallsAndTips": "See Common Pitfalls & Tips",
     "returnHome": "Return Home",
     "calculating": "Calculating your financial DNA...",
     "questionOf": "Question {current} of {total}",
     "back": "← Back"
+  },
+  "traits": {
+    "A": "Adventurous",
+    "G": "Guarded",
+    "F": "Future-Oriented",
+    "P": "Present-Oriented",
+    "D": "Disciplined",
+    "I": "Impulsive",
+    "E": "Expert",
+    "N": "Novice"
   },
   "account": {
     "title": "Account Settings",
@@ -428,324 +439,52 @@
   },
   "personas": {
     "AFDE": {
-      "name": "AFDE",
-      "mascot": "mascot/afde.png",
-      "description": "You lean adventurous, future-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Top strategist who uses extreme discipline to navigate risk and build a financial empire."
     },
     "AFDN": {
-      "name": "AFDN",
-      "mascot": "mascot/afdn.png",
-      "description": "You lean adventurous, future-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Ambitious yet inexperienced, you rely on intuition and remarkable perseverance for long-term investments, trading time for returns."
     },
     "AFIE": {
-      "name": "AFIE",
-      "mascot": "mascot/afie.png",
-      "description": "You lean adventurous, future-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Knowledgeable but occasionally impulsive, you'll go all-in for future game-changing opportunities."
     },
     "AFIN": {
-      "name": "AFIN",
-      "mascot": "mascot/afin.png",
-      "description": "You lean adventurous, future-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Dreams of future wealth but has a short memory. Can't control spending impulses and repeatedly falls for high-risk financial schemes."
     },
     "APDE": {
-      "name": "APDE",
-      "mascot": "mascot/apde.png",
-      "description": "You lean adventurous, present-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Extremely disciplined short-term expert who precisely captures profits in market volatility."
     },
     "APDN": {
-      "name": "APDN",
-      "mascot": "mascot/apdn.png",
-      "description": "You lean adventurous, present-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Enjoys fresh money-making opportunities. Not very professional but disciplined enough to avoid major losses."
     },
     "APIE": {
-      "name": "APIE",
-      "mascot": "mascot/apie.png",
-      "description": "You lean adventurous, present-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Understands money and loves the thrill it brings. Spends lavishly while earning through high-risk ventures."
     },
     "APIN": {
-      "name": "APIN",
-      "mascot": "mascot/apin.png",
-      "description": "You lean adventurous, present-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Classic hedonist who neither understands nor controls money. Lives for the moment."
     },
     "GFDE": {
-      "name": "GFDE",
-      "mascot": "mascot/gfde.png",
-      "description": "You lean guarded, future-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Highly professional and disciplined long-term investor. A compounding machine."
     },
     "GFDN": {
-      "name": "GFDN",
-      "mascot": "mascot/gfdn.png",
-      "description": "You lean guarded, future-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Doesn't understand complex finance but accumulates wealth through saving and thrift instincts."
     },
     "GFIE": {
-      "name": "GFIE",
-      "mascot": "mascot/gfie.png",
-      "description": "You lean guarded, future-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Understands finance but has weak psychological resilience. Thinks long-term but often anxious about market swings."
     },
     "GFIN": {
-      "name": "GFIN",
-      "mascot": "mascot/gfin.png",
-      "description": "You lean guarded, future-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Extremely risk-averse with poor self-control. Refuses to engage with finances and only trusts bank deposits."
     },
     "GPDE": {
-      "name": "GPDE",
-      "mascot": "mascot/gpde.png",
-      "description": "You lean guarded, present-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Extremely shrewd, scrutinizing every expense with professional insight. Lives with extreme rigor."
     },
     "GPDN": {
-      "name": "GPDN",
-      "mascot": "mascot/gpdn.png",
-      "description": "You lean guarded, present-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Doesn't want to study money. Lives a simple, stable life through low desires and self-discipline."
     },
     "GPIE": {
-      "name": "GPIE",
-      "mascot": "mascot/gpie.png",
-      "description": "You lean guarded, present-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Knows all financial tricks but prioritizes current desires over professional knowledge."
     },
     "GPIN": {
-      "name": "GPIN",
-      "mascot": "mascot/gpin.png",
-      "description": "You lean guarded, present-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
-      "strengths": [
-        "Clear awareness of your priorities",
-        "Consistent decision patterns you can improve",
-        "Good starting point for targeted financial habits"
-      ],
-      "pitfalls": [
-        "Blind spots in the opposite traits",
-        "Overusing one style in all situations",
-        "Letting bias override data"
-      ],
-      "tips": [
-        "Balance your dominant traits with small experiments",
-        "Set one measurable money goal per month",
-        "Review decisions quarterly and adjust"
-      ]
+      "description": "Follows the crowd with finances. Fears loss but wants to buy. Financial state depends entirely on today's mood."
     }
   }
 }

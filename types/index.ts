@@ -16,10 +16,7 @@ export interface Persona {
   id: FinancialType;
   name: string;
   description: string;
-  mascot: string; // Emoji for now
-  strengths: string[];
-  pitfalls: string[];
-  tips: string[];
+  mascot: string; // Path to mascot image
 }
 
 export interface UserProfile {
