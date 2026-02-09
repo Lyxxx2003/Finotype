@@ -8,7 +8,7 @@ import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { downloadShareImage } from '@/components/ShareUtil';
 import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
-import { Persona, FinancialType } from '@/types';
+import { Persona } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
 
 export default function ResultsPage() {
@@ -83,7 +83,7 @@ export default function ResultsPage() {
     gradientColors: ['#2563eb', '#1e40af'] as [string, string],
     circleColor1: 'rgba(255, 255, 255, 0.05)',
     circleColor2: 'rgba(255, 255, 255, 0.08)',
-    mascot: persona?.mascot || 'image/AFDE.png',
+    mascot: persona?.mascot || '💰',
     title: "What's your Finotype?",
     subtitle: 'finotype.vercel.app',
     brandText: 'Discover your financial personality',
@@ -148,7 +148,7 @@ export default function ResultsPage() {
               <div className="flex justify-center mb-6">
                 <div className="bg-white/20 p-4 rounded-full backdrop-blur-sm">
                   <img
-                    src={`/${persona.mascot}`}
+                    src={`/${persona.mascot.toLowerCase()}`}
                     alt={`${persona.name} Mascot`}
                     className="w-24 h-24 object-cover rounded-full"
                   />
