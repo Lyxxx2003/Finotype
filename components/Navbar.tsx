@@ -49,6 +49,15 @@ export default function Navbar() {
             </div>
             <div className="flex items-center gap-4">
               <Link
+                href={`/${locale}/types`}
+                className="text-sm font-semibold transition-colors"
+                style={{ color: 'var(--color-text-secondary)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+              >
+                {t('types')}
+              </Link>
+              <Link
                 href={`/${locale}/resources`}
                 className="text-sm font-semibold transition-colors"
                 style={{ color: 'var(--color-text-secondary)' }}
@@ -99,6 +108,15 @@ export default function Navbar() {
             </div>
             <div className="flex items-center gap-4">
               <Link
+                href={`/${locale}/types`}
+                className="text-sm font-semibold transition-colors"
+                style={{ color: 'var(--color-text-secondary)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+              >
+                {t('types')}
+              </Link>
+              <Link
                 href={`/${locale}/resources`}
                 className="text-sm font-semibold transition-colors"
                 style={{ color: 'var(--color-text-secondary)' }}
@@ -125,6 +143,15 @@ export default function Navbar() {
             <FinotypeLogo locale={locale} />
           </div>
           <div className="flex items-center gap-4">
+            <Link
+              href={`/${locale}/types`}
+              className="text-sm font-semibold transition-colors"
+              style={{ color: 'var(--color-text-secondary)' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+            >
+              {t('types')}
+            </Link>
             <Link
               href={`/${locale}/resources`}
               className="text-sm font-semibold transition-colors"

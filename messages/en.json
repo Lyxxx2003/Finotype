@@ -99,6 +99,13 @@
     "E": "Expert",
     "N": "Novice"
   },
+  "types": {
+    "title": "Financial Personality Types",
+    "subtitle": "Explore the 16 unique financial personality types and discover which one resonates with you.",
+    "cta": "Ready to discover your financial personality?",
+    "takeTest": "Take the Test",
+    "learnMore": "Learn More"
+  },
   "account": {
     "title": "Account Settings",
     "displayName": "Display Name",
@@ -307,7 +314,8 @@
     "stronglyDisagree": "Strongly Disagree",
     "stronglyAgree": "Strongly Agree",
     "signOut": "Sign Out",
-    "resources": "Resources"
+    "resources": "Resources",
+    "types": "Types"
   },
   "questions": {
     "1": {

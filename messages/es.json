@@ -281,7 +281,8 @@
     "stronglyDisagree": "Muy en desacuerdo",
     "stronglyAgree": "Muy de acuerdo",
     "signOut": "Cerrar Sesión",
-    "resources": "Recursos"
+    "resources": "Recursos",
+    "types": "Tipos"
   },
   "results": {
     "hey": "¡Hola {name}! 👋",
@@ -490,6 +491,13 @@
     "I": "Impulsivo",
     "E": "Experto",
     "N": "Novato"
+  },
+  "types": {
+    "title": "Tipos de Personalidad Financiera",
+    "subtitle": "Explora los 16 tipos únicos de personalidad financiera y descubre cuál resuena contigo.",
+    "cta": "¿Listo para descubrir tu personalidad financiera?",
+    "takeTest": "Hacer la Prueba",
+    "learnMore": "Aprende Más"
   },
   "resources": {
     "readMore": "Leer Más",

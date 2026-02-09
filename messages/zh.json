@@ -297,7 +297,8 @@
     "stronglyDisagree": "非常不同意",
     "stronglyAgree": "非常同意",
     "signOut": "退出登录",
-    "resources": "资源"
+    "resources": "资源",
+    "types": "类型"
   },
   "questions": {
     "1": {
@@ -490,6 +491,13 @@
     "I": "冲动型",
     "E": "专家型",
     "N": "新手型"
+  },
+  "types": {
+    "title": "财务性格类型",
+    "subtitle": "探索16种独特的财务性格类型，找到与你共鸣的类型。",
+    "cta": "准备好发现你的财务性格了吗？",
+    "takeTest": "开始测试",
+    "learnMore": "了解更多"
   },
   "resources": {
     "readMore": "阅读更多",
