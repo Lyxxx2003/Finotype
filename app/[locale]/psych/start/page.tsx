@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { saveDisplayName } from '@/lib/storage';
+import { saveDisplayName } from '@/lib/psych/storage';
 import { useTranslations } from 'next-intl';
 
 export default function StartPage() {
@@ -16,7 +16,7 @@ export default function StartPage() {
     e.preventDefault();
     if (name.trim()) {
       saveDisplayName(name.trim());
-      router.push(`/${locale}/standard/question/1`);
+      router.push(`/${locale}/psych/question/1`);
     }
   };
 

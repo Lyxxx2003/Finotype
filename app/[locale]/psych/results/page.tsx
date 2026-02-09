@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getAnswers, getDisplayName } from '@/lib/storage';
-import { calculateFinotype } from '@/lib/logic';
-import { personas } from '@/lib/data';
+import { getAnswers, getDisplayName } from '@/lib/psych/storage';
+import { calculateFinotype } from '@/lib/psych/logic';
+import { personas } from '@/lib/psych/data';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { generateShareImage, downloadShareImage } from '@/components/ShareUtil';
+import { downloadShareImage } from '@/components/ShareUtil';
 import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
 import { Persona } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
@@ -139,8 +139,6 @@ export default function ResultsPage() {
           onShareX={handleShareX}
           onShareFacebook={handleShareFacebook}
           t={tAnalysis}
-          secondaryButtonText={tResults('seePitfallsAndTips')}
-          secondaryButtonHref={`/${locale}/standard/analysis`}
         />
       </div>
     </div>

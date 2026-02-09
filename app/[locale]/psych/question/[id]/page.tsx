@@ -1,7 +1,7 @@
 'use client';
 
-import { questions } from '@/lib/data';
-import { saveAnswer, getAnswers } from '@/lib/storage';
+import { questions } from '@/lib/psych/data';
+import { saveAnswer, getAnswers } from '@/lib/psych/storage';
 import { useRouter, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -66,18 +66,18 @@ export default function QuestionPage() {
     // Small delay for better UX
     setTimeout(() => {
       if (questionId < questions.length) {
-        router.push(`/${locale}/standard/question/${questionId + 1}`);
+        router.push(`/${locale}/psych/question/${questionId + 1}`);
       } else {
-        router.push(`/${locale}/standard/results`);
+        router.push(`/${locale}/psych/results`);
       }
     }, 300);
   };
 
   const handleContinue = () => {
     if (questionId < questions.length) {
-      router.push(`/${locale}/standard/question/${questionId + 1}`);
+      router.push(`/${locale}/psych/question/${questionId + 1}`);
     } else {
-      router.push(`/${locale}/standard/results`);
+      router.push(`/${locale}/psych/results`);
     }
   };
 
@@ -126,7 +126,7 @@ export default function QuestionPage() {
                 const scaleValue = parseInt(option.value);
                 // Symmetric sizing: 1 and 7 are biggest, 4 is smallest
                 const distanceFromCenter = Math.abs(scaleValue - 4);
-                const size = 48 + distanceFromCenter * 10.67; // 48px at center, 80px at extremes
+                const size = 40 + distanceFromCenter * 10.67; // 48px at center, 80px at extremes
                 const isSelected = selectedValues.includes(option.value);
                 
                 return (
@@ -185,7 +185,7 @@ export default function QuestionPage() {
         <div className="mt-8 flex justify-between">
           {questionId > 1 && (
             <button
-              onClick={() => router.push(`/${locale}/standard/question/${questionId - 1}`)}
+              onClick={() => router.push(`/${locale}/psych/question/${questionId - 1}`)}
               className="font-medium cursor-pointer"
               style={{ color: 'var(--color-text-secondary)' }}
               onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-text)'}

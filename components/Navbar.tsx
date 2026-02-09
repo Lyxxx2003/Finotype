@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { clearAnswers } from '@/lib/storage';
+import { clearAnswers } from '@/lib/psych/storage';
 import LanguageSwitcher from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -20,9 +20,9 @@ export default function Navbar() {
   const [showReturnHomeConfirm, setShowReturnHomeConfirm] = useState(false);
   const supabase = createClient();
 
-  // Check if we're in a /pro or /standard route
+  // Check if we're in a /technical or /psych route
   const isProRoute = pathname?.includes('/pro') || false;
-  const isStandardRoute = pathname?.includes('/standard') || false;
+  const isStandardRoute = pathname?.includes('/psych') || false;
 
   useEffect(() => {
     if (isProRoute) {
