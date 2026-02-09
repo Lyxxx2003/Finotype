@@ -41,13 +41,22 @@ export default function Navbar() {
   if (isProRoute) {
     // Pro navbar with Professional aesthetics
     return (
-      <nav className="backdrop-blur-lg border-b sticky top-0 z-50" style={{ background: 'rgba(248,250,252,0.95)', borderColor: 'var(--color-neutral-200)', boxShadow: '0 1px 3px rgba(15,23,42,0.08)', isolation: 'isolate' }}>
+      <nav className="backdrop-blur-lg border-b sticky top-0 z-50 bg-neutral-50/95 dark:bg-neutral-900/95" style={{ borderColor: 'var(--color-neutral-200)', boxShadow: '0 1px 3px rgba(15,23,42,0.08)', isolation: 'isolate' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <FinotypeLogoWithConfirm locale={locale} />
             </div>
             <div className="flex items-center gap-4">
+              <Link
+                href={`/${locale}/resources`}
+                className="text-sm font-semibold transition-colors"
+                style={{ color: 'var(--color-text-secondary)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+              >
+                {t('resources')}
+              </Link>
               {user && (
                 <>
                   <Link
@@ -82,13 +91,22 @@ export default function Navbar() {
   if (isStandardRoute) {
     // Standard navbar with Professional aesthetics
     return (
-      <nav className="backdrop-blur-lg border-b sticky top-0 z-50" style={{ background: 'rgba(248,250,252,0.95)', borderColor: 'var(--color-neutral-200)', boxShadow: '0 1px 3px rgba(15,23,42,0.08)', isolation: 'isolate' }}>
+      <nav className="backdrop-blur-lg border-b sticky top-0 z-50 bg-neutral-50/95 dark:bg-neutral-900/95" style={{ borderColor: 'var(--color-neutral-200)', boxShadow: '0 1px 3px rgba(15,23,42,0.08)', isolation: 'isolate' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <FinotypeLogoWithConfirm locale={locale} />
             </div>
             <div className="flex items-center gap-4">
+              <Link
+                href={`/${locale}/resources`}
+                className="text-sm font-semibold transition-colors"
+                style={{ color: 'var(--color-text-secondary)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+              >
+                {t('resources')}
+              </Link>
               <ThemeToggle />
               <LanguageSwitcher />
             </div>
@@ -100,13 +118,22 @@ export default function Navbar() {
 
   // Default navbar with Professional aesthetics
   return (
-    <nav className="backdrop-blur-lg border-b sticky top-0 z-50" style={{ background: 'rgba(248,250,252,0.95)', borderColor: 'var(--color-neutral-200)', boxShadow: '0 1px 3px rgba(15,23,42,0.08)' }}>
+    <nav className="backdrop-blur-lg border-b sticky top-0 z-50 bg-neutral-50/95 dark:bg-neutral-900/95" style={{ borderColor: 'var(--color-neutral-200)', boxShadow: '0 1px 3px rgba(15,23,42,0.08)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <FinotypeLogo locale={locale} />
           </div>
           <div className="flex items-center gap-4">
+            <Link
+              href={`/${locale}/resources`}
+              className="text-sm font-semibold transition-colors"
+              style={{ color: 'var(--color-text-secondary)' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+            >
+              {t('resources')}
+            </Link>
             <ThemeToggle />
             <LanguageSwitcher />
           </div>

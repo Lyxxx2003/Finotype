@@ -280,7 +280,8 @@
     "selectAll": "Seleccione todas las que apliquen",
     "stronglyDisagree": "Muy en desacuerdo",
     "stronglyAgree": "Muy de acuerdo",
-    "signOut": "Cerrar Sesión"
+    "signOut": "Cerrar Sesión",
+    "resources": "Recursos"
   },
   "results": {
     "hey": "¡Hola {name}! 👋",
@@ -489,5 +490,34 @@
     "I": "Impulsivo",
     "E": "Experto",
     "N": "Novato"
+  },
+  "resources": {
+    "readMore": "Leer Más",
+    "title": "Recursos de Aprendizaje Financiero",
+    "subtitle": "Explora artículos y guías seleccionadas para mejorar tu conocimiento financiero y tomar mejores decisiones.",
+    "card1": {
+      "title": "Entendiendo Tu Personalidad Financiera",
+      "description": "Descubre cómo tus rasgos de personalidad influyen en tus decisiones financieras y aprende estrategias para aprovechar tus fortalezas."
+    },
+    "card2": {
+      "title": "Guardián vs Maverick: ¿Cuál Eres Tú?",
+      "description": "Explora las diferencias fundamentales entre personalidades financieras conservadoras y arriesgadas y lo que significa para tu cartera."
+    },
+    "card3": {
+      "title": "5 Pasos para Mejorar la Alfabetización Financiera",
+      "description": "Una guía práctica para construir conocimientos financieros esenciales, desde conceptos básicos de presupuesto hasta fundamentos de inversión."
+    },
+    "card4": {
+      "title": "Finanzas Conductuales: La Psicología del Dinero",
+      "description": "Aprende cómo los sesgos cognitivos y patrones emocionales afectan tus elecciones financieras y cómo superar errores comunes."
+    },
+    "card5": {
+      "title": "Estrategias de Inversión para Cada Personalidad",
+      "description": "Enfoques de inversión personalizados que se alinean con tu tolerancia al riesgo, objetivos y zona de confort psicológico."
+    },
+    "card6": {
+      "title": "Gestión de Riesgos: Una Guía para Principiantes",
+      "description": "Domina los fundamentos de identificar, evaluar y gestionar riesgos financieros en tu viaje de inversión personal."
+    }
   }
 }

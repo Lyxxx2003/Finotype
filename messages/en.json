@@ -306,7 +306,8 @@
     "selectAll": "Select all that apply",
     "stronglyDisagree": "Strongly Disagree",
     "stronglyAgree": "Strongly Agree",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "resources": "Resources"
   },
   "questions": {
     "1": {
@@ -488,6 +489,35 @@
     },
     "GPIN": {
       "description": "Follows the crowd with finances. Fears loss but wants to buy. Financial state depends entirely on today's mood."
+    }
+  },
+  "resources": {
+    "readMore": "Read More",
+    "title": "Financial Learning Resources",
+    "subtitle": "Explore curated articles and guides to enhance your financial knowledge and make better decisions.",
+    "card1": {
+      "title": "Understanding Your Financial Personality",
+      "description": "Discover how your personality traits influence your financial decisions and learn strategies to leverage your strengths."
+    },
+    "card2": {
+      "title": "Guardian vs Maverick: Which Are You?",
+      "description": "Explore the core differences between conservative and risk-taking financial personalities and what it means for your portfolio."
+    },
+    "card3": {
+      "title": "5 Steps to Improve Financial Literacy",
+      "description": "A practical guide to building essential financial knowledge, from budgeting basics to understanding investment fundamentals."
+    },
+    "card4": {
+      "title": "Behavioral Finance: The Psychology of Money",
+      "description": "Learn how cognitive biases and emotional patterns affect your financial choices and how to overcome common pitfalls."
+    },
+    "card5": {
+      "title": "Investment Strategies for Every Personality",
+      "description": "Tailored investment approaches that align with your risk tolerance, goals, and psychological comfort zone."
+    },
+    "card6": {
+      "title": "Risk Management: A Beginner's Guide",
+      "description": "Master the fundamentals of identifying, assessing, and managing financial risks in your personal investment journey."
     }
   }
 }
