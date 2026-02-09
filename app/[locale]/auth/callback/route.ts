@@ -85,7 +85,7 @@ export async function GET(
 
       // Redirect based on user type
       // OAuth users and verified email users go to /pro/game
-      const redirectPath = `/${detectedLocale}/pro/game`
+      const redirectPath = `/${detectedLocale}/pro/technical`
       
       const forwardedHost = request.headers.get('x-forwarded-host')
       const isLocalEnv = process.env.NODE_ENV === 'development'
