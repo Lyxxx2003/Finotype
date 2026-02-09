@@ -40,7 +40,7 @@ export async function updateSession(request: NextRequest, response?: NextRespons
 
   if (
     !user &&
-    request.nextUrl.pathname.startsWith('/pro') &&
+    request.nextUrl.pathname.startsWith('/technical') &&
     !request.nextUrl.pathname.startsWith('/login')
   ) {
     // no user, potentially respond by redirecting the user to the login page

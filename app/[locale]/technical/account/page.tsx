@@ -118,7 +118,7 @@ export default function AccountPage() {
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold" style={{ background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{t('title')}</h1>
           <Link
-            href={`/${locale}/pro/game`}
+            href={`/${locale}/technical/question`}
             className="btn-professional-outline text-sm"
           >
             ← {t('backToGame')}

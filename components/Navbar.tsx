@@ -21,7 +21,7 @@ export default function Navbar() {
   const supabase = createClient();
 
   // Check if we're in a /technical or /psych route
-  const isProRoute = pathname?.includes('/pro') || false;
+  const isProRoute = pathname?.includes('/technical') || false;
   const isStandardRoute = pathname?.includes('/psych') || false;
 
   useEffect(() => {
@@ -51,14 +51,14 @@ export default function Navbar() {
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-primary)' }}>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-                Finotype Pro
+                Finotype
               </Link>
             </div>
             <div className="flex items-center gap-4">
               {user && (
                 <>
                   <Link
-                    href={`/${locale}/pro/account`}
+                    href={`/${locale}/technical/account`}
                     className="text-sm font-semibold transition-colors"
                     style={{ color: 'var(--color-text-secondary)' }}
                     onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
@@ -102,7 +102,7 @@ export default function Navbar() {
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-primary)' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  Finotype Standard
+                  Finotype
                 </button>
               </div>
               <div className="flex items-center gap-4">
