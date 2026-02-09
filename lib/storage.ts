@@ -1,14 +1,14 @@
 export const STORAGE_KEY = 'finotype_answers';
 export const DISPLAY_NAME_KEY = 'finotype_display_name';
 
-export const saveAnswer = (questionId: number, answer: string) => {
+export const saveAnswer = (questionId: number, answer: string | string[]) => {
   if (typeof window === 'undefined') return;
   const current = getAnswers();
   current[questionId] = answer;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
 };
 
-export const getAnswers = (): Record<number, string> => {
+export const getAnswers = (): Record<number, string | string[]> => {
   if (typeof window === 'undefined') return {};
   const stored = localStorage.getItem(STORAGE_KEY);
   return stored ? JSON.parse(stored) : {};

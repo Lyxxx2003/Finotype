@@ -27,7 +27,8 @@
     "backToSignIn": "Volver a Iniciar Sesión",
     "resendVerification": "Reenviar Correo de Verificación",
     "checkEmail": "Revisa tu correo electrónico para el enlace de confirmación.",
-    "verifyEmail": "Por favor verifica tu correo electrónico antes de iniciar sesión. Revisa tu bandeja de entrada para el enlace de confirmación.",    "emailVerified": "¡Correo verificado! Ahora puedes iniciar sesión.",
+    "verifyEmail": "Por favor verifica tu correo electrónico antes de iniciar sesión. Revisa tu bandeja de entrada para el enlace de confirmación.",
+    "emailVerified": "¡Correo verificado! Ahora puedes iniciar sesión.",
     "noAccountExists": "Parece que no tienes una cuenta. [Regístrate] o usa [Google].",
     "wrongPassword": "Contraseña incorrecta. Intenta de nuevo o [restablece tu contraseña].",
     "accountExists": "¡Parece que ya tienes una cuenta! [restablece tu contraseña] para usar el inicio de sesión por correo, o continúa con [Google].",
@@ -37,7 +38,9 @@
     "resetLinkSent": "¡Enlace de restablecimiento de contraseña enviado! Revisa tu correo.",
     "enterEmail": "Ingresa tu correo electrónico para reenviar el enlace de verificación.",
     "loading": "Procesando...",
-    "resending": "Enviando...",    "rateLimitError": "Por razones de seguridad, espera {seconds} segundos antes de solicitar otro correo de verificación.",    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres.",
+    "resending": "Enviando...",
+    "rateLimitError": "Por razones de seguridad, espera {seconds} segundos antes de solicitar otro correo de verificación.",
+    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres.",
     "invalidEmail": "Por favor ingresa una dirección de correo válida.",
     "authError": "Error de autenticación. Por favor intenta de nuevo."
   },
@@ -95,7 +98,7 @@
     "backToGame": "Volver al Juego"
   },
   "analysis": {
-    "loading":"Cargando...",
+    "loading": "Cargando...",
     "title": "Tu Análisis Financiero",
     "simulationResults": "Resultados de Simulación",
     "hey": "¡Hola {name}! 👋",
@@ -130,7 +133,9 @@
     "confidenceQuestion": "¿Qué tan seguro te sientes sobre finanzas ahora?",
     "ratingLow": "Nada seguro",
     "ratingHigh": "Muy seguro",
-    "selectLevel": "Selecciona nivel...",    "selectFamiliarity": "Selecciona tu nivel...",    "beginnerLevel": "Principiante (¿Qué es un 401k?)",
+    "selectLevel": "Selecciona nivel...",
+    "selectFamiliarity": "Selecciona tu nivel...",
+    "beginnerLevel": "Principiante (¿Qué es un 401k?)",
     "intermediateLevel": "Intermedio (A veces hago presupuesto)",
     "advancedLevel": "Avanzado (Tengo un portafolio diverso)",
     "submit": "Enviar",
@@ -225,9 +230,11 @@
     "continueDemo": "Continuar en Modo Demo",
     "switchToQA": "Cambiar a Prueba Simple de P/R",
     "networkError": "Error de red o límite alcanzado.",
-    "regionBlocked": "IA no disponible en tu región. Por favor usa el Modo Demo.",    "rateLimitError": "Demasiadas solicitudes. Inténtalo de nuevo en un momento.",
+    "regionBlocked": "IA no disponible en tu región. Por favor usa el Modo Demo.",
+    "rateLimitError": "Demasiadas solicitudes. Inténtalo de nuevo en un momento.",
     "apiKeyError": "Error de configuración de API. Por favor, usa el Modo Demo.",
-    "safetyFilterError": "Contenido filtrado por seguridad. Prueba con diferentes entradas.",    "loading": "Cargando...",
+    "safetyFilterError": "Contenido filtrado por seguridad. Prueba con diferentes entradas.",
+    "loading": "Cargando...",
     "currentBalance": "Saldo Actual",
     "housingLoadingDesc": "Donde vives da forma a tu futuro financiero...",
     "creditLoadingDesc": "Las tarjetas de crédito pueden ser herramientas poderosas o trampas peligrosas...",
@@ -285,108 +292,456 @@
   },
   "questions": {
     "1": {
-      "text": "Cuando recibes tu cheque de pago, ¿cuál es tu primer instinto?",
+      "text": "Es fin de semana. Ves un artículo de edición limitada que realmente te gusta, pero cuesta un 30% más que tu presupuesto mensual. ¿Qué harías?",
       "options": {
-        "F": "Transferir inmediatamente una parte al ahorro",
-        "L": "Revisar mi lista de deseos y darme un gusto"
+        "A": "Lo compro de inmediato: si lo pierdo ahora, se acabó.",
+        "B": "Me alejo y reviso el presupuesto del próximo mes para ver si puedo pagarlo.",
+        "C": "Decido que en realidad no lo necesito.",
+        "D": "Reviso su valor de reventa; si se mantiene bien, lo compro."
       }
     },
     "2": {
-      "text": "¿Cómo manejas las compras de supermercado?",
+      "text": "Tienes algo de dinero extra y solo puedes elegir una de las siguientes opciones:",
       "options": {
-        "F": "Me aferro a una lista estricta y busco descuentos",
-        "L": "Compro lo que se ve bien o me inspira"
+        "A": "Invertir en el proyecto de un amigo: podría quintuplicarse en un año o perderse todo.",
+        "B": "Ponerlo en una inversión estable con 4.5% anual garantizado."
       }
     },
     "3": {
-      "text": "Acaba de salir un modelo nuevo de teléfono. Tú...",
+      "text": "Mientras navegas por tu teléfono, ves contenido titulado Cómo Lograr la Libertad Financiera a los 30. ¿Cuál es tu reacción más probable?",
       "options": {
-        "F": "Espero hasta que el actual se rompa completamente",
-        "L": "Considero actualizar si tiene nuevas características geniales"
+        "A": "Estudio con cuidado los conceptos financieros (p. ej., volatilidad, ratio de Sharpe).",
+        "B": "Lo guardo para después, aunque no lo he aplicado.",
+        "C": "Asumo que es marketing de ansiedad y sigo desplazándome.",
+        "D": "Saco papel o calculadora para estimar mi brecha financiera."
       }
     },
     "4": {
-      "text": "Tus amigos te invitan a una cena cara. Tú...",
+      "text": "Un adivino muy preciso te permite ver un momento de tu futuro. ¿Qué es lo que más quieres ver?",
       "options": {
-        "F": "Sugiero una alternativa más barata o declino educadamente",
-        "L": "¡Voy! Las experiencias valen la pena"
+        "A": "Yo a los 60, financieramente seguro con una jubilación bien planificada.",
+        "B": "Yo dentro de un año, gastando libremente en viajes o ocio.",
+        "C": "Confirmación de que las cuentas del próximo mes están totalmente pagadas."
       }
     },
     "5": {
-      "text": "¿Qué significa 'presupuestar' para ti?",
+      "text": "Pides un plato extremadamente caro pero de mal sabor en un restaurante (no reembolsable). ¿Qué haces?",
       "options": {
-        "F": "Un ritual diario que sigo estrictamente",
-        "L": "Una guía vaga que intento tener en mente"
+        "A": "Me lo termino: cada bocado representa dinero.",
+        "B": "Dejo de comer; el dinero ya se perdió y la salud importa más.",
+        "C": "Intento arreglarlo con condimentos, aunque probablemente no sirva."
       }
     },
     "6": {
-      "text": "Si tuvieras $10,000 para invertir, ¿dónde los pondrías?",
+      "text": "Comparado con recibir una gran suma dentro de diez años, me importa más poder disfrutar la vida y viajar libremente ahora.",
       "options": {
-        "C": "Una cuenta de ahorros de alto rendimiento o bonos",
-        "A": "Criptomonedas o una startup de acciones de alto crecimiento"
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7"
       }
     },
     "7": {
-      "text": "¿Cómo te sientes sobre el desplome del mercado de valores?",
+      "text": "Disfruto la emoción de buscar oportunidades en mercados inciertos o volátiles.",
       "options": {
-        "C": "Aterrorizado, podría retirar mi dinero",
-        "A": "¡Emocionado, es una oportunidad de compra!"
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7"
       }
     },
     "8": {
-      "text": "Escuchas sobre una inversión arriesgada con retornos potenciales de 10x. Tú...",
+      "text": "Si gasto de más inesperadamente, siento culpa notable durante varios días.",
       "options": {
-        "C": "Me mantengo alejado, suena como una estafa o apuesta",
-        "A": "Invierto una pequeña cantidad solo para ver qué pasa"
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7"
       }
     },
     "9": {
-      "text": "Al planificar para la jubilación, prefieres...",
+      "text": "¿Cuáles de las siguientes describen tu comportamiento actual? (Selecciona todas las que apliquen.)",
       "options": {
-        "C": "Ingresos estables garantizados",
-        "A": "Máximo crecimiento posible, incluso si es arriesgado"
+        "A": "Me suscribo a al menos dos boletines financieros o informes de investigación profundos.",
+        "B": "Uso herramientas (p. ej., Excel, apps) para seguir mi patrimonio neto.",
+        "C": "Entiendo la asignación de activos y tengo al menos tres tipos de activos.",
+        "D": "Rebalanceo mi portafolio con frecuencia según tendencias del mercado."
       }
     },
     "10": {
-      "text": "Tu conocimiento financiero proviene principalmente de...",
+      "text": "Durante grandes promociones (p. ej., Black Friday), ¿qué comportamientos aplican a ti? (Selecciona todas las que apliquen.)",
       "options": {
-        "C": "Libros establecidos y asesores certificados",
-        "A": "Foros en línea, Twitter/X y tendencias"
+        "A": "Planifico compras con antelación y sigo estrictamente mi lista.",
+        "B": "Me abruman las reglas de descuentos y compro casualmente.",
+        "C": "Me quedo despierto viendo transmisiones y compro por la atmósfera.",
+        "D": "Calculo el precio con descuento y evito comprar si el costo de inventario es alto."
+      }
+    },
+    "11": {
+      "text": "Si recibo dinero inesperado, mi primer pensamiento es cómo gastarlo en lugar de cómo ahorrarlo.",
+      "options": {
+        "Yes": "Sí",
+        "No": "No"
+      }
+    },
+    "12": {
+      "text": "Creo que el seguro es mayormente innecesario o un desperdicio para eventos de baja probabilidad.",
+      "options": {
+        "Yes": "Sí",
+        "No": "No"
+      }
+    },
+    "13": {
+      "text": "Rara vez reviso notificaciones de compras; mis compras suelen iniciarse por búsqueda activa.",
+      "options": {
+        "Yes": "Sí",
+        "No": "No"
+      }
+    },
+    "14": {
+      "text": "Ahorrar ahora se siente inútil porque la inflación erosionará el poder adquisitivo futuro.",
+      "options": {
+        "Yes": "Sí",
+        "No": "No"
+      }
+    },
+    "15": {
+      "text": "Si un activo a largo plazo que poseo cae 20% en un mes, me genera tanta ansiedad que afecta mi sueño.",
+      "options": {
+        "Yes": "Sí",
+        "No": "No"
       }
     }
   },
   "personas": {
-    "FC": {
-      "name": "El Guardián",
-      "mascot": "🛡️",
-      "description": "Eres la base de la estabilidad financiera. Valoras la seguridad sobre el lujo y prefieres un crecimiento constante y predecible.",
-      "strengths": ["Excelente ahorrador", "Preparado para emergencias", "Disciplinado"],
-      "pitfalls": ["La aversión al riesgo puede llevar a pérdidas por inflación", "Oportunidades de crecimiento perdidas", "Puede ser demasiado frugal para disfrutar la vida"],
-      "tips": ["Asigna un pequeño 'presupuesto de diversión' sin culpa", "Explora fondos indexados de bajo costo para vencer la inflación", "Recuerda que el dinero es una herramienta, no solo un marcador"]
+    "AFDE": {
+      "name": "AFDE",
+      "mascot": "image/AFDE.png",
+      "description": "Te inclinas a ser aventurero, orientado al futuro, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
     },
-    "FA": {
-      "name": "El Estratega",
-      "mascot": "♟️",
-      "description": "Eres disciplinado con el gasto pero audaz con la inversión. Ahorras agresivamente para alimentar tus ambiciones de alto crecimiento.",
-      "strengths": ["Alta tasa de ahorro", "Visionario", "Capitaliza el interés compuesto"],
-      "pitfalls": ["Podría tomar riesgos no calculados con ahorros ganados con esfuerzo", "Puede pasar por alto necesidades de liquidez", "Sobreconfianza"],
-      "tips": ["Asegúrate de tener un fondo de emergencia líquido antes de invertir mucho", "Diversifica tus apuestas de alto riesgo", "Equilibra tu portafolio con algunos activos estables"]
+    "AFDN": {
+      "name": "AFDN",
+      "mascot": "image/AFDN.png",
+      "description": "Te inclinas a ser aventurero, orientado al futuro, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
     },
-    "LC": {
-      "name": "El Entusiasta",
-      "mascot": "🎉",
-      "description": "Te encanta disfrutar el momento presente y prefieres que tus inversiones sean seguras y sólidas. Trabajas duro para gastar bien.",
-      "strengths": ["Generoso", "Disfruta la vida", "Evita apostar con dinero"],
-      "pitfalls": ["Baja tasa de ahorro", "Inflación del estilo de vida", "Estrés financiero por falta de colchón"],
-      "tips": ["Automatiza el ahorro antes de ver el dinero", "Usa la regla 50/30/20 para estructurar el gasto", "Encuentra formas de bajo costo de disfrutar tus pasatiempos"]
+    "AFIE": {
+      "name": "AFIE",
+      "mascot": "image/AFIE.png",
+      "description": "Te inclinas a ser aventurero, orientado al futuro, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
     },
-    "LA": {
-      "name": "El Inconformista",
-      "mascot": "🚀",
-      "description": "Vives rápido e inviertes rápido. Alto potencial de ingresos, alto gasto y alta tolerancia al riesgo definen tu estilo.",
-      "strengths": ["No tiene miedo al fracaso", "Ambicioso", "Adaptable"],
-      "pitfalls": ["Alta volatilidad en el patrimonio neto", "Acumulación de deuda", "Falta de seguridad a largo plazo"],
-      "tips": ["Enfócate en la gestión del flujo de caja", "Paga la deuda de alto interés inmediatamente", "Crea una cuenta de red de seguridad 'no tocar'"]
+    "AFIN": {
+      "name": "AFIN",
+      "mascot": "image/AFIN.png",
+      "description": "Te inclinas a ser aventurero, orientado al futuro, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "APDE": {
+      "name": "APDE",
+      "mascot": "image/APDE.png",
+      "description": "Te inclinas a ser aventurero, orientado al presente, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "APDN": {
+      "name": "APDN",
+      "mascot": "image/APDN.png",
+      "description": "Te inclinas a ser aventurero, orientado al presente, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "APIE": {
+      "name": "APIE",
+      "mascot": "image/APIE.png",
+      "description": "Te inclinas a ser aventurero, orientado al presente, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "APIN": {
+      "name": "APIN",
+      "mascot": "image/APIN.png",
+      "description": "Te inclinas a ser aventurero, orientado al presente, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "GFDE": {
+      "name": "GFDE",
+      "mascot": "image/GFDE.png",
+      "description": "Te inclinas a ser prudente, orientado al futuro, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "GFDN": {
+      "name": "GFDN",
+      "mascot": "image/GFDN.png",
+      "description": "Te inclinas a ser prudente, orientado al futuro, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "GFIE": {
+      "name": "GFIE",
+      "mascot": "image/GFIE.png",
+      "description": "Te inclinas a ser prudente, orientado al futuro, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "GFIN": {
+      "name": "GFIN",
+      "mascot": "image/GFIN.png",
+      "description": "Te inclinas a ser prudente, orientado al futuro, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "GPDE": {
+      "name": "GPDE",
+      "mascot": "image/GPDE.png",
+      "description": "Te inclinas a ser prudente, orientado al presente, disciplinado y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "GPDN": {
+      "name": "GPDN",
+      "mascot": "image/GPDN.png",
+      "description": "Te inclinas a ser prudente, orientado al presente, disciplinado y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "GPIE": {
+      "name": "GPIE",
+      "mascot": "image/GPIE.png",
+      "description": "Te inclinas a ser prudente, orientado al presente, impulsivo y experto. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
+    },
+    "GPIN": {
+      "name": "GPIN",
+      "mascot": "image/GPIN.png",
+      "description": "Te inclinas a ser prudente, orientado al presente, impulsivo y novato. Esta combinación influye en cómo gastas, planificas, controlas impulsos y construyes conocimiento.",
+      "strengths": [
+        "Claridad sobre tus prioridades",
+        "Patrones de decisión consistentes que puedes mejorar",
+        "Buen punto de partida para hábitos financieros específicos"
+      ],
+      "pitfalls": [
+        "Puntos ciegos en los rasgos opuestos",
+        "Usar un solo estilo en todas las situaciones",
+        "Dejar que el sesgo reemplace los datos"
+      ],
+      "tips": [
+        "Equilibra tus rasgos dominantes con pequeños experimentos",
+        "Establece una meta financiera medible al mes",
+        "Revisa tus decisiones cada trimestre y ajusta"
+      ]
     }
   }
 }

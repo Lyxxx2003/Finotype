@@ -30,9 +30,13 @@ export default function AnalysisPage() {
       <div className="max-w-4xl w-full">
         <header className="mb-12 border-b pb-8 flex justify-between items-center" style={{ borderColor: 'var(--color-neutral-200)' }}>
           <div className="flex items-center gap-4">
-            <span className="text-4xl">{persona.mascot}</span>
+            <img
+              src={`/${persona.mascot}`}
+              alt={`${persona.name} Mascot`}
+              className="w-16 h-16 object-cover rounded-full"
+            />
             <div>
-              <h1 className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{t('typeAnalysis', { name: tPersonas(`${persona.id}.name`) })}</h1>
+              <h1 className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{t('typeAnalysis', { name: persona.name })}</h1>
               <p style={{ color: 'var(--color-text-secondary)' }}>{t('finotypeLabel', { type: persona.id })}</p>
             </div>
           </div>

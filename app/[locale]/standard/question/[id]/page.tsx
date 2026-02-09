@@ -9,9 +9,10 @@ import { useTranslations } from 'next-intl';
 export default function QuestionPage() {
   const params = useParams();
   const router = useRouter();
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string | string[] | null>(null);
   const t = useTranslations('questions');
   const tResults = useTranslations('results');
+  const tCommon = useTranslations('common');
 
   // Parse ID safely
   const idParam = Array.isArray(params.id) ? params.id[0] : params.id;
@@ -19,6 +20,12 @@ export default function QuestionPage() {
   const locale = params.locale as string;
 
   const question = questions.find(q => q.id === questionId);
+  const isMultiSelect = Boolean(question?.multiSelect);
+  const selectedValues = Array.isArray(selectedOption)
+    ? selectedOption
+    : selectedOption
+      ? [selectedOption]
+      : [];
 
   // Load existing answer if any
   useEffect(() => {
@@ -40,6 +47,17 @@ export default function QuestionPage() {
   }
 
   const handleOptionSelect = (value: string) => {
+    if (isMultiSelect) {
+      const current = Array.isArray(selectedOption) ? selectedOption : [];
+      const next = current.includes(value)
+        ? current.filter((item) => item !== value)
+        : [...current, value];
+
+      setSelectedOption(next);
+      saveAnswer(questionId, next);
+      return;
+    }
+
     setSelectedOption(value);
     saveAnswer(questionId, value);
 
@@ -51,6 +69,14 @@ export default function QuestionPage() {
         router.push(`/${locale}/standard/results`);
       }
     }, 300);
+  };
+
+  const handleContinue = () => {
+    if (questionId < questions.length) {
+      router.push(`/${locale}/standard/question/${questionId + 1}`);
+    } else {
+      router.push(`/${locale}/standard/results`);
+    }
   };
 
   const currentStep = questionId;
@@ -77,19 +103,29 @@ export default function QuestionPage() {
                 key={index}
                 onClick={() => handleOptionSelect(option.value)}
                 className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer
-                  ${selectedOption === option.value
+                  ${selectedValues.includes(option.value)
                     ? 'text-white bg-gradient-professional-blue'
                     : 'hover:scale-[1.02]'
                   }`}
                 style={{
-                  borderColor: selectedOption === option.value ? 'var(--color-primary)' : 'var(--color-neutral-200)',
-                  color: selectedOption === option.value ? 'white' : 'var(--color-text)'
+                  borderColor: selectedValues.includes(option.value) ? 'var(--color-primary)' : 'var(--color-neutral-200)',
+                  color: selectedValues.includes(option.value) ? 'white' : 'var(--color-text)'
                 }}
               >
                 {t(`${questionId}.options.${option.value}`)}
               </button>
             ))}
           </div>
+
+          {isMultiSelect && (
+            <button
+              onClick={handleContinue}
+              disabled={selectedValues.length === 0}
+              className="btn-professional-primary mt-6 w-full disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {tCommon('continue')}
+            </button>
+          )}
         </div>
 
         <div className="mt-8 flex justify-between">

@@ -93,13 +93,13 @@ export default function ResultsPage() {
               <div className="flex justify-center mb-6">
                 <div className="bg-white/20 p-4 rounded-full backdrop-blur-sm">
                   <img
-                    src="/image/ostrich.png"
-                    alt="Ostrich Mascot"
+                    src={`/${persona.mascot}`}
+                    alt={`${persona.name} Mascot`}
                     className="w-24 h-24 object-cover rounded-full"
                   />
                 </div>
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-6">{tPersonas(`${persona.id}.name`)}</div>
+              <div className="text-4xl md:text-5xl font-bold mb-6">{persona.name}</div>
 
               <div
                 className="inline-block backdrop-blur-sm rounded-xl px-6 py-3 border"

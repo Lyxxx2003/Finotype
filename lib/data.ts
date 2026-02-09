@@ -1,125 +1,214 @@
 import { Question, Persona } from '@/types';
 
 export const questions: Question[] = [
-  // Spending Habits (Frugal vs Lavish)
   {
     id: 1,
-    text: "When you receive your paycheck, what is your first instinct?",
+    text: "It’s the weekend. You see a limited-edition item you really like, but it costs 30% more than your monthly budget. What would you do?",
     options: [
-      { label: "Immediately transfer a portion to savings", value: 'F' },
-      { label: "Check my wish list and treat myself", value: 'L' },
+      { label: "Buy it immediately — if I miss it now, it’s gone.", value: 'A' },
+      { label: "Walk away and review next month’s budget to see if I can afford it.", value: 'B' },
+      { label: "Decide I don’t really need it after all.", value: 'C' },
+      { label: "Check its resale value; if it holds value well, I’ll buy it.", value: 'D' },
     ],
   },
   {
     id: 2,
-    text: "How do you handle grocery shopping?",
+    text: "You have some spare cash and can choose only one of the following:",
     options: [
-      { label: "I stick to a strict list and look for discounts", value: 'F' },
-      { label: "I buy whatever looks good or inspires me", value: 'L' },
+      { label: "Invest in a friend’s project — it could increase fivefold in one year or lose everything.", value: 'A' },
+      { label: "Put it into a stable investment with a guaranteed 4.5% annual return.", value: 'B' },
     ],
   },
   {
     id: 3,
-    text: "A new phone model just came out. You...",
+    text: "While scrolling on your phone, you see content titled “How to Achieve Financial Freedom by Age 30.” What is your most likely reaction?",
     options: [
-      { label: "Wait until my current one completely dies", value: 'F' },
-      { label: "Consider upgrading if it has cool new features", value: 'L' },
+      { label: "Carefully study the financial concepts mentioned (e.g., volatility, Sharpe ratio).", value: 'A' },
+      { label: "Save it for later, though I haven’t put it into practice.", value: 'B' },
+      { label: "Assume it’s anxiety-driven marketing and scroll past.", value: 'C' },
+      { label: "Take out paper or a calculator to estimate my own financial gap.", value: 'D' },
     ],
   },
   {
     id: 4,
-    text: "Your friends invite you to an expensive dinner. You...",
+    text: "A highly accurate fortune-teller lets you see one moment of your future. What do you most want to see?",
     options: [
-      { label: "Suggest a cheaper alternative or declilne politely", value: 'F' },
-      { label: "Go along! Experiences are worth paying for", value: 'L' },
+      { label: "Myself at age 60, financially secure with a well-planned retirement.", value: 'A' },
+      { label: "Myself one year from now, freely spending this money on travel or leisure.", value: 'B' },
+      { label: "Confirmation that next month’s bills are fully paid.", value: 'C' },
     ],
   },
   {
     id: 5,
-    text: "What does 'budgeting' mean to you?",
+    text: "You order an extremely expensive but bad-tasting dish at a restaurant (non-refundable). What do you do?",
     options: [
-      { label: "A daily ritual I strictly follow", value: 'F' },
-      { label: "A vague guideline I try to keep in mind", value: 'L' },
+      { label: "Finish it — every bite represents money.", value: 'A' },
+      { label: "Stop eating; the money is already gone, and my health matters more.", value: 'B' },
+      { label: "Try to fix it with extra seasoning, even if it likely won’t help.", value: 'C' },
     ],
   },
-  // Investment Risk (Cautious vs Adventurous)
   {
     id: 6,
-    text: "If you had $10,000 to invest, where would you put it?",
+    text: "Compared to having a large sum of money ten years from now, I care more about being able to enjoy life and travel freely right now.",
     options: [
-      { label: "A high-yield savings account or bonds", value: 'C' },
-      { label: "Crypto or a high-growth stock startup", value: 'A' },
+      { label: "1", value: '1' },
+      { label: "2", value: '2' },
+      { label: "3", value: '3' },
+      { label: "4", value: '4' },
+      { label: "5", value: '5' },
+      { label: "6", value: '6' },
+      { label: "7", value: '7' },
     ],
   },
   {
     id: 7,
-    text: "How do you feel about the stock market crashing?",
+    text: "I enjoy the excitement of searching for opportunities in uncertain or volatile markets.",
     options: [
-      { label: "Terrified, I might pull my money out", value: 'C' },
-      { label: "Excited, it's a buying opportunity!", value: 'A' },
+      { label: "1", value: '1' },
+      { label: "2", value: '2' },
+      { label: "3", value: '3' },
+      { label: "4", value: '4' },
+      { label: "5", value: '5' },
+      { label: "6", value: '6' },
+      { label: "7", value: '7' },
     ],
   },
   {
     id: 8,
-    text: "You hear about a risky investment with potential 10x returns. You...",
+    text: "If I overspend unexpectedly, I feel noticeable guilt for several days afterward.",
     options: [
-      { label: "Stay away, it sounds like a scam or gamble", value: 'C' },
-      { label: "Invest a small amount just to see what happens", value: 'A' },
+      { label: "1", value: '1' },
+      { label: "2", value: '2' },
+      { label: "3", value: '3' },
+      { label: "4", value: '4' },
+      { label: "5", value: '5' },
+      { label: "6", value: '6' },
+      { label: "7", value: '7' },
     ],
   },
   {
     id: 9,
-    text: "When planning for retirement, you prefer...",
+    text: "Which of the following describe your current behavior? (Select all that apply.)",
     options: [
-      { label: "Guaranteed stable income", value: 'C' },
-      { label: "Maximum possible growth, even if risky", value: 'A' },
+      { label: "I subscribe to at least two in-depth finance newsletters or research reports.", value: 'A' },
+      { label: "I regularly use tools (e.g., Excel, apps) to track my net worth.", value: 'B' },
+      { label: "I understand asset allocation and hold at least three different asset types.", value: 'C' },
+      { label: "I frequently rebalance my portfolio based on market trends.", value: 'D' },
     ],
+    multiSelect: true,
   },
   {
     id: 10,
-    text: "Your financial knowledge mainly comes from...",
+    text: "During large promotions (e.g., Black Friday), which behaviors apply to you? (Select all that apply.)",
     options: [
-      { label: "Established books and certified advisors", value: 'C' },
-      { label: "Online forums, Twitter/X, and trends", value: 'A' },
+      { label: "I plan purchases in advance and stick strictly to my list.", value: 'A' },
+      { label: "I feel overwhelmed by discount rules and buy casually.", value: 'B' },
+      { label: "I stay up late watching livestreams and buy due to the atmosphere.", value: 'C' },
+      { label: "I calculate post-discount prices and avoid buying if the cost of holding inventory is too high.", value: 'D' },
+    ],
+    multiSelect: true,
+  },
+  {
+    id: 11,
+    text: "If I suddenly receive unexpected money, my first thought is how to spend it rather than how to save it.",
+    options: [
+      { label: "Yes", value: 'Yes' },
+      { label: "No", value: 'No' },
+    ],
+  },
+  {
+    id: 12,
+    text: "I believe insurance is mostly unnecessary or a waste of money for low-probability events.",
+    options: [
+      { label: "Yes", value: 'Yes' },
+      { label: "No", value: 'No' },
+    ],
+  },
+  {
+    id: 13,
+    text: "I rarely check shopping app notifications; my purchases are usually initiated by active searching.",
+    options: [
+      { label: "Yes", value: 'Yes' },
+      { label: "No", value: 'No' },
+    ],
+  },
+  {
+    id: 14,
+    text: "Saving money now feels meaningless because inflation will erode future purchasing power anyway.",
+    options: [
+      { label: "Yes", value: 'Yes' },
+      { label: "No", value: 'No' },
+    ],
+  },
+  {
+    id: 15,
+    text: "If a long-term asset I hold drops 20% in a single month, I become so anxious that it affects my sleep.",
+    options: [
+      { label: "Yes", value: 'Yes' },
+      { label: "No", value: 'No' },
     ],
   },
 ];
 
-export const personas: Record<string, Persona> = {
-  'FC': {
-    id: 'FC',
-    name: "The Guardian",
-    mascot: "🛡️",
-    description: "You are the bedrock of financial stability. You value security over luxury and prefer steady, predictable growth.",
-    strengths: ["Excellent saver", "Prepared for emergencies", "Disciplined"],
-    pitfalls: ["Risk aversion may lead to inflation loss", "Missed opportunities for growth", "Can be too frugal to enjoy life"],
-    tips: ["Allocate a small 'fun budget' guilt-free", "Explore low-cost index funds to beat inflation", "Remember that money is a tool, not just a scoreboard"],
-  },
-  'FA': {
-    id: 'FA',
-    name: "The Strategist",
-    mascot: "♟️",
-    description: "You are disciplined with spending but bold with investing. You save aggressively to fuel your high-growth ambitions.",
-    strengths: ["High savings rate", "Forward-thinking", "Capitalizes on compound interest"],
-    pitfalls: ["Might take uncalculated risks with hard-earned savings", "Can overlook liquidity needs", "Overconfidence"],
-    tips: ["Ensure you have a liquid emergency fund before heavy investing", "Diversify your high-risk bets", "Balance your portfolio with some stable assets"],
-  },
-  'LC': {
-    id: 'LC',
-    name: "The Enthusiast",
-    mascot: "🎉",
-    description: "You love to enjoy the present moment and prefer your investments to be safe and sound. You work hard to spend well.",
-    strengths: ["Generous", "Enjoys life", "Avoids gambling with money"],
-    pitfalls: ["Low savings rate", "Lifestyle creep", "Financial stress from lack of buffer"],
-    tips: ["Automate savings before you see the money", "Use the 50/30/20 rule to structure spending", "Find low-cost ways to enjoy your hobbies"],
-  },
-  'LA': {
-    id: 'LA',
-    name: "The Maverick",
-    mascot: "🚀",
-    description: "You live fast and invest fast. High earning potential, high spending, and high risk tolerance define your style.",
-    strengths: ["Not afraid of failure", "Ambitious", "Adaptable"],
-    pitfalls: ["High volatility in net worth", "Debt accumulation", "Lack of long-term security"],
-    tips: ["Focus on cash flow management", "Pay off high-interest debt immediately", "Create a 'do not touch' safety net account"],
-  },
+const defaultStrengths = [
+  'Clear awareness of your priorities',
+  'Consistent decision patterns you can improve',
+  'Good starting point for targeted financial habits',
+];
+
+const defaultPitfalls = [
+  'Blind spots in the opposite traits',
+  'Overusing one style in all situations',
+  'Letting bias override data',
+];
+
+const defaultTips = [
+  'Balance your dominant traits with small experiments',
+  'Set one measurable money goal per month',
+  'Review decisions quarterly and adjust',
+];
+
+const traitNames: Record<string, string> = {
+  A: 'Adventurous',
+  G: 'Guarded',
+  F: 'Future',
+  P: 'Present',
+  D: 'Disciplined',
+  I: 'Impulsive',
+  E: 'Expert',
+  N: 'Novice',
 };
+
+const traitMascots: Record<string, string> = {
+  A: '🚀',
+  G: '🛡️',
+  F: '🧭',
+  P: '🎯',
+  D: '📏',
+  I: '⚡️',
+  E: '📚',
+  N: '🌱',
+};
+
+const buildPersona = (id: string): Persona => {
+  return {
+    id: id as Persona['id'],
+    name: id,
+    mascot: `image/${id}.png`,
+    description: `You lean ${id}. This combination shapes how you spend, plan, control impulses, and build expertise.`,
+    strengths: defaultStrengths,
+    pitfalls: defaultPitfalls,
+    tips: defaultTips,
+  };
+};
+
+const personaIds = [
+  'AFDE', 'AFDN', 'AFIE', 'AFIN',
+  'APDE', 'APDN', 'APIE', 'APIN',
+  'GFDE', 'GFDN', 'GFIE', 'GFIN',
+  'GPDE', 'GPDN', 'GPIE', 'GPIN',
+];
+
+export const personas: Record<string, Persona> = Object.fromEntries(
+  personaIds.map((id) => [id, buildPersona(id)])
+);
