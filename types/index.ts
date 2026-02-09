@@ -1,12 +1,15 @@
-export type FinancialType = 'FC' | 'FA' | 'LC' | 'LA';
+export type FinancialType = `${'A' | 'G'}${'F' | 'P'}${'D' | 'I'}${'E' | 'N'}`;
+
+export type AnswerValue = string | string[];
 
 export interface Question {
   id: number;
   text: string;
   options: {
     label: string;
-    value: 'F' | 'L' | 'C' | 'A'; // Scoring towards specific trait
+    value: string; // Option key used for scoring and i18n
   }[];
+  multiSelect?: boolean;
 }
 
 export interface Persona {

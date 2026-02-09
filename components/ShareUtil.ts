@@ -48,16 +48,11 @@ const createCanvas = (options: ShareImageOptions): HTMLCanvasElement => {
   ctx.arc(900, 900, 250, 0, Math.PI * 2);
   ctx.fill();
 
-  // Mascot emoji (large)
-  ctx.font = 'bold 280px Arial';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText(options.mascot, canvas.width / 2, 420);
-
   // Title text
   ctx.font = `bold ${titleFontSize}px system-ui, -apple-system, sans-serif`;
   ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText(options.title, canvas.width / 2, 680);
 
   // Website URL
@@ -73,9 +68,49 @@ const createCanvas = (options: ShareImageOptions): HTMLCanvasElement => {
   return canvas;
 };
 
+const loadAndDrawMascot = (canvas: HTMLCanvasElement, mascotPath: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      reject(new Error('No canvas context'));
+      return;
+    }
+
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      // Draw mascot image in a circle
+      const size = 280;
+      const x = canvas.width / 2;
+      const y = 420;
+      
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(x, y, size / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+      ctx.drawImage(img, x - size / 2, y - size / 2, size, size);
+      ctx.restore();
+      
+      resolve();
+    };
+    img.onerror = () => {
+      // Fallback to text if image fails
+      ctx.font = 'bold 280px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('💰', canvas.width / 2, 420);
+      resolve();
+    };
+    img.src = mascotPath.startsWith('/') ? mascotPath : `/${mascotPath}`;
+  });
+};
+
 export const generateShareImage = async (options: ShareImageOptions) => {
   try {
     const canvas = createCanvas(options);
+    await loadAndDrawMascot(canvas, options.mascot);
 
     // Convert to blob and share (Messages, Email, AirDrop on macOS/iOS)
     canvas.toBlob(async (blob) => {
@@ -111,6 +146,7 @@ export const generateShareImage = async (options: ShareImageOptions) => {
 export const downloadShareImage = async (options: ShareImageOptions) => {
   try {
     const canvas = createCanvas(options);
+    await loadAndDrawMascot(canvas, options.mascot);
     const link = document.createElement('a');
     link.download = options.filename;
     link.href = canvas.toDataURL('image/png');
@@ -147,7 +183,9 @@ export const copyShareLink = async (shareUrl: string) => {
 };
 
 // Share to X (Twitter)
-export const shareToX = (options: ShareImageOptions) => {
+export const shareToX = async (options: ShareImageOptions) => {
+  // X doesn't support direct image upload via URL, so we open with text and URL
+  // Users can manually attach the downloaded image
   const text = encodeURIComponent(options.shareText);
   const url = encodeURIComponent(options.shareUrl || window.location.href);
   const xUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
@@ -155,9 +193,10 @@ export const shareToX = (options: ShareImageOptions) => {
 };
 
 // Share to Facebook
-export const shareToFacebook = (options: ShareImageOptions) => {
+export const shareToFacebook = async (options: ShareImageOptions) => {
   const url = encodeURIComponent(options.shareUrl || window.location.href);
-  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  const quote = encodeURIComponent(options.shareText);
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`;
   window.open(facebookUrl, '_blank', 'width=550,height=420');
 };
 
@@ -165,6 +204,7 @@ export const shareToFacebook = (options: ShareImageOptions) => {
 export const nativeShare = async (options: ShareImageOptions) => {
   try {
     const canvas = createCanvas(options);
+    await loadAndDrawMascot(canvas, options.mascot);
 
     // Convert to blob and share (Messages, Email, AirDrop on macOS/iOS)
     return new Promise<boolean>((resolve) => {

@@ -11,11 +11,9 @@ interface ResultsButtonsProps {
   onShareX: () => void;
   onShareFacebook: () => void;
   t: any;
-  secondaryButtonText: string;
-  secondaryButtonHref: string;
 }
 
-export function ResultsButtons({ locale, onShare, onDownload, onShareLink, onShareX, onShareFacebook, t, secondaryButtonText, secondaryButtonHref }: ResultsButtonsProps) {
+export function ResultsButtons({ locale, onShare, onDownload, onShareLink, onShareX, onShareFacebook, t }: ResultsButtonsProps) {
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -159,9 +157,6 @@ export function ResultsButtons({ locale, onShare, onDownload, onShareLink, onSha
           </div>
         )}
       </div>
-      <Link href={secondaryButtonHref} className="btn-professional-accent text-center">
-        {secondaryButtonText}
-      </Link>
       <Link href={`/${locale}`} className="btn-professional-outline text-center">
         {t('returnHome')}
       </Link>

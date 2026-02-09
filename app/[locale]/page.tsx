@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useParams } from "next/navigation";
-import { clearAnswers } from "@/lib/storage";
+import { clearAnswers } from "@/lib/psych/storage";
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
@@ -19,7 +19,7 @@ export default function Home() {
 
   const startTest = () => {
     clearAnswers();
-    router.push(`/${locale}/standard/start`);
+    router.push(`/${locale}/psych/start`);
   };
 
   return (

@@ -110,7 +110,7 @@
     "backToGame": "Back to Game"
   },
   "analysis": {
-    "loading":"Loading...",
+    "loading": "Loading...",
     "title": "Your Financial Analysis",
     "simulationResults": "Simulation Results",
     "hey": "Hey {name}! 👋",
@@ -288,112 +288,464 @@
     "monthly": "per month",
     "oneTime": "one-time",
     "account": "Account",
+    "singleChoice": "Select one option",
+    "selectAll": "Select all that apply",
+    "stronglyDisagree": "Strongly Disagree",
+    "stronglyAgree": "Strongly Agree",
     "signOut": "Sign Out"
   },
   "questions": {
     "1": {
-      "text": "When you receive your paycheck, what is your first instinct?",
+      "text": "It’s the weekend. You see a limited-edition item you really like, but it costs 30% more than your monthly budget. What would you do?",
       "options": {
-        "F": "Immediately transfer a portion to savings",
-        "L": "Check my wish list and treat myself"
+        "A": "Buy it immediately — if I miss it now, it’s gone.",
+        "B": "Walk away and review next month’s budget to see if I can afford it.",
+        "C": "Decide I don’t really need it after all.",
+        "D": "Check its resale value; if it holds value well, I’ll buy it."
       }
     },
     "2": {
-      "text": "How do you handle grocery shopping?",
+      "text": "You have some spare cash and can choose only one of the following:",
       "options": {
-        "F": "I stick to a strict list and look for discounts",
-        "L": "I buy whatever looks good or inspires me"
+        "A": "Invest in a friend’s project — it could increase fivefold in one year or lose everything.",
+        "B": "Put it into a stable investment with a guaranteed 4.5% annual return."
       }
     },
     "3": {
-      "text": "A new phone model just came out. You...",
+      "text": "While scrolling on your phone, you see content titled “How to Achieve Financial Freedom by Age 30.” What is your most likely reaction?",
       "options": {
-        "F": "Wait until my current one completely dies",
-        "L": "Consider upgrading if it has cool new features"
+        "A": "Carefully study the financial concepts mentioned (e.g., volatility, Sharpe ratio).",
+        "B": "Save it for later, though I haven’t put it into practice.",
+        "C": "Assume it’s anxiety-driven marketing and scroll past.",
+        "D": "Take out paper or a calculator to estimate my own financial gap."
       }
     },
     "4": {
-      "text": "Your friends invite you to an expensive dinner. You...",
+      "text": "A highly accurate fortune-teller lets you see one moment of your future. What do you most want to see?",
       "options": {
-        "F": "Suggest a cheaper alternative or decline politely",
-        "L": "Go along! Experiences are worth paying for"
+        "A": "Myself at age 60, financially secure with a well-planned retirement.",
+        "B": "Myself one year from now, freely spending this money on travel or leisure.",
+        "C": "Confirmation that next month’s bills are fully paid."
       }
     },
     "5": {
-      "text": "What does 'budgeting' mean to you?",
+      "text": "You order an extremely expensive but bad-tasting dish at a restaurant (non-refundable). What do you do?",
       "options": {
-        "F": "A daily ritual I strictly follow",
-        "L": "A vague guideline I try to keep in mind"
+        "A": "Finish it — every bite represents money.",
+        "B": "Stop eating; the money is already gone, and my health matters more.",
+        "C": "Try to fix it with extra seasoning, even if it likely won’t help."
       }
     },
     "6": {
-      "text": "If you had $10,000 to invest, where would you put it?",
+      "text": "Compared to having a large sum of money ten years from now, I care more about being able to enjoy life and travel freely right now.",
       "options": {
-        "C": "A high-yield savings account or bonds",
-        "A": "Crypto or a high-growth stock startup"
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7"
       }
     },
     "7": {
-      "text": "How do you feel about the stock market crashing?",
+      "text": "I enjoy the excitement of searching for opportunities in uncertain or volatile markets.",
       "options": {
-        "C": "Terrified, I might pull my money out",
-        "A": "Excited, it's a buying opportunity!"
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7"
       }
     },
     "8": {
-      "text": "You hear about a risky investment with potential 10x returns. You...",
+      "text": "If I overspend unexpectedly, I feel noticeable guilt for several days afterward.",
       "options": {
-        "C": "Stay away, it sounds like a scam or gamble",
-        "A": "Invest a small amount just to see what happens"
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7"
       }
     },
     "9": {
-      "text": "When planning for retirement, you prefer...",
+      "text": "Which of the following describe your current behavior? (Select all that apply.)",
       "options": {
-        "C": "Guaranteed stable income",
-        "A": "Maximum possible growth, even if risky"
+        "A": "I subscribe to at least two in-depth finance newsletters or research reports.",
+        "B": "I regularly use tools (e.g., Excel, apps) to track my net worth.",
+        "C": "I understand asset allocation and hold at least three different asset types.",
+        "D": "I frequently rebalance my portfolio based on market trends."
       }
     },
     "10": {
-      "text": "Your financial knowledge mainly comes from...",
+      "text": "During large promotions (e.g., Black Friday), which behaviors apply to you? (Select all that apply.)",
       "options": {
-        "C": "Established books and certified advisors",
-        "A": "Online forums, Twitter/X, and trends"
+        "A": "I plan purchases in advance and stick strictly to my list.",
+        "B": "I feel overwhelmed by discount rules and buy casually.",
+        "C": "I stay up late watching livestreams and buy due to the atmosphere.",
+        "D": "I calculate post-discount prices and avoid buying if the cost of holding inventory is too high."
+      }
+    },
+    "11": {
+      "text": "If I suddenly receive unexpected money, my first thought is how to spend it rather than how to save it.",
+      "options": {
+        "Yes": "Yes",
+        "No": "No"
+      }
+    },
+    "12": {
+      "text": "I believe insurance is mostly unnecessary or a waste of money for low-probability events.",
+      "options": {
+        "Yes": "Yes",
+        "No": "No"
+      }
+    },
+    "13": {
+      "text": "I rarely check shopping app notifications; my purchases are usually initiated by active searching.",
+      "options": {
+        "Yes": "Yes",
+        "No": "No"
+      }
+    },
+    "14": {
+      "text": "Saving money now feels meaningless because inflation will erode future purchasing power anyway.",
+      "options": {
+        "Yes": "Yes",
+        "No": "No"
+      }
+    },
+    "15": {
+      "text": "If a long-term asset I hold drops 20% in a single month, I become so anxious that it affects my sleep.",
+      "options": {
+        "Yes": "Yes",
+        "No": "No"
       }
     }
   },
   "personas": {
-    "FC": {
-      "name": "The Guardian",
-      "mascot": "🛡️",
-      "description": "You are the bedrock of financial stability. You value security over luxury and prefer steady, predictable growth.",
-      "strengths": ["Excellent saver", "Prepared for emergencies", "Disciplined"],
-      "pitfalls": ["Risk aversion may lead to inflation loss", "Missed opportunities for growth", "Can be too frugal to enjoy life"],
-      "tips": ["Allocate a small 'fun budget' guilt-free", "Explore low-cost index funds to beat inflation", "Remember that money is a tool, not just a scoreboard"]
+    "AFDE": {
+      "name": "AFDE",
+      "mascot": "image/AFDE.png",
+      "description": "You lean adventurous, future-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
     },
-    "FA": {
-      "name": "The Strategist",
-      "mascot": "♟️",
-      "description": "You are disciplined with spending but bold with investing. You save aggressively to fuel your high-growth ambitions.",
-      "strengths": ["High savings rate", "Forward-thinking", "Capitalizes on compound interest"],
-      "pitfalls": ["Might take uncalculated risks with hard-earned savings", "Can overlook liquidity needs", "Overconfidence"],
-      "tips": ["Ensure you have a liquid emergency fund before heavy investing", "Diversify your high-risk bets", "Balance your portfolio with some stable assets"]
+    "AFDN": {
+      "name": "AFDN",
+      "mascot": "image/AFDN.png",
+      "description": "You lean adventurous, future-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
     },
-    "LC": {
-      "name": "The Enthusiast",
-      "mascot": "🎉",
-      "description": "You love to enjoy the present moment and prefer your investments to be safe and sound. You work hard to spend well.",
-      "strengths": ["Generous", "Enjoys life", "Avoids gambling with money"],
-      "pitfalls": ["Low savings rate", "Lifestyle creep", "Financial stress from lack of buffer"],
-      "tips": ["Automate savings before you see the money", "Use the 50/30/20 rule to structure spending", "Find low-cost ways to enjoy your hobbies"]
+    "AFIE": {
+      "name": "AFIE",
+      "mascot": "image/AFIE.png",
+      "description": "You lean adventurous, future-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
     },
-    "LA": {
-      "name": "The Maverick",
-      "mascot": "🚀",
-      "description": "You live fast and invest fast. High earning potential, high spending, and high risk tolerance define your style.",
-      "strengths": ["Not afraid of failure", "Ambitious", "Adaptable"],
-      "pitfalls": ["High volatility in net worth", "Debt accumulation", "Lack of long-term security"],
-      "tips": ["Focus on cash flow management", "Pay off high-interest debt immediately", "Create a 'do not touch' safety net account"]
+    "AFIN": {
+      "name": "AFIN",
+      "mascot": "image/AFIN.png",
+      "description": "You lean adventurous, future-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "APDE": {
+      "name": "APDE",
+      "mascot": "image/APDE.png",
+      "description": "You lean adventurous, present-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "APDN": {
+      "name": "APDN",
+      "mascot": "image/APDN.png",
+      "description": "You lean adventurous, present-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "APIE": {
+      "name": "APIE",
+      "mascot": "image/APIE.png",
+      "description": "You lean adventurous, present-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "APIN": {
+      "name": "APIN",
+      "mascot": "image/APIN.png",
+      "description": "You lean adventurous, present-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "GFDE": {
+      "name": "GFDE",
+      "mascot": "image/GFDE.png",
+      "description": "You lean guarded, future-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "GFDN": {
+      "name": "GFDN",
+      "mascot": "image/GFDN.png",
+      "description": "You lean guarded, future-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "GFIE": {
+      "name": "GFIE",
+      "mascot": "image/GFIE.png",
+      "description": "You lean guarded, future-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "GFIN": {
+      "name": "GFIN",
+      "mascot": "image/GFIN.png",
+      "description": "You lean guarded, future-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "GPDE": {
+      "name": "GPDE",
+      "mascot": "image/GPDE.png",
+      "description": "You lean guarded, present-focused, disciplined, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "GPDN": {
+      "name": "GPDN",
+      "mascot": "image/GPDN.png",
+      "description": "You lean guarded, present-focused, disciplined, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "GPIE": {
+      "name": "GPIE",
+      "mascot": "image/GPIE.png",
+      "description": "You lean guarded, present-focused, impulsive, and expert-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
+    },
+    "GPIN": {
+      "name": "GPIN",
+      "mascot": "image/GPIN.png",
+      "description": "You lean guarded, present-focused, impulsive, and novice-minded. This combination shapes how you spend, plan, control impulses, and build expertise.",
+      "strengths": [
+        "Clear awareness of your priorities",
+        "Consistent decision patterns you can improve",
+        "Good starting point for targeted financial habits"
+      ],
+      "pitfalls": [
+        "Blind spots in the opposite traits",
+        "Overusing one style in all situations",
+        "Letting bias override data"
+      ],
+      "tips": [
+        "Balance your dominant traits with small experiments",
+        "Set one measurable money goal per month",
+        "Review decisions quarterly and adjust"
+      ]
     }
   }
 }

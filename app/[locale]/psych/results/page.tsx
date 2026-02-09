@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getAnswers, getDisplayName } from '@/lib/storage';
-import { calculateFinotype } from '@/lib/logic';
-import { personas } from '@/lib/data';
+import { getAnswers, getDisplayName } from '@/lib/psych/storage';
+import { calculateFinotype } from '@/lib/psych/logic';
+import { personas } from '@/lib/psych/data';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { generateShareImage, downloadShareImage } from '@/components/ShareUtil';
+import { downloadShareImage } from '@/components/ShareUtil';
 import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
 import { Persona } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
@@ -35,14 +35,14 @@ export default function ResultsPage() {
     gradientColors: ['#2563eb', '#1e40af'] as [string, string],
     circleColor1: 'rgba(255, 255, 255, 0.05)',
     circleColor2: 'rgba(255, 255, 255, 0.08)',
-    mascot: persona?.mascot || '💰',
+    mascot: persona?.mascot || 'image/AFDE.png',
     title: "What's your Finotype?",
     subtitle: 'finotype.vercel.app',
     brandText: 'Discover your financial personality',
     filename: `finotype-${persona?.id}-${Date.now()}.png`,
     shareTitle: "What's your Finotype?",
-    shareText: `Discover your financial personality! https://finotype.vercel.app`,
-    shareUrl: `https://finotype.vercel.app/${locale}/standard/start`,
+    shareText: `I just discovered my Finotype: ${persona?.name}! Discover your financial personality at https://finotype.vercel.app`,
+    shareUrl: `https://finotype.vercel.app/`,
   });
 
   const handleShare = async () => {
@@ -56,7 +56,7 @@ export default function ResultsPage() {
   };
 
   const handleShareLink = async () => {
-    const shareUrl = `https://finotype.vercel.app/${locale}/standard/start`;
+    const shareUrl = `https://finotype.vercel.app/`;
     await copyShareLink(shareUrl);
   };
 
@@ -93,13 +93,12 @@ export default function ResultsPage() {
               <div className="flex justify-center mb-6">
                 <div className="bg-white/20 p-4 rounded-full backdrop-blur-sm">
                   <img
-                    src="/image/ostrich.png"
-                    alt="Ostrich Mascot"
+                    src={`/${persona.mascot}`}
+                    alt={`${persona.name} Mascot`}
                     className="w-24 h-24 object-cover rounded-full"
                   />
                 </div>
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-6">{tPersonas(`${persona.id}.name`)}</div>
 
               <div
                 className="inline-block backdrop-blur-sm rounded-xl px-6 py-3 border"
@@ -140,8 +139,6 @@ export default function ResultsPage() {
           onShareX={handleShareX}
           onShareFacebook={handleShareFacebook}
           t={tAnalysis}
-          secondaryButtonText={tResults('seePitfallsAndTips')}
-          secondaryButtonHref={`/${locale}/standard/resources`}
         />
       </div>
     </div>
