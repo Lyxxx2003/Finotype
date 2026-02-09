@@ -288,6 +288,10 @@
     "monthly": "per month",
     "oneTime": "one-time",
     "account": "Account",
+    "singleChoice": "Select one option",
+    "selectAll": "Select all that apply",
+    "stronglyDisagree": "Strongly Disagree",
+    "stronglyAgree": "Strongly Agree",
     "signOut": "Sign Out"
   },
   "questions": {

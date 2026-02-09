@@ -99,7 +99,6 @@ export default function ResultsPage() {
                   />
                 </div>
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-6">{persona.name}</div>
 
               <div
                 className="inline-block backdrop-blur-sm rounded-xl px-6 py-3 border"
@@ -141,7 +140,7 @@ export default function ResultsPage() {
           onShareFacebook={handleShareFacebook}
           t={tAnalysis}
           secondaryButtonText={tResults('seePitfallsAndTips')}
-          secondaryButtonHref={`/${locale}/standard/resources`}
+          secondaryButtonHref={`/${locale}/standard/analysis`}
         />
       </div>
     </div>

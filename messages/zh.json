@@ -288,6 +288,10 @@
     "monthly": "每月",
     "oneTime": "一次性",
     "account": "账户",
+    "singleChoice": "请选择一个选项",
+    "selectAll": "请选择所有适用选项",
+    "stronglyDisagree": "非常不同意",
+    "stronglyAgree": "非常同意",
     "signOut": "退出登录"
   },
   "questions": {
