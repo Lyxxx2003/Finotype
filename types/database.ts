@@ -70,6 +70,26 @@ export interface Database {
           gemini_analysis?: Json | null
         }
       }
+      type: {
+        Row: {
+          id: string
+          session_id: string
+          finotype: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          session_id: string
+          finotype: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          session_id?: string
+          finotype?: string
+          created_at?: string
+        }
+      }
     }
   }
 }

@@ -3,7 +3,7 @@
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { locales, localeNames, type Locale } from '@/i18n';
 
-export default function LanguageSwitcher() {
+export function LanguageSwitcher() {
   const params = useParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -21,11 +21,11 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block z-[60]">
       <select
         value={currentLocale}
         onChange={(e) => switchLocale(e.target.value as Locale)}
-        className="appearance-none rounded-xl px-4 py-2 pr-8 text-sm font-medium cursor-pointer transition-all duration-300 border-2 hover:shadow-md"
+        className="appearance-none rounded-xl px-4 py-2 pr-8 text-sm font-medium cursor-pointer transition-all duration-300 border-2 hover:shadow-md relative z-[60]"
         style={{
           background: 'var(--color-surface)',
           borderColor: 'var(--color-neutral-300)',

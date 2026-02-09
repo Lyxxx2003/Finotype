@@ -8,13 +8,16 @@ import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { downloadShareImage } from '@/components/ShareUtil';
 import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
-import { Persona, FinancialType } from '@/types';
+import { Persona } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
 
 export default function ResultsPage() {
   const [persona, setPersona] = useState<Persona | null>(null);
   const [percentages, setPercentages] = useState<TraitPercentages | null>(null);
   const [displayName, setDisplayName] = useState<string>('');
+  const [stats, setStats] = useState<{ total: number; typeCount: number; percentage: number } | null>(null);
+  const [statsLoading, setStatsLoading] = useState(true);
+  const [hasSaved, setHasSaved] = useState(false);
   const params = useParams();
   const locale = params.locale as string;
   const tPersonas = useTranslations('personas');
@@ -23,22 +26,64 @@ export default function ResultsPage() {
   const tTraits = useTranslations('traits');
 
   useEffect(() => {
+    if (hasSaved) return; // Prevent double execution
+
     const answers = getAnswers();
     const result = calculateFinotype(answers);
-    setPersona(personas[result.type]);
+    const finotype = result.type;
+    setPersona(personas[finotype]);
     setPercentages(result.percentages);
 
     const name = getDisplayName();
     if (name) {
       setDisplayName(name);
     }
-  }, []);
+
+    // Save the type to database and fetch statistics
+    const saveAndFetchStats = async () => {
+      try {
+        // Save the finotype
+        console.log('Saving finotype:', finotype);
+        const saveResponse = await fetch(`/${locale}/api/type-stats`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ finotype }),
+        });
+
+        if (!saveResponse.ok) {
+          const errorData = await saveResponse.json();
+          console.error('Failed to save finotype:', errorData);
+        } else {
+          console.log('Successfully saved finotype');
+        }
+
+        // Fetch statistics
+        const response = await fetch(`/${locale}/api/type-stats?finotype=${finotype}`);
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Stats fetched:', data);
+          setStats(data);
+        } else {
+          const errorData = await response.json();
+          console.error('Failed to fetch stats:', errorData);
+        }
+        
+        setHasSaved(true); // Mark as saved
+      } catch (error) {
+        console.error('Error saving/fetching type stats:', error);
+      } finally {
+        setStatsLoading(false);
+      }
+    };
+
+    saveAndFetchStats();
+  }, [locale, hasSaved]);
 
   const getShareImageOptions = () => ({
     gradientColors: ['#2563eb', '#1e40af'] as [string, string],
     circleColor1: 'rgba(255, 255, 255, 0.05)',
     circleColor2: 'rgba(255, 255, 255, 0.08)',
-    mascot: persona?.mascot || 'image/AFDE.png',
+    mascot: persona?.mascot || '💰',
     title: "What's your Finotype?",
     subtitle: 'finotype.vercel.app',
     brandText: 'Discover your financial personality',
@@ -93,7 +138,7 @@ export default function ResultsPage() {
 
         <div className="card-professional rounded-3xl overflow-hidden border-0">
           <div className="p-8 text-white relative overflow-hidden" style={{ background: 'var(--gradient-primary)' }}>
-            <div className="relative z-10 text-center">
+            <div className="relative text-center">
               <h2
                 className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
                 style={{ opacity: 0.9 }}
@@ -103,7 +148,7 @@ export default function ResultsPage() {
               <div className="flex justify-center mb-6">
                 <div className="bg-white/20 p-4 rounded-full backdrop-blur-sm">
                   <img
-                    src={`/${persona.mascot}`}
+                    src={`/${persona.mascot.toLowerCase()}`}
                     alt={`${persona.name} Mascot`}
                     className="w-24 h-24 object-cover rounded-full"
                   />
@@ -134,6 +179,31 @@ export default function ResultsPage() {
           </div>
 
           <div className="p-8 space-y-8">
+            {/* Statistics Section */}
+            <div className="text-center pb-4 border-b" style={{ borderColor: 'var(--color-border)' }}>
+              {statsLoading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin h-5 w-5" style={{ color: 'var(--color-primary)' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                    {tResults('loading')}
+                  </span>
+                </div>
+              ) : stats ? (
+                stats.total === 0 ? (
+                  <p className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>
+                    🎉 {tResults('firstTest')}
+                  </p>
+                ) : (
+                  <p className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>
+                    {tResults('percentageLike', { percentage: stats.percentage })}
+                  </p>
+                )
+              ) : null}
+            </div>
+
             <div>
               <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text)' }}>{tResults('aboutYourType')}</h3>
               <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{tPersonas(`${persona.id}.description`)}</p>

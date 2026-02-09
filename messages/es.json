@@ -293,7 +293,10 @@
     "calculating": "Calculando tu ADN financiero...",
     "questionOf": "Pregunta {current} de {total}",
     "back": "Atrás",
-    "yourTraits": "Tus Rasgos Financieros"
+    "yourTraits": "Tus Rasgos Financieros",
+    "loading": "Cargando, viendo cuántas personas son como tú...",
+    "percentageLike": "¡{percentage}% de personas son como tú!",
+    "firstTest": "¡¡Eres el primero en hacer la prueba!!"
   },
   "questions": {
     "1": {
