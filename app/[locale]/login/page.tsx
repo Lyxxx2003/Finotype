@@ -201,7 +201,7 @@ export default function LoginPage() {
 
         // Successfully signed in - let them in
         // email_verified is set to TRUE in the callback after they click confirmation email
-        router.push(`/${locale}/pro/technical`)
+        router.push(`/${locale}/technical/question`)
       }
     } catch (error: any) {
       setMessageType('error')

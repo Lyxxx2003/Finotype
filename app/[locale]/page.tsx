@@ -172,7 +172,7 @@ export default function Home() {
               </button>
 
               <Link
-                href={`/${locale}/pro/technical`}
+                href={`/${locale}/technical/question`}
                 className="group cursor-pointer rounded-2xl px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 w-full sm:w-auto flex items-center gap-2 justify-center"
                 style={{
                   background: 'var(--gradient-accent)',
