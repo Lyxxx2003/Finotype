@@ -80,6 +80,7 @@
     "yourResults": "您的结果",
     "yourFinotype": "您的财务类型",
     "aboutYourType": "关于您的类型",
+    "aboutYourFinotype": "关于您的财务类型",
     "shareResult": "分享我的结果",
     "seePitfallsAndTips": "查看常见陷阱和技巧",
     "returnHome": "返回首页",
@@ -87,9 +88,10 @@
     "questionOf": "问题 {current} / {total}",
     "back": "← 返回",
     "yourTraits": "您的财务特质",
-    "loading": "正在加载，看看有多少人和你一样...",
-    "percentageLike": "{percentage}% 的人和你一样！",
-    "firstTest": "你是第一个测试的人！！"
+    "loading": "正在加载，看看有多少人和您一样...",
+    "peopleLikeYou": "和您一样的人",
+    "percentageLike": "{percentage}% 的人和您一样！",
+    "firstTest": "您是第一个测试的人！！"
   },
   "account": {
     "title": "账户设置",

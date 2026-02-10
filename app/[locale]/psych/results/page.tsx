@@ -10,6 +10,7 @@ import { downloadShareImage } from '@/components/ShareUtil';
 import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
 import { Persona } from '@/types';
 import { ResultsButtons } from '@/components/ResultsButtons';
+import { PercentageCard } from '@/components/PercentageCard';
 
 export default function ResultsPage() {
   const [persona, setPersona] = useState<Persona | null>(null);
@@ -120,129 +121,140 @@ export default function ResultsPage() {
 
   if (!persona || !percentages) return <div className="p-8 text-center">{tResults('calculating')}</div>;
 
-  const traitDimensions = [
-    { positive: 'A', negative: 'G' },
-    { positive: 'F', negative: 'P' },
-    { positive: 'D', negative: 'I' },
-    { positive: 'E', negative: 'N' },
-  ];
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 font-sans" style={{ background: 'var(--gradient-surface)' }}>
-      <div className="max-w-3xl w-full space-y-4">
-        {displayName && (
-          <div className="text-center">
-            <h1 className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{tResults('hey', { name: displayName })}, {tResults('yourResults')}</h1>
-          </div>
-        )}
-
-        <div className="card-professional rounded-3xl overflow-hidden border-0">
-          <div className="p-8 text-white relative overflow-hidden" style={{ background: 'var(--gradient-primary)' }}>
-            <div className="relative text-center">
-              <h2
-                className="text-sm opacity-90 uppercase tracking-widest font-bold mb-2"
-                style={{ opacity: 0.9 }}
-              >
-                {tResults('yourFinotype')}
-              </h2>
-              <div className="flex justify-center mb-6">
-                <div className="bg-white/20 p-4 rounded-full backdrop-blur-sm">
-                  <img
-                    src={`/${persona.mascot.toLowerCase()}`}
-                    alt={`${persona.name} Mascot`}
-                    className="w-24 h-24 object-cover rounded-full"
-                  />
+      <div className="max-w-4xl w-full space-y-4">
+        <div
+          className="card-professional rounded-3xl overflow-hidden border-0"
+          style={{ background: 'var(--gradient-surface)' }}
+        >
+          <div className="p-8 space-y-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center gap-3">
+                  {displayName ? (
+                    <span className="text-sm font-semibold" style={{ color: 'var(--color-primary)' }}>
+                      {tResults('hey', { name: displayName })}
+                    </span>
+                  ) : null}
+                  <span
+                    className="text-xs uppercase tracking-[0.3em] font-semibold px-3 py-1 rounded-full"
+                    style={{ background: 'var(--gradient-primary)', color: 'white' }}
+                  >
+                    {tResults('yourFinotype')}
+                  </span>
+                </div>
+                <div
+                  className="inline-flex items-center rounded-2xl px-6 py-3 border"
+                  style={{
+                    borderColor: 'var(--color-neutral-200)',
+                    background: 'var(--gradient-primary)',
+                    boxShadow: '0 12px 28px rgba(15, 23, 42, 0.12)'
+                  }}
+                >
+                  <span className="text-4xl font-bold tracking-[0.35em]" style={{ color: 'white' }}>
+                    {persona.id}
+                  </span>
                 </div>
               </div>
 
               <div
-                className="inline-block backdrop-blur-sm rounded-xl px-6 py-3 border"
-                style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderColor: 'rgba(255,255,255,0.3)' }}
+                className="relative w-full md:w-[340px] min-h-[220px] overflow-hidden rounded-3xl"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(30,64,175,0.2) 0%, rgba(14,165,233,0.08) 100%)',
+                  border: '1px solid var(--color-neutral-200)'
+                }}
               >
-                <p
-                  className="text-xs font-bold uppercase tracking-wider"
-                  style={{ color: '#dbeafe' }}
+                <div
+                  className="absolute -top-10 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.15) 70%)',
+                    boxShadow: '0 0 35px rgba(59,130,246,0.6)'
+                  }}
+                ></div>
+                <div
+                  className="absolute top-4 left-1/2 -translate-x-1/2 w-64 h-44"
+                  style={{
+                    clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+                    background: 'linear-gradient(180deg, rgba(59,130,246,0.35) 0%, rgba(14,165,233,0.05) 100%)'
+                  }}
+                ></div>
+                <svg
+                  className="absolute top-6 left-1/2 -translate-x-1/2"
+                  width="170"
+                  height="170"
+                  viewBox="0 0 100 100"
+                  aria-hidden="true"
                 >
-                  {persona.id}
-                </p>
+                  <polygon
+                    points="50,6 61,38 95,38 67,58 77,92 50,72 23,92 33,58 5,38 39,38"
+                    fill="rgba(30,64,175,0.22)"
+                  />
+                </svg>
+                <div className="relative z-10 h-full flex items-end justify-center pb-4">
+                  <img
+                    src={`/${persona.mascot}`}
+                    alt={`${persona.name} Mascot`}
+                    className="w-40 h-40 md:w-44 md:h-44 object-contain"
+                  />
+                </div>
               </div>
             </div>
-            {/* Decorative circles */}
-            <div
-              className="absolute top-0 left-0 w-64 h-64 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-20"
-              style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)' }}
-            ></div>
-            <div
-              className="absolute bottom-0 right-0 w-48 h-48 rounded-full translate-x-1/3 translate-y-1/3 opacity-20"
-              style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)' }}
-            ></div>
-          </div>
 
-          <div className="p-8 space-y-8">
-            {/* Statistics Section */}
-            <div className="text-center pb-4 border-b" style={{ borderColor: 'var(--color-border)' }}>
-              {statsLoading ? (
-                <div className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-5 w-5" style={{ color: 'var(--color-primary)' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                    {tResults('loading')}
-                  </span>
-                </div>
-              ) : stats ? (
-                stats.total === 0 ? (
-                  <p className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>
-                    🎉 {tResults('firstTest')}
+            <div className="grid gap-6 md:grid-cols-2 items-stretch">
+              <PercentageCard percentages={percentages} tResults={tResults} tTraits={tTraits} />
+              <div className="flex flex-col gap-6 h-full">
+                <div
+                  className="card-professional p-6 flex-1 flex flex-col justify-center"
+                  style={{
+                    background: 'linear-gradient(145deg, rgba(14,165,233,0.12) 0%, rgba(125,211,252,0.08) 100%)',
+                    borderColor: 'rgba(14, 165, 233, 0.25)'
+                  }}
+                >
+                  <p
+                    className="text-xs uppercase tracking-[0.3em] font-semibold"
+                    style={{ color: 'var(--color-text-secondary)' }}
+                  >
+                    {tResults('peopleLikeYou')}
                   </p>
-                ) : (
-                  <p className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>
-                    {tResults('percentageLike', { percentage: stats.percentage })}
-                  </p>
-                )
-              ) : null}
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text)' }}>{tResults('aboutYourType')}</h3>
-              <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>{tPersonas(`${persona.id}.description`)}</p>
-            </div>
-
-            {/* Trait Percentages */}
-            <div>
-              <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--color-text)' }}>{tResults('yourTraits')}</h3>
-              <div className="space-y-4">
-                {traitDimensions.map(({ positive, negative }) => {
-                  const posPercent = percentages[positive as keyof TraitPercentages];
-                  const negPercent = percentages[negative as keyof TraitPercentages];
-                  
-                  return (
-                    <div key={`${positive}-${negative}`} className="space-y-2">
-                      <div className="flex justify-between text-sm font-medium" style={{ color: 'var(--color-text-secondary)' }}>
-                        <span>{tTraits(positive)}</span>
-                        <span>{tTraits(negative)}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold min-w-[3rem]" style={{ color: 'var(--color-text-secondary)' }}>
-                          {posPercent}%
-                        </span>
-                        <div className="flex-1 h-3 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--color-border)' }}>
-                          <div
-                            className="h-full rounded-full transition-all duration-500"
-                            style={{
-                              width: `${posPercent}%`,
-                              background: 'var(--gradient-primary)',
-                            }}
-                          ></div>
-                        </div>
-                        <span className="text-xs font-bold min-w-[3rem] text-right" style={{ color: 'var(--color-text-secondary)' }}>
-                          {negPercent}%
-                        </span>
-                      </div>
+                  {statsLoading ? (
+                    <div className="flex items-center gap-2 mt-4">
+                      <svg className="animate-spin h-5 w-5" style={{ color: 'var(--color-primary)' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                        {tResults('loading')}
+                      </span>
                     </div>
-                  );
-                })}
+                  ) : (
+                    <>
+                      <p className="text-4xl font-bold mt-4" style={{ color: 'var(--color-text)' }}>
+                        {stats?.percentage ?? 0}%
+                      </p>
+                      {stats?.total === 0 ? (
+                        <p className="text-sm mt-2" style={{ color: 'var(--color-text-secondary)' }}>
+                          {tResults('firstTest')}
+                        </p>
+                      ) : null}
+                    </>
+                  )}
+                </div>
+
+                <div
+                  className="card-professional p-6 flex-1"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(14,165,233,0.1) 0%, rgba(14,165,233,0) 70%), var(--color-surface)',
+                    borderColor: 'var(--color-neutral-200)'
+                  }}
+                >
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text)' }}>
+                    {tResults('aboutYourFinotype')}
+                  </h3>
+                  <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>
+                    {tPersonas(`${persona.id}.description`)}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

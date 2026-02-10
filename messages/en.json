@@ -80,6 +80,7 @@
     "yourResults": "Your Results",
     "yourFinotype": "Your Finotype",
     "aboutYourType": "About Your Type",
+    "aboutYourFinotype": "About Your Finotype",
     "yourTraits": "Your Financial Traits",
     "shareResult": "Share My Result",
     "seePitfallsAndTips": "See Common Pitfalls & Tips",
@@ -88,6 +89,7 @@
     "questionOf": "Question {current} of {total}",
     "back": "← Back",
     "loading": "Loading to see how many people are like you...",
+    "peopleLikeYou": "people like you",
     "percentageLike": "{percentage}% of people are like you!",
     "firstTest": "You're the very first to test!!"
   },

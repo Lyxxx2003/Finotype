@@ -154,7 +154,7 @@ const buildPersona = (id: string): Persona => {
   return {
     id: id as Persona['id'],
     name: id,
-    mascot: `mascot/${id}.png`,
+    mascot: `mascot/${id.toLowerCase()}.png`,
     description: '', // Description comes from i18n
   };
 };
