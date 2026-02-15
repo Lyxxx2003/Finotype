@@ -8,7 +8,9 @@
     "behavioralAnalysis": "Análisis Conductual",
     "personalizedInsights": "Perspectivas Personalizadas",
     "realScenarios": "Escenarios Reales",
-    "financialEducationPlatform": "Plataforma de Educación Financiera"
+    "financialEducationPlatform": "Plataforma de Educación Financiera",
+    "seeOurCharacters": "Ver Nuestros Personajes",
+    "meetOurCharacters": "Conoce Nuestras Personalidades Financieras"
   },
   "login": {
     "title": "Iniciar Sesión",
@@ -48,6 +50,7 @@
     "authError": "Error de Autenticación",
     "authErrorMessage": "Hubo un problema al verificar su enlace de correo electrónico. Solo se necesita una verificación.",
     "authErrorDetail": "El enlace puede haber expirado o haber sido visitado automáticamente por su proveedor de correo electrónico. Si puede iniciar sesión, su cuenta ya está verificada.",
+    "aboutYourFinotype": "Sobre tu Finotype",
     "signInButton": "Iniciar Sesión",
     "setNewPassword": "Establecer Nueva Contraseña",
     "enterNewPassword": "Ingrese su nueva contraseña a continuación",
@@ -57,6 +60,7 @@
     "updating": "Actualizando...",
     "invalidResetLink": "Enlace de restablecimiento inválido o expirado. Solicite uno nuevo.",
     "passwordTooShort": "La contraseña debe tener al menos 6 caracteres.",
+    "peopleLikeYou": "personas como tu",
     "passwordsDontMatch": "Las contraseñas no coinciden.",
     "passwordUpdated": "¡Contraseña actualizada con éxito! Redirigiendo al inicio de sesión...",
     "resetFailed": "Error al restablecer la contraseña. Inténtelo de nuevo.",
@@ -280,7 +284,9 @@
     "selectAll": "Seleccione todas las que apliquen",
     "stronglyDisagree": "Muy en desacuerdo",
     "stronglyAgree": "Muy de acuerdo",
-    "signOut": "Cerrar Sesión"
+    "signOut": "Cerrar Sesión",
+    "resources": "Recursos",
+    "types": "Tipos"
   },
   "results": {
     "hey": "¡Hola {name}! 👋",
@@ -489,5 +495,41 @@
     "I": "Impulsivo",
     "E": "Experto",
     "N": "Novato"
+  },
+  "types": {
+    "title": "Tipos de Personalidad Financiera",
+    "subtitle": "Explora los 16 tipos únicos de personalidad financiera y descubre cuál resuena contigo.",
+    "cta": "¿Listo para descubrir tu personalidad financiera?",
+    "takeTest": "Hacer la Prueba",
+    "learnMore": "Aprende Más"
+  },
+  "resources": {
+    "readMore": "Leer Más",
+    "title": "Recursos de Aprendizaje Financiero",
+    "subtitle": "Explora artículos y guías seleccionadas para mejorar tu conocimiento financiero y tomar mejores decisiones.",
+    "card1": {
+      "title": "Entendiendo Tu Personalidad Financiera",
+      "description": "Descubre cómo tus rasgos de personalidad influyen en tus decisiones financieras y aprende estrategias para aprovechar tus fortalezas."
+    },
+    "card2": {
+      "title": "Guardián vs Maverick: ¿Cuál Eres Tú?",
+      "description": "Explora las diferencias fundamentales entre personalidades financieras conservadoras y arriesgadas y lo que significa para tu cartera."
+    },
+    "card3": {
+      "title": "5 Pasos para Mejorar la Alfabetización Financiera",
+      "description": "Una guía práctica para construir conocimientos financieros esenciales, desde conceptos básicos de presupuesto hasta fundamentos de inversión."
+    },
+    "card4": {
+      "title": "Finanzas Conductuales: La Psicología del Dinero",
+      "description": "Aprende cómo los sesgos cognitivos y patrones emocionales afectan tus elecciones financieras y cómo superar errores comunes."
+    },
+    "card5": {
+      "title": "Estrategias de Inversión para Cada Personalidad",
+      "description": "Enfoques de inversión personalizados que se alinean con tu tolerancia al riesgo, objetivos y zona de confort psicológico."
+    },
+    "card6": {
+      "title": "Gestión de Riesgos: Una Guía para Principiantes",
+      "description": "Domina los fundamentos de identificar, evaluar y gestionar riesgos financieros en tu viaje de inversión personal."
+    }
   }
 }
