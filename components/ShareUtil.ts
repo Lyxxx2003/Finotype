@@ -10,6 +10,8 @@ export interface ShareImageOptions {
   titleFontSize?: number;
   subtitle: string;
   brandText: string;
+  finotypeCode?: string;
+  finotypeName?: string;
   filename: string;
   shareTitle: string;
   shareText: string;
@@ -53,12 +55,24 @@ const createCanvas = (options: ShareImageOptions): HTMLCanvasElement => {
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(options.title, canvas.width / 2, 680);
+  ctx.fillText(options.title, canvas.width / 2, 700);
+
+  if (options.finotypeCode) {
+    ctx.font = 'bold 56px system-ui, -apple-system, sans-serif';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.98)';
+    ctx.fillText(options.finotypeCode, canvas.width / 2, 560);
+  }
+
+  if (options.finotypeName) {
+    ctx.font = '42px system-ui, -apple-system, sans-serif';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+    ctx.fillText(options.finotypeName, canvas.width / 2, 620);
+  }
 
   // Website URL
   ctx.font = '48px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-  ctx.fillText(options.subtitle, canvas.width / 2, 820);
+  ctx.fillText(options.subtitle, canvas.width / 2, 830);
 
   // Small branding at bottom
   ctx.font = '28px system-ui, -apple-system, sans-serif';
