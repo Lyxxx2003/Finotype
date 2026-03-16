@@ -1,15 +1,15 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
 
 interface TypesCardProps {
   type: string;
+  name: string;
   description: string;
   group: string;
 }
 
-export default function TypesCard({ type, description, group }: TypesCardProps) {
+export default function TypesCard({ type, name, description, group }: TypesCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const groupColors: Record<string, { bg: string; border: string; text: string }> = {
@@ -53,20 +53,17 @@ export default function TypesCard({ type, description, group }: TypesCardProps) 
       {/* Card Content */}
       <div className="p-6">
         {/* Mascot Image */}
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-4 h-32">
           <div
-            className="relative transition-transform duration-300"
+            className="relative transition-transform duration-300 w-full flex items-center justify-center"
             style={{
               transform: isHovered ? 'scale(1.1) rotate(-5deg)' : 'scale(1) rotate(0deg)',
             }}
           >
-            <Image
+            <img
               src={`/mascot/${type.toLowerCase()}.png`}
               alt={type}
-              width={120}
-              height={120}
-              className="object-contain"
-              priority
+              className="object-contain w-full h-full drop-shadow-lg transition-transform duration-300"
             />
           </div>
         </div>
@@ -82,12 +79,12 @@ export default function TypesCard({ type, description, group }: TypesCardProps) 
             {type}
           </h3>
           <p
-            className="text-xs font-semibold mt-1 uppercase tracking-wide"
+            className="text-sm font-semibold mt-1 transition-colors duration-300"
             style={{
-              color: colors.text,
+              color: isHovered ? colors.text : 'var(--color-text-secondary)',
             }}
           >
-            {group}
+            {name}
           </p>
         </div>
 
