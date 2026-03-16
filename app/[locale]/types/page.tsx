@@ -30,82 +30,100 @@ export default function TypesPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{ background: 'var(--color-background)' }}>
-      {/* Geometric Background Division */}
+      {/* Bold Slashes & Sawtooth Geometric Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Background Grid */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, var(--color-neutral-200) 1px, transparent 1px),
-              linear-gradient(to bottom, var(--color-neutral-200) 1px, transparent 1px)
-            `,
-            backgroundSize: '50% 50%',
-            opacity: 0.3,
-          }}
-        />
+        {/* SVG covering full viewport - colors aligned with card rows */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 2000" preserveAspectRatio="none" style={{ opacity: 1 }}>
+          <defs>
+            <linearGradient id="p-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#F59E0B', stopOpacity: 0.18 }} />
+              <stop offset="100%" style={{ stopColor: '#F59E0B', stopOpacity: 0.08 }} />
+            </linearGradient>
+            <linearGradient id="g-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.18 }} />
+              <stop offset="100%" style={{ stopColor: '#10B981', stopOpacity: 0.08 }} />
+            </linearGradient>
+            <linearGradient id="pl-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#EC4899', stopOpacity: 0.18 }} />
+              <stop offset="100%" style={{ stopColor: '#EC4899', stopOpacity: 0.08 }} />
+            </linearGradient>
+            <linearGradient id="pr-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#3B82F6', stopOpacity: 0.18 }} />
+              <stop offset="100%" style={{ stopColor: '#3B82F6', stopOpacity: 0.08 }} />
+            </linearGradient>
+          </defs>
 
-        {/* Group Labels with Diagonal Divisions */}
-        {Object.entries(typeGroups).map(([group, _]) => (
-          <div
-            key={group}
-            className={`absolute w-1/2 h-1/2 flex items-center justify-center ${groupPositions[group]}`}
-            style={{
-              borderRight: group === 'Pioneers' || group === 'Players' ? '2px solid var(--color-neutral-200)' : 'none',
-              borderBottom: group === 'Pioneers' || group === 'Guardians' ? '2px solid var(--color-neutral-200)' : 'none',
-            }}
-          >
-            <div
-              className="text-8xl md:text-9xl font-bold uppercase tracking-wider select-none"
-              style={{
-                color: groupColors[group],
-                opacity: 0.08,
-                transform: 'rotate(-5deg)',
-                textShadow: '0 0 40px rgba(0, 0, 0, 0.05)',
-              }}
-            >
-              {group}
-            </div>
-          </div>
-        ))}
+          {/* Pioneers - Large diagonal slash with irregular wider sawtooth */}
+          <polygon points="0,170 100,130 200,210 320,145 420,225 540,110 670,200 800,160 920,240 1000,155 1000,180 900,420 0,520" fill="url(#p-grad)" />
+          
+          {/* Guardians - Sawtooth middle section */}
+          <polygon points="0,520 900,420 1000,680 800,800 1000,920 0,1000" fill="url(#g-grad)" />
+          <polygon points="80,820 320,840 150,1000 0,1000" fill="url(#g-grad)" />
+          
+          {/* Players - Diagonal slash right to left (shortened) */}
+          <polygon points="0,1000 1000,920 1000,1180 200,1280" fill="url(#pl-grad)" />
+          <polygon points="200,1280 1000,1180 950,1420 0,1500" fill="url(#pl-grad)" />
+          
+          {/* Pragmatists - Irregular bottom with sawtooth */}
+          <polygon points="0,1500 950,1420 1000,1750 850,2000 0,2000" fill="url(#pr-grad)" />
+          <polygon points="0,1500 200,1700 0,2000" fill="url(#pr-grad)" />
+          <polygon points="400,1850 600,1700 800,2000" fill="url(#pr-grad)" opacity="0.6" />
+          
+          {/* Players - Diagonal slash right to left (shortened) */}
+          <polygon points="0,1000 1000,920 1000,1180 200,1280" fill="url(#pl-grad)" />
+          <polygon points="200,1280 1000,1180 950,1420 0,1500" fill="url(#pl-grad)" />
+          
+          {/* Pragmatists - Irregular bottom with sawtooth */}
+          <polygon points="0,1500 950,1420 1000,1750 850,2000 0,2000" fill="url(#pr-grad)" />
+          <polygon points="0,1500 200,1700 0,2000" fill="url(#pr-grad)" />
+          <polygon points="400,1850 600,1700 800,2000" fill="url(#pr-grad)" opacity="0.6" />
+        </svg>
 
-        {/* Decorative Geometric Shapes */}
-        <div
-          className="absolute w-96 h-96 rounded-full"
-          style={{
-            top: '10%',
-            left: '5%',
-            background: `radial-gradient(circle, ${groupColors.Pioneers}15 0%, transparent 70%)`,
-            filter: 'blur(40px)',
-          }}
-        />
-        <div
-          className="absolute w-96 h-96 rounded-full"
-          style={{
-            top: '10%',
-            right: '5%',
-            background: `radial-gradient(circle, ${groupColors.Guardians}15 0%, transparent 70%)`,
-            filter: 'blur(40px)',
-          }}
-        />
-        <div
-          className="absolute w-96 h-96 rounded-full"
-          style={{
-            bottom: '10%',
-            left: '5%',
-            background: `radial-gradient(circle, ${groupColors.Players}15 0%, transparent 70%)`,
-            filter: 'blur(40px)',
-          }}
-        />
-        <div
-          className="absolute w-96 h-96 rounded-full"
-          style={{
-            bottom: '10%',
-            right: '5%',
-            background: `radial-gradient(circle, ${groupColors.Pragmatists}15 0%, transparent 70%)`,
-            filter: 'blur(40px)',
-          }}
-        />
+        {/* Group Labels - Centered, aligned with sections */}
+        <div className="absolute left-1/2 top-[15%] -translate-x-1/2 pointer-events-none">
+          <h3 className="text-7xl md:text-8xl font-black uppercase tracking-tighter select-none text-center" style={{
+            color: groupColors.Pioneers,
+            opacity: 0.22,
+            textShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+            fontWeight: 900,
+            letterSpacing: '-0.02em',
+          }}>
+            Pioneers
+          </h3>
+        </div>
+        <div className="absolute left-1/2 top-[35%] -translate-x-1/2 pointer-events-none">
+          <h3 className="text-7xl md:text-8xl font-black uppercase tracking-tighter select-none text-center" style={{
+            color: groupColors.Guardians,
+            opacity: 0.22,
+            textShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+            fontWeight: 900,
+            letterSpacing: '-0.02em',
+          }}>
+            Guardians
+          </h3>
+        </div>
+        <div className="absolute left-1/2 top-[54%] -translate-x-1/2 pointer-events-none">
+          <h3 className="text-7xl md:text-8xl font-black uppercase tracking-tighter select-none text-center" style={{
+            color: groupColors.Players,
+            opacity: 0.22,
+            textShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+            fontWeight: 900,
+            letterSpacing: '-0.02em',
+          }}>
+            Players
+          </h3>
+        </div>
+        <div className="absolute left-1/2 bottom-[12%] -translate-x-1/2 pointer-events-none">
+          <h3 className="text-7xl md:text-8xl font-black uppercase tracking-tighter select-none text-center" style={{
+            color: groupColors.Pragmatists,
+            opacity: 0.22,
+            textShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+            fontWeight: 900,
+            letterSpacing: '-0.02em',
+          }}>
+            Pragmatists
+          </h3>
+        </div>
       </div>
 
       {/* Main Content */}
@@ -150,6 +168,7 @@ export default function TypesPage() {
                   <TypesCard
                     key={type}
                     type={type}
+                    name={t(`${type}.name`)}
                     description={t(`${type}.description`)}
                     group={group}
                   />
