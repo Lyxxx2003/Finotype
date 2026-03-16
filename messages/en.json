@@ -91,7 +91,10 @@
     "loading": "Loading to see how many people are like you...",
     "peopleLikeYou": "people like you",
     "percentageLike": "{percentage}% of people are like you!",
-    "firstTest": "You're the very first to test!!"
+    "firstTest": "You're the very first to test!!",
+    "shareTitle": "What's your Finotype?",
+    "shareBrandText": "Discover your financial personality",
+    "shareText": "I just discovered my Finotype: {code} - {name}! Discover your financial personality at https://finotype.vercel.app"
   },
   "traits": {
     "A": "Adventurous",
@@ -455,51 +458,67 @@
   },
   "personas": {
     "AFDE": {
+      "name": "The Sovereign",
       "description": "Top strategist who uses extreme discipline to navigate risk and build a financial empire."
     },
     "AFDN": {
+      "name": "The Visionary",
       "description": "Ambitious yet inexperienced, you rely on intuition and remarkable perseverance for long-term investments, trading time for returns."
     },
     "AFIE": {
+      "name": "The Hunter",
       "description": "Knowledgeable but occasionally impulsive, you'll go all-in for future game-changing opportunities."
     },
     "AFIN": {
+      "name": "The Dreamer",
       "description": "Dreams of future wealth but has a short memory. Can't control spending impulses and repeatedly falls for high-risk financial schemes."
     },
     "APDE": {
+      "name": "The Striker",
       "description": "Extremely disciplined short-term expert who precisely captures profits in market volatility."
     },
     "APDN": {
+      "name": "The Adventurer",
       "description": "Enjoys fresh money-making opportunities. Not very professional but disciplined enough to avoid major losses."
     },
     "APIE": {
+      "name": "The High Roller",
       "description": "Understands money and loves the thrill it brings. Spends lavishly while earning through high-risk ventures."
     },
     "APIN": {
+      "name": "The Firework",
       "description": "Classic hedonist who neither understands nor controls money. Lives for the moment."
     },
     "GFDE": {
+      "name": "The Fortress",
       "description": "Highly professional and disciplined long-term investor. A compounding machine."
     },
     "GFDN": {
+      "name": "The Dam-Builder",
       "description": "Doesn't understand complex finance but accumulates wealth through saving and thrift instincts."
     },
     "GFIE": {
+      "name": "The Sentinel",
       "description": "Understands finance but has weak psychological resilience. Thinks long-term but often anxious about market swings."
     },
     "GFIN": {
+      "name": "The Ostrich",
       "description": "Extremely risk-averse with poor self-control. Refuses to engage with finances and only trusts bank deposits."
     },
     "GPDE": {
+      "name": "The Optimizer",
       "description": "Extremely shrewd, scrutinizing every expense with professional insight. Lives with extreme rigor."
     },
     "GPDN": {
+      "name": "The Minimalist",
       "description": "Doesn't want to study money. Lives a simple, stable life through low desires and self-discipline."
     },
     "GPIE": {
+      "name": "The Savvy Shopper",
       "description": "Knows all financial tricks but prioritizes current desires over professional knowledge."
     },
     "GPIN": {
+      "name": "The Drifter",
       "description": "Follows the crowd with finances. Fears loss but wants to buy. Financial state depends entirely on today's mood."
     }
   },

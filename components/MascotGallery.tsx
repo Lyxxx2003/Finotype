@@ -14,6 +14,7 @@ const mascots = [
 
 export default function MascotGallery() {
   const t = useTranslations('home');
+  const tPersonas = useTranslations('personas');
   const router = useRouter();
   const params = useParams();
   const locale = params.locale as string;
@@ -44,10 +45,14 @@ export default function MascotGallery() {
 
         {/* 4x4 Grid Layout */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
-          {mascots.map((mascot, index) => (
-            <div
-              key={index}
-              className="group relative"
+          {mascots.map((mascot, index) => {
+            const finotype = mascot.split('.')[0].toUpperCase();
+            const finotypeName = tPersonas.has(`${finotype}.name`) ? tPersonas(`${finotype}.name`) : finotype;
+
+            return (
+              <div
+                key={index}
+                className="group relative"
               style={{
                 animation: `slideInFromBottom 0.6s ease-out ${1.4 + index * 0.05}s both`
               }}
@@ -83,20 +88,23 @@ export default function MascotGallery() {
                   />
                 </div>
 
-                {/* Type Label on hover */}
+                {/* Type label on hover */}
                 <div
-                  className="absolute bottom-0 left-0 right-0 py-2 px-3 text-center text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+                  className="absolute bottom-0 left-0 right-0 py-2 px-3 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
                   style={{
-                    background: 'rgba(0, 0, 0, 0.7)',
+                    background: 'rgba(15, 23, 42, 0.75)',
                     backdropFilter: 'blur(8px)',
                     color: 'white'
                   }}
                 >
-                  {mascot.split('.')[0].toUpperCase()}
+                  <p className="text-[10px] font-bold tracking-[0.2em]">{finotype}</p>
+                  <p className="text-[11px] font-medium leading-tight mt-0.5">{finotypeName}</p>
                 </div>
+
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Call to Action Buttons */}

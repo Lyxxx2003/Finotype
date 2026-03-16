@@ -26,6 +26,9 @@ export default function ResultsPage() {
   const tResults = useTranslations('results');
   const tTraits = useTranslations('traits');
 
+  const finotypeCode = persona?.id ?? '';
+  const finotypeName = persona && tPersonas.has(`${persona.id}.name`) ? tPersonas(`${persona.id}.name`) : finotypeCode;
+
   useEffect(() => {
     if (hasSaved) return; // Prevent double execution
 
@@ -85,12 +88,14 @@ export default function ResultsPage() {
     circleColor1: 'rgba(255, 255, 255, 0.05)',
     circleColor2: 'rgba(255, 255, 255, 0.08)',
     mascot: persona?.mascot || '💰',
-    title: "What's your Finotype?",
+    title: tResults('shareTitle'),
     subtitle: 'finotype.vercel.app',
-    brandText: 'Discover your financial personality',
+    brandText: tResults('shareBrandText'),
     filename: `finotype-${persona?.id}-${Date.now()}.png`,
-    shareTitle: "What's your Finotype?",
-    shareText: `I just discovered my Finotype: ${persona?.name}! Discover your financial personality at https://finotype.vercel.app`,
+    shareTitle: tResults('shareTitle'),
+    shareText: tResults('shareText', { code: finotypeCode, name: finotypeName }),
+    finotypeCode,
+    finotypeName,
     shareUrl: `https://finotype.vercel.app/`,
   });
 
@@ -145,7 +150,7 @@ export default function ResultsPage() {
                   </span>
                 </div>
                 <div
-                  className="inline-flex items-center rounded-2xl px-6 py-3 border"
+                  className="inline-flex flex-col items-start rounded-2xl px-6 py-3 border gap-1"
                   style={{
                     borderColor: 'var(--color-neutral-200)',
                     background: 'var(--gradient-primary)',
@@ -154,6 +159,9 @@ export default function ResultsPage() {
                 >
                   <span className="text-4xl font-bold tracking-[0.35em]" style={{ color: 'white' }}>
                     {persona.id}
+                  </span>
+                  <span className="text-sm font-semibold" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
+                    {finotypeName}
                   </span>
                 </div>
               </div>
