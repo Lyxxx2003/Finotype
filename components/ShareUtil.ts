@@ -1,3 +1,4 @@
+import { toPng } from 'html-to-image';
 
 export interface ShareImageOptions {
   width?: number;
@@ -257,6 +258,104 @@ export const nativeShare = async (options: ShareImageOptions) => {
     });
   } catch (err) {
     console.error('Failed to generate share image', err);
+    alert('Failed to generate share image. Please try again.');
+    return false;
+  }
+};
+
+export interface ShareElementOptions {
+  filename: string;
+  shareTitle: string;
+  shareText: string;
+  shareUrl?: string;
+}
+
+const elementToBlob = async (element: HTMLElement): Promise<Blob> => {
+  const dataUrl = await toPng(element, {
+    cacheBust: true,
+    pixelRatio: 2,
+    backgroundColor: '#ffffff',
+    skipFonts: false,
+  });
+
+  const response = await fetch(dataUrl);
+  return await response.blob();
+};
+
+const elementToFile = async (
+  element: HTMLElement,
+  filename: string
+): Promise<File> => {
+  const blob = await elementToBlob(element);
+  return new File([blob], filename, { type: 'image/png' });
+};
+
+export const downloadElementAsImage = async (
+  element: HTMLElement,
+  filename: string
+) => {
+  try {
+    const dataUrl = await toPng(element, {
+      cacheBust: true,
+      pixelRatio: 2,
+      backgroundColor: '#ffffff',
+      skipFonts: false,
+    });
+
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = dataUrl;
+    link.click();
+  } catch (err) {
+    console.error('Failed to download element image', err);
+    alert('Failed to download image. Please try again.');
+  }
+};
+
+export const nativeShareElement = async (
+  element: HTMLElement,
+  options: ShareElementOptions
+) => {
+  try {
+    const file = await elementToFile(element, options.filename);
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          title: options.shareTitle,
+          text: options.shareText,
+          url: options.shareUrl,
+          files: [file],
+        });
+        return true;
+      } catch (err) {
+        if ((err as Error).name !== 'AbortError') {
+          console.log('Share failed', err);
+        }
+        return false;
+      }
+    }
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: options.shareTitle,
+          text: options.shareText,
+          url: options.shareUrl || window.location.href,
+        });
+        return true;
+      } catch (err) {
+        if ((err as Error).name !== 'AbortError') {
+          console.log('Share failed', err);
+        }
+        return false;
+      }
+    }
+
+    alert('Sharing is not supported on this device. Please use the Download button instead.');
+    return false;
+  } catch (err) {
+    console.error('Failed to share element image', err);
     alert('Failed to generate share image. Please try again.');
     return false;
   }
