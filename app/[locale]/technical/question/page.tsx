@@ -217,8 +217,8 @@ export default function TechnicalQuestionPage() {
   ];
 
   return (
-    <div className="min-h-screen p-6 py-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="technical-question-page min-h-screen p-6 py-8">
+      <div className="technical-question-shell max-w-7xl mx-auto p-6 md:p-8 lg:p-10">
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-3" style={{ color: 'var(--color-text)' }}>
             {t('ui.courseTitle')}
@@ -233,9 +233,9 @@ export default function TechnicalQuestionPage() {
 
         <div className="grid lg:grid-cols-[300px_minmax(0,1fr)] gap-8 items-start">
           <aside
-            className="rounded-2xl shadow-lg p-5 lg:sticky lg:top-6"
+            className="technical-question-sidecard rounded-2xl shadow-lg p-5 lg:sticky lg:top-6"
             style={{
-              backgroundColor: 'var(--color-surface)',
+              backgroundColor: 'var(--technical-side-bg, var(--color-surface))',
               borderWidth: '1px',
               borderColor: 'var(--color-neutral-200)'
             }}
@@ -304,9 +304,9 @@ export default function TechnicalQuestionPage() {
           </aside>
 
           <main
-            className="rounded-2xl shadow-lg p-8 min-h-[700px]"
+            className="technical-question-maincard rounded-2xl shadow-lg p-8 min-h-[700px]"
             style={{
-              backgroundColor: 'var(--color-surface)',
+              backgroundColor: 'var(--technical-main-bg, var(--color-surface))',
               borderWidth: '1px',
               borderColor: 'var(--color-neutral-200)'
             }}
