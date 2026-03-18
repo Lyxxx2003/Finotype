@@ -99,6 +99,7 @@
   "account": {
     "title": "账户设置",
     "displayName": "显示名称",
+    "displayNamePlaceholder": "输入你的显示名称",
     "displayNameNote": "此名称将用于您的分析结果",
     "email": "邮箱",
     "preferences": "偏好设置",
@@ -550,5 +551,2737 @@
       "title": "风险管理：初学者指南",
       "description": "掌握在个人投资旅程中识别、评估和管理金融风险的基本原理。"
     }
+  },
+  "technicalQuestion": {
+    "ui": {
+      "courseTitle": "金融素养课程",
+      "courseDescription": "学习适合毕业新人的实用金钱知识，并在每个章节后立即自测。",
+      "usDisclaimer": "本课程使用以美国为中心的示例和术语。你所在国家可能有不同制度，但核心思路相近。",
+      "courseModules": "课程模块",
+      "questionsCompleted": "已完成 {completed}/{total} 题",
+      "finishToUnlock": "完成所有题目后解锁",
+      "overallProgress": "整体进度",
+      "keyIdeas": "核心要点",
+      "quickCheck": "快速测验",
+      "questionLabel": "第 {number} 题",
+      "correct": "回答正确",
+      "notQuite": "还差一点",
+      "correctAnswer": "正确答案：",
+      "briefTakeaways": "简要总结",
+      "completeEveryModule": "完成所有模块后可解锁最终雷达图。",
+      "viewResults": "查看结果",
+      "resultsTitle": "8. 结果",
+      "resultsDescription": "你的雷达图会展示你在毕业新人最相关的核心金融素养维度上的表现。",
+      "radarTitle": "我的金融素养雷达图",
+      "newGradEdition": "毕业新人版",
+      "averageScore": "平均分：",
+      "share": "分享",
+      "downloadImage": "下载图片",
+      "copyLink": "复制链接",
+      "shareToX": "分享到 X",
+      "facebook": "Facebook",
+      "retakeCourse": "重新学习",
+      "benchmark": {
+        "rockSolid": "非常扎实",
+        "strong": "表现良好",
+        "gettingThere": "持续进步中",
+        "needsBoost": "需要加强"
+      },
+      "definitionNotFound": "未找到术语解释。",
+      "close": "关闭",
+      "shareText": "我刚完成了金融素养课程并拿到了雷达结果，你也来试试吧！",
+      "shareBrandText": "看看我在核心金钱技能上的表现",
+      "resultsPageTitle": "技术结果",
+      "resultsPageComingSoon": "该页面正在开发中，敬请期待！"
+    },
+    "skills": [
+      {
+        "key": "paycheckLiteracy",
+        "label": "Paycheck Literacy",
+        "description": "了解工资、扣除额、税收和应税收入"
+      },
+      {
+        "key": "housingBills",
+        "label": "Housing & Bills",
+        "description": "管理租金、水电费、押金和经常性债务"
+      },
+      {
+        "key": "spendingControl",
+        "label": "Spending Control",
+        "description": "管理必需品、灵活支出和预算习惯"
+      },
+      {
+        "key": "creditDebt",
+        "label": "Credit & Debt",
+        "description": "安全使用信用卡并了解借贷成本"
+      },
+      {
+        "key": "safetyNet",
+        "label": "Safety Net",
+        "description": "保险、应急基金和长期财务弹性"
+      },
+      {
+        "key": "fraudSafety",
+        "label": "Fraud & Safety",
+        "description": "保护您的身份、账户和信用档案"
+      }
+    ],
+    "glossary": {
+      "Gross Pay": "您的税前收入和扣除额将被扣除。",
+      "Net Pay": "扣除后实际存入您银行账户的金额。",
+      "Taxable Income": "经过合格调整或税前扣除后需缴纳所得税的收入部分。",
+      "Withholding": "预先从您的薪水中扣除的钱用于缴税。",
+      "W-4": "用于帮助确定从您的工资中预扣联邦税的表格。",
+      "FICA": "为社会保障和医疗保险提供资金的工资税。",
+      "Pre-tax Deduction": "在计算某些税款之前进行的扣除。",
+      "Pay Stub": "显示工资总额、扣除额、税金和净工资的记录。",
+      "Fixed Expense": "每月保持大致相同的费用，例如租金。",
+      "Variable Expense": "每月变化的费用，例如杂货或汽油。",
+      "Security Deposit": "预先支付的款项，以保护房东免受损坏或未付租金。",
+      "Checking Account": "用于日常支出和账单支付的银行帐户。",
+      "Savings Account": "旨在存放资金并通常赚取利息的银行帐户。",
+      "Debit Card": "与您的支票账户关联的卡；购买直接来自您的余额。",
+      "Credit Card": "有限额的借贷工具；未付余额可能会产生利息。",
+      "APR": "年利率，信用卡或贷款的每年借贷成本。",
+      "Credit Utilization": "当前正在使用的可用信用百分比。",
+      "Statement Balance": "计费周期结束时您的卡所欠的金额。",
+      "Minimum Payment": "保持信用卡账户有效所需的最低付款额。",
+      "Annual Fee": "某些信用卡收取年费。",
+      "Foreign Transaction Fee": "某些银行卡针对以其他国家/地区或货币进行购物时收取的费用。",
+      "Premium": "您为保持保险有效而定期支付的金额。",
+      "Deductible": "在保险开始分摊承保费用之前您支付的金额。",
+      "Copay": "您为承保医疗服务支付的固定金额。",
+      "Coinsurance": "达到免赔额后您支付的承保医疗费用的百分比。",
+      "Out-of-Pocket Maximum": "在保险公司支付 100% 承保费用之前，您在计划年度内为承保医疗保健支付的最高金额。",
+      "In-Network": "与您的保险计划协商价格的医生和提供者。",
+      "401(k)": "雇主资助的退休账户，可能包括雇主匹配。",
+      "Employer Match": "您的雇主根据您的贡献向您的退休账户存入资金。",
+      "Renter Insurance": "保险有助于承保您在租房时的财物和个人责任。",
+      "Auto Insurance": "可能涵盖车辆损坏、责任和相关损失的保险。",
+      "Emergency Fund": "为紧急、意外开支保留的储蓄。",
+      "Liquidity": "您在不损失价值的情况下获取资金的速度有多快。",
+      "Phishing": "一种骗局，通过虚假电子邮件、短信或网站诱骗您泄露信息。",
+      "Identity Theft": "当有人未​​经许可使用您的个人信息时。",
+      "Credit Freeze": "限制访问您的信用报告，以帮助防止欺诈性新帐户。",
+      "Experian": "美国三大征信机构之一。",
+      "Equifax": "美国三大征信机构之一。",
+      "TransUnion": "美国三大征信机构之一。",
+      "HSA": "A Health Savings Account 与合格的健康计划一起用于支付合格的医疗费用。",
+      "Certificate of Deposit": "具有固定期限且通常具有固定利率的银行产品。",
+      "RSU": "限制性股票单位，一种通常随着时间的推移而授予的公司股票授予。",
+      "Fund": "持有许多基础投资的投资工具，例如 ETF 或共同基金。",
+      "Diversification": "将投资分散到不同资产以降低集中风险。",
+      "APY": "年收益率，包括复利在内的存款年回报率。",
+      "Direct Deposit": "将付款电子存入您的银行帐户。",
+      "Overdraft": "当交易超过您支票账户中的可用余额时。",
+      "Due Date": "必须支付账单或付款的日期。",
+      "RSU Vesting": "决定您何时实际获得授予的公司股票所有权的时间表。"
+    },
+    "modules": [
+      {
+        "id": "paycheck",
+        "title": "1. 工资和税金",
+        "shortDescription": "了解薪酬如何成为实得工资。",
+        "lessonBlocks": [
+          {
+            "id": "pay-1",
+            "heading": "总工资、净工资以及为什么您的第一笔存款看起来较小",
+            "paragraphs": [
+              "作为一名应届毕业生，第一个令人惊讶的事情是，你的薪水并没有存入你的银行账户。您的工资从 [[Gross Pay]] 开始，然后减去税费、福利和其他扣除额，然后再收到 [[Net Pay]]。",
+              "您的每月预算应根据净工资而不是年薪或总工资制定。这使得租金、账单和储蓄计划都以你实际拥有的资金为基础。"
+            ],
+            "bullets": [
+              "工资总额是扣减前的工资",
+              "净工资是您实际可以支出或节省的金额",
+              "始终使用净工资进行预算"
+            ],
+            "questions": [
+              {
+                "id": "q_pay_1",
+                "title": "问题1",
+                "prompt": "您应该使用哪个数字来制定每月预算？",
+                "correctChoiceId": "B",
+                "explanation": "您的预算应该基于您实际收到的钱：净工资。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "工资总额",
+                    "impact": {
+                      "paycheckLiteracy": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "净工资",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "年薪除以10",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "税前金额加上预估奖金",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_pay_2",
+                "title": "问题2",
+                "prompt": "哪种说法最准确？",
+                "correctChoiceId": "D",
+                "explanation": "净工资是工资总额减去税收和扣除额。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "总工资总是低于净工资",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "净工资是税前的",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "薪资待遇等于每月可支出现金",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "净工资是税费和扣除额后剩下的部分",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "pay-2",
+            "heading": "应税收入、预扣税和 FICA",
+            "paragraphs": [
+              "许多职业生涯早期的工人将税收视为一条线，但你的薪水通常包括不同的类别。 [[Withholding]] 是预支所得税的钱。 [[FICA]] 涵盖社会保障和医疗保险。",
+              "[[Taxable Income]] 是实际应缴纳所得税的收入部分。某些 [[Pre-tax Deduction]] 项目可以在计算税款之前减少应税收入。"
+            ],
+            "bullets": [
+              "FICA 与所得税预扣分开",
+              "应税收入可能低于总收入",
+              "税前扣除可能会减少一些税收风险"
+            ],
+            "questions": [
+              {
+                "id": "q_pay_3",
+                "title": "问题3",
+                "prompt": "什么是扣留？",
+                "correctChoiceId": "A",
+                "explanation": "Withholding 是从您的工资中预先扣除的税款。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "在您收到薪水之前取出的税金",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "您雇主的退休金",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "您的储蓄账户利率",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "账单上的滞纳金",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_pay_4",
+                "title": "问题4",
+                "prompt": "在计算某些税款之前，哪些项目可以减少应纳税所得额？",
+                "correctChoiceId": "C",
+                "explanation": "符合条件的税前扣除可以减少应税收入。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "信用卡付款",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "房东保证金",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "税前扣除",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "借记卡购买",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "pay-3",
+            "heading": "W-4、工资单和福利扣除",
+            "paragraphs": [
+              "您的 [[W-4]] 会影响联邦所得税的预扣金额。它不会永远锁定您的最终税单，但它确实会影响当年的实得工资。",
+              "您可以在 [[Pay Stub]] 中核实税费、健康保险扣除额、退休金以及您的 [[Direct Deposit]] 金额是否符合预期。"
+            ],
+            "bullets": [
+              "工资相同的两个人可以有不同的净工资",
+              "福利选择影响实得工资",
+              "尽早检查您的工资单以快速发现错误"
+            ],
+            "questions": [
+              {
+                "id": "q_pay_5",
+                "title": "问题5",
+                "prompt": "为什么工资相同的两名工人可能获得不同的净工资？",
+                "correctChoiceId": "D",
+                "explanation": "不同的预扣设置和扣除额可能会改变实得工资。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "工资总是决定相同的净工资",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "每个月的净工资是随机的",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "只有职位名称会改变薪水金额",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "他们可能有不同的预扣税和福利扣除额",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_pay_6",
+                "title": "问题6",
+                "prompt": "工资单有什么用？",
+                "correctChoiceId": "B",
+                "explanation": "工资单显示工资总额、扣除额、税金和净工资。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "这是您的最终纳税申报表",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "它显示了您的薪水是如何计算的",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "它取代您的银行对账单",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "它设置您的信用评分",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "pay-4",
+            "heading": "奖金、RSUs 和应税补偿",
+            "paragraphs": [
+              "随着您职业生涯的发展，薪酬可能包括奖金或 [[RSU]] 补助金。这些可能令人兴奋，但它们也带来税收影响和时间差异。",
+              "一个有用的习惯是将“稳定的月薪”与“额外的报酬”分开。不要围绕不规则或尚未完全归属的收入建立固定义务。"
+            ],
+            "bullets": [
+              "基本工资更适合经常性账单",
+              "可变薪酬与保证现金不同",
+              "薪酬结构很重要，而不仅仅是总体工资"
+            ],
+            "questions": [
+              {
+                "id": "q_pay_7",
+                "title": "问题7",
+                "prompt": "通常最不适合依靠哪种类型的收入来支付固定的每月账单？",
+                "correctChoiceId": "C",
+                "explanation": "奖金等不规则收入对于每月固定的债务来说不太可靠。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "基本工资一致",
+                    "impact": {
+                      "paycheckLiteracy": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "来自常规工资的稳定净工资",
+                    "impact": {
+                      "paycheckLiteracy": 6
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "不定期奖金收入",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "已知的每月津贴",
+                    "impact": {
+                      "paycheckLiteracy": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_pay_8",
+                "title": "问题8",
+                "prompt": "RSU 代表什么？",
+                "correctChoiceId": "A",
+                "explanation": "RSU 代表限制性股票单位。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "限制性股票单位",
+                    "impact": {
+                      "paycheckLiteracy": 20,
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "退休储蓄升级",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "注册薪资单位",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "减少支出效用",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "使用净工资而不是总体工资来制定预算。",
+          "了解税费、预扣税和 FICA 之间的区别。",
+          "尽早并经常检查您的工资单。",
+          "将奖金和 RSU 视为比基本工资更不可预测的。"
+        ]
+      },
+      {
+        "id": "living",
+        "title": "2. 生活费",
+        "shortDescription": "了解独自生活的实际成本是多少。",
+        "lessonBlocks": [
+          {
+            "id": "live-1",
+            "heading": "固定费用与可变费用",
+            "paragraphs": [
+              "当您搬到新城市并开始安家时，最有用的预算技巧之一是将 [[Fixed Expense]] 项目与 [[Variable Expense]] 项目分开。",
+              "租金通常在租赁期内固定。杂货、煤气、餐馆、电力、无线网络和水都可能每月发生变化。"
+            ],
+            "bullets": [
+              "固定费用更容易预测",
+              "可变费用需要持续关注",
+              "公用事业的波动性往往比人们预期的要大"
+            ],
+            "questions": [
+              {
+                "id": "q_live_1",
+                "title": "问题1",
+                "prompt": "以下哪项最有可能是可变费用？",
+                "correctChoiceId": "B",
+                "explanation": "杂货通常每月都会变化，而租金通常通过租赁固定。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "租",
+                    "impact": {
+                      "housingBills": 6,
+                      "spendingControl": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "杂货",
+                    "impact": {
+                      "spendingControl": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "每月租客保险费",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "学生贷款最低还款额",
+                    "impact": {
+                      "creditDebt": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_live_2",
+                "title": "问题2",
+                "prompt": "在首套公寓预算中，哪个类别经常被忽视？",
+                "correctChoiceId": "D",
+                "explanation": "当人们单独比较租金时，经常会忽略水电费和入住成本。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "雇主匹配",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "信用评分查询",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "预扣税款",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "水电费和入住费用",
+                    "impact": {
+                      "housingBills": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "live-2",
+            "heading": "租房与购买以及隐性住房成本",
+            "paragraphs": [
+              "对于许多应届毕业生来说，租房比买房更实用。购房通常涉及首付、成交费用、财产税、维护以及因工作搬家的灵活性较低。",
+              "租房时，请记住标价租金只是住房故事的一部分。 [[Security Deposit]]、停车、家具、租户保险和通勤费用都很重要。"
+            ],
+            "bullets": [
+              "便宜的租金并不总是最便宜的",
+              "除了每月抵押贷款之外，购买还有很多成本",
+              "交通可以改变房屋的真实成本"
+            ],
+            "questions": [
+              {
+                "id": "q_live_3",
+                "title": "问题3",
+                "context": "您在搬到第一份工作后正在两套公寓之间进行选择。",
+                "prompt": "哪个比较最强？",
+                "correctChoiceId": "C",
+                "explanation": "一个好的住房决定会比较每月的全部费用，而不仅仅是广告上的租金。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "选择最低租金并忽略通勤",
+                    "impact": {
+                      "housingBills": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "选择最好的公寓，因为你值得拥有",
+                    "impact": {
+                      "housingBills": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "比较租金、水电费、通勤费和入住成本",
+                    "impact": {
+                      "housingBills": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "仅根据平方英尺进行选择",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_live_4",
+                "title": "问题4",
+                "prompt": "与购买相比，哪种成本与租赁更相关？",
+                "correctChoiceId": "B",
+                "explanation": "成交成本是典型的购房成本。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "保证金",
+                    "impact": {
+                      "housingBills": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "结账费用",
+                    "impact": {
+                      "housingBills": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "每月无线网络",
+                    "impact": {
+                      "housingBills": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "租客保险",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "live-3",
+            "heading": "必需品、生活方式通胀和现金流时机",
+            "paragraphs": [
+              "应届毕业生常常低估便利支出的增长幅度。如果你不关注餐馆、送货、拼车和“小额”经常性购买，它们可能会与必需品竞争。",
+              "现金流时机也很重要。即使您的月收入足以支付您的纸面账单，但时机不当仍然会导致透支或滞纳金。"
+            ],
+            "bullets": [
+              "需求应先于需求提供资金",
+              "每周支出支票通常比月末惊喜更有效",
+              "现金流时机很重要，而不仅仅是月总收入"
+            ],
+            "questions": [
+              {
+                "id": "q_live_5",
+                "title": "问题5",
+                "prompt": "如果餐厅支出持续超出计划，最有力的第一步是什么？",
+                "correctChoiceId": "A",
+                "explanation": "每周上限加上简单的膳食计划可以创造可持续的控制。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "设定每周上限并计划一些简单的膳食",
+                    "impact": {
+                      "spendingControl": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "忽略它并希望下个月会更好",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "将食物存入信用卡并稍后查看",
+                    "impact": {
+                      "spendingControl": 2,
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "停止支付水电费",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_live_6",
+                "title": "问题6",
+                "prompt": "关于现金流量，哪种说法最准确？",
+                "correctChoiceId": "D",
+                "explanation": "现金流时间很重要，因为账单可能会在您的下一次薪水到来之前到期。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "只有年总收入才重要",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "如果你的薪水不错，截止日期并不重要",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "可变费用永远不会影响现金流",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "即使月收入总体上足够，账单时间也会产生问题",
+                    "impact": {
+                      "housingBills": 10,
+                      "spendingControl": 10
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "live-4",
+            "heading": "实用程序、订阅和经常性泄漏",
+            "paragraphs": [
+              "电力、水、互联网和订阅服务很容易被低估，因为每一项都可能在孤立的情况下显得很小。",
+              "早期职业生涯的一个重要习惯是定期审查经常性费用。每月的小额泄漏可能会挤占储蓄和应急资金的进展。"
+            ],
+            "bullets": [
+              "经常性费用值得审查",
+              "公用事业可能会随着季节和使用情况而波动",
+              "微小的泄漏可能会成为年度总量"
+            ],
+            "questions": [
+              {
+                "id": "q_live_7",
+                "title": "问题7",
+                "prompt": "为什么订阅对于初学者来说往往存在经济风险？",
+                "correctChoiceId": "B",
+                "explanation": "每月的小额费用很容易被忽视，但随着时间的推移，费用会不断增加。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "他们总是骗局",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "他们可以悄悄地加起来，因为每个人都感觉很小",
+                    "impact": {
+                      "spendingControl": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "它们是由法律规定的，不能取消",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "他们直接降低你的信用评分",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_live_8",
+                "title": "问题8",
+                "prompt": "哪种实用程序最有可能随天气和使用情况而变化？",
+                "correctChoiceId": "A",
+                "explanation": "电费经常随着空调、供暖和季节性使用而变化。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "电",
+                    "impact": {
+                      "housingBills": 12,
+                      "spendingControl": 8
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "固定停车费",
+                    "impact": {
+                      "housingBills": 4
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "封闭式汽车贷款支付",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "已知年费卡费用",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "明确区分固定费用和可变费用。",
+          "比较总的住房成本，而不是单独的租金。",
+          "关注现金流时间，而不仅仅是每月总额。",
+          "经常性费用和便利支出值得定期审查。"
+        ]
+      },
+      {
+        "id": "banking",
+        "title": "3. 银行业和 Credit Cards",
+        "shortDescription": "有意使用支票、储蓄、借记卡和信用卡。",
+        "lessonBlocks": [
+          {
+            "id": "bank-1",
+            "heading": "支票、储蓄、借记卡和 APY",
+            "paragraphs": [
+              "您的 [[Checking Account]] 是您的操作帐户。这是 [[Direct Deposit]] 着陆的地方，也是您的 [[Debit Card]] 通常离开的地方。",
+              "[[Savings Account]] 设计用于存储资金，通常支付更多利息，通常显示为 [[APY]]。这使得储备比支票更好。"
+            ],
+            "bullets": [
+              "检查是为了交易",
+              "储蓄对于准备金来说更好",
+              "APY 越高，您可以留在原地的钱就越重要"
+            ],
+            "questions": [
+              {
+                "id": "q_bank_1",
+                "title": "问题1",
+                "prompt": "哪种账户类型通常能赚取更多利息？",
+                "correctChoiceId": "B",
+                "explanation": "储蓄账户通常比支票账户支付更多的利息。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "支票账户",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "储蓄账户",
+                    "impact": {
+                      "safetyNet": 12,
+                      "creditDebt": 4
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "借记卡",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "薪资门户",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_bank_2",
+                "title": "问题2",
+                "prompt": "借记卡与什么关联？",
+                "correctChoiceId": "C",
+                "explanation": "借记卡通常与您的支票账户关联。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "您的信用报告",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "您的健康保险计划",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "您的支票账户",
+                    "impact": {
+                      "creditDebt": 6,
+                      "housingBills": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "您的雇主401(k)",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "bank-2",
+            "heading": "Overdrafts、截止日期和保留缓冲区",
+            "paragraphs": [
+              "职业生涯早期的一个常见错误是支票账户的余额太接近于零。当交易超出您的可用余额时，可能会发生 [[Overdraft]]，可能会引发费用。",
+              "保持较小的检查缓冲区并了解每张账单 [[Due Date]] 有助于防止产生可避免的费用。"
+            ],
+            "bullets": [
+              "小缓冲区可以防止代价高昂的错误",
+              "账单时间很重要",
+              "Overdraft 费用会迅速加剧短缺"
+            ],
+            "questions": [
+              {
+                "id": "q_bank_3",
+                "title": "问题3",
+                "prompt": "什么是透支？",
+                "correctChoiceId": "A",
+                "explanation": "当交易超过可用账户余额时，就会发生透支。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "一笔交易超出了您的可用余额",
+                    "impact": {
+                      "housingBills": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "信用卡奖励类别",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "一种退休比赛",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "房东押金增加",
+                    "impact": {
+                      "housingBills": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_bank_4",
+                "title": "问题4",
+                "prompt": "保持较小的检查缓冲区的最佳理由是什么？",
+                "correctChoiceId": "D",
+                "explanation": "检查缓冲区有助于减少透支或基于时间的付款问题的可能性。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "它会增加您的信用额度",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "它取代了储蓄的需要",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "它降低了您的预扣税",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "它有助于避免透支和时间问题",
+                    "impact": {
+                      "housingBills": 12,
+                      "spendingControl": 8
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "bank-3",
+            "heading": "信用卡的工作原理：APR、对账单余额、最低还款额",
+            "paragraphs": [
+              "如果管理得当，[[Credit Card]] 很有用，但如果管理不当，则成本高昂。如果您未全额支付 [[Statement Balance]]，则可能会根据 [[APR]] 收取利息。",
+              "[[Minimum Payment]] 使帐户保持最新状态，但仅支付最低金额通常会大大减慢债务偿还速度。"
+            ],
+            "bullets": [
+              "全额付款可避免大部分购买利息",
+              "如果您有余额，APR 很重要",
+              "最低还款额不等于健康还款"
+            ],
+            "questions": [
+              {
+                "id": "q_bank_5",
+                "title": "问题5",
+                "prompt": "信用卡上的 APR 是什么意思？",
+                "correctChoiceId": "D",
+                "explanation": "APR 是年度借款成本百分比。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "每月维护费",
+                    "impact": {
+                      "creditDebt": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "信用局分配的分数",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "旅行奖励类别",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "年度借贷成本百分比",
+                    "impact": {
+                      "creditDebt": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_bank_6",
+                "title": "问题6",
+                "prompt": "报表余额是多少？",
+                "correctChoiceId": "A",
+                "explanation": "这是计费周期结束时所欠的金额。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "计费周期结束时所欠金额",
+                    "impact": {
+                      "creditDebt": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "您的可用信用总额",
+                    "impact": {
+                      "creditDebt": 4
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "您一生的年费总额",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "您的雇主支付给发卡机构的金额",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "bank-4",
+            "heading": "使用、费用和选择您的第一张卡",
+            "paragraphs": [
+              "[[Credit Utilization]] 是您当前使用的可用积分的百分比。许多人试图将利用率保持在 30% 以下，因为较低的利用率通常比接近极限运行更健康。",
+              "比较卡牌时，请考虑 [[Annual Fee]]、奖励和 [[Foreign Transaction Fee]]。最好的卡并不总是最奇特的。"
+            ],
+            "bullets": [
+              "低利用率通常优于高利用率",
+              "高年费需要真正的福利使用才有意义",
+              "如果您预计国际消费，旅行费用很重要"
+            ],
+            "questions": [
+              {
+                "id": "q_bank_7",
+                "title": "问题7",
+                "prompt": "如果您的信用额度为 2,000 美元，余额为 800 美元，则您的利用率为：",
+                "correctChoiceId": "C",
+                "explanation": "800 ÷ 2,000 = 40%。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "20%",
+                    "impact": {
+                      "creditDebt": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "30%",
+                    "impact": {
+                      "creditDebt": 8
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "40%",
+                    "impact": {
+                      "creditDebt": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "80%",
+                    "impact": {
+                      "creditDebt": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_bank_8",
+                "title": "问题8",
+                "context": "您希望出国工作或度假。",
+                "prompt": "哪些费用对于在其他国家/地区或货币中进行购买特别重要？",
+                "correctChoiceId": "B",
+                "explanation": "使用某些卡进行国际或外币购买时需支付外国交易费。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "保证金费用",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "国外交易费用",
+                    "impact": {
+                      "creditDebt": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "租客保险费",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "工资预扣费",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "对运营进行检查，对准备金进行储蓄。",
+          "保留检查缓冲区以避免基于时间的费用。",
+          "使用信用卡之前，请了解APR、对账单余额和最低还款额。",
+          "根据实际用途选择卡片，而不是仅仅考虑华而不实的好处。"
+        ]
+      },
+      {
+        "id": "insurance",
+        "title": "4. 保险和福利",
+        "shortDescription": "保护自己免受财务冲击并明智地使用福利。",
+        "lessonBlocks": [
+          {
+            "id": "ins-1",
+            "heading": "首次工作成年人的医疗保险基础知识",
+            "paragraphs": [
+              "健康保险一开始可能会让人感到不知所措，但有几个概念可以完成大部分工作：[[Premium]]、[[Deductible]]、[[Copay]]、[[Coinsurance]] 和 [[Out-of-Pocket Maximum]]。",
+              "每月便宜的保费并不总是意味着整体医疗保健便宜。具有高免赔额的计划现在可能费用较低，但如果您需要护理，以后费用可能会更高。"
+            ],
+            "bullets": [
+              "Premium 是您为保持承保所支付的费用",
+              "Deductible 与共付额不同",
+              "年度支出的自付费用最高上限"
+            ],
+            "questions": [
+              {
+                "id": "q_ins_1",
+                "title": "问题1",
+                "prompt": "免赔额是什么意思？",
+                "correctChoiceId": "A",
+                "explanation": "这是您在保险公司开始分摊承保费用之前支付的金额。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "您在保险开始分摊费用之前支付的金额",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "每月保费",
+                    "impact": {
+                      "safetyNet": 6
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "您所欠的医疗保健税总额",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "提供商网络列表",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_ins_2",
+                "title": "问题2",
+                "prompt": "哪个术语表示您在计划年度内为承保护理支付的最高费用？",
+                "correctChoiceId": "D",
+                "explanation": "自付费用上限限制了您承保的年度支出。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Copay",
+                    "impact": {
+                      "safetyNet": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Premium",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Coinsurance",
+                    "impact": {
+                      "safetyNet": 8
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "自付费用最高限额",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ins-2",
+            "heading": "网络内护理、权衡和计划选择",
+            "paragraphs": [
+              "[[In-Network]] 护理费用通常较低，因为您的保险公司已与这些提供者协商好费率。",
+              "作为一名新毕业生，平衡的计划通常比仅根据最低保费进行选择更容易理解。正确的选择取决于预期的护理使用情况、现金流和风险承受能力。"
+            ],
+            "bullets": [
+              "网络内护理通常更便宜",
+              "最低保费并不总是最好的整体",
+              "承保范围应符合您的财务现实"
+            ],
+            "questions": [
+              {
+                "id": "q_ins_3",
+                "title": "问题3",
+                "prompt": "网络内通常意味着什么？",
+                "correctChoiceId": "B",
+                "explanation": "网络内提供商已与您的保险公司协商价格。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "提供商周末开放",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "提供商已与您的保险公司协商费率",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "参观始终免费",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "该提供商为您的雇主工作",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_ins_4",
+                "title": "问题4",
+                "context": "您在福利登记期间将在三个计划之间进行选择。",
+                "prompt": "哪种方法最强？",
+                "correctChoiceId": "C",
+                "explanation": "一个强有力的选择是将保费、免赔额和可能的使用情况放在一起进行比较。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "选择最低保费，无需阅读其他内容",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "自动选择最昂贵的计划",
+                    "impact": {
+                      "safetyNet": 8
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "比较保费、免赔额和预期护理使用情况",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "因为你还年轻所以跳过报道",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ins-3",
+            "heading": "401(k)、雇主匹配和 HSA",
+            "paragraphs": [
+              "[[401(k)]] 是许多员工首先遇到的投资工具之一。如果您的雇主提供 [[Employer Match]]，那么贡献足够的力量来获得匹配可能是非常有价值的。",
+              "[[HSA]] 则不同：它与合格的健康计划挂钩，可用于合格的医疗费用。"
+            ],
+            "bullets": [
+              "雇主匹配是薪酬的一部分",
+              "401(k) 是为了退休",
+              "HSA 适用于合格计划下的合格医疗费用"
+            ],
+            "questions": [
+              {
+                "id": "q_ins_5",
+                "title": "问题5",
+                "prompt": "哪些福利专门用于退休储蓄？",
+                "correctChoiceId": "C",
+                "explanation": "401(k) 是雇主资助的退休账户。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "租客保险",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Copay",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "401(k)",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 8
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "直接存款",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_ins_6",
+                "title": "问题6",
+                "prompt": "什么是雇主匹配？",
+                "correctChoiceId": "A",
+                "explanation": "雇主匹配是指您的雇主根据您的缴款向您的退休账户添加资金。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "您的雇主根据您的缴款向您的退休账户添加资金",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 8
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "健康保险免赔额豁免",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "上班通勤退税",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "每月存入您支票账户的奖金",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ins-4",
+            "heading": "租客保险和汽车保险",
+            "paragraphs": [
+              "当您独自生活时，保险不仅仅关乎健康。 [[Renter Insurance]] 有助于保护您的财物和个人责任，而 [[Auto Insurance]] 有助于承保与驾驶相关的风险。",
+              "这些产品旨在转移您自己可能无法轻易承受的严重损失的成本。"
+            ],
+            "bullets": [
+              "租客保险不仅仅保护家具",
+              "汽车保险包括责任概念以及车辆损坏保险",
+              "小额保费可以防止巨额损失"
+            ],
+            "questions": [
+              {
+                "id": "q_ins_7",
+                "title": "问题7",
+                "context": "您刚刚搬进第一间公寓并购买了笔记本电脑和家具。",
+                "prompt": "哪种产品最直接有助于在租赁时保护您的物品？",
+                "correctChoiceId": "B",
+                "explanation": "租客保险通常有助于弥补个人财产损失和责任。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "汽车保险",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "租客保险",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "支票账户",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "信贷冻结",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_ins_8",
+                "title": "问题8",
+                "prompt": "人们为什么普遍购买保险？",
+                "correctChoiceId": "D",
+                "explanation": "保险有助于防止仅在经济上难以承受的损失。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "为保证利润",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "避免一切支出",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "提高信用评分",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "减少巨额财务损失的影响",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "保险选择应平衡每月费用和潜在风险。",
+          "了解保费、免赔额、共付额和自付费用最高限额。",
+          "雇主匹配可能是最有价值的福利之一。",
+          "租车人和汽车保险可以防止大多数初学者无法轻易承受的损失。"
+        ]
+      },
+      {
+        "id": "emergency",
+        "title": "5.Emergency Fund",
+        "shortDescription": "在生活考验你的预算之前，培养韧性。",
+        "lessonBlocks": [
+          {
+            "id": "em-1",
+            "heading": "紧急基金的用途是什么",
+            "paragraphs": [
+              "作为一名独立生活的早期职业工作者，意外的打击会更大，因为你的财务缓冲可能较少。一台损坏的笔记本电脑、紧急回家航班、医疗费用或工作中断都可能很快成为没有 [[Emergency Fund]] 的债务。",
+              "紧急储蓄是为了紧急、必要的开支，而不是为了方便支出或计划中的娱乐。"
+            ],
+            "bullets": [
+              "紧急=紧急且必要",
+              "紧急储蓄有助于减少对信贷的依赖",
+              "重点是韧性，而不是完美"
+            ],
+            "questions": [
+              {
+                "id": "q_em_1",
+                "title": "问题1",
+                "prompt": "哪个是紧急资金使用的最佳例子？",
+                "correctChoiceId": "C",
+                "explanation": "意外的必要维修正是紧急节省的目的。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "音乐会周末",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "新手机颜色偏好",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "意外的修车",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "假日购物",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_em_2",
+                "title": "问题2",
+                "prompt": "应急基金的主要用途是什么？",
+                "correctChoiceId": "B",
+                "explanation": "其目的是在不自动产生债务的情况下支付紧急、意外的费用。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "更换您的支票账户",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "支付紧急、意外的费用",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "实现投资回报最大化",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "资助年假",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "em-2",
+            "heading": "需要节省多少钱以及什么算作基本开支",
+            "paragraphs": [
+              "一个常见的经验法则是 3-6 个月的基本开支，而不是总的生活方式开支。必需品通常意味着租金、食品、公用事业、交通、保险和最低债务支付。",
+              "如果这个目标感觉很大，那就从一个较小的里程碑开始。即使是一个月或入门缓冲也可以显着降低风险。"
+            ],
+            "bullets": [
+              "基本开支与可自由支配开支总额不同",
+              "启动基金比等待完美数字更好",
+              "目标可以随着收入的增加而扩大"
+            ],
+            "questions": [
+              {
+                "id": "q_em_3",
+                "title": "问题3",
+                "prompt": "紧急储蓄的通用准则是：",
+                "correctChoiceId": "B",
+                "explanation": "许多指南建议 3 至 6 个月的基本开支。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "1周的费用",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "3-6个月的基本开支",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "正好2年的总支出",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "无论您的年度奖金是多少",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_em_4",
+                "title": "问题4",
+                "prompt": "哪一类最有可能是基本开支的一部分？",
+                "correctChoiceId": "A",
+                "explanation": "房租是一项典型的基本开支。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "租",
+                    "impact": {
+                      "safetyNet": 10,
+                      "housingBills": 10
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "豪华演唱会旅行",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Premium 流媒体升级",
+                    "impact": {
+                      "spendingControl": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "设计师购物",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "em-3",
+            "heading": "把钱放在哪里：流动性胜过兴奋",
+            "paragraphs": [
+              "紧急现金通常属于稳定且易于使用的地方，例如储蓄账户。 [[Liquidity]] 在这里比追求最高可能的回报更重要。",
+              "应急资金的作用不是跑赢市场。这个角色是在现实生活发生时可用的。"
+            ],
+            "bullets": [
+              "可访问性很重要",
+              "波动性对于您可能突然需要的资金来说可能是危险的",
+              "储蓄账户的使用是为了稳定，而不是兴奋"
+            ],
+            "questions": [
+              {
+                "id": "q_em_5",
+                "title": "问题5",
+                "prompt": "为什么流动性对于应急资金很重要？",
+                "correctChoiceId": "D",
+                "explanation": "应急资金应该易于快速获取，且不会造成重大价值损失。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "它会增加您的信用评分",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "保证更高的股票回报",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "它降低了您的预扣税",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "它可以让您在需要时快速获取资金",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_em_6",
+                "title": "问题6",
+                "prompt": "一般来说，哪个地方比波动的股票头寸更适合紧急现金？",
+                "correctChoiceId": "B",
+                "explanation": "储蓄账户通常比波动性较大的投资更稳定、更容易获得。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "单一投机股票",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "储蓄账户",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "随机加密令牌",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "购买奢侈手表",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "em-4",
+            "heading": "紧急储蓄与保险",
+            "paragraphs": [
+              "应急基金和保险共同发挥作用。储蓄有助于满足当前的现金需求，而保险则可以减少某些损失的规模。",
+              "弹性计划通常同时使用两者：一些流动储蓄加上适当的保险范围。"
+            ],
+            "bullets": [
+              "储蓄应对现金流冲击",
+              "保险应对某些高成本风险",
+              "两者都不能完全取代另一个"
+            ],
+            "questions": [
+              {
+                "id": "q_em_7",
+                "title": "问题7",
+                "prompt": "哪种说法最准确？",
+                "correctChoiceId": "C",
+                "explanation": "紧急储蓄和保险解决了不同部分的风险问题。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "保险消除了对任何应急基金的需要",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "紧急基金消除了保险的需要",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "储蓄和保险发挥不同的保障作用",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "只要你的薪水不错，这两者都不重要",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_em_8",
+                "title": "问题8",
+                "prompt": "哪个是最强的初学者策略？",
+                "correctChoiceId": "A",
+                "explanation": "启动应急基金加上核心保险比单独依赖一种工具创造了更强大的基础。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "在保持核心保险覆盖范围的同时建立启动应急储蓄",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "跳过储蓄，只依靠信用卡",
+                    "impact": {
+                      "safetyNet": 0,
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "跳过保险并希望紧急情况不会发生",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "投入所有现金并假设您可以随时出售",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "应急资金用于紧急、必要的开支。",
+          "3-6 个月的指导方针很常见，但即使是启动基金也有帮助。",
+          "保持应急现金的流动性和稳定性。",
+          "储蓄和保险结合起来效果最佳。"
+        ]
+      },
+      {
+        "id": "fraud",
+        "title": "6. 欺诈和诈骗",
+        "shortDescription": "保护您的身份、账户和信用档案。",
+        "lessonBlocks": [
+          {
+            "id": "fraud-1",
+            "heading": "Phishing 和紧急陷阱",
+            "paragraphs": [
+              "骗局往往会奏效，因为它们让人感到紧迫。虚假的工资单问题、虚假的银行警报或虚假的包裹通知可能会迫使您不假思索地点击。这就是 [[Phishing]] 的核心。",
+              "一个强烈的习惯是不信任消息本身，而是直接访问已知的官方应用程序、门户网站或电话号码。"
+            ],
+            "bullets": [
+              "紧急是一种常见的诈骗策略",
+              "官方设计并不能证明其真实性",
+              "直接前往可信渠道"
+            ],
+            "questions": [
+              {
+                "id": "q_fr_1",
+                "title": "问题1",
+                "context": "您收到一封电子邮件，提示必须通过消息中的链接立即更新您的工资单详细信息。",
+                "prompt": "最安全的第一反应是什么？",
+                "correctChoiceId": "D",
+                "explanation": "最安全的做法是直接使用官方薪资门户，而不是可疑电子邮件中的链接。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "快速点击以避免工资发放延误",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "回复银行详细信息以加快处理速度",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "转发给朋友征求意见",
+                    "impact": {
+                      "fraudSafety": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "直接前往官方人力资源/薪资门户",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_fr_2",
+                "title": "问题2",
+                "prompt": "哪个是典型的网络钓鱼危险信号？",
+                "correctChoiceId": "B",
+                "explanation": "紧迫感和压力是常见的网络钓鱼策略。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "您自己的预算应用程序中列出的帐单到期日期",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "通过链接发出紧急警告，推动立即采取行动",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "您的人力资源门户中预定的雇主福利提醒",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "您的官方应用程序中提供了已知的银行对账单",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "fraud-2",
+            "heading": "身份盗窃和信用冻结的作用",
+            "paragraphs": [
+              "[[Identity Theft]] 可能会导致虚假新帐户、信用损失和大量清理工作。 [[Credit Freeze]] 可以帮助减少有人以您的名义开立新信用额度的机会。",
+              "三个主要信用局是 [[Equifax]]、[[Experian]] 和 [[TransUnion]]。在应对欺诈时，了解这些名字很重要。"
+            ],
+            "bullets": [
+              "信贷冻结有助于阻止欺诈性的新信贷申请",
+              "冻结并不能消除现有债务",
+              "您通常按部门管理冻结"
+            ],
+            "questions": [
+              {
+                "id": "q_fr_3",
+                "title": "问题3",
+                "prompt": "信用冻结的主要目的是什么？",
+                "correctChoiceId": "A",
+                "explanation": "信用冻结会限制对您的信用报告的访问，以帮助防止欺诈性的新帐户。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "限制访问您的信用报告",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "立即提高你的分数",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "删除旧债",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "停止所有支票账户提款",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_fr_4",
+                "title": "问题4",
+                "prompt": "以下哪一个不是美国三大征信机构之一？",
+                "correctChoiceId": "D",
+                "explanation": "FICO是一家评分模型公司，不是三大征信机构之一。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Equifax",
+                    "impact": {
+                      "fraudSafety": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Experian",
+                    "impact": {
+                      "fraudSafety": 6
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "TransUnion",
+                    "impact": {
+                      "fraudSafety": 6
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "费埃哲",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "fraud-3",
+            "heading": "实用的防护习惯",
+            "paragraphs": [
+              "预防欺诈不仅仅是识别诈骗。它还涉及保持系统清洁：独特的密码、设备更新、银行警报以及在出现问题时的快速报告。",
+              "您越早对可疑活动做出反应，通常就越容易控制损害。"
+            ],
+            "bullets": [
+              "快速报告事项",
+              "账户监控是金融知识的一部分",
+              "预防习惯可以减轻以后的压力"
+            ],
+            "questions": [
+              {
+                "id": "q_fr_5",
+                "title": "问题5",
+                "prompt": "为什么快速报告可疑帐户活动很重要？",
+                "correctChoiceId": "C",
+                "explanation": "快速报告有助于减少损失并限制损害。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "它总是会提高你的信用评分",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "它立即自动收回每一美元",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "它可以帮助更快地遏制损害",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "它只与有钱人有关",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_fr_6",
+                "title": "问题6",
+                "prompt": "哪种习惯最直接支持账户安全？",
+                "correctChoiceId": "A",
+                "explanation": "使用强而独特的密码是基本的安全习惯。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "使用强而独特的密码",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "为了方便起见，在任何地方都使用相同的密码",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "直到周末才忽略银行警报",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "与您信任的朋友共享登录凭据",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "fraud-4",
+            "heading": "征信机构恢复素养",
+            "paragraphs": [
+              "如果身份盗窃影响信贷申请，那么局方的知识就变得实用，而不是理论。 [[Experian]]、[[Equifax]] 和 [[TransUnion]] 是许多欺诈响应步骤涉及的地方。",
+              "这就是为什么欺诈素养是金融素养的一部分：保护未来获得住房、贷款，甚至一些与工作相关的支票。"
+            ],
+            "bullets": [
+              "征信机构知识支持欺诈应对",
+              "欺诈可能影响未来的借贷和住房",
+              "保护是长期金融稳定的一部分"
+            ],
+            "questions": [
+              {
+                "id": "q_fr_7",
+                "title": "问题7",
+                "prompt": "为什么信用欺诈不仅仅限于一张被盗的卡？",
+                "correctChoiceId": "B",
+                "explanation": "与身份相关的欺诈可能会影响未来的信贷获取和财务机会。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "因为它只会改变您的银行应用程序主题",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "因为它可能会损害未来的信贷获取和财务选择",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "因为它会自动取消你的工作合同",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "因为它消除了预扣税",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_fr_8",
+                "title": "问题8",
+                "prompt": "哪三个正确列出了美国主要信用机构？",
+                "correctChoiceId": "A",
+                "explanation": "Experian、Equifax 和 TransUnion 是美国三大征信机构。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Experian、Equifax、TransUnion",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "费埃哲，APY，APR",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "维萨卡、万事达卡、发现卡",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "国税局、社会保障局、联邦住房管理局",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "紧急性是最大的骗局危险信号之一。",
+          "直接使用官方渠道，而不是相信可疑链接。",
+          "信用冻结有助于防止欺诈性新账户。",
+          "欺诈知识可以保护未来的借贷、住房和金融稳定。"
+        ]
+      },
+      {
+        "id": "investing",
+        "title": "7. 投资基础知识",
+        "shortDescription": "了解早期职业工作者遇到的常用工具。",
+        "lessonBlocks": [
+          {
+            "id": "inv-1",
+            "heading": "从工作场所投资开始",
+            "paragraphs": [
+              "对于许多应届毕业生来说，投资从工作开始。 [[401(k)]] 可以帮助建立退休储蓄，而 [[Employer Match]] 可以增加额外的钱，如果您缴款足够多的话。",
+              "这与普通储蓄不同。储蓄涉及稳定性和可及性；投资是有风险的长期增长。"
+            ],
+            "bullets": [
+              "401(k) 用于退休，而不是紧急现金",
+              "雇主匹配增加福利价值",
+              "长期工具应与长期目标相匹配"
+            ],
+            "questions": [
+              {
+                "id": "q_inv_1",
+                "title": "问题1",
+                "prompt": "哪个账户是专门为雇主的退休储蓄而设计的？",
+                "correctChoiceId": "C",
+                "explanation": "401(k) 是雇主资助的退休账户。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "支票账户",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "租客保险单",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "401(k)",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 8
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "保证金",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_inv_2",
+                "title": "问题2",
+                "prompt": "什么是雇主匹配？",
+                "correctChoiceId": "B",
+                "explanation": "这是您的雇主根据您的贡献向您的退休账户存入的资金。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "退还您的租金",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "您的雇主根据您的退休金缴款缴款",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 8
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "信用卡奖励功能",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "奖金税",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "inv-2",
+            "heading": "HSA、CD 以及帐户类型的含义",
+            "paragraphs": [
+              "[[HSA]] 可用于支付合格的医疗费用，但它与合格的健康计划相关。它与普通储蓄账户不同。",
+              "[[Certificate of Deposit]] 是一种有固定期限且通常具有固定利率的银行产品。它与股票或共同基金不同。"
+            ],
+            "bullets": [
+              "账户类型与投资选择同样重要",
+              "CD 是存款产品，不是股票",
+              "HSA 规则取决于健康计划资格"
+            ],
+            "questions": [
+              {
+                "id": "q_inv_3",
+                "title": "问题3",
+                "prompt": "HSA 代表什么？",
+                "correctChoiceId": "D",
+                "explanation": "HSA 代表健康 Savings Account。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "高储蓄分配",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "家庭支出账户",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "健康保障分配",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "健康Savings Account",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_inv_4",
+                "title": "问题4",
+                "prompt": "Certificate of Deposit 最好描述为：",
+                "correctChoiceId": "A",
+                "explanation": "CD是一种有固定期限且通常具有固定利率的银行存款产品。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "固定期限、固定利率的银行存款产品",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "公司股票授予",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "工资税表",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "保险免赔额的一种",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "inv-3",
+            "heading": "股票、RSU、基金和多元化",
+            "paragraphs": [
+              "一些补偿方案包括 [[RSU]] 补助金。这可能很有价值，但如果你已经在那里工作，它也会将你的更多财务集中在一家公司。",
+              "[[Fund]] 可以将资金分散到多种投资中。这就是 [[Diversification]] 发挥作用的地方：它减少了对单个公司或部门的依赖。"
+            ],
+            "bullets": [
+              "雇主股票可能造成集中风险",
+              "Funds 通常提供比单一股票更广泛的风险敞口",
+              "Diversification 是一个风险管理概念"
+            ],
+            "questions": [
+              {
+                "id": "q_inv_5",
+                "title": "问题5",
+                "prompt": "RSU 代表什么？",
+                "correctChoiceId": "B",
+                "explanation": "RSU 代表限制性股票单位。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "退休储蓄单位",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "限制性股票单位",
+                    "impact": {
+                      "paycheckLiteracy": 12,
+                      "safetyNet": 8
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "经常性储蓄实用程序",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "注册薪资升级",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_inv_6",
+                "title": "问题6",
+                "prompt": "哪种选择通常最多样化？",
+                "correctChoiceId": "D",
+                "explanation": "与单一股票不同，广义基金通常持有多项投资。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "个股一只",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "只有您的雇主股票",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "仅有一位行业龙头",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "广阔市场基金",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 4
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "inv-4",
+            "heading": "将工具与目标相匹配",
+            "paragraphs": [
+              "一个有用的心智模型是将工具与目标相匹配。紧急现金需要流动性。近期目标可能需要稳定性。长期目标通常可以承受更大的风险。",
+              "这就是为什么新毕业生可以从了解短期现金工具和长期增长工具之间的差异中受益。"
+            ],
+            "bullets": [
+              "将产品与工作相匹配",
+              "不要将紧急现金视为长期投资资金",
+              "时间范围改变了有意义的事情"
+            ],
+            "questions": [
+              {
+                "id": "q_inv_7",
+                "title": "问题7",
+                "prompt": "哪种工具通常比长期股票敞口更适合紧急现金？",
+                "correctChoiceId": "C",
+                "explanation": "紧急现金通常最好保存在稳定、易于使用的账户中，而不是波动较大的投资中。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "单一成长股",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "仅雇主 RSUs",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "储蓄账户或类似的稳定现金工具",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "高度集中的科技赌注",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_inv_8",
+                "title": "问题8",
+                "prompt": "为什么多元化有用？",
+                "correctChoiceId": "A",
+                "explanation": "Diversification 有助于减少对一项投资或一家公司的依赖。",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "降低集中风险",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "每年都有利润保证",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "它消除了所有市场风险",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "它取代了对应急基金的需求",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "职场投资通常始于 401(k) 和雇主的匹配。",
+          "账户类型很重要：HSA、CD 和投资基金有不同的用途。",
+          "RSUs 可能很有价值，但可能会增加集中风险。",
+          "Diversification 有助于减少对一家公司或资产的依赖。"
+        ]
+      }
+    ]
   }
 }

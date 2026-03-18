@@ -141,6 +141,81 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Technical question page background layers (visual-only, no layout changes) */
+.technical-question-page {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 16% 16%, color-mix(in srgb, var(--color-accent-light) 28%, transparent) 0%, transparent 36%),
+    radial-gradient(circle at 84% 8%, color-mix(in srgb, var(--color-primary-light) 20%, transparent) 0%, transparent 34%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 4%, var(--color-background)) 0%, var(--color-background) 52%, color-mix(in srgb, var(--color-accent) 6%, var(--color-background)) 100%);
+}
+
+.technical-question-page::before,
+.technical-question-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.technical-question-page::before {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.08;
+}
+
+.technical-question-page::after {
+  background:
+    radial-gradient(ellipse at 50% -10%, color-mix(in srgb, var(--color-accent-light) 24%, transparent) 0%, transparent 56%),
+    radial-gradient(ellipse at 86% 84%, color-mix(in srgb, var(--color-primary-light) 16%, transparent) 0%, transparent 50%);
+  opacity: 0.5;
+}
+
+.technical-question-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.technical-question-shell {
+  position: relative;
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--color-surface) 92%, var(--color-background));
+  border: 1px solid color-mix(in srgb, var(--color-neutral-300) 68%, transparent);
+  box-shadow:
+    0 22px 46px rgba(15, 23, 42, 0.07),
+    0 6px 14px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+}
+
+.technical-question-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 2%, color-mix(in srgb, var(--color-accent-light) 26%, transparent) 0%, transparent 44%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-primary-light) 7%, transparent) 0%, transparent 36%);
+  opacity: 0.5;
+}
+
+.technical-question-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+.technical-question-sidecard {
+  --technical-side-bg: color-mix(in srgb, var(--color-primary-light) 8%, var(--color-surface));
+  backdrop-filter: blur(2px);
+}
+
+.technical-question-maincard {
+  --technical-main-bg: color-mix(in srgb, var(--color-accent-light) 8%, var(--color-surface));
+  backdrop-filter: blur(2px);
+}
+
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
