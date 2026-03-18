@@ -146,7 +146,7 @@ export default function AccountPage() {
                 type="text"
                 maxLength={50}
                 className="input-professional"
-                placeholder="Enter your display name"
+                placeholder={t('displayNamePlaceholder')}
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
               />

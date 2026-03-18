@@ -80,6 +80,7 @@
   "account": {
     "title": "Configuración de Cuenta",
     "displayName": "Nombre para Mostrar",
+    "displayNamePlaceholder": "Ingresa tu nombre para mostrar",
     "displayNameNote": "Este nombre se usará en los resultados de tu análisis",
     "email": "Correo Electrónico",
     "preferences": "Preferencias",
@@ -550,5 +551,2737 @@
       "title": "Gestión de Riesgos: Una Guía para Principiantes",
       "description": "Domina los fundamentos de identificar, evaluar y gestionar riesgos financieros en tu viaje de inversión personal."
     }
+  },
+  "technicalQuestion": {
+    "ui": {
+      "courseTitle": "Curso de Educación Financiera",
+      "courseDescription": "Aprende conocimientos prácticos de dinero para recién graduados y evalúate después de cada sección.",
+      "usDisclaimer": "Este curso usa ejemplos y términos centrados en EE. UU. Tu país puede tener sistemas diferentes con ideas similares.",
+      "courseModules": "Módulos del Curso",
+      "questionsCompleted": "{completed}/{total} preguntas completadas",
+      "finishToUnlock": "Completa todas las preguntas para desbloquear",
+      "overallProgress": "Progreso General",
+      "keyIdeas": "Ideas clave",
+      "quickCheck": "Verificación rápida",
+      "questionLabel": "Pregunta {number}",
+      "correct": "Correcto",
+      "notQuite": "Aún no",
+      "correctAnswer": "Respuesta correcta:",
+      "briefTakeaways": "Conclusiones breves",
+      "completeEveryModule": "Completa todos los módulos para desbloquear el radar final.",
+      "viewResults": "Ver resultados",
+      "resultsTitle": "8. Resultados",
+      "resultsDescription": "Tu gráfico radar resume tu desempeño en las áreas clave de educación financiera para recién graduados que viven de forma independiente.",
+      "radarTitle": "Mi Radar de Educación Financiera",
+      "newGradEdition": "Edición para Recién Graduados",
+      "averageScore": "Puntuación promedio:",
+      "share": "Compartir",
+      "downloadImage": "Descargar imagen",
+      "copyLink": "Copiar enlace",
+      "shareToX": "Compartir en X",
+      "facebook": "Facebook",
+      "retakeCourse": "Repetir curso",
+      "benchmark": {
+        "rockSolid": "Muy sólido",
+        "strong": "Fuerte",
+        "gettingThere": "En progreso",
+        "needsBoost": "Necesita refuerzo"
+      },
+      "definitionNotFound": "Definición no encontrada.",
+      "close": "Cerrar",
+      "shareText": "Acabo de completar un curso de educación financiera y obtuve mi resultado de radar. ¡Pruébalo tú también!",
+      "shareBrandText": "Mira cómo me fue en habilidades clave de dinero",
+      "resultsPageTitle": "Resultados Técnicos",
+      "resultsPageComingSoon": "Esta página está en desarrollo. ¡Vuelve pronto!"
+    },
+    "skills": [
+      {
+        "key": "paycheckLiteracy",
+        "label": "Paycheck Literacy",
+        "description": "Comprender los cheques de pago, las deducciones, los impuestos y la renta imponible"
+      },
+      {
+        "key": "housingBills",
+        "label": "Housing & Bills",
+        "description": "Gestión de alquileres, servicios públicos, depósitos y obligaciones recurrentes."
+      },
+      {
+        "key": "spendingControl",
+        "label": "Spending Control",
+        "description": "Gestión de necesidades, gastos flexibles y hábitos presupuestarios."
+      },
+      {
+        "key": "creditDebt",
+        "label": "Credit & Debt",
+        "description": "Usar tarjetas de crédito de manera segura y comprender los costos de los préstamos"
+      },
+      {
+        "key": "safetyNet",
+        "label": "Safety Net",
+        "description": "Seguros, fondos de emergencia y resiliencia financiera a largo plazo"
+      },
+      {
+        "key": "fraudSafety",
+        "label": "Fraud & Safety",
+        "description": "Proteger su identidad, cuentas y perfil crediticio"
+      }
+    ],
+    "glossary": {
+      "Gross Pay": "Se deducen sus ganancias antes de impuestos y deducciones.",
+      "Net Pay": "La cantidad que realmente llega a su cuenta bancaria después de las deducciones.",
+      "Taxable Income": "La parte de sus ingresos sujeta al impuesto sobre la renta después de los ajustes elegibles o las deducciones antes de impuestos.",
+      "Withholding": "Dinero retirado de su cheque de pago por adelantado para cubrir impuestos.",
+      "W-4": "Un formulario utilizado para ayudar a determinar la retención de impuestos federales de su cheque de pago.",
+      "FICA": "Impuestos sobre la nómina que financian el Seguro Social y Medicare.",
+      "Pre-tax Deduction": "Una deducción tomada antes de que se calculen algunos impuestos.",
+      "Pay Stub": "Un registro que muestra el salario bruto, las deducciones, los impuestos y el salario neto.",
+      "Fixed Expense": "Un costo que se mantiene más o menos igual cada mes, como el alquiler.",
+      "Variable Expense": "Un costo que cambia mes a mes, como comestibles o gasolina.",
+      "Security Deposit": "Dinero pagado por adelantado para proteger al propietario contra daños o alquiler impago.",
+      "Checking Account": "Una cuenta bancaria utilizada para gastos diarios y pagos de facturas.",
+      "Savings Account": "Una cuenta bancaria diseñada para guardar dinero y normalmente generar intereses.",
+      "Debit Card": "Una tarjeta vinculada a su cuenta corriente; las compras provienen directamente de su saldo.",
+      "Credit Card": "Una herramienta de préstamo con límite; Los saldos impagos pueden acumular intereses.",
+      "APR": "Tasa de porcentaje anual, el costo anual de pedir prestado con una tarjeta de crédito o préstamo.",
+      "Credit Utilization": "El porcentaje de su crédito disponible que se está utilizando actualmente.",
+      "Statement Balance": "El monto adeudado en su tarjeta al final de un ciclo de facturación.",
+      "Minimum Payment": "El pago más pequeño requerido para mantener actualizada una cuenta de tarjeta de crédito.",
+      "Annual Fee": "Una tarifa anual que cobran algunas tarjetas de crédito.",
+      "Foreign Transaction Fee": "Una tarifa que cobran algunas tarjetas por compras en otro país o moneda.",
+      "Premium": "El monto que paga regularmente para mantener activa la cobertura del seguro.",
+      "Deductible": "El monto que paga antes de que el seguro comience a compartir los costos cubiertos.",
+      "Copay": "Un monto fijo que usted paga por un servicio médico cubierto.",
+      "Coinsurance": "El porcentaje de los costos médicos cubiertos que usted paga después de alcanzar su deducible.",
+      "Out-of-Pocket Maximum": "Lo máximo que usted paga en un año del plan por atención médica cubierta antes de que la aseguradora pague el 100% de los costos cubiertos.",
+      "In-Network": "Médicos y proveedores que han negociado precios con su plan de seguro.",
+      "401(k)": "Una cuenta de jubilación patrocinada por el empleador que puede incluir una contrapartida del empleador.",
+      "Employer Match": "Dinero que su empleador aporta a su cuenta de jubilación en función de su contribución.",
+      "Renter Insurance": "Seguro que ayuda a cubrir tus pertenencias y responsabilidad personal durante el alquiler.",
+      "Auto Insurance": "Seguro que puede cubrir daños al vehículo, responsabilidad y pérdidas relacionadas.",
+      "Emergency Fund": "Ahorros reservados para gastos urgentes e inesperados.",
+      "Liquidity": "Qué tan rápido puedes acceder al dinero sin perder valor.",
+      "Phishing": "Una estafa que te engaña para que reveles información a través de correos electrónicos, mensajes de texto o sitios web falsos.",
+      "Identity Theft": "Cuando alguien utiliza su información personal sin permiso.",
+      "Credit Freeze": "Una restricción de acceso a su informe de crédito para ayudar a prevenir nuevas cuentas fraudulentas.",
+      "Experian": "Una de las tres principales agencias de crédito de Estados Unidos.",
+      "Equifax": "Una de las tres principales agencias de crédito de Estados Unidos.",
+      "TransUnion": "Una de las tres principales agencias de crédito de Estados Unidos.",
+      "HSA": "Un Health Savings Account utilizado con planes de salud calificados para gastos médicos elegibles.",
+      "Certificate of Deposit": "Un producto bancario con un plazo fijo y normalmente un tipo de interés fijo.",
+      "RSU": "Unidad de acciones restringidas, una concesión de acciones de la empresa que generalmente se adquiere con el tiempo.",
+      "Fund": "Un vehículo de inversión, como un ETF o un fondo mutuo, que posee muchas inversiones subyacentes.",
+      "Diversification": "Distribuir las inversiones entre activos para reducir el riesgo de concentración.",
+      "APY": "Rendimiento porcentual anual, el rendimiento anual de un depósito, incluida la capitalización.",
+      "Direct Deposit": "Depósito electrónico de pago en su cuenta bancaria.",
+      "Overdraft": "Cuando una transacción excede el saldo disponible en su cuenta corriente.",
+      "Due Date": "La fecha en la que se debe realizar una factura o pago.",
+      "RSU Vesting": "El calendario que determina cuándo se adquiere realmente la propiedad de las acciones de la empresa concedidas."
+    },
+    "modules": [
+      {
+        "id": "paycheck",
+        "title": "1. Cheque de sueldo e impuestos",
+        "shortDescription": "Comprenda cómo la compensación se convierte en salario neto.",
+        "lessonBlocks": [
+          {
+            "id": "pay-1",
+            "heading": "Salario bruto, salario neto y por qué su primer depósito parece más pequeño",
+            "paragraphs": [
+              "Como recién graduado, una de las primeras sorpresas es que su oferta salarial no es lo que llega a su cuenta bancaria. Su cheque de pago comienza con [[Gross Pay]], luego resta impuestos, beneficios y otras deducciones antes de recibir [[Net Pay]].",
+              "Su presupuesto mensual debe basarse en el salario neto, no en el salario anual o el salario bruto. Eso mantiene el alquiler, las facturas y los planes de ahorro basados ​​en el dinero que realmente tienes."
+            ],
+            "bullets": [
+              "El salario bruto es antes de las deducciones.",
+              "El salario neto es lo que realmente puedes gastar o ahorrar.",
+              "Siempre haga un presupuesto utilizando el salario neto"
+            ],
+            "questions": [
+              {
+                "id": "q_pay_1",
+                "title": "Pregunta 1",
+                "prompt": "¿Qué número debería utilizar para elaborar su presupuesto mensual?",
+                "correctChoiceId": "B",
+                "explanation": "Su presupuesto debe basarse en el dinero que realmente recibe: salario neto.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "salario bruto",
+                    "impact": {
+                      "paycheckLiteracy": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "salario neto",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Salario anual dividido por 10",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "El monto antes de impuestos más la bonificación estimada.",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_pay_2",
+                "title": "Pregunta 2",
+                "prompt": "¿Qué afirmación es más precisa?",
+                "correctChoiceId": "D",
+                "explanation": "El salario neto es el salario bruto menos impuestos y deducciones.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "El salario bruto siempre es inferior al salario neto.",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "El salario neto es antes de impuestos.",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "La oferta salarial equivale al efectivo gastable mensual",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "El salario neto es lo que queda después de impuestos y deducciones.",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "pay-2",
+            "heading": "Ingresos sujetos a impuestos, retenciones y FICA",
+            "paragraphs": [
+              "Muchos trabajadores que inician su carrera tratan los impuestos como una sola línea, pero su cheque de pago a menudo incluye diferentes categorías. [[Withholding]] es dinero retirado por adelantado para impuestos sobre la renta. [[FICA]] cubre el Seguro Social y Medicare.",
+              "[[Taxable Income]] es la porción de la renta realmente sujeta al impuesto sobre la renta. Algunos artículos [[Pre-tax Deduction]] pueden reducir los ingresos imponibles antes de que se calculen los impuestos."
+            ],
+            "bullets": [
+              "FICA es independiente de la retención del impuesto sobre la renta",
+              "Los ingresos imponibles pueden ser inferiores a los ingresos brutos",
+              "Las deducciones antes de impuestos pueden reducir cierta exposición fiscal"
+            ],
+            "questions": [
+              {
+                "id": "q_pay_3",
+                "title": "Pregunta 3",
+                "prompt": "¿Qué es la retención?",
+                "correctChoiceId": "A",
+                "explanation": "Withholding es dinero que se deduce de su cheque de pago por adelantado para impuestos.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Dinero de impuestos retirado antes de recibir su cheque de pago",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "La contribución de jubilación de su empleador",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "La tasa de interés de su cuenta de ahorros",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Un cargo por pago atrasado en una factura",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_pay_4",
+                "title": "Pregunta 4",
+                "prompt": "¿Qué elemento puede reducir la renta imponible antes de que se calculen ciertos impuestos?",
+                "correctChoiceId": "C",
+                "explanation": "Las deducciones antes de impuestos elegibles pueden reducir los ingresos sujetos a impuestos.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Un pago con tarjeta de crédito",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Un depósito de seguridad del propietario",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Una deducción antes de impuestos",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Una compra con tarjeta de débito",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "pay-3",
+            "heading": "W-4, recibos de sueldo y deducciones de beneficios",
+            "paragraphs": [
+              "Su [[W-4]] afecta la cantidad de impuesto federal sobre la renta que se retiene. No fija para siempre su factura de impuestos final, pero sí afecta el salario neto durante el año.",
+              "Su [[Pay Stub]] es donde puede verificar impuestos, deducciones de seguro médico, contribuciones de jubilación y si su monto de [[Direct Deposit]] coincide con las expectativas."
+            ],
+            "bullets": [
+              "Dos personas con el mismo salario pueden tener distinto salario neto",
+              "Las elecciones de beneficios afectan el salario neto",
+              "Revise su recibo de pago con anticipación para detectar errores rápidamente"
+            ],
+            "questions": [
+              {
+                "id": "q_pay_5",
+                "title": "Pregunta 5",
+                "prompt": "¿Por qué dos trabajadores con el mismo salario podrían recibir un salario neto diferente?",
+                "correctChoiceId": "D",
+                "explanation": "Diferentes configuraciones de retención y deducciones pueden cambiar el salario neto.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "El salario siempre determina un salario neto idéntico",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "El pago neto es aleatorio cada mes.",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Sólo el título del trabajo cambia los montos del cheque de pago",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Pueden tener diferentes retenciones y deducciones de beneficios.",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_pay_6",
+                "title": "Pregunta 6",
+                "prompt": "¿Para qué se utiliza un recibo de sueldo?",
+                "correctChoiceId": "B",
+                "explanation": "Un recibo de sueldo muestra el salario bruto, las deducciones, los impuestos y el salario neto.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Es tu declaración de impuestos final",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Muestra cómo se calculó su cheque de pago.",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Reemplaza tu extracto bancario",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Establece su puntaje crediticio",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "pay-4",
+            "heading": "Bonificaciones, RSU y compensación imponible",
+            "paragraphs": [
+              "A medida que su carrera crezca, la compensación puede incluir bonificaciones o subvenciones [[RSU]]. Estos pueden ser interesantes, pero también conllevan implicaciones fiscales y diferencias temporales.",
+              "Un hábito útil es separar el “pago mensual estable” de la “compensación adicional”. No construya obligaciones fijas en torno a ingresos que sean irregulares o que aún no se hayan adquirido en su totalidad."
+            ],
+            "bullets": [
+              "El salario base es mejor para facturas recurrentes",
+              "La retribución variable no es lo mismo que el efectivo garantizado",
+              "La estructura salarial importa, no sólo el salario general"
+            ],
+            "questions": [
+              {
+                "id": "q_pay_7",
+                "title": "Pregunta 7",
+                "prompt": "¿En qué tipo de ingresos suele ser menos apropiado confiar para las facturas mensuales fijas?",
+                "correctChoiceId": "C",
+                "explanation": "Los ingresos irregulares, como las bonificaciones, son menos fiables para las obligaciones mensuales fijas.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Salario base constante",
+                    "impact": {
+                      "paycheckLiteracy": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Salario neto estable de la nómina regular",
+                    "impact": {
+                      "paycheckLiteracy": 6
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Ingresos por bonificaciones irregulares",
+                    "impact": {
+                      "paycheckLiteracy": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Un estipendio mensual conocido",
+                    "impact": {
+                      "paycheckLiteracy": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_pay_8",
+                "title": "Pregunta 8",
+                "prompt": "¿Qué significa RSU?",
+                "correctChoiceId": "A",
+                "explanation": "RSU significa Unidad de acciones restringidas.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Unidad de stock restringido",
+                    "impact": {
+                      "paycheckLiteracy": 20,
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Actualización de ahorros para la jubilación",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Unidad de Salario Registrada",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Utilidad de gasto reducido",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "Cree presupuestos utilizando el salario neto, no el salario principal.",
+          "Comprenda la diferencia entre impuestos, retenciones y FICA.",
+          "Revise su recibo de pago con anticipación y con frecuencia.",
+          "Trate las bonificaciones y los RSU como menos predecibles que el salario base."
+        ]
+      },
+      {
+        "id": "living",
+        "title": "2. Gastos de manutención",
+        "shortDescription": "Descubra lo que realmente cuesta vivir solo.",
+        "lessonBlocks": [
+          {
+            "id": "live-1",
+            "heading": "Gastos fijos versus gastos variables",
+            "paragraphs": [
+              "A medida que te mudas a una nueva ciudad y comienzas a configurar tu lugar, una de las habilidades presupuestarias más útiles es separar [[Fixed Expense]] artículos de [[Variable Expense]] artículos.",
+              "El alquiler suele fijarse durante el plazo del arrendamiento. Los comestibles, el gas, los restaurantes, la electricidad, el wifi y el agua pueden cambiar mes a mes."
+            ],
+            "bullets": [
+              "Los gastos fijos son más fáciles de pronosticar",
+              "Los gastos variables requieren atención continua",
+              "Las empresas de servicios públicos suelen ser más volátiles de lo que la gente espera"
+            ],
+            "questions": [
+              {
+                "id": "q_live_1",
+                "title": "Pregunta 1",
+                "prompt": "¿Cuál de los siguientes es más probable que sea un gasto variable?",
+                "correctChoiceId": "B",
+                "explanation": "Los alimentos suelen cambiar de mes a mes, mientras que el alquiler suele fijarse mediante contrato de arrendamiento.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Alquilar",
+                    "impact": {
+                      "housingBills": 6,
+                      "spendingControl": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Comestibles",
+                    "impact": {
+                      "spendingControl": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Prima mensual del seguro para inquilinos",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Pago mínimo del préstamo estudiantil",
+                    "impact": {
+                      "creditDebt": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_live_2",
+                "title": "Pregunta 2",
+                "prompt": "¿Qué categoría suele pasarse por alto en el presupuesto del primer apartamento?",
+                "correctChoiceId": "D",
+                "explanation": "Los costos de servicios públicos y de mudanza a menudo se pasan por alto cuando las personas comparan únicamente el alquiler.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "igualación del empleador",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Consultas de puntaje de crédito",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Retención de impuestos",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Servicios públicos y costos de mudanza",
+                    "impact": {
+                      "housingBills": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "live-2",
+            "heading": "Alquiler versus compra y costos ocultos de vivienda",
+            "paragraphs": [
+              "Para muchos recién graduados, alquilar es más práctico que comprar. Comprar a menudo implica pago inicial, costos de cierre, impuestos a la propiedad, mantenimiento y menos flexibilidad para mudarse por trabajo.",
+              "Al alquilar, recuerde que el alquiler adhesivo es sólo una parte de la historia de la vivienda. [[Security Deposit]], el estacionamiento, los muebles, el seguro para inquilinos y los costos de viaje son importantes."
+            ],
+            "bullets": [
+              "El alquiler barato no siempre es el más barato en general",
+              "Comprar tiene muchos costes más allá de la hipoteca mensual",
+              "El transporte puede cambiar el costo real de una casa"
+            ],
+            "questions": [
+              {
+                "id": "q_live_3",
+                "title": "Pregunta 3",
+                "context": "Estás eligiendo entre dos apartamentos después de mudarte por tu primer trabajo.",
+                "prompt": "¿Qué comparación es más fuerte?",
+                "correctChoiceId": "C",
+                "explanation": "Una buena decisión de vivienda compara el costo mensual completo, no solo el alquiler anunciado.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Elija el alquiler más bajo e ignore los desplazamientos",
+                    "impact": {
+                      "housingBills": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Elige el mejor apartamento porque te lo mereces",
+                    "impact": {
+                      "housingBills": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Compare juntos los costos de alquiler, servicios públicos, desplazamientos y mudanzas",
+                    "impact": {
+                      "housingBills": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Elija basándose únicamente en los pies cuadrados",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_live_4",
+                "title": "Pregunta 4",
+                "prompt": "¿Qué coste está más asociado a la compra que al alquiler?",
+                "correctChoiceId": "B",
+                "explanation": "Los costos de cierre son un costo clásico de compra de una vivienda.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Depósito de seguridad",
+                    "impact": {
+                      "housingBills": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Costos de cierre",
+                    "impact": {
+                      "housingBills": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "wifi mensual",
+                    "impact": {
+                      "housingBills": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Seguro de inquilino",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "live-3",
+            "heading": "Necesidades, inflación del estilo de vida y sincronización del flujo de caja",
+            "paragraphs": [
+              "Los recién graduados a menudo subestiman cuánto puede aumentar el gasto en conveniencia. Los restaurantes, las entregas a domicilio, los viajes compartidos y las compras recurrentes “pequeñas” pueden competir con las necesidades si no las vigila.",
+              "El momento del flujo de caja también importa. Incluso si sus ingresos mensuales cubren sus facturas en papel, un mal momento puede generar sobregiros o cargos por pagos atrasados."
+            ],
+            "bullets": [
+              "Las necesidades deben financiarse antes que los deseos.",
+              "Los controles de gastos semanales suelen funcionar mejor que las sorpresas de fin de mes",
+              "El momento del flujo de caja importa, no solo el ingreso mensual total"
+            ],
+            "questions": [
+              {
+                "id": "q_live_5",
+                "title": "Pregunta 5",
+                "prompt": "¿Cuál es el primer paso más fuerte si el gasto del restaurante sigue superando el plan?",
+                "correctChoiceId": "A",
+                "explanation": "Un límite semanal más un plan de alimentación sencillo crea un control sostenible.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Establezca un límite semanal y planifique algunas comidas sencillas",
+                    "impact": {
+                      "spendingControl": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Ignóralo y espero que el próximo mes sea mejor.",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Poner comida en una tarjeta de crédito y revisarla más tarde.",
+                    "impact": {
+                      "spendingControl": 2,
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "En su lugar, deje de pagar servicios públicos",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_live_6",
+                "title": "Pregunta 6",
+                "prompt": "¿Qué afirmación es más precisa sobre el flujo de efectivo?",
+                "correctChoiceId": "D",
+                "explanation": "El momento del flujo de caja es importante porque las facturas pueden vencer antes de que llegue su próximo cheque de pago.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Sólo importa el ingreso anual total",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Las fechas de vencimiento no importan si tu salario es decente",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Los gastos variables nunca afectan el flujo de caja",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "El momento de la facturación puede crear problemas incluso si el ingreso mensual es suficiente en general",
+                    "impact": {
+                      "housingBills": 10,
+                      "spendingControl": 10
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "live-4",
+            "heading": "Utilidades, suscripciones y filtraciones recurrentes",
+            "paragraphs": [
+              "La electricidad, el agua, Internet y las suscripciones son fáciles de subestimar porque cada uno de ellos puede parecer pequeño de forma aislada.",
+              "Un fuerte hábito al inicio de la carrera es revisar los cargos recurrentes con regularidad. Pequeñas fugas mensuales pueden desplazar los ahorros y el progreso de los fondos de emergencia."
+            ],
+            "bullets": [
+              "Los cargos recurrentes merecen revisión",
+              "Los servicios públicos pueden fluctuar según la temporada y el uso.",
+              "Pequeñas fugas pueden convertirse en grandes totales anuales"
+            ],
+            "questions": [
+              {
+                "id": "q_live_7",
+                "title": "Pregunta 7",
+                "prompt": "¿Por qué las suscripciones suelen ser financieramente peligrosas para los principiantes?",
+                "correctChoiceId": "B",
+                "explanation": "Su pequeño costo mensual puede hacer que sean fáciles de ignorar mientras se acumulan con el tiempo.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "siempre son estafas",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Pueden sumar tranquilamente porque cada uno se siente pequeño.",
+                    "impact": {
+                      "spendingControl": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Están fijados por ley y no pueden cancelarse.",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Reducen directamente su puntaje crediticio",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_live_8",
+                "title": "Pregunta 8",
+                "prompt": "¿Qué utilidad es más probable que varíe según el clima y el uso?",
+                "correctChoiceId": "A",
+                "explanation": "Las facturas de electricidad a menudo cambian según el aire acondicionado, la calefacción y el uso estacional.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Electricidad",
+                    "impact": {
+                      "housingBills": 12,
+                      "spendingControl": 8
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Una tarifa fija de estacionamiento",
+                    "impact": {
+                      "housingBills": 4
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Un pago de préstamo de automóvil de tipo cerrado",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Una tarifa anual conocida de la tarjeta",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "Separa claramente los gastos fijos y variables.",
+          "Compare el costo total de la vivienda, no solo el alquiler.",
+          "Observe el momento del flujo de caja, no sólo los totales mensuales.",
+          "Los cargos recurrentes y los gastos de conveniencia merecen una revisión periódica."
+        ]
+      },
+      {
+        "id": "banking",
+        "title": "3. Banca y Credit Cards",
+        "shortDescription": "Utilice cuentas corrientes, de ahorro, de débito y de crédito de forma intencionada.",
+        "lessonBlocks": [
+          {
+            "id": "bank-1",
+            "heading": "Cuenta corriente, de ahorro, de débito y APY",
+            "paragraphs": [
+              "Su [[Checking Account]] es su cuenta operativa. Es donde aterriza [[Direct Deposit]] y de donde normalmente sale su [[Debit Card]].",
+              "Un [[Savings Account]] está diseñado para almacenar dinero y normalmente paga más intereses, a menudo se muestra como [[APY]]. Eso lo hace mejor para las reservas que para verificar."
+            ],
+            "bullets": [
+              "La cuenta corriente es para transacciones",
+              "El ahorro es mejor para las reservas",
+              "Un APY más alto es más importante para el dinero que puedes dejar en su lugar"
+            ],
+            "questions": [
+              {
+                "id": "q_bank_1",
+                "title": "Pregunta 1",
+                "prompt": "¿Qué tipo de cuenta suele generar más intereses?",
+                "correctChoiceId": "B",
+                "explanation": "Las cuentas de ahorro generalmente pagan más intereses que las cuentas corrientes.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Cuenta de cheques",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Cuenta de ahorros",
+                    "impact": {
+                      "safetyNet": 12,
+                      "creditDebt": 4
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "tarjeta de débito",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Portal de nómina",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_bank_2",
+                "title": "Pregunta 2",
+                "prompt": "¿A qué está vinculada una tarjeta de débito?",
+                "correctChoiceId": "C",
+                "explanation": "Por lo general, una tarjeta de débito está vinculada a su cuenta corriente.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Su informe de crédito",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Su plan de seguro médico",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Tu cuenta corriente",
+                    "impact": {
+                      "creditDebt": 6,
+                      "housingBills": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Su empleador 401(k)",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "bank-2",
+            "heading": "Overdrafts, fechas de vencimiento y mantenimiento de un búfer",
+            "paragraphs": [
+              "Un error común al inicio de la carrera es tener una cuenta corriente demasiado cercana a cero. Puede ocurrir un [[Overdraft]] cuando una transacción excede su saldo disponible, lo que podría generar cargos.",
+              "Mantener una pequeña cuenta de cheques y conocer cada factura [[Due Date]] puede ayudar a evitar cargos evitables."
+            ],
+            "bullets": [
+              "Los pequeños buffers evitan errores costosos",
+              "El momento de la facturación importa",
+              "Las tarifas Overdraft pueden agravar rápidamente un déficit"
+            ],
+            "questions": [
+              {
+                "id": "q_bank_3",
+                "title": "Pregunta 3",
+                "prompt": "¿Qué es un sobregiro?",
+                "correctChoiceId": "A",
+                "explanation": "Un sobregiro ocurre cuando una transacción excede el saldo disponible de la cuenta.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Una transacción excede su saldo disponible",
+                    "impact": {
+                      "housingBills": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Una categoría de recompensa de tarjeta de crédito",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Una especie de partido de retiro",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Un aumento del depósito del propietario",
+                    "impact": {
+                      "housingBills": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_bank_4",
+                "title": "Pregunta 4",
+                "prompt": "¿Cuál es la mejor razón para mantener un pequeño búfer de cheques?",
+                "correctChoiceId": "D",
+                "explanation": "Un colchón de cheques ayuda a reducir la posibilidad de sobregiros o problemas de pago basados ​​en el momento.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Aumenta tu límite de crédito",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Sustituye la necesidad de ahorro",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Reduce tu retención de impuestos",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Ayuda a evitar sobregiros y problemas de sincronización.",
+                    "impact": {
+                      "housingBills": 12,
+                      "spendingControl": 8
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "bank-3",
+            "heading": "Cómo funcionan las tarjetas de crédito: APR, saldo del extracto, pago mínimo",
+            "paragraphs": [
+              "Un [[Credit Card]] es útil cuando se gestiona con cuidado, pero caro cuando no. Si no paga el [[Statement Balance]] en su totalidad, se le pueden cobrar intereses en función del [[APR]].",
+              "El [[Minimum Payment]] mantiene la cuenta al día, pero pagar sólo el mínimo normalmente ralentiza drásticamente el pago de la deuda."
+            ],
+            "bullets": [
+              "Pagar el total evita la mayoría de los intereses de compra",
+              "APR importa si tienes saldo",
+              "Pago mínimo no es lo mismo que pago saludable"
+            ],
+            "questions": [
+              {
+                "id": "q_bank_5",
+                "title": "Pregunta 5",
+                "prompt": "¿Qué significa APR en una tarjeta de crédito?",
+                "correctChoiceId": "D",
+                "explanation": "APR es el costo porcentual anual del endeudamiento.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Un cargo de mantenimiento mensual",
+                    "impact": {
+                      "creditDebt": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Una puntuación asignada por un buró de crédito",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Una categoría de recompensa de viaje",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "El costo porcentual anual del endeudamiento.",
+                    "impact": {
+                      "creditDebt": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_bank_6",
+                "title": "Pregunta 6",
+                "prompt": "¿Cuál es el saldo del estado de cuenta?",
+                "correctChoiceId": "A",
+                "explanation": "Es el monto adeudado al final del ciclo de facturación.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "El monto adeudado al final del ciclo de facturación.",
+                    "impact": {
+                      "creditDebt": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Su crédito total disponible",
+                    "impact": {
+                      "creditDebt": 4
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Tu cuota anual total de por vida",
+                    "impact": {
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "El monto que su empleador paga al emisor de la tarjeta",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "bank-4",
+            "heading": "Utilización, tarifas y elección de su primera tarjeta",
+            "paragraphs": [
+              "[[Credit Utilization]] es el porcentaje de su crédito disponible que está utilizando actualmente. Muchas personas intentan mantenerse por debajo del 30% porque una utilización más baja es generalmente más saludable que acercarse al límite.",
+              "Al comparar cartas, piense en [[Annual Fee]], recompensas y [[Foreign Transaction Fee]]. La mejor carta no siempre es la más elegante."
+            ],
+            "bullets": [
+              "La baja utilización es generalmente mejor que la alta utilización.",
+              "Las altas tarifas anuales requieren un uso real de los beneficios para que tenga sentido",
+              "Las tarifas de viaje son importantes si espera realizar gastos internacionales"
+            ],
+            "questions": [
+              {
+                "id": "q_bank_7",
+                "title": "Pregunta 7",
+                "prompt": "Si su límite de crédito es de $2,000 y su saldo es de $800, su utilización es:",
+                "correctChoiceId": "C",
+                "explanation": "800 ÷ 2000 = 40%.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "20%",
+                    "impact": {
+                      "creditDebt": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "30%",
+                    "impact": {
+                      "creditDebt": 8
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "40%",
+                    "impact": {
+                      "creditDebt": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "80%",
+                    "impact": {
+                      "creditDebt": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_bank_8",
+                "title": "Pregunta 8",
+                "context": "Espera viajar internacionalmente por trabajo o vacaciones.",
+                "prompt": "¿Qué tarifa importa específicamente para compras en otro país o moneda?",
+                "correctChoiceId": "B",
+                "explanation": "Se aplican tarifas de transacción extranjera a compras internacionales o en moneda extranjera con algunas tarjetas.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Tarifa de depósito de seguridad",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Tarifa de transacción extranjera",
+                    "impact": {
+                      "creditDebt": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Prima de seguro para inquilinos",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Comisión de retención de nómina",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "Utilice cheques para operaciones y ahorros para reservas.",
+          "Mantenga una cuenta de cheques para evitar cargos basados ​​en el tiempo.",
+          "Comprenda APR, el saldo del estado de cuenta y el pago mínimo antes de utilizar el crédito.",
+          "Elija tarjetas basándose en el uso real, no sólo en beneficios llamativos."
+        ]
+      },
+      {
+        "id": "insurance",
+        "title": "4. Seguros y beneficios",
+        "shortDescription": "Protéjase de las crisis financieras y utilice los beneficios de forma inteligente.",
+        "lessonBlocks": [
+          {
+            "id": "ins-1",
+            "heading": "Conceptos básicos del seguro médico para adultos que tienen su primer empleo",
+            "paragraphs": [
+              "El seguro médico puede parecer abrumador al principio, pero algunos conceptos hacen la mayor parte del trabajo: [[Premium]], [[Deductible]], [[Copay]], [[Coinsurance]] y [[Out-of-Pocket Maximum]].",
+              "Una prima mensual barata no siempre significa atención médica barata en general. Un plan con un deducible alto puede costar menos ahora pero más adelante si necesita atención."
+            ],
+            "bullets": [
+              "Premium es lo que usted paga para mantener la cobertura",
+              "Deductible no es lo mismo que copago",
+              "Los límites máximos de gastos de bolsillo cubren el gasto anual"
+            ],
+            "questions": [
+              {
+                "id": "q_ins_1",
+                "title": "Pregunta 1",
+                "prompt": "¿Qué significa un deducible?",
+                "correctChoiceId": "A",
+                "explanation": "Es el monto que usted paga antes de que la aseguradora comience a compartir los costos cubiertos.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "El monto que paga antes de que el seguro comience a compartir los costos",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "La prima mensual",
+                    "impact": {
+                      "safetyNet": 6
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "El impuesto total que debe por atención médica",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "La lista de la red de proveedores.",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_ins_2",
+                "title": "Pregunta 2",
+                "prompt": "¿Qué término significa lo máximo que usted paga por la atención cubierta en un año del plan?",
+                "correctChoiceId": "D",
+                "explanation": "El desembolso máximo limita su gasto anual cubierto.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Copay",
+                    "impact": {
+                      "safetyNet": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Premium",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Coinsurance",
+                    "impact": {
+                      "safetyNet": 8
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Desembolso máximo",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ins-2",
+            "heading": "Atención dentro de la red, compensaciones y selección de planes",
+            "paragraphs": [
+              "La atención [[In-Network]] generalmente cuesta menos porque su aseguradora ha negociado tarifas con esos proveedores.",
+              "Como recién graduado, un plan equilibrado suele ser más fácil de entender que elegir únicamente la prima más baja. La elección correcta depende del uso esperado de la atención, el flujo de caja y la tolerancia al riesgo."
+            ],
+            "bullets": [
+              "La atención dentro de la red suele ser más barata",
+              "La prima más baja no siempre es la mejor en general",
+              "La cobertura debe coincidir con su realidad financiera"
+            ],
+            "questions": [
+              {
+                "id": "q_ins_3",
+                "title": "Pregunta 3",
+                "prompt": "¿Qué significa normalmente dentro de la red?",
+                "correctChoiceId": "B",
+                "explanation": "Los proveedores dentro de la red han negociado precios con su aseguradora.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "El proveedor está abierto los fines de semana.",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "El proveedor ha negociado tarifas con su aseguradora.",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "La visita es siempre gratuita.",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "El proveedor trabaja para su empleador.",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_ins_4",
+                "title": "Pregunta 4",
+                "context": "Usted elige entre tres planes durante la inscripción a los beneficios.",
+                "prompt": "¿Qué enfoque es más fuerte?",
+                "correctChoiceId": "C",
+                "explanation": "Una buena elección compara la prima, el deducible y el uso probable juntos.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Elige la prima más baja sin leer nada más",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Elige el plan más caro automáticamente",
+                    "impact": {
+                      "safetyNet": 8
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Compare la prima, el deducible y el uso de atención esperado",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Saltar cobertura porque eres joven",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ins-3",
+            "heading": "401(k), coincidencia del empleador y HSA",
+            "paragraphs": [
+              "Un [[401(k)]] es una de las primeras herramientas de inversión que encuentran muchos empleados. Si su empleador ofrece un [[Employer Match]], contribuir lo suficiente para recibir esa contrapartida puede ser extremadamente valioso.",
+              "Un [[HSA]] es diferente: está vinculado a planes de salud elegibles y puede usarse para gastos médicos calificados."
+            ],
+            "bullets": [
+              "La igualación del empleador es parte de la compensación",
+              "401(k) es para jubilación",
+              "HSA es para gastos médicos elegibles según planes calificados"
+            ],
+            "questions": [
+              {
+                "id": "q_ins_5",
+                "title": "Pregunta 5",
+                "prompt": "¿Qué beneficio es específicamente para el ahorro para la jubilación?",
+                "correctChoiceId": "C",
+                "explanation": "Una 401(k) es una cuenta de jubilación patrocinada por el empleador.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Seguro de inquilino",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Copay",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "401(k)",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 8
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Depósito directo",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_ins_6",
+                "title": "Pregunta 6",
+                "prompt": "¿Qué es la contrapartida del empleador?",
+                "correctChoiceId": "A",
+                "explanation": "La contrapartida del empleador es dinero que su empleador agrega a su cuenta de jubilación en función de su contribución.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Dinero que su empleador agrega a su cuenta de jubilación según su contribución",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 8
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Una exención del deducible del seguro médico",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Una devolución de impuestos por desplazarse al trabajo",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Un bono pagado en su cuenta corriente todos los meses",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ins-4",
+            "heading": "Seguro de inquilino y seguro de automóvil",
+            "paragraphs": [
+              "Cuando vives solo, el seguro no se trata sólo de salud. [[Renter Insurance]] ayuda a proteger sus pertenencias y responsabilidad personal, mientras que [[Auto Insurance]] ayuda a cubrir los riesgos relacionados con la conducción.",
+              "Estos productos tratan de transferir el costo de una pérdida grave que probablemente no podría absorber fácilmente por su cuenta."
+            ],
+            "bullets": [
+              "El seguro para inquilinos protege más que solo los muebles",
+              "El seguro de automóvil incluye conceptos de responsabilidad así como cobertura de daños al vehículo.",
+              "Las primas pequeñas pueden proteger contra pérdidas muy grandes"
+            ],
+            "questions": [
+              {
+                "id": "q_ins_7",
+                "title": "Pregunta 7",
+                "context": "Acabas de mudarte a tu primer departamento y compraste una computadora portátil y muebles.",
+                "prompt": "¿Qué producto ayuda más directamente a proteger tus pertenencias durante el alquiler?",
+                "correctChoiceId": "B",
+                "explanation": "El seguro de inquilino comúnmente ayuda a cubrir pérdidas y responsabilidad de propiedad personal.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Seguro de automóvil",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Seguro de inquilino",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "una cuenta corriente",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Congelación de crédito",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_ins_8",
+                "title": "Pregunta 8",
+                "prompt": "¿Por qué la gente compra seguros en general?",
+                "correctChoiceId": "D",
+                "explanation": "El seguro ayuda a proteger contra pérdidas que serían financieramente difíciles de absorber por sí solo.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Para garantizar ganancias",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Para evitar todo gasto",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Para aumentar la puntuación de crédito",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Reducir el impacto de grandes pérdidas financieras",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "Las opciones de seguros deben equilibrar el costo mensual y el riesgo potencial.",
+          "Comprenda la prima, el deducible, el copago y el desembolso máximo.",
+          "La igualación del empleador puede ser uno de los beneficios de mayor valor disponibles.",
+          "Los seguros para inquilinos y automóviles protegen contra pérdidas que la mayoría de los principiantes no pueden absorber fácilmente."
+        ]
+      },
+      {
+        "id": "emergency",
+        "title": "5. Emergency Fund",
+        "shortDescription": "Desarrolle resiliencia antes de que la vida ponga a prueba su presupuesto.",
+        "lessonBlocks": [
+          {
+            "id": "em-1",
+            "heading": "Para qué sirve un fondo de emergencia",
+            "paragraphs": [
+              "Como trabajador que inicia su carrera y vive de forma independiente, las sorpresas son más fuertes porque es posible que tenga menos reservas financieras. Una computadora portátil rota, un vuelo urgente a casa, un costo médico o una interrupción del trabajo pueden convertirse rápidamente en deuda sin un [[Emergency Fund]].",
+              "Los ahorros de emergencia son para costos urgentes y necesarios, no para gastos de conveniencia o diversión planificada."
+            ],
+            "bullets": [
+              "Emergencia = urgente y necesaria",
+              "Los ahorros de emergencia ayudan a reducir la dependencia del crédito",
+              "La cuestión es la resiliencia, no la perfección."
+            ],
+            "questions": [
+              {
+                "id": "q_em_1",
+                "title": "Pregunta 1",
+                "prompt": "¿Cuál es el mejor ejemplo de uso de un fondo de emergencia?",
+                "correctChoiceId": "C",
+                "explanation": "Las reparaciones esenciales inesperadas son exactamente para lo que sirven los ahorros de emergencia.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Un fin de semana de conciertos",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Una nueva preferencia de color de teléfono",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Una reparación de coche inesperada",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Compras navideñas",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_em_2",
+                "title": "Pregunta 2",
+                "prompt": "¿Cuál es el objetivo principal de un fondo de emergencia?",
+                "correctChoiceId": "B",
+                "explanation": "Su finalidad es cubrir gastos urgentes e inesperados sin generar deuda automáticamente.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Para reemplazar su cuenta corriente",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Para cubrir gastos urgentes e inesperados.",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Para maximizar el rendimiento de la inversión",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Para financiar las vacaciones anuales",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "em-2",
+            "heading": "Cuánto ahorrar y qué se consideran gastos esenciales",
+            "paragraphs": [
+              "Una regla general común es de 3 a 6 meses de gastos esenciales, no del gasto total en estilo de vida. Lo esencial a menudo significa alquiler, comida, servicios públicos, transporte, seguros y pagos mínimos de deudas.",
+              "Si ese objetivo parece grande, comience con un hito más pequeño. Incluso un mes o un colchón inicial pueden reducir el riesgo de manera significativa."
+            ],
+            "bullets": [
+              "Los gastos esenciales son diferentes del gasto discrecional total",
+              "Un fondo inicial es mejor que esperar el número perfecto",
+              "Los objetivos pueden escalar a medida que aumentan los ingresos"
+            ],
+            "questions": [
+              {
+                "id": "q_em_3",
+                "title": "Pregunta 3",
+                "prompt": "Una pauta común para los ahorros de emergencia es:",
+                "correctChoiceId": "B",
+                "explanation": "Muchas pautas sugieren entre 3 y 6 meses de gastos esenciales.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "1 semana de gastos",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "3 a 6 meses de gastos esenciales",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Exactamente 2 años de gasto total",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Cualquiera que sea su bono anual",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_em_4",
+                "title": "Pregunta 4",
+                "prompt": "¿Qué categoría es más probable que forme parte de los gastos esenciales?",
+                "correctChoiceId": "A",
+                "explanation": "El alquiler es un gasto imprescindible clásico.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Alquilar",
+                    "impact": {
+                      "safetyNet": 10,
+                      "housingBills": 10
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Viajes de conciertos de lujo",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Premium actualizaciones de transmisión",
+                    "impact": {
+                      "spendingControl": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Compras de diseñador",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "em-3",
+            "heading": "Dónde guardar el dinero: liquidez antes que emoción",
+            "paragraphs": [
+              "El efectivo de emergencia suele pertenecer a un lugar estable y accesible, como una cuenta de ahorros. [[Liquidity]] importa más aquí que perseguir el mayor rendimiento posible.",
+              "El papel del dinero de emergencia no es superar al mercado. El papel es estar disponible cuando suceda la vida real."
+            ],
+            "bullets": [
+              "La accesibilidad importa",
+              "La volatilidad puede ser peligrosa para el dinero que puede necesitar repentinamente",
+              "El uso de cuentas de ahorro tiene que ver con la estabilidad, no con la emoción"
+            ],
+            "questions": [
+              {
+                "id": "q_em_5",
+                "title": "Pregunta 5",
+                "prompt": "¿Por qué es importante la liquidez para los fondos de emergencia?",
+                "correctChoiceId": "D",
+                "explanation": "El dinero de emergencia debe ser de fácil acceso y rápido sin una pérdida importante de valor.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Aumenta su puntaje crediticio",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Garantiza mayores rendimientos de las acciones",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Reduce tu retención de impuestos",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Le permite acceder al dinero rápidamente cuando sea necesario.",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_em_6",
+                "title": "Pregunta 6",
+                "prompt": "¿Qué lugar es generalmente mejor para el efectivo de emergencia que una posición de acciones volátiles?",
+                "correctChoiceId": "B",
+                "explanation": "Una cuenta de ahorro suele ser más estable y accesible que las inversiones volátiles.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Una única acción especulativa",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "una cuenta de ahorro",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Un token criptográfico aleatorio",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Una compra de reloj de lujo.",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "em-4",
+            "heading": "Ahorros de emergencia versus seguros",
+            "paragraphs": [
+              "Los fondos de emergencia y los seguros trabajan juntos. Los ahorros ayudan con las necesidades inmediatas de efectivo, mientras que los seguros reducen la magnitud de ciertas pérdidas.",
+              "Un plan resiliente suele utilizar ambos: algunos ahorros líquidos más una cobertura de seguro adecuada."
+            ],
+            "bullets": [
+              "Los ahorros manejan los shocks de flujo de caja",
+              "El seguro maneja ciertos riesgos de alto costo",
+              "Ninguno reemplaza completamente al otro"
+            ],
+            "questions": [
+              {
+                "id": "q_em_7",
+                "title": "Pregunta 7",
+                "prompt": "¿Qué afirmación es más precisa?",
+                "correctChoiceId": "C",
+                "explanation": "Los ahorros y seguros de emergencia resuelven diferentes partes del problema del riesgo.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "El seguro elimina la necesidad de cualquier fondo de emergencia",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Un fondo de emergencia elimina la necesidad de un seguro",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Los ahorros y los seguros desempeñan diferentes funciones protectoras",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Ninguno de los dos importa si tu salario es digno",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_em_8",
+                "title": "Pregunta 8",
+                "prompt": "¿Cuál es la estrategia para principiantes más sólida?",
+                "correctChoiceId": "A",
+                "explanation": "Un fondo de emergencia inicial más un seguro básico crea una base más sólida que depender de una sola herramienta.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Genere ahorros iniciales de emergencia mientras mantiene la cobertura de seguro básica",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Evite los ahorros y confíe únicamente en las tarjetas de crédito",
+                    "impact": {
+                      "safetyNet": 0,
+                      "creditDebt": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Evite el seguro y espere que no ocurran emergencias",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Invierta todo el efectivo y asuma que puede vender en cualquier momento",
+                    "impact": {
+                      "safetyNet": 4
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "Los fondos de emergencia son para gastos urgentes y necesarios.",
+          "Es común una pauta de 3 a 6 meses, pero incluso un fondo inicial ayuda.",
+          "Mantenga el efectivo de emergencia líquido y estable.",
+          "Los ahorros y los seguros funcionan mejor juntos."
+        ]
+      },
+      {
+        "id": "fraud",
+        "title": "6. Fraudes y estafas",
+        "shortDescription": "Proteja su identidad, cuentas y perfil crediticio.",
+        "lessonBlocks": [
+          {
+            "id": "fraud-1",
+            "heading": "Phishing y trampas de urgencia",
+            "paragraphs": [
+              "Las estafas suelen funcionar porque se sienten urgentes. Un problema de nómina falso, una alerta bancaria falsa o un aviso de paquete falso pueden presionarlo para que haga clic antes de pensar. Ese es el núcleo de [[Phishing]].",
+              "Un fuerte hábito es desconfiar del mensaje en sí y, en cambio, ir directamente a la aplicación, portal o número de teléfono oficial conocido."
+            ],
+            "bullets": [
+              "La urgencia es una táctica de estafa común",
+              "El diseño de apariencia oficial no demuestra autenticidad",
+              "Ir directamente a canales confiables"
+            ],
+            "questions": [
+              {
+                "id": "q_fr_1",
+                "title": "Pregunta 1",
+                "context": "Recibe un correo electrónico indicando que los detalles de su nómina deben actualizarse inmediatamente a través de un enlace en el mensaje.",
+                "prompt": "¿Cuál es la primera respuesta más segura?",
+                "correctChoiceId": "D",
+                "explanation": "La medida más segura es utilizar directamente el portal oficial de nómina, no el enlace del correo electrónico sospechoso.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Haga clic rápidamente para evitar retrasos en la nómina",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Responda con datos bancarios para un procesamiento más rápido",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Reenvíalo a tus amigos para que opinen.",
+                    "impact": {
+                      "fraudSafety": 4
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Vaya directamente al portal oficial de RR.HH./nómina",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_fr_2",
+                "title": "Pregunta 2",
+                "prompt": "¿Cuál es una señal de alerta clásica de phishing?",
+                "correctChoiceId": "B",
+                "explanation": "La urgencia y la presión son tácticas de phishing comunes.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Una fecha de vencimiento de la factura incluida en su propia aplicación de presupuesto",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Una advertencia urgente que impulsa la acción inmediata a través de un enlace",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Un recordatorio programado de beneficios para empleadores en su portal de recursos humanos",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Un extracto bancario conocido disponible en tu aplicación oficial",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "fraud-2",
+            "heading": "Robo de identidad y el papel de la congelación de créditos",
+            "paragraphs": [
+              "[[Identity Theft]] puede generar nuevas cuentas falsas, daños crediticios y mucho trabajo de limpieza. Un [[Credit Freeze]] puede ayudar a reducir la posibilidad de que alguien abra un nuevo crédito a su nombre.",
+              "Las tres principales agencias de crédito son [[Equifax]], [[Experian]] y [[TransUnion]]. Conocer estos nombres es importante a la hora de responder al fraude."
+            ],
+            "bullets": [
+              "Los congelamientos de crédito ayudan a bloquear nuevas solicitudes de crédito fraudulentas",
+              "Un congelamiento no borra la deuda existente",
+              "Generalmente gestionas las congelaciones oficina por oficina."
+            ],
+            "questions": [
+              {
+                "id": "q_fr_3",
+                "title": "Pregunta 3",
+                "prompt": "¿Cuál es el objetivo principal de una congelación de crédito?",
+                "correctChoiceId": "A",
+                "explanation": "Un congelamiento de crédito restringe el acceso a su informe de crédito para ayudar a prevenir nuevas cuentas fraudulentas.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Restringir el acceso a su informe de crédito",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Aumenta tu puntuación inmediatamente",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Eliminar deuda antigua",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Detener todos los retiros de cuentas corrientes",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_fr_4",
+                "title": "Pregunta 4",
+                "prompt": "¿Cuál de las siguientes NO es una de las tres principales agencias de crédito de EE. UU.?",
+                "correctChoiceId": "D",
+                "explanation": "FICO es una empresa modelo de puntuación, no una de las tres principales agencias de crédito.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Equifax",
+                    "impact": {
+                      "fraudSafety": 6
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Experian",
+                    "impact": {
+                      "fraudSafety": 6
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "TransUnion",
+                    "impact": {
+                      "fraudSafety": 6
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "ICO",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "fraud-3",
+            "heading": "Hábitos prácticos de protección",
+            "paragraphs": [
+              "La prevención del fraude no consiste sólo en reconocer las estafas. También se trata de mantener limpios sus sistemas: contraseñas únicas, actualizaciones de dispositivos, alertas bancarias e informes rápidos si algo parece mal.",
+              "Cuanto antes reaccione ante una actividad sospechosa, más fácil será contener el daño."
+            ],
+            "bullets": [
+              "Los informes rápidos son importantes",
+              "El seguimiento de cuentas es parte de la educación financiera",
+              "Los hábitos de prevención reducen el estrés más adelante"
+            ],
+            "questions": [
+              {
+                "id": "q_fr_5",
+                "title": "Pregunta 5",
+                "prompt": "¿Por qué es importante informar rápidamente sobre actividades sospechosas en cuentas?",
+                "correctChoiceId": "C",
+                "explanation": "Los informes rápidos pueden ayudar a reducir las pérdidas y limitar los daños.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Siempre aumenta su puntaje crediticio",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Recupera automáticamente cada dólar inmediatamente.",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Puede ayudar a contener el daño antes",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Sólo es relevante para los ricos.",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_fr_6",
+                "title": "Pregunta 6",
+                "prompt": "¿Qué hábito respalda más directamente la seguridad de la cuenta?",
+                "correctChoiceId": "A",
+                "explanation": "El uso de contraseñas únicas y seguras es un hábito de seguridad fundamental.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Usar contraseñas seguras y únicas",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Usar la misma contraseña en todas partes para mayor comodidad",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Ignorar las alertas bancarias hasta el fin de semana",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Compartir credenciales de inicio de sesión con amigos de confianza",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "fraud-4",
+            "heading": "Alfabetización sobre burós de crédito para la recuperación",
+            "paragraphs": [
+              "Si el robo de identidad afecta las solicitudes de crédito, el conocimiento de la oficina se vuelve práctico, no teórico. [[Experian]], [[Equifax]] y [[TransUnion]] son los lugares donde intervienen muchos pasos de respuesta al fraude.",
+              "Es por eso que la alfabetización sobre fraude es parte de la alfabetización financiera: proteger el acceso a futuras viviendas, préstamos e incluso algunos cheques relacionados con el trabajo."
+            ],
+            "bullets": [
+              "El conocimiento de las agencias de crédito respalda la respuesta al fraude",
+              "El fraude puede afectar los préstamos y la vivienda futuros",
+              "La protección es parte de la estabilidad financiera a largo plazo"
+            ],
+            "questions": [
+              {
+                "id": "q_fr_7",
+                "title": "Pregunta 7",
+                "prompt": "¿Por qué el fraude crediticio importa más allá de una sola tarjeta robada?",
+                "correctChoiceId": "B",
+                "explanation": "El fraude relacionado con la identidad puede afectar el acceso futuro al crédito y las oportunidades financieras.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Porque solo cambia el tema de tu aplicación bancaria.",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Porque puede dañar el acceso futuro al crédito y las opciones financieras.",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Porque cancela automáticamente tu contrato de trabajo",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Porque elimina la retención de impuestos",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_fr_8",
+                "title": "Pregunta 8",
+                "prompt": "¿Qué trío enumera correctamente las principales agencias de crédito de EE. UU.?",
+                "correctChoiceId": "A",
+                "explanation": "Experian, Equifax y TransUnion son las tres principales agencias de crédito de EE. UU.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Experian, Equifax, TransUnion",
+                    "impact": {
+                      "fraudSafety": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "FICO, APY, APR",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Visa, Mastercard, Descubrir",
+                    "impact": {
+                      "fraudSafety": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "IRS, SSA, FHA",
+                    "impact": {
+                      "fraudSafety": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "La urgencia es una de las mayores señales de alerta de estafa.",
+          "Utilice los canales oficiales directamente en lugar de confiar en enlaces sospechosos.",
+          "Los congelamientos de crédito pueden ayudar a prevenir nuevas cuentas fraudulentas.",
+          "La alfabetización sobre fraude protege los préstamos futuros, la vivienda y la estabilidad financiera."
+        ]
+      },
+      {
+        "id": "investing",
+        "title": "7. Conceptos básicos de inversión",
+        "shortDescription": "Conozca las herramientas comunes que encuentran los trabajadores que inician su carrera.",
+        "lessonBlocks": [
+          {
+            "id": "inv-1",
+            "heading": "Empezando por la inversión en el lugar de trabajo",
+            "paragraphs": [
+              "Para muchos recién graduados, la inversión comienza en el trabajo. Un [[401(k)]] puede ayudar a generar ahorros para la jubilación y un [[Employer Match]] puede agregar dinero adicional si contribuye lo suficiente para recibirlo.",
+              "Esto es diferente del ahorro ordinario. El ahorro tiene que ver con la estabilidad y el acceso; La inversión se trata de crecimiento a largo plazo con riesgo."
+            ],
+            "bullets": [
+              "401(k) es para jubilación, no para efectivo de emergencia",
+              "La igualación del empleador aumenta el valor de los beneficios",
+              "Las herramientas a largo plazo deben coincidir con los objetivos a largo plazo"
+            ],
+            "questions": [
+              {
+                "id": "q_inv_1",
+                "title": "Pregunta 1",
+                "prompt": "¿Qué cuenta está diseñada específicamente para ahorrar para la jubilación a través de un empleador?",
+                "correctChoiceId": "C",
+                "explanation": "Una 401(k) es una cuenta de jubilación patrocinada por el empleador.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Cuenta de cheques",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Póliza de seguro para inquilinos",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "401(k)",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 8
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Depósito de seguridad",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_inv_2",
+                "title": "Pregunta 2",
+                "prompt": "¿Qué es la contrapartida del empleador?",
+                "correctChoiceId": "B",
+                "explanation": "Es dinero que su empleador aporta a su cuenta de jubilación en función de su contribución.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Un reembolso de tu alquiler",
+                    "impact": {
+                      "housingBills": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Dinero que aporta su empleador en función de su contribución de jubilación",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 8
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Una función de recompensas de tarjetas de crédito",
+                    "impact": {
+                      "creditDebt": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Un impuesto sobre el pago de bonificaciones",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "inv-2",
+            "heading": "HSA, CD y qué significa el tipo de cuenta",
+            "paragraphs": [
+              "Un [[HSA]] puede ser útil para gastos médicos elegibles, pero está vinculado a planes de salud calificados. No es lo mismo que una cuenta de ahorro normal.",
+              "Un [[Certificate of Deposit]] es un producto bancario con un plazo fijo y normalmente un tipo de interés fijo. Es diferente de las acciones o los fondos mutuos."
+            ],
+            "bullets": [
+              "El tipo de cuenta importa tanto como la elección de inversión",
+              "Los CD son productos de depósito, no acciones",
+              "Las reglas HSA dependen de la elegibilidad del plan de salud"
+            ],
+            "questions": [
+              {
+                "id": "q_inv_3",
+                "title": "Pregunta 3",
+                "prompt": "¿Qué significa HSA?",
+                "correctChoiceId": "D",
+                "explanation": "HSA significa Salud Savings Account.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Alta asignación de ahorro",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Cuenta de gastos del hogar",
+                    "impact": {
+                      "spendingControl": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Asignación de seguridad sanitaria",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Salud Savings Account",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_inv_4",
+                "title": "Pregunta 4",
+                "prompt": "Un Certificate of Deposit se describe mejor como:",
+                "correctChoiceId": "A",
+                "explanation": "Un CD es un producto de depósito bancario con un plazo fijo y generalmente una tasa de interés fija.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Un producto de depósito bancario con plazo y tipo de interés fijos.",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Una subvención de acciones de la empresa.",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Un formulario de impuestos sobre la nómina",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Un tipo de deducible de seguro",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "inv-3",
+            "heading": "Acciones, RSUs, fondos y diversificación",
+            "paragraphs": [
+              "Algunos paquetes de compensación incluyen subvenciones [[RSU]]. Eso puede ser valioso, pero también concentra más de tus finanzas en una empresa si ya trabajas allí.",
+              "Un [[Fund]] puede distribuir dinero entre muchas inversiones. Ahí es donde [[Diversification]] resulta útil: reduce la dependencia de una única empresa o sector."
+            ],
+            "bullets": [
+              "Las acciones de los empleadores pueden crear riesgo de concentración",
+              "Los Fund suelen ofrecer una exposición más amplia que las acciones individuales",
+              "Diversification es un concepto de gestión de riesgos"
+            ],
+            "questions": [
+              {
+                "id": "q_inv_5",
+                "title": "Pregunta 5",
+                "prompt": "¿Qué significa RSU?",
+                "correctChoiceId": "B",
+                "explanation": "RSU significa Unidad de acciones restringidas.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Unidad de Ahorro para el Retiro",
+                    "impact": {
+                      "paycheckLiteracy": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Unidad de stock restringido",
+                    "impact": {
+                      "paycheckLiteracy": 12,
+                      "safetyNet": 8
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Utilidad de ahorro recurrente",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Mejora salarial registrada",
+                    "impact": {
+                      "paycheckLiteracy": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_inv_6",
+                "title": "Pregunta 6",
+                "prompt": "¿Qué opción suele ser la más diversificada?",
+                "correctChoiceId": "D",
+                "explanation": "Un fondo amplio suele tener muchas inversiones, a diferencia de una sola acción.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Una acción individual",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Sólo acciones de su empleador",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Sólo un líder de la industria",
+                    "impact": {
+                      "safetyNet": 2
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Un fondo de mercado amplio",
+                    "impact": {
+                      "safetyNet": 12,
+                      "paycheckLiteracy": 4
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "inv-4",
+            "heading": "Emparejar herramientas con objetivos",
+            "paragraphs": [
+              "Un modelo mental útil es hacer coincidir la herramienta con el objetivo. El efectivo de emergencia necesita liquidez. Los objetivos a corto plazo pueden necesitar estabilidad. Las metas a largo plazo generalmente pueden tolerar más riesgos.",
+              "Es por eso que los nuevos graduados se benefician al comprender la diferencia entre herramientas de efectivo a corto plazo y herramientas de crecimiento a largo plazo."
+            ],
+            "bullets": [
+              "Relacionar el producto con el trabajo",
+              "No trate el efectivo de emergencia como dinero de inversión a largo plazo",
+              "El horizonte temporal cambia lo que tiene sentido"
+            ],
+            "questions": [
+              {
+                "id": "q_inv_7",
+                "title": "Pregunta 7",
+                "prompt": "¿Qué herramienta suele ser más apropiada para el efectivo de emergencia que la exposición a acciones a largo plazo?",
+                "correctChoiceId": "C",
+                "explanation": "Por lo general, es mejor mantener el efectivo de emergencia en cuentas estables y accesibles que en inversiones volátiles.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Una única acción de crecimiento",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Sólo empleador RSUs",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Una cuenta de ahorros o un vehículo de efectivo estable similar",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Una apuesta tecnológica muy concentrada",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "q_inv_8",
+                "title": "Pregunta 8",
+                "prompt": "¿Por qué es útil la diversificación?",
+                "correctChoiceId": "A",
+                "explanation": "Diversification ayuda a reducir la dependencia de una inversión o una empresa.",
+                "choices": [
+                  {
+                    "id": "A",
+                    "text": "Reduce el riesgo de concentración.",
+                    "impact": {
+                      "safetyNet": 20
+                    }
+                  },
+                  {
+                    "id": "B",
+                    "text": "Garantiza beneficios cada año.",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "C",
+                    "text": "Elimina todo riesgo de mercado.",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  },
+                  {
+                    "id": "D",
+                    "text": "Sustituye la necesidad de un fondo de emergencia",
+                    "impact": {
+                      "safetyNet": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "takeaway": [
+          "La inversión en el lugar de trabajo a menudo comienza con una igualación de 401(k) y el empleador.",
+          "El tipo de cuenta importa: HSA, CD y fondos de inversión tienen diferentes propósitos.",
+          "Los RSUs pueden ser valiosos pero pueden aumentar el riesgo de concentración.",
+          "Diversification ayuda a reducir la dependencia de una empresa o activo."
+        ]
+      }
+    ]
   }
 }
