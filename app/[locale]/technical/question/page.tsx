@@ -563,7 +563,7 @@ export default function TechnicalQuestionPage() {
                           </div>
                         </div>
 
-                        <RadarChart scores={scores} />
+                        <RadarChart scores={scores} categories={localizedSkills} />
 
                         <div
                           className="mt-4 text-center text-sm"

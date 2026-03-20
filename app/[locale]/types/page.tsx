@@ -14,6 +14,13 @@ export default function TypesPage() {
     Pragmatists: ['GPDE', 'GPDN', 'GPIE', 'GPIN'],
   };
 
+  const groupLabels: Record<string, string> = {
+    Pioneers: tCommon('pioneers'),
+    Guardians: tCommon('guardians'),
+    Players: tCommon('players'),
+    Pragmatists: tCommon('pragmatists'),
+  };
+
   const groupPositions: Record<string, string> = {
     Pioneers: 'top-0 left-0',
     Guardians: 'top-0 right-0',
@@ -88,7 +95,7 @@ export default function TypesPage() {
             fontWeight: 900,
             letterSpacing: '-0.02em',
           }}>
-            Pioneers
+            {groupLabels.Pioneers}
           </h3>
         </div>
         <div className="absolute left-1/2 top-[35%] -translate-x-1/2 pointer-events-none">
@@ -99,7 +106,7 @@ export default function TypesPage() {
             fontWeight: 900,
             letterSpacing: '-0.02em',
           }}>
-            Guardians
+            {groupLabels.Guardians}
           </h3>
         </div>
         <div className="absolute left-1/2 top-[54%] -translate-x-1/2 pointer-events-none">
@@ -110,7 +117,7 @@ export default function TypesPage() {
             fontWeight: 900,
             letterSpacing: '-0.02em',
           }}>
-            Players
+            {groupLabels.Players}
           </h3>
         </div>
         <div className="absolute left-1/2 bottom-[12%] -translate-x-1/2 pointer-events-none">
@@ -121,7 +128,7 @@ export default function TypesPage() {
             fontWeight: 900,
             letterSpacing: '-0.02em',
           }}>
-            Pragmatists
+            {groupLabels.Pragmatists}
           </h3>
         </div>
       </div>

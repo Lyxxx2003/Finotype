@@ -306,7 +306,9 @@
     "stronglyAgree": "非常同意",
     "signOut": "退出登录",
     "resources": "资源",
-    "types": "类型"
+    "types": "类型",
+    "notFound": "未找到。",
+    "goHome": "返回首页"
   },
   "questions": {
     "1": {
@@ -521,7 +523,11 @@
     "subtitle": "探索16种独特的财务性格类型，找到与你共鸣的类型。",
     "cta": "准备好发现你的财务性格了吗？",
     "takeTest": "开始测试",
-    "learnMore": "了解更多"
+    "learnMore": "了解更多",
+    "pioneers": "先驱者",
+    "guardians": "保守者",
+    "players": "玩家",
+    "pragmatists": "实用主义者"
   },
   "resources": {
     "readMore": "阅读更多",

@@ -1,10 +1,10 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { questions } from '@/lib/psych/data';
 import { saveAnswer, getAnswers } from '@/lib/psych/storage';
 import { useRouter, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
 
 export default function QuestionPage() {
   const params = useParams();
@@ -42,8 +42,8 @@ export default function QuestionPage() {
   if (!question) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <p>Question not found.</p>
-        <button onClick={() => router.push(`/${locale}`)} className="mt-4 text-blue-600 underline">Go Home</button>
+        <p>{tCommon('notFound')}</p>
+        <button onClick={() => router.push(`/${locale}`)} className="mt-4 text-blue-600 underline">{tCommon('goHome')}</button>
       </div>
     );
   }

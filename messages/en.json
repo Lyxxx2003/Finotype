@@ -111,7 +111,11 @@
     "subtitle": "Explore the 16 unique financial personality types and discover which one resonates with you.",
     "cta": "Ready to discover your financial personality?",
     "takeTest": "Take the Test",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "pioneers": "Pioneers",
+    "guardians": "Guardians",
+    "players": "Players",
+    "pragmatists": "Pragmatists"
   },
   "account": {
     "title": "Account Settings",
@@ -323,7 +327,9 @@
     "stronglyAgree": "Strongly Agree",
     "signOut": "Sign Out",
     "resources": "Resources",
-    "types": "Types"
+    "types": "Types",
+    "notFound": "Not found.",
+    "goHome": "Go Home"
   },
   "questions": {
     "1": {
