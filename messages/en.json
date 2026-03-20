@@ -140,7 +140,17 @@
     "confirmButton": "Delete",
     "deleting": "Deleting...",
     "loading": "Loading...",
-    "backToGame": "Back to Game"
+    "backToGame": "Back to Game",
+    "learningProgress": "Learning Progress",
+    "overallProgress": "Overall Progress",
+    "progressStatus": "Status",
+    "finished": "Finished",
+    "inProgress": "In Progress",
+    "totalScore": "Total Score",
+    "latestFinishedRadar": "Latest Finished Radar",
+    "learningCurveTitle": "Learning Curve",
+    "noResultsYet": "No results yet...",
+    "averageScoreWithValue": "Average Score: {score}"
   },
   "analysis": {
     "loading": "Loading...",
@@ -587,6 +597,8 @@
       "shareToX": "Share to X",
       "facebook": "Facebook",
       "retakeCourse": "Retake Course",
+      "startAgain": "Start Again",
+      "loadingProgress": "Loading your saved progress...",
       "benchmark": {
         "rockSolid": "Rock Solid",
         "strong": "Strong",

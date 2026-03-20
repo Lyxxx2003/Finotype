@@ -98,7 +98,17 @@
     "confirmButton": "Eliminar",
     "deleting": "Eliminando...",
     "loading": "Cargando...",
-    "backToGame": "Volver al Juego"
+    "backToGame": "Volver al Juego",
+    "learningProgress": "Progreso de aprendizaje",
+    "overallProgress": "Progreso general",
+    "progressStatus": "Estado",
+    "finished": "Completado",
+    "inProgress": "En progreso",
+    "totalScore": "Puntuación total",
+    "latestFinishedRadar": "Radar del último curso completado",
+    "learningCurveTitle": "Curva de aprendizaje",
+    "noResultsYet": "Aún no hay resultados...",
+    "averageScoreWithValue": "Puntuación promedio: {score}"
   },
   "analysis": {
     "loading": "Cargando...",
@@ -587,6 +597,8 @@
       "shareToX": "Compartir en X",
       "facebook": "Facebook",
       "retakeCourse": "Repetir curso",
+      "startAgain": "Comenzar de nuevo",
+      "loadingProgress": "Cargando tu progreso guardado...",
       "benchmark": {
         "rockSolid": "Muy sólido",
         "strong": "Fuerte",
@@ -603,32 +615,32 @@
     "skills": [
       {
         "key": "paycheckLiteracy",
-        "label": "Paycheck Literacy",
+        "label": "Comprensión de nómina",
         "description": "Comprender los cheques de pago, las deducciones, los impuestos y la renta imponible"
       },
       {
         "key": "housingBills",
-        "label": "Housing & Bills",
+        "label": "Vivienda y facturas",
         "description": "Gestión de alquileres, servicios públicos, depósitos y obligaciones recurrentes."
       },
       {
         "key": "spendingControl",
-        "label": "Spending Control",
+        "label": "Control de gastos",
         "description": "Gestión de necesidades, gastos flexibles y hábitos presupuestarios."
       },
       {
         "key": "creditDebt",
-        "label": "Credit & Debt",
+        "label": "Crédito y deuda",
         "description": "Usar tarjetas de crédito de manera segura y comprender los costos de los préstamos"
       },
       {
         "key": "safetyNet",
-        "label": "Safety Net",
+        "label": "Red de seguridad",
         "description": "Seguros, fondos de emergencia y resiliencia financiera a largo plazo"
       },
       {
         "key": "fraudSafety",
-        "label": "Fraud & Safety",
+        "label": "Fraude y seguridad",
         "description": "Proteger su identidad, cuentas y perfil crediticio"
       }
     ],

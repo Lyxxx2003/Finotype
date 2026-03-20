@@ -119,7 +119,17 @@
     "confirmButton": "删除",
     "deleting": "删除中...",
     "loading": "加载中...",
-    "backToGame": "返回游戏"
+    "backToGame": "返回游戏",
+    "learningProgress": "学习进度",
+    "overallProgress": "整体进度",
+    "progressStatus": "状态",
+    "finished": "已完成",
+    "inProgress": "进行中",
+    "totalScore": "总分",
+    "latestFinishedRadar": "最近一次完成的雷达图",
+    "learningCurveTitle": "学习曲线",
+    "noResultsYet": "暂无结果...",
+    "averageScoreWithValue": "平均分：{score}"
   },
   "analysis": {
     "loading": "加载中...",
@@ -587,6 +597,8 @@
       "shareToX": "分享到 X",
       "facebook": "Facebook",
       "retakeCourse": "重新学习",
+      "startAgain": "重新开始",
+      "loadingProgress": "正在加载你的已保存进度...",
       "benchmark": {
         "rockSolid": "非常扎实",
         "strong": "表现良好",
@@ -603,32 +615,32 @@
     "skills": [
       {
         "key": "paycheckLiteracy",
-        "label": "Paycheck Literacy",
+        "label": "工资单理解",
         "description": "了解工资、扣除额、税收和应税收入"
       },
       {
         "key": "housingBills",
-        "label": "Housing & Bills",
+        "label": "住房与账单",
         "description": "管理租金、水电费、押金和经常性债务"
       },
       {
         "key": "spendingControl",
-        "label": "Spending Control",
+        "label": "支出控制",
         "description": "管理必需品、灵活支出和预算习惯"
       },
       {
         "key": "creditDebt",
-        "label": "Credit & Debt",
+        "label": "信用与债务",
         "description": "安全使用信用卡并了解借贷成本"
       },
       {
         "key": "safetyNet",
-        "label": "Safety Net",
+        "label": "财务安全网",
         "description": "保险、应急基金和长期财务弹性"
       },
       {
         "key": "fraudSafety",
-        "label": "Fraud & Safety",
+        "label": "防诈骗与安全",
         "description": "保护您的身份、账户和信用档案"
       }
     ],
