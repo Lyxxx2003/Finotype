@@ -2,6 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 
+interface Category {
+  key: string;
+  label: string;
+}
+
 interface RadarChartProps {
   scores: {
     paycheckLiteracy: number;
@@ -11,12 +16,13 @@ interface RadarChartProps {
     safetyNet: number;
     fraudSafety: number;
   };
+  categories?: Category[];
 }
 
-export default function RadarChart({ scores }: RadarChartProps) {
+export default function RadarChart({ scores, categories: customCategories }: RadarChartProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const categories = [
+  const categories = customCategories || [
     { key: 'paycheckLiteracy', label: 'Paycheck Literacy' },
     { key: 'housingBills', label: 'Housing & Bills' },
     { key: 'spendingControl', label: 'Spending Control' },

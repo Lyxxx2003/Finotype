@@ -111,7 +111,11 @@
     "subtitle": "Explore the 16 unique financial personality types and discover which one resonates with you.",
     "cta": "Ready to discover your financial personality?",
     "takeTest": "Take the Test",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "pioneers": "Pioneers",
+    "guardians": "Guardians",
+    "players": "Players",
+    "pragmatists": "Pragmatists"
   },
   "account": {
     "title": "Account Settings",
@@ -136,7 +140,17 @@
     "confirmButton": "Delete",
     "deleting": "Deleting...",
     "loading": "Loading...",
-    "backToGame": "Back to Game"
+    "backToGame": "Back to Game",
+    "learningProgress": "Learning Progress",
+    "overallProgress": "Overall Progress",
+    "progressStatus": "Status",
+    "finished": "Finished",
+    "inProgress": "In Progress",
+    "totalScore": "Total Score",
+    "latestFinishedRadar": "Latest Finished Radar",
+    "learningCurveTitle": "Learning Curve",
+    "noResultsYet": "No results yet...",
+    "averageScoreWithValue": "Average Score: {score}"
   },
   "analysis": {
     "loading": "Loading...",
@@ -323,7 +337,30 @@
     "stronglyAgree": "Strongly Agree",
     "signOut": "Sign Out",
     "resources": "Resources",
-    "types": "Types"
+    "types": "Types",
+    "bugReport": "Bug Report",
+    "notFound": "Not found.",
+    "goHome": "Go Home"
+  },
+  "bugReport": {
+    "title": "Report a Bug",
+    "subtitle": "Found something broken or confusing? Share details so we can fix it quickly.",
+    "submitTitle": "Submit Bug Report",
+    "pageUrl": "Page URL",
+    "pageUrlPlaceholder": "https://...",
+    "expected": "Expected behavior",
+    "expectedPlaceholder": "What should have happened?",
+    "actual": "Actual behavior",
+    "actualPlaceholder": "What happened instead?",
+    "details": "Extra details (optional)",
+    "detailsPlaceholder": "Device/browser/steps to reproduce...",
+    "submitButton": "Submit",
+    "submitting": "Submitting...",
+    "submitSuccess": "Thanks, your report has been submitted.",
+    "submitError": "Failed to submit. Please try again.",
+    "requiredError": "Please fill page URL, expected behavior, and actual behavior.",
+    "loadingReports": "Loading reports...",
+    "noReports": "No reports yet."
   },
   "questions": {
     "1": {
@@ -581,6 +618,8 @@
       "shareToX": "Share to X",
       "facebook": "Facebook",
       "retakeCourse": "Retake Course",
+      "startAgain": "Start Again",
+      "loadingProgress": "Loading your saved progress...",
       "benchmark": {
         "rockSolid": "Rock Solid",
         "strong": "Strong",

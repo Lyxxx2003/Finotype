@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from '@/lib/supabase/client';
 import RadarChart from '@/components/RadarChart';
 import {
   downloadElementAsImage,
@@ -19,6 +19,13 @@ import {
   computeScoresFromAnswers,
   benchmarkLabel,
 } from '@/lib/technical/logic';
+import {
+  getLessonProgress,
+  saveLessonProgress,
+  getCompletedModules,
+  areAllModulesComplete,
+  getFirstUnfinishedModuleId,
+} from '@/lib/technical/lessons';
 
 function renderTextWithTooltips(
   text: string,
@@ -93,10 +100,18 @@ export default function TechnicalQuestionPage() {
   const totalQuestions = allQuestions.length;
 
   const [user, setUser] = useState<any>(null);
-  const [activeModuleId, setActiveModuleId] = useState<string>(localizedModules[0]?.id ?? MODULES[0].id);
+  const [activeModuleId, setActiveModuleId] = useState<string>('');
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
   const [glossaryTerm, setGlossaryTerm] = useState<string | null>(null);
+  const [hasLoadedProgress, setHasLoadedProgress] = useState(false);
+  const [loadedAsFinished, setLoadedAsFinished] = useState(false);
+
+  const toRevealed = (input: Record<string, string>) =>
+    Object.keys(input).reduce<Record<string, boolean>>((acc, key) => {
+      acc[key] = true;
+      return acc;
+    }, {});
 
   useEffect(() => {
     const checkUser = async () => {
@@ -106,9 +121,59 @@ export default function TechnicalQuestionPage() {
         return;
       }
       setUser(user);
+
+      try {
+        const progress = await getLessonProgress(locale);
+        if (progress) {
+          setAnswers(progress.answers ?? {});
+          setRevealed(toRevealed(progress.answers ?? {}));
+
+          if (progress.is_finished) {
+            setLoadedAsFinished(true);
+            setActiveModuleId('results');
+          } else {
+            setLoadedAsFinished(false);
+            const nextModuleId = getFirstUnfinishedModuleId(localizedModules, progress.answers ?? {});
+            if (nextModuleId) {
+              setActiveModuleId(nextModuleId);
+            } else {
+              setActiveModuleId(localizedModules[0]?.id ?? MODULES[0].id);
+            }
+          }
+        } else {
+          setActiveModuleId(localizedModules[0]?.id ?? MODULES[0].id);
+        }
+      } finally {
+        setHasLoadedProgress(true);
+      }
     };
+
     checkUser();
-  }, [locale, router, supabase]);
+  }, [locale, router, supabase, localizedModules]);
+
+  const scores = useMemo(() => computeScoresFromAnswers(answers, localizedModules), [answers, localizedModules]);
+
+  useEffect(() => {
+    if (!user || !hasLoadedProgress) return;
+
+    const timer = setTimeout(async () => {
+      try {
+        const modulesCompleted = getCompletedModules(localizedModules, answers);
+        const isFinished = areAllModulesComplete(localizedModules, answers);
+
+        await saveLessonProgress(locale, {
+          answers,
+          scores,
+          modulesCompleted,
+          isFinished,
+        });
+      } catch (error) {
+        console.error('Failed to auto-save lesson progress:', error);
+      }
+    }, 350);
+
+    return () => clearTimeout(timer);
+  }, [answers, hasLoadedProgress, locale, localizedModules, scores, user]);
 
   useEffect(() => {
     window.scrollTo({
@@ -117,11 +182,20 @@ export default function TechnicalQuestionPage() {
     });
   }, [activeModuleId]);
 
-  const scores = useMemo(() => computeScoresFromAnswers(answers, localizedModules), [answers, localizedModules]);
   const answeredQuestions = Object.keys(revealed).length;
   const allAnswered = answeredQuestions === totalQuestions;
 
   const activeModule = localizedModules.find(m => m.id === activeModuleId) ?? localizedModules[0];
+
+  if (!hasLoadedProgress || !activeModuleId) {
+    return (
+      <div className="technical-question-page min-h-screen p-6 py-8">
+        <div className="technical-question-shell max-w-7xl mx-auto p-6 md:p-8 lg:p-10">
+          <p style={{ color: 'var(--color-text-muted)' }}>{t('ui.loadingProgress')}</p>
+        </div>
+      </div>
+    );
+  }
 
   const moduleStats = (module: Module) => {
     const questions = module.lessonBlocks.flatMap(b => b.questions);
@@ -145,6 +219,22 @@ export default function TechnicalQuestionPage() {
     shareUrl: typeof window !== 'undefined' ? window.location.href : '',
   });
 
+    const handleResetProgress = async () => {
+      setAnswers({});
+      setRevealed({});
+      setLoadedAsFinished(false);
+      setActiveModuleId(localizedModules[0]?.id ?? MODULES[0].id);
+
+      if (user) {
+        const clearedScores = computeScoresFromAnswers({}, localizedModules);
+        await saveLessonProgress(locale, {
+          answers: {},
+          scores: clearedScores,
+          modulesCompleted: [],
+          isFinished: false,
+        });
+      }
+    };
   const handleShare = async () => {
     if (!radarShareRef.current) return;
 
@@ -563,7 +653,7 @@ export default function TechnicalQuestionPage() {
                           </div>
                         </div>
 
-                        <RadarChart scores={scores} />
+                        <RadarChart scores={scores} categories={localizedSkills} />
 
                         <div
                           className="mt-4 text-center text-sm"
@@ -676,18 +766,14 @@ export default function TechnicalQuestionPage() {
 
                     <button
                       type="button"
-                      onClick={() => {
-                        setAnswers({});
-                        setRevealed({});
-                        setActiveModuleId(localizedModules[0]?.id ?? MODULES[0].id);
-                      }}
+                      onClick={handleResetProgress}
                       className="w-full px-5 py-3 rounded-xl font-semibold border"
                       style={{
                         borderColor: 'var(--color-neutral-300)',
                         color: 'var(--color-text)'
                       }}
                     >
-                      {t('ui.retakeCourse')}
+                      {loadedAsFinished ? t('ui.startAgain') : t('ui.retakeCourse')}
                     </button>
                   </div>
                 </div>

@@ -119,7 +119,17 @@
     "confirmButton": "删除",
     "deleting": "删除中...",
     "loading": "加载中...",
-    "backToGame": "返回游戏"
+    "backToGame": "返回游戏",
+    "learningProgress": "学习进度",
+    "overallProgress": "整体进度",
+    "progressStatus": "状态",
+    "finished": "已完成",
+    "inProgress": "进行中",
+    "totalScore": "总分",
+    "latestFinishedRadar": "最近一次完成的雷达图",
+    "learningCurveTitle": "学习曲线",
+    "noResultsYet": "暂无结果...",
+    "averageScoreWithValue": "平均分：{score}"
   },
   "analysis": {
     "loading": "加载中...",
@@ -306,7 +316,30 @@
     "stronglyAgree": "非常同意",
     "signOut": "退出登录",
     "resources": "资源",
-    "types": "类型"
+    "types": "类型",
+    "bugReport": "问题反馈",
+    "notFound": "未找到。",
+    "goHome": "返回首页"
+  },
+  "bugReport": {
+    "title": "提交问题反馈",
+    "subtitle": "如果你发现页面异常或体验问题，请告诉我们，我们会尽快修复。",
+    "submitTitle": "提交问题报告",
+    "pageUrl": "页面链接",
+    "pageUrlPlaceholder": "https://...",
+    "expected": "预期行为",
+    "expectedPlaceholder": "你预期应该发生什么？",
+    "actual": "实际行为",
+    "actualPlaceholder": "实际上发生了什么？",
+    "details": "补充信息（可选）",
+    "detailsPlaceholder": "设备/浏览器/复现步骤...",
+    "submitButton": "提交",
+    "submitting": "提交中...",
+    "submitSuccess": "感谢反馈，已成功提交。",
+    "submitError": "提交失败，请重试。",
+    "requiredError": "请填写页面链接、预期行为和实际行为。",
+    "loadingReports": "正在加载报告...",
+    "noReports": "暂无报告。"
   },
   "questions": {
     "1": {
@@ -521,7 +554,11 @@
     "subtitle": "探索16种独特的财务性格类型，找到与你共鸣的类型。",
     "cta": "准备好发现你的财务性格了吗？",
     "takeTest": "开始测试",
-    "learnMore": "了解更多"
+    "learnMore": "了解更多",
+    "pioneers": "先驱者",
+    "guardians": "保守者",
+    "players": "玩家",
+    "pragmatists": "实用主义者"
   },
   "resources": {
     "readMore": "阅读更多",
@@ -581,6 +618,8 @@
       "shareToX": "分享到 X",
       "facebook": "Facebook",
       "retakeCourse": "重新学习",
+      "startAgain": "重新开始",
+      "loadingProgress": "正在加载你的已保存进度...",
       "benchmark": {
         "rockSolid": "非常扎实",
         "strong": "表现良好",
@@ -597,32 +636,32 @@
     "skills": [
       {
         "key": "paycheckLiteracy",
-        "label": "Paycheck Literacy",
+        "label": "工资单理解",
         "description": "了解工资、扣除额、税收和应税收入"
       },
       {
         "key": "housingBills",
-        "label": "Housing & Bills",
+        "label": "住房与账单",
         "description": "管理租金、水电费、押金和经常性债务"
       },
       {
         "key": "spendingControl",
-        "label": "Spending Control",
+        "label": "支出控制",
         "description": "管理必需品、灵活支出和预算习惯"
       },
       {
         "key": "creditDebt",
-        "label": "Credit & Debt",
+        "label": "信用与债务",
         "description": "安全使用信用卡并了解借贷成本"
       },
       {
         "key": "safetyNet",
-        "label": "Safety Net",
+        "label": "财务安全网",
         "description": "保险、应急基金和长期财务弹性"
       },
       {
         "key": "fraudSafety",
-        "label": "Fraud & Safety",
+        "label": "防诈骗与安全",
         "description": "保护您的身份、账户和信用档案"
       }
     ],

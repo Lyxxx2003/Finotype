@@ -58,16 +58,25 @@ export default function Navbar() {
                 {t('types')}
               </Link>
               <Link
-                href={`/${locale}/resources`}
+                href={`/${locale}/bug-report`}
                 className="text-sm font-semibold transition-colors"
                 style={{ color: 'var(--color-text-secondary)' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
               >
-                {t('resources')}
+                {t('bugReport')}
               </Link>
               {user && (
                 <>
+                  <Link
+                    href={`/${locale}/technical/resources`}
+                    className="text-sm font-semibold transition-colors"
+                    style={{ color: 'var(--color-text-secondary)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+                  >
+                    {t('resources')}
+                  </Link>
                   <Link
                     href={`/${locale}/technical/account`}
                     className="text-sm font-semibold transition-colors"
@@ -117,13 +126,13 @@ export default function Navbar() {
                 {t('types')}
               </Link>
               <Link
-                href={`/${locale}/resources`}
+                href={`/${locale}/bug-report`}
                 className="text-sm font-semibold transition-colors"
                 style={{ color: 'var(--color-text-secondary)' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
               >
-                {t('resources')}
+                {t('bugReport')}
               </Link>
               <ThemeToggle />
               <LanguageSwitcher />
@@ -153,13 +162,13 @@ export default function Navbar() {
               {t('types')}
             </Link>
             <Link
-              href={`/${locale}/resources`}
+              href={`/${locale}/bug-report`}
               className="text-sm font-semibold transition-colors"
               style={{ color: 'var(--color-text-secondary)' }}
               onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
               onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
             >
-              {t('resources')}
+              {t('bugReport')}
             </Link>
             <ThemeToggle />
             <LanguageSwitcher />
