@@ -137,6 +137,35 @@ export interface Database {
           updated_at?: string
         }
       }
+      bug_report: {
+        Row: {
+          id: string
+          locale: string
+          page_url: string
+          expected: string
+          actual: string
+          details: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          locale: string
+          page_url: string
+          expected: string
+          actual: string
+          details?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          locale?: string
+          page_url?: string
+          expected?: string
+          actual?: string
+          details?: string | null
+          created_at?: string
+        }
+      }
     }
   }
 }

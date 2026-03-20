@@ -57,6 +57,15 @@ export default function Navbar() {
               >
                 {t('types')}
               </Link>
+              <Link
+                href={`/${locale}/bug-report`}
+                className="text-sm font-semibold transition-colors"
+                style={{ color: 'var(--color-text-secondary)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+              >
+                {t('bugReport')}
+              </Link>
               {user && (
                 <>
                   <Link
@@ -116,6 +125,15 @@ export default function Navbar() {
               >
                 {t('types')}
               </Link>
+              <Link
+                href={`/${locale}/bug-report`}
+                className="text-sm font-semibold transition-colors"
+                style={{ color: 'var(--color-text-secondary)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+              >
+                {t('bugReport')}
+              </Link>
               <ThemeToggle />
               <LanguageSwitcher />
             </div>
@@ -142,6 +160,15 @@ export default function Navbar() {
               onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
             >
               {t('types')}
+            </Link>
+            <Link
+              href={`/${locale}/bug-report`}
+              className="text-sm font-semibold transition-colors"
+              style={{ color: 'var(--color-text-secondary)' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+            >
+              {t('bugReport')}
             </Link>
             <ThemeToggle />
             <LanguageSwitcher />

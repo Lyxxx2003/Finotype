@@ -338,8 +338,29 @@
     "signOut": "Sign Out",
     "resources": "Resources",
     "types": "Types",
+    "bugReport": "Bug Report",
     "notFound": "Not found.",
     "goHome": "Go Home"
+  },
+  "bugReport": {
+    "title": "Report a Bug",
+    "subtitle": "Found something broken or confusing? Share details so we can fix it quickly.",
+    "submitTitle": "Submit Bug Report",
+    "pageUrl": "Page URL",
+    "pageUrlPlaceholder": "https://...",
+    "expected": "Expected behavior",
+    "expectedPlaceholder": "What should have happened?",
+    "actual": "Actual behavior",
+    "actualPlaceholder": "What happened instead?",
+    "details": "Extra details (optional)",
+    "detailsPlaceholder": "Device/browser/steps to reproduce...",
+    "submitButton": "Submit",
+    "submitting": "Submitting...",
+    "submitSuccess": "Thanks, your report has been submitted.",
+    "submitError": "Failed to submit. Please try again.",
+    "requiredError": "Please fill page URL, expected behavior, and actual behavior.",
+    "loadingReports": "Loading reports...",
+    "noReports": "No reports yet."
   },
   "questions": {
     "1": {

@@ -317,8 +317,29 @@
     "signOut": "退出登录",
     "resources": "资源",
     "types": "类型",
+    "bugReport": "问题反馈",
     "notFound": "未找到。",
     "goHome": "返回首页"
+  },
+  "bugReport": {
+    "title": "提交问题反馈",
+    "subtitle": "如果你发现页面异常或体验问题，请告诉我们，我们会尽快修复。",
+    "submitTitle": "提交问题报告",
+    "pageUrl": "页面链接",
+    "pageUrlPlaceholder": "https://...",
+    "expected": "预期行为",
+    "expectedPlaceholder": "你预期应该发生什么？",
+    "actual": "实际行为",
+    "actualPlaceholder": "实际上发生了什么？",
+    "details": "补充信息（可选）",
+    "detailsPlaceholder": "设备/浏览器/复现步骤...",
+    "submitButton": "提交",
+    "submitting": "提交中...",
+    "submitSuccess": "感谢反馈，已成功提交。",
+    "submitError": "提交失败，请重试。",
+    "requiredError": "请填写页面链接、预期行为和实际行为。",
+    "loadingReports": "正在加载报告...",
+    "noReports": "暂无报告。"
   },
   "questions": {
     "1": {
