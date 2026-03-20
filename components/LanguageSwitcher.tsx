@@ -2,12 +2,15 @@
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { locales, localeNames, type Locale } from '@/i18n';
+import { useState, useRef, useEffect } from 'react';
 
 export function LanguageSwitcher() {
   const params = useParams();
   const pathname = usePathname();
   const router = useRouter();
   const currentLocale = params.locale as Locale;
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const switchLocale = (newLocale: Locale) => {
     if (!pathname) return;
@@ -18,14 +21,26 @@ export function LanguageSwitcher() {
     const newPath = segments.join('/');
 
     router.push(newPath);
+    setIsOpen(false);
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
-    <div className="relative inline-block z-[60]">
-      <select
-        value={currentLocale}
-        onChange={(e) => switchLocale(e.target.value as Locale)}
-        className="appearance-none rounded-xl px-4 py-2 pr-8 text-sm font-medium cursor-pointer transition-all duration-300 border-2 hover:shadow-md relative z-[60]"
+    <div className="relative inline-block z-[60]" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="rounded-xl px-4 py-2 text-sm font-medium cursor-pointer transition-all duration-300 border-2 hover:shadow-md flex items-center gap-2"
         style={{
           background: 'var(--color-surface)',
           borderColor: 'var(--color-neutral-300)',
@@ -36,21 +51,60 @@ export function LanguageSwitcher() {
           e.currentTarget.style.boxShadow = '0 0 0 3px rgba(30, 64, 175, 0.1)';
         }}
         onBlur={(e) => {
-          e.currentTarget.style.borderColor = 'var(--color-neutral-300)';
-          e.currentTarget.style.boxShadow = 'none';
+          if (!isOpen) {
+            e.currentTarget.style.borderColor = 'var(--color-neutral-300)';
+            e.currentTarget.style.boxShadow = 'none';
+          }
         }}
       >
-        {locales.map((locale) => (
-          <option key={locale} value={locale}>
-            {localeNames[locale]}
-          </option>
-        ))}
-      </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2" style={{ color: 'var(--color-primary)' }}>
-        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+        <span>{localeNames[currentLocale]}</span>
+        <svg 
+          className="w-4 h-4 transition-transform duration-300" 
+          style={{
+            color: 'var(--color-primary)',
+            transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)'
+          }}
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 20 20" 
+          fill="currentColor"
+        >
+          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
         </svg>
-      </div>
+      </button>
+
+      {isOpen && (
+        <div 
+          className="absolute top-full mt-1 left-0 rounded-xl shadow-lg border-2 min-w-max z-[70]"
+          style={{
+            background: 'var(--color-surface)',
+            borderColor: 'var(--color-neutral-300)',
+          }}
+        >
+          {locales.map((locale) => (
+            <button
+              key={locale}
+              onClick={() => switchLocale(locale)}
+              className="w-full text-left px-4 py-2 text-sm font-medium transition-colors duration-200 first:rounded-t-[9px] last:rounded-b-[9px]"
+              style={{
+                background: locale === currentLocale ? 'var(--color-primary)' : 'transparent',
+                color: locale === currentLocale ? 'white' : 'var(--color-text)',
+              }}
+              onMouseEnter={(e) => {
+                if (locale !== currentLocale) {
+                  e.currentTarget.style.background = 'var(--color-neutral-100)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (locale !== currentLocale) {
+                  e.currentTarget.style.background = 'transparent';
+                }
+              }}
+            >
+              {localeNames[locale]}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
