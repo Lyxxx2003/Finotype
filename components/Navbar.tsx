@@ -78,6 +78,15 @@ export default function Navbar() {
                     {t('resources')}
                   </Link>
                   <Link
+                    href={`/${locale}/technical/leaderboard`}
+                    className="text-sm font-semibold transition-colors"
+                    style={{ color: 'var(--color-text-secondary)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+                  >
+                    {t('leaderboard')}
+                  </Link>
+                  <Link
                     href={`/${locale}/technical/account`}
                     className="text-sm font-semibold transition-colors"
                     style={{ color: 'var(--color-text-secondary)' }}
