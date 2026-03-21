@@ -92,6 +92,9 @@ export async function POST(request: NextRequest) {
     const nextCurve = justFinished
       ? [...currentCurve, totalScore].slice(-40)
       : currentCurve;
+    const prevHighest =
+      typeof existing?.highest_total_score === 'number' ? existing.highest_total_score : 0;
+    const nextHighestTotalScore = Math.max(prevHighest, totalScore);
 
     const latestFinishedScores = isFinished ? scores : existing?.latest_finished_scores ?? null;
     const latestFinishedTotalScore = isFinished
@@ -108,6 +111,7 @@ export async function POST(request: NextRequest) {
           modules_completed: modulesCompleted,
           is_finished: isFinished,
           total_score: totalScore,
+          highest_total_score: nextHighestTotalScore,
           learning_curve: nextCurve,
           latest_finished_scores: latestFinishedScores,
           latest_finished_total_score: latestFinishedTotalScore,
@@ -134,6 +138,7 @@ export async function POST(request: NextRequest) {
         modules_completed: modulesCompleted,
         is_finished: isFinished,
         total_score: totalScore,
+        highest_total_score: totalScore,
         learning_curve: isFinished ? [totalScore] : [],
         latest_finished_scores: isFinished ? scores : null,
         latest_finished_total_score: isFinished ? totalScore : null,

@@ -44,6 +44,35 @@ export interface Database {
           email_verified?: boolean
         }
       }
+      friends: {
+        Row: {
+          id: string
+          requester_id: string
+          invitee_email: string
+          invitee_id: string | null
+          status: string
+          created_at: string
+          accepted_at: string | null
+        }
+        Insert: {
+          id?: string
+          requester_id: string
+          invitee_email: string
+          invitee_id?: string | null
+          status?: string
+          created_at?: string
+          accepted_at?: string | null
+        }
+        Update: {
+          id?: string
+          requester_id?: string
+          invitee_email?: string
+          invitee_id?: string | null
+          status?: string
+          created_at?: string
+          accepted_at?: string | null
+        }
+      }
       simulations: {
         Row: {
           id: string
@@ -99,6 +128,7 @@ export interface Database {
           modules_completed: string[]
           is_finished: boolean
           total_score: number
+          highest_total_score: number
           learning_curve: Json
           latest_finished_scores: Json | null
           latest_finished_total_score: number | null
@@ -114,6 +144,7 @@ export interface Database {
           modules_completed?: string[]
           is_finished?: boolean
           total_score?: number
+          highest_total_score?: number
           learning_curve?: Json
           latest_finished_scores?: Json | null
           latest_finished_total_score?: number | null
@@ -129,6 +160,7 @@ export interface Database {
           modules_completed?: string[]
           is_finished?: boolean
           total_score?: number
+          highest_total_score?: number
           learning_curve?: Json
           latest_finished_scores?: Json | null
           latest_finished_total_score?: number | null

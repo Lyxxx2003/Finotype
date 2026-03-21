@@ -8,6 +8,7 @@ export type LessonProgress = {
   modules_completed: string[];
   is_finished: boolean;
   total_score: number;
+  highest_total_score: number;
   learning_curve: number[];
   latest_finished_scores: Scores | null;
   latest_finished_total_score: number | null;
