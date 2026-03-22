@@ -6,8 +6,9 @@ import { useParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { createClient } from '@/lib/supabase/client';
 import RadarChart from '@/components/RadarChart';
-import { MODULES, SKILLS, type Scores } from '@/lib/technical/data';
-import { getLessonProgress, type LessonProgress } from '@/lib/technical/lessons';
+import { MODULES, SKILLS } from '@/lib/technical/data';
+import { getLessonProgress } from '@/lib/technical/lessons';
+import { Scores, LessonProgress } from '@/types';
 
 export default function AccountPage() {
   const [user, setUser] = useState<any>(null);
