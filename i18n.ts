@@ -1,9 +1,8 @@
 import { getRequestConfig } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { Locale } from './types';
 
 // Supported locales
 export const locales = ['en', 'zh', 'es'] as const;
-export type Locale = typeof locales[number];
 
 export const localeNames: Record<Locale, string> = {
   en: 'English',

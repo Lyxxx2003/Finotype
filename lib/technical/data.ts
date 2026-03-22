@@ -1,44 +1,4 @@
-export type SkillKey =
-  | 'paycheckLiteracy'
-  | 'housingBills'
-  | 'spendingControl'
-  | 'creditDebt'
-  | 'safetyNet'
-  | 'fraudSafety';
-
-export type Scores = Record<SkillKey, number>;
-
-export type Choice = {
-  id: string;
-  text: string;
-  impact: Partial<Record<SkillKey, number>>;
-};
-
-export type Question = {
-  id: string;
-  title: string;
-  context?: string;
-  prompt: string;
-  choices: Choice[];
-  correctChoiceId: string;
-  explanation: string;
-};
-
-export type LessonBlock = {
-  id: string;
-  heading: string;
-  paragraphs: string[];
-  bullets?: string[];
-  questions: Question[];
-};
-
-export type Module = {
-  id: string;
-  title: string;
-  shortDescription: string;
-  lessonBlocks: LessonBlock[];
-  takeaway: string[];
-};
+import { Module, SkillKey } from "@/types";
 
 export const SKILLS: { key: SkillKey; label: string; description: string }[] = [
   { key: 'paycheckLiteracy', label: 'Paycheck Literacy', description: 'Understanding paychecks, deductions, taxes, and taxable income' },

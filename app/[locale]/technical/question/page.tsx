@@ -13,8 +13,8 @@ import {
   shareToX,
   shareToFacebook,
 } from '@/components/ShareUtil';
-import { MODULES, SKILLS, GLOSSARY, type Module } from '@/lib/technical/data';
-
+import { MODULES, SKILLS, GLOSSARY } from '@/lib/technical/data';
+import { Module } from '@/types';
 import {
   flattenQuestions,
   computeScoresFromAnswers,

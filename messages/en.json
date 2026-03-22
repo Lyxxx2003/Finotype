@@ -587,6 +587,11 @@
     "readMore": "Read More",
     "title": "Financial Learning Resources",
     "subtitle": "Explore curated articles and guides to enhance your financial knowledge and make better decisions.",
+    "modulesHeading": "Choose a Learning Module",
+    "viewSubmodules": "View submodules",
+    "submoduleCount": "{count} links",
+    "backToModules": "Back to modules",
+    "openOriginal": "Open original resource",
     "card1": {
       "title": "Understanding Your Financial Personality",
       "description": "Discover how your personality traits influence your financial decisions and learn strategies to leverage your strengths."
@@ -610,7 +615,193 @@
     "card6": {
       "title": "Risk Management: A Beginner's Guide",
       "description": "Master the fundamentals of identifying, assessing, and managing financial risks in your personal investment journey."
-    }
+    },
+    "modules": [
+      {
+        "id": "paycheckLiteracy",
+        "title": "Paycheck Literacy",
+        "description": "Understanding paychecks, deductions, taxes, and taxable income",
+        "submodules": [
+          {
+            "id": "fiscal-ship",
+            "title": "The Fiscal Ship",
+            "summary": "Interactive budget simulation about policy trade-offs and long-term federal debt sustainability."
+          },
+          {
+            "id": "uber-game",
+            "title": "The Uber Game",
+            "summary": "Gig-economy simulation showing the day-to-day income pressure of rideshare work."
+          },
+          {
+            "id": "earnest-paycheck-deductions",
+            "title": "Everything Deducted From Your Paycheck, Explained (Earnest)",
+            "summary": "Practical breakdown of payroll taxes, pre-tax benefits, and post-tax deductions."
+          },
+          {
+            "id": "benjamin-talks-paycheck",
+            "title": "A Paycheck Overview for You and Your Child (Benjamin Talks)",
+            "summary": "Beginner-friendly guide to gross pay, net pay, withholdings, and reading pay stubs."
+          }
+        ]
+      },
+      {
+        "id": "housingBills",
+        "title": "Housing & Bills",
+        "description": "Managing rent, utilities, deposits, and recurring obligations",
+        "submodules": [
+          {
+            "id": "nerdwallet-cost-of-living",
+            "title": "Cost of Living Calculator (NerdWallet)",
+            "summary": "Compare city expenses and estimate salary needs for relocation planning."
+          },
+          {
+            "id": "discover-roommate-costs",
+            "title": "How to Split Living Costs With Your Roommate (Discover)",
+            "summary": "Communication and cost-sharing tactics to avoid conflict in shared housing."
+          },
+          {
+            "id": "the-onion-rent-satire",
+            "title": "Landlord Forced To Raise Rent Due To Thinking Of Bigger Number (The Onion)",
+            "summary": "Satirical commentary on rent inflation and renter-landlord power imbalance."
+          },
+          {
+            "id": "california-security-deposit-guide",
+            "title": "Guide to Security Deposits & Renter Rights (Self Help Courts)",
+            "summary": "Official legal guidance on deposits, deductions, deadlines, and tenant rights."
+          },
+          {
+            "id": "first-apartment-hidden-costs",
+            "title": "Unpacking the Costs of Your First Apartment",
+            "summary": "Hidden first-apartment expenses beyond rent, with practical budgeting guardrails."
+          }
+        ]
+      },
+      {
+        "id": "spendingControl",
+        "title": "Spending Control",
+        "description": "Managing necessities, flexible spending, and budgeting habits",
+        "submodules": [
+          {
+            "id": "ynab-four-rules",
+            "title": "How to Stress Less About Money: 4 Simple Rules (YNAB)",
+            "summary": "A behavior-based budgeting framework to reduce money stress and build consistency."
+          },
+          {
+            "id": "investopedia-503020",
+            "title": "The 50/30/20 Rule (Investopedia)",
+            "summary": "Simple allocation model for needs, wants, and long-term financial goals."
+          },
+          {
+            "id": "thirty-day-rule",
+            "title": "The 30-Day Rule for Impulse Purchases (The Balance)",
+            "summary": "Cooling-off strategy that reduces emotional purchases and supports intentional spending."
+          }
+        ]
+      },
+      {
+        "id": "creditDebt",
+        "title": "Credit & Debt",
+        "description": "Using credit cards safely and understanding borrowing costs",
+        "submodules": [
+          {
+            "id": "evolution-of-trust",
+            "title": "The Evolution of Trust",
+            "summary": "Game-theory simulation about cooperation, incentives, and trust in repeated interactions."
+          },
+          {
+            "id": "credit-interest-calculator",
+            "title": "Credit Card Interest Calculator (NerdWallet)",
+            "summary": "Visual calculator for debt payoff time and total interest under different payment plans."
+          },
+          {
+            "id": "psychology-of-credit-card-spending",
+            "title": "The Psychology of Credit Card Spending (Psychology Today)",
+            "summary": "How payment methods change spending behavior and reduce awareness of real costs."
+          },
+          {
+            "id": "credit-card-representative-confessions",
+            "title": "Confessions of a Credit Card Representative (Reader's Digest)",
+            "summary": "Situations where credit card use can be risky, expensive, or hard to unwind."
+          },
+          {
+            "id": "credit-scores-explained",
+            "title": "Credit Scores Explained with Pizza (Visual Capitalist)",
+            "summary": "Historical infographic showing the evolution of modern consumer credit systems."
+          }
+        ]
+      },
+      {
+        "id": "safetyNet",
+        "title": "Safety Net",
+        "description": "Insurance, emergency funds, and long-term financial resilience",
+        "submodules": [
+          {
+            "id": "financial-football",
+            "title": "Financial Football",
+            "summary": "NFL-themed game that teaches budgeting, debt, and savings through quick quizzes."
+          },
+          {
+            "id": "f-you-money",
+            "title": "The F-You Money Concept (JL Collins)",
+            "summary": "Why cash reserves create personal autonomy and protect decision freedom."
+          },
+          {
+            "id": "build-emergency-fund",
+            "title": "How to Build an Emergency Fund (The Balance)",
+            "summary": "What emergency funds are for and how they prevent debt spirals during shocks."
+          },
+          {
+            "id": "financial-resilience-crisis",
+            "title": "Financial Resilience: How to Survive a Crisis (MoneySense)",
+            "summary": "Framework for surviving disruptions with flexible budgets, insurance, and cash buffers."
+          }
+        ]
+      },
+      {
+        "id": "fraudSafety",
+        "title": "Fraud & Safety",
+        "description": "Protecting your identity, accounts, and credit profile",
+        "submodules": [
+          {
+            "id": "google-phishing-quiz",
+            "title": "Google's Phishing Quiz",
+            "summary": "Interactive training to spot suspicious messages and social engineering red flags."
+          },
+          {
+            "id": "psychology-of-scam",
+            "title": "The Psychology of the Scam (Wired)",
+            "summary": "Documentary-style breakdown of emotional manipulation in modern scam operations."
+          },
+          {
+            "id": "scammed-out-of-50000",
+            "title": "I Was Scammed Out of $50,000 (The Cut)",
+            "summary": "Case study on how urgency and authority cues can override rational defenses."
+          },
+          {
+            "id": "credit-freeze-guide",
+            "title": "How to Freeze Your Credit: A 3-Minute Guide (Brian Krebs)",
+            "summary": "Step-by-step explanation of credit freezes to block fraudulent account openings."
+          },
+          {
+            "id": "identity-theft-horror-story",
+            "title": "Identity Theft: A Modern Horror Story (Experian Blog)",
+            "summary": "Identity fraud narrative showing financial and psychological fallout from scams."
+          },
+          {
+            "id": "password-debate",
+            "title": "The Great Password Debate: Is Your Dog's Name Enough? (Norton)",
+            "summary": "Password hygiene guidance for strong credentials and breach containment."
+          },
+          {
+            "id": "social-engineering-vishing",
+            "title": "Social Engineering: The Art of Human Hacking (Vishing)",
+            "summary": "How voice phishing works and why verification habits are the key defense."
+          }
+        ]
+      }
+    ],
+    "englishSourceNotice": "Notice: most original resources are in English.",
+    "englishSourceConfirm": "This original blog is written in English. Continue to open it?"
   },
   "technicalQuestion": {
     "ui": {
