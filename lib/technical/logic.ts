@@ -1,4 +1,5 @@
-import { MODULES, type Module, type Scores, type SkillKey } from './data';
+import { MODULES } from './data';
+import type { Module, Scores, SkillKey } from '@/types';
 
 export function flattenQuestions(modules: Module[]) {
   return modules.flatMap(module =>

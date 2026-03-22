@@ -587,6 +587,11 @@
     "readMore": "Leer Más",
     "title": "Recursos de Aprendizaje Financiero",
     "subtitle": "Explora artículos y guías seleccionadas para mejorar tu conocimiento financiero y tomar mejores decisiones.",
+    "modulesHeading": "Elige un módulo de aprendizaje",
+    "viewSubmodules": "Ver submódulos",
+    "submoduleCount": "{count} enlaces",
+    "backToModules": "Volver a módulos",
+    "openOriginal": "Abrir recurso original",
     "card1": {
       "title": "Entendiendo Tu Personalidad Financiera",
       "description": "Descubre cómo tus rasgos de personalidad influyen en tus decisiones financieras y aprende estrategias para aprovechar tus fortalezas."
@@ -610,7 +615,193 @@
     "card6": {
       "title": "Gestión de Riesgos: Una Guía para Principiantes",
       "description": "Domina los fundamentos de identificar, evaluar y gestionar riesgos financieros en tu viaje de inversión personal."
-    }
+    },
+    "modules": [
+      {
+        "id": "paycheckLiteracy",
+        "title": "Comprension de Nomina",
+        "description": "Entender nomina, deducciones, impuestos e ingresos gravables",
+        "submodules": [
+          {
+            "id": "fiscal-ship",
+            "title": "La Nave Fiscal (The Fiscal Ship)",
+            "summary": "Simulacion interactiva sobre el presupuesto federal de EE. UU. que obliga a equilibrar prioridades politicas con sostenibilidad de deuda a largo plazo."
+          },
+          {
+            "id": "uber-game",
+            "title": "El Juego de Uber (The Uber Game)",
+            "summary": "Simulacion del trabajo en la economia gig donde debes equilibrar costos, tiempo e ingresos para entender margenes reales de los conductores."
+          },
+          {
+            "id": "earnest-paycheck-deductions",
+            "title": "Todo lo que se descuenta de tu nomina, explicado (Earnest)",
+            "summary": "Desglose practico de impuestos obligatorios, beneficios antes de impuestos y deducciones despues de impuestos para entender tu salario neto."
+          },
+          {
+            "id": "benjamin-talks-paycheck",
+            "title": "Guia de nomina para ti y tu hijo (Benjamin Talks)",
+            "summary": "Guia basica para diferenciar salario bruto y neto, leer el recibo de pago y comprender retenciones y deducciones voluntarias."
+          }
+        ]
+      },
+      {
+        "id": "housingBills",
+        "title": "Vivienda y Facturas",
+        "description": "Gestionar alquiler, servicios, depositos y obligaciones recurrentes",
+        "submodules": [
+          {
+            "id": "nerdwallet-cost-of-living",
+            "title": "Calculadora de costo de vida | Comparador de ciudad y salario (NerdWallet)",
+            "summary": "Herramienta para comparar costo de vida entre ciudades y calcular el salario necesario para mantener el mismo nivel de vida."
+          },
+          {
+            "id": "discover-roommate-costs",
+            "title": "Como dividir gastos de vivienda con tu companero de piso (Discover)",
+            "summary": "Estrategias para dividir gastos con companeros de piso, establecer reglas claras y evitar conflictos financieros."
+          },
+          {
+            "id": "the-onion-rent-satire",
+            "title": "The Onion: Casero obligado a subir la renta por pensar en un numero mas grande",
+            "summary": "Satira sobre aumentos arbitrarios de renta que refleja desequilibrios de poder entre propietarios e inquilinos."
+          },
+          {
+            "id": "california-security-deposit-guide",
+            "title": "Guia de deposito de seguridad y derechos del inquilino (Self Help Courts)",
+            "summary": "Guia legal sobre limites de deposito, deducciones permitidas, plazos de devolucion y derechos de inquilinos en California."
+          },
+          {
+            "id": "first-apartment-hidden-costs",
+            "title": "Costos reales de tu primer departamento: lo que TikTok no te conto",
+            "summary": "Resumen realista de costos ocultos del primer departamento: depositos, conexion de servicios, seguros, muebles y gastos mensuales."
+          }
+        ]
+      },
+      {
+        "id": "spendingControl",
+        "title": "Control de Gastos",
+        "description": "Gestionar necesidades, gasto flexible y habitos de presupuesto",
+        "submodules": [
+          {
+            "id": "ynab-four-rules",
+            "title": "Como estresarte menos por dinero: 4 reglas simples (YNAB)",
+            "summary": "Marco practico de cuatro reglas para asignar cada dolar, anticipar gastos reales y reducir el estres financiero."
+          },
+          {
+            "id": "investopedia-503020",
+            "title": "Regla 50/30/20: guia para presupuestar tu dinero (Investopedia)",
+            "summary": "Metodo simple para distribuir ingresos entre necesidades, deseos y metas financieras de largo plazo."
+          },
+          {
+            "id": "thirty-day-rule",
+            "title": "Regla de 30 dias para compras impulsivas (The Balance)",
+            "summary": "Tecnica de espera de 30 dias para frenar compras impulsivas y alinear gasto con prioridades reales."
+          }
+        ]
+      },
+      {
+        "id": "creditDebt",
+        "title": "Credito y Deuda",
+        "description": "Usar tarjetas de credito con seguridad y entender costos de endeudamiento",
+        "submodules": [
+          {
+            "id": "evolution-of-trust",
+            "title": "La evolucion de la confianza (The Evolution of Trust)",
+            "summary": "Juego interactivo de teoria de juegos que muestra como cooperacion y confianza afectan resultados a largo plazo."
+          },
+          {
+            "id": "credit-interest-calculator",
+            "title": "Calculadora de interes de tarjeta de credito (visual)",
+            "summary": "Calculadora visual para estimar tiempo de pago y costo total de intereses segun APR y pago mensual."
+          },
+          {
+            "id": "psychology-of-credit-card-spending",
+            "title": "La psicologia del gasto con tarjeta de credito (Psychology Today)",
+            "summary": "Explica como la tarjeta reduce el dolor de pagar y puede aumentar el gasto por distancia psicologica."
+          },
+          {
+            "id": "credit-card-representative-confessions",
+            "title": "Confesiones de un representante de tarjeta de credito (Readers Digest)",
+            "summary": "Casos donde usar tarjeta puede ser riesgoso o caro, y por que no debe reemplazar un fondo de emergencia."
+          },
+          {
+            "id": "credit-scores-explained",
+            "title": "Puntajes de credito explicados con pizza (Visual Capitalist)",
+            "summary": "Historia visual de la evolucion del credito de confianza local a puntajes algoritmicos modernos."
+          }
+        ]
+      },
+      {
+        "id": "safetyNet",
+        "title": "Red de Seguridad",
+        "description": "Seguros, fondos de emergencia y resiliencia financiera a largo plazo",
+        "submodules": [
+          {
+            "id": "financial-football",
+            "title": "Futbol Financiero (Financial Football)",
+            "summary": "Juego educativo tematico de NFL que ensena presupuesto, credito, deuda y ahorro de emergencia."
+          },
+          {
+            "id": "f-you-money",
+            "title": "Concepto de F-You Money (JL Collins)",
+            "summary": "Ensayo sobre como reservas de efectivo amplias aumentan libertad personal y poder de negociacion."
+          },
+          {
+            "id": "build-emergency-fund",
+            "title": "Como crear un fondo de emergencia (The Balance)",
+            "summary": "Guia sobre por que un fondo de emergencia evita deuda costosa ante desempleo o gastos inesperados."
+          },
+          {
+            "id": "financial-resilience-crisis",
+            "title": "Resiliencia financiera: como sobrevivir una crisis (MoneySense)",
+            "summary": "Estrategia integral para resistir crisis con ahorro liquido, menor deuda y presupuesto adaptable."
+          }
+        ]
+      },
+      {
+        "id": "fraudSafety",
+        "title": "Fraude y Seguridad",
+        "description": "Proteger identidad, cuentas y perfil de credito",
+        "submodules": [
+          {
+            "id": "google-phishing-quiz",
+            "title": "Cuestionario de phishing de Google",
+            "summary": "Entrenamiento interactivo para identificar phishing mediante senales en remitente, enlaces y urgencia falsa."
+          },
+          {
+            "id": "psychology-of-scam",
+            "title": "La psicologia de la estafa (Wired)",
+            "summary": "Investigacion sobre tacticas psicologicas de estafas romanticas y como explotan confianza y soledad."
+          },
+          {
+            "id": "scammed-out-of-50000",
+            "title": "Me estafaron 50,000 dolares (The Cut)",
+            "summary": "Caso real que muestra como estafadores usan miedo y autoridad para manipular incluso a personas informadas."
+          },
+          {
+            "id": "credit-freeze-guide",
+            "title": "Como congelar tu credito: guia de 3 minutos (Brian Krebs)",
+            "summary": "Guia breve para congelar historial crediticio y bloquear apertura fraudulenta de nuevas lineas de credito."
+          },
+          {
+            "id": "identity-theft-horror-story",
+            "title": "Robo de identidad: una historia de terror moderna (Experian Blog)",
+            "summary": "Narrativa de robo de identidad que muestra impactos financieros y emocionales de fraudes sofisticados."
+          },
+          {
+            "id": "password-debate",
+            "title": "Gran debate de contrasenas: basta el nombre de tu perro? (Norton)",
+            "summary": "Buenas practicas de contrasenas fuertes y unicas para reducir riesgos de fuerza bruta y credential stuffing."
+          },
+          {
+            "id": "social-engineering-vishing",
+            "title": "Ingenieria social: arte del hackeo humano (vishing)",
+            "summary": "Explica el vishing y por que la verificacion activa es la defensa principal contra suplantacion por voz."
+          }
+        ]
+      }
+    ],
+    "englishSourceNotice": "Aviso: la mayoría de los recursos originales están en inglés.",
+    "englishSourceConfirm": "Este blog original está escrito en inglés. ¿Deseas abrirlo de todos modos?"
   },
   "technicalQuestion": {
     "ui": {

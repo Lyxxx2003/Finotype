@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { createClient } from '@/lib/supabase/client';
 import RadarChart from '@/components/RadarChart';
+import { ResultsButtons } from '@/components/ResultsButtons';
 import {
   downloadElementAsImage,
   nativeShareElement,
@@ -12,8 +13,8 @@ import {
   shareToX,
   shareToFacebook,
 } from '@/components/ShareUtil';
-import { MODULES, SKILLS, GLOSSARY, type Module } from '@/lib/technical/data';
-
+import { MODULES, SKILLS, GLOSSARY } from '@/lib/technical/data';
+import { Module } from '@/types';
 import {
   flattenQuestions,
   computeScoresFromAnswers,
@@ -59,6 +60,7 @@ export default function TechnicalQuestionPage() {
   const params = useParams();
   const locale = params.locale as string;
   const t = useTranslations('technicalQuestion');
+  const tAnalysis = useTranslations('analysis');
   const radarShareRef = useRef<HTMLDivElement | null>(null);
 
   const localizedModules = useMemo(() => {
@@ -667,47 +669,16 @@ export default function TechnicalQuestionPage() {
                       </div>
                     </div>
 
-                    <div className="mt-6 flex flex-wrap gap-3 justify-center">
-                      <button
-                        type="button"
-                        onClick={handleShare}
-                        className="px-4 py-2 rounded-xl font-semibold"
-                        style={{ backgroundColor: 'var(--color-primary)', color: 'white' }}
-                      >
-                        {t('ui.share')}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleDownload}
-                        className="px-4 py-2 rounded-xl font-semibold border"
-                        style={{ borderColor: 'var(--color-neutral-300)', color: 'var(--color-text)' }}
-                      >
-                        {t('ui.downloadImage')}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleShareLink}
-                        className="px-4 py-2 rounded-xl font-semibold border"
-                        style={{ borderColor: 'var(--color-neutral-300)', color: 'var(--color-text)' }}
-                      >
-                        {t('ui.copyLink')}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleShareX}
-                        className="px-4 py-2 rounded-xl font-semibold border"
-                        style={{ borderColor: 'var(--color-neutral-300)', color: 'var(--color-text)' }}
-                      >
-                        {t('ui.shareToX')}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleShareFacebook}
-                        className="px-4 py-2 rounded-xl font-semibold border"
-                        style={{ borderColor: 'var(--color-neutral-300)', color: 'var(--color-text)' }}
-                      >
-                        {t('ui.facebook')}
-                      </button>
+                    <div className="mt-6">
+                      <ResultsButtons
+                        locale={locale}
+                        onShare={handleShare}
+                        onDownload={handleDownload}
+                        onShareLink={handleShareLink}
+                        onShareX={handleShareX}
+                        onShareFacebook={handleShareFacebook}
+                        t={tAnalysis}
+                      />
                     </div>
                   </div>
 

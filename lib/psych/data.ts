@@ -1,4 +1,21 @@
-import { Question, Persona } from '@/types';
+import { FinancialType } from "@/types";
+
+export interface Question {
+  id: number;
+  text: string;
+  options: {
+    label: string;
+    value: string; // Option key used for scoring and i18n
+  }[];
+  multiSelect?: boolean;
+}
+
+export interface Persona {
+  id: FinancialType;
+  name: string;
+  description: string;
+  mascot: string; // Path to mascot image
+}
 
 export const questions: Question[] = [
   {
