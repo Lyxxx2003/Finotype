@@ -8,7 +8,7 @@ import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { downloadShareImage } from '@/components/ShareUtil';
 import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
-import { Persona } from '@/types';
+import { Persona } from '@/lib/psych/data';
 import { ResultsButtons } from '@/components/ResultsButtons';
 import { PercentageCard } from '@/components/PercentageCard';
 
