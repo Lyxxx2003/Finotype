@@ -1,8 +1,9 @@
 'use client';
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
-import { locales, localeNames, type Locale } from '@/i18n';
+import { locales, localeNames } from '@/i18n';
 import { useState, useRef, useEffect } from 'react';
+import { Locale } from '@/types';
 
 export function LanguageSwitcher() {
   const params = useParams();
