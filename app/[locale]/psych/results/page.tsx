@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getAnswers, getDisplayName } from '@/lib/psych/storage';
 import { calculateFinotype, TraitPercentages } from '@/lib/psych/logic';
 import { personas } from '@/lib/psych/data';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { downloadShareImage } from '@/components/ShareUtil';
 import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/components/ShareUtil';
@@ -20,6 +20,7 @@ export default function ResultsPage() {
   const [statsLoading, setStatsLoading] = useState(true);
   const [hasSaved, setHasSaved] = useState(false);
   const params = useParams();
+  const router = useRouter();
   const locale = params.locale as string;
   const tPersonas = useTranslations('personas');
   const tAnalysis = useTranslations('analysis');
@@ -102,6 +103,10 @@ export default function ResultsPage() {
   const handleShare = async () => {
     if (!persona) return;
     await nativeShare(getShareImageOptions());
+  };
+
+  const goToLearningHub = () => {
+    router.push(`/${locale}/technical/question`);
   };
 
   const handleDownload = async () => {
@@ -268,15 +273,30 @@ export default function ResultsPage() {
           </div>
         </div>
 
-        <ResultsButtons
-          locale={locale}
-          onShare={handleShare}
-          onDownload={handleDownload}
-          onShareLink={handleShareLink}
-          onShareX={handleShareX}
-          onShareFacebook={handleShareFacebook}
-          t={tAnalysis}
-        />
+        <div className="flex items-center justify-center gap-4 flex-wrap">
+          <ResultsButtons
+            locale={locale}
+            onShare={handleShare}
+            onDownload={handleDownload}
+            onShareLink={handleShareLink}
+            onShareX={handleShareX}
+            onShareFacebook={handleShareFacebook}
+            t={tAnalysis}
+          />
+
+          <button
+            type="button"
+            onClick={goToLearningHub}
+            className="px-6 py-3 rounded-xl font-semibold"
+            style={{
+              backgroundColor: 'var(--color-primary)',
+              color: 'white',
+              cursor: 'pointer'
+            }}
+          >
+            Level Up Your Money Skills
+          </button>
+        </div>
       </div>
     </div>
   );
