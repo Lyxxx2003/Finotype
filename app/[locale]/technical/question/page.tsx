@@ -189,6 +189,18 @@ export default function TechnicalQuestionPage() {
 
   const activeModule = localizedModules.find(m => m.id === activeModuleId) ?? localizedModules[0];
 
+  const currentModuleIndex = localizedModules.findIndex(
+    m => m.id === activeModuleId
+  );
+
+  const nextModule = localizedModules[currentModuleIndex + 1];
+
+  const goToNextModule = () => {
+    if (nextModule) {
+      setActiveModuleId(nextModule.id);
+    }
+  };
+
   if (!hasLoadedProgress || !activeModuleId) {
     return (
       <div className="technical-question-page min-h-screen p-6 py-8">
@@ -603,19 +615,35 @@ export default function TechnicalQuestionPage() {
                     {t('ui.completeEveryModule')}
                   </div>
 
-                  {allAnswered && (
-                    <button
-                      type="button"
-                      onClick={() => setActiveModuleId('results')}
-                      className="px-5 py-3 rounded-xl font-semibold"
-                      style={{
-                        backgroundColor: 'var(--color-primary)',
-                        color: 'white'
-                      }}
-                    >
-                      {t('ui.viewResults')}
-                    </button>
-                  )}
+                  <div className="flex gap-3">
+                    {nextModule && (
+                      <button
+                        type="button"
+                        onClick={goToNextModule}
+                        className="px-5 py-3 rounded-xl font-semibold border"
+                        style={{
+                          borderColor: 'var(--color-neutral-300)',
+                          color: 'var(--color-text)'
+                        }}
+                      >
+                        Next
+                      </button>
+                    )}
+
+                    {allAnswered && (
+                      <button
+                        type="button"
+                        onClick={() => setActiveModuleId('results')}
+                        className="px-5 py-3 rounded-xl font-semibold"
+                        style={{
+                          backgroundColor: 'var(--color-primary)',
+                          color: 'white'
+                        }}
+                      >
+                        {t('ui.viewResults')}
+                      </button>
+                    )}
+                  </div>
                 </div>
               </>
             ) : (
