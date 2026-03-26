@@ -15,6 +15,7 @@ export function FinotypeLogoWithConfirm({ locale }: { locale: string }) {
   const tStart = useTranslations('start');
 
   const isTechnicalRoute = pathname?.includes('/technical') ?? false;
+  const isPsychRoute = pathname?.includes('/psych') ?? false;
 
   useEffect(() => {
     setMounted(true);
@@ -93,9 +94,15 @@ export function FinotypeLogoWithConfirm({ locale }: { locale: string }) {
         className="flex items-center gap-2 text-xl font-bold transition-all cursor-pointer"
         style={{ background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-primary)' }}>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
+        {isPsychRoute ? (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-primary)' }}>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        ) : (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-primary)' }}>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        )}
         Finotype
       </button>
 

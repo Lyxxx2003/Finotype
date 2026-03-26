@@ -58,7 +58,7 @@ export default function Navbar() {
                 {t('types')}
               </Link>
               <Link
-                href={`/${locale}/bug-report`}
+                href={`/${locale}/bug-report?source=${encodeURIComponent(pathname || `/${locale}`)}`}
                 className="text-sm font-semibold transition-colors"
                 style={{ color: 'var(--color-text-secondary)' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
@@ -135,7 +135,7 @@ export default function Navbar() {
                 {t('types')}
               </Link>
               <Link
-                href={`/${locale}/bug-report`}
+                href={`/${locale}/bug-report?source=${encodeURIComponent(pathname || `/${locale}`)}`}
                 className="text-sm font-semibold transition-colors"
                 style={{ color: 'var(--color-text-secondary)' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
@@ -171,7 +171,7 @@ export default function Navbar() {
               {t('types')}
             </Link>
             <Link
-              href={`/${locale}/bug-report`}
+              href={`/${locale}/bug-report?source=${encodeURIComponent(pathname || `/${locale}`)}`}
               className="text-sm font-semibold transition-colors"
               style={{ color: 'var(--color-text-secondary)' }}
               onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}

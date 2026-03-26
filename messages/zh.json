@@ -1,9 +1,9 @@
 {
   "home": {
     "title": "Finotype",
-    "subtitle": "发现你的财务性格类型。你是守护者、冒险家，还是其他类型？完成10道题的测试，提升你的财务素养。",
-    "standardTest": "尝试标准测试",
-    "proSimulation": "专业模拟",
+    "subtitle": "了解你的金钱习惯，提升你在消费、储蓄和决策上的能力。",
+    "standardTest": "发现你的 Finotype",
+    "proSimulation": "提升你的金钱技能",
     "footer": "© {year} Finotype. 保留所有权利。",
     "behavioralAnalysis": "行为分析",
     "personalizedInsights": "个性化见解",
@@ -94,7 +94,13 @@
     "firstTest": "您是第一个测试的人！！",
     "shareTitle": "你的 Finotype 是什么？",
     "shareBrandText": "发现你的财务性格",
-    "shareText": "我刚发现了我的 Finotype：{code} - {name}！来 https://finotype.vercel.app 发现你的财务性格"
+    "shareText": "我刚发现了我的 Finotype：{code} - {name}！来 https://finotype.vercel.app 发现你的财务性格",
+    "feedbackQuestion": "你觉得这有提升你的金融素养吗？",
+    "feedbackThumbsDown": "踩",
+    "feedbackThumbsUp": "赞",
+    "feedbackHeart": "喜欢",
+    "feedbackSkip": "跳过",
+    "feedbackThanks": "感谢你的反馈！"
   },
   "account": {
     "title": "账户设置",
@@ -580,7 +586,7 @@
     "learnMore": "了解更多",
     "pioneers": "先驱者",
     "guardians": "保守者",
-    "players": "玩家",
+    "players": "探索者",
     "pragmatists": "实用主义者"
   },
   "resources": {
@@ -831,6 +837,7 @@
       "copyLink": "复制链接",
       "shareToX": "分享到 X",
       "facebook": "Facebook",
+      "next": "下一步",
       "retakeCourse": "重新学习",
       "startAgain": "重新开始",
       "loadingProgress": "正在加载你的已保存进度...",
@@ -845,7 +852,13 @@
       "shareText": "我刚完成了金融素养课程并拿到了雷达结果，你也来试试吧！",
       "shareBrandText": "看看我在核心金钱技能上的表现",
       "resultsPageTitle": "技术结果",
-      "resultsPageComingSoon": "该页面正在开发中，敬请期待！"
+      "resultsPageComingSoon": "该页面正在开发中，敬请期待！",
+      "feedbackQuestion": "你觉得这有提升你的金融素养吗？",
+      "feedbackThumbsDown": "踩",
+      "feedbackThumbsUp": "赞",
+      "feedbackHeart": "喜欢",
+      "feedbackSkip": "跳过",
+      "feedbackThanks": "感谢你的反馈！"
     },
     "skills": [
       {

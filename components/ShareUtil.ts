@@ -1,5 +1,7 @@
 import { toPng } from 'html-to-image';
 
+const SHARE_MASCOT_CENTER_Y = 340;
+
 export interface ShareImageOptions {
   width?: number;
   height?: number;
@@ -29,6 +31,12 @@ const createCanvas = (options: ShareImageOptions): HTMLCanvasElement => {
   const width = options.width ?? 1080;
   const height = options.height ?? 1080;
   const titleFontSize = options.titleFontSize ?? 64;
+  const mascotCenterY = SHARE_MASCOT_CENTER_Y;
+  const finotypeCodeY = 600;
+  const finotypeNameY = 675;
+  const titleY = 760;
+  const subtitleY = 850;
+  const brandY = 940;
 
   canvas.width = width;
   canvas.height = height;
@@ -56,29 +64,29 @@ const createCanvas = (options: ShareImageOptions): HTMLCanvasElement => {
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(options.title, canvas.width / 2, 700);
+  ctx.fillText(options.title, canvas.width / 2, titleY);
 
   if (options.finotypeCode) {
     ctx.font = 'bold 56px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = 'rgba(255, 255, 255, 0.98)';
-    ctx.fillText(options.finotypeCode, canvas.width / 2, 560);
+    ctx.fillText(options.finotypeCode, canvas.width / 2, finotypeCodeY);
   }
 
   if (options.finotypeName) {
-    ctx.font = '42px system-ui, -apple-system, sans-serif';
+    ctx.font = '40px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-    ctx.fillText(options.finotypeName, canvas.width / 2, 620);
+    ctx.fillText(options.finotypeName, canvas.width / 2, finotypeNameY);
   }
 
   // Website URL
   ctx.font = '48px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-  ctx.fillText(options.subtitle, canvas.width / 2, 830);
+  ctx.fillText(options.subtitle, canvas.width / 2, subtitleY);
 
   // Small branding at bottom
   ctx.font = '28px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-  ctx.fillText(options.brandText, canvas.width / 2, 950);
+  ctx.fillText(options.brandText, canvas.width / 2, brandY);
 
   return canvas;
 };
@@ -97,7 +105,7 @@ const loadAndDrawMascot = (canvas: HTMLCanvasElement, mascotPath: string): Promi
       // Draw mascot image in a circle
       const size = 280;
       const x = canvas.width / 2;
-      const y = 420;
+      const y = SHARE_MASCOT_CENTER_Y;
       
       ctx.save();
       ctx.beginPath();
@@ -116,7 +124,7 @@ const loadAndDrawMascot = (canvas: HTMLCanvasElement, mascotPath: string): Promi
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = '#ffffff';
-      ctx.fillText('💰', canvas.width / 2, 420);
+      ctx.fillText('💰', canvas.width / 2, SHARE_MASCOT_CENTER_Y);
       resolve();
     };
     img.src = mascotPath.startsWith('/') ? mascotPath : `/${mascotPath}`;

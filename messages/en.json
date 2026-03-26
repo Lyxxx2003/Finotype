@@ -1,9 +1,9 @@
 {
   "home": {
     "title": "Finotype",
-    "subtitle": "Discover your financial personality type. Are you a Guardian, a Maverick, or something else? Take the 10-question test to find out and level up your financial literacy.",
-    "standardTest": "Try Standard Test",
-    "proSimulation": "Pro Simulation",
+    "subtitle": "Understand your money habits and improve how you spend, save, and decide.",
+    "standardTest": "Discover Your Finotype",
+    "proSimulation": "Level Up Your Money Skills",
     "footer": "© {year} Finotype. All rights reserved.",
     "behavioralAnalysis": "Behavioral Analysis",
     "personalizedInsights": "Personalized Insights",
@@ -94,7 +94,13 @@
     "firstTest": "You're the very first to test!!",
     "shareTitle": "What's your Finotype?",
     "shareBrandText": "Discover your financial personality",
-    "shareText": "I just discovered my Finotype: {code} - {name}! Discover your financial personality at https://finotype.vercel.app"
+    "shareText": "I just discovered my Finotype: {code} - {name}! Discover your financial personality at https://finotype.vercel.app",
+    "feedbackQuestion": "Do you feel like this improved your financial literacy?",
+    "feedbackThumbsDown": "Thumbs down",
+    "feedbackThumbsUp": "Thumbs up",
+    "feedbackHeart": "Heart",
+    "feedbackSkip": "Skip",
+    "feedbackThanks": "Thanks for your feedback!"
   },
   "traits": {
     "A": "Adventurous",
@@ -114,7 +120,7 @@
     "learnMore": "Learn More",
     "pioneers": "Pioneers",
     "guardians": "Guardians",
-    "players": "Players",
+    "players": "Explorers",
     "pragmatists": "Pragmatists"
   },
   "account": {
@@ -831,6 +837,7 @@
       "copyLink": "Copy Link",
       "shareToX": "Share to X",
       "facebook": "Facebook",
+      "next": "Next",
       "retakeCourse": "Retake Course",
       "startAgain": "Start Again",
       "loadingProgress": "Loading your saved progress...",
@@ -845,7 +852,13 @@
       "shareText": "I just completed a financial literacy course and got my radar results. Check yours too!",
       "shareBrandText": "See how I scored across core money skills",
       "resultsPageTitle": "Technical Results",
-      "resultsPageComingSoon": "This page is under development. Check back soon!"
+      "resultsPageComingSoon": "This page is under development. Check back soon!",
+      "feedbackQuestion": "Do you feel like this improved your financial literacy?",
+      "feedbackThumbsDown": "Thumbs down",
+      "feedbackThumbsUp": "Thumbs up",
+      "feedbackHeart": "Heart",
+      "feedbackSkip": "Skip",
+      "feedbackThanks": "Thanks for your feedback!"
     },
     "skills": [
       {

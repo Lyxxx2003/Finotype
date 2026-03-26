@@ -18,6 +18,7 @@ type LeaderboardEntry = {
   userId: string;
   displayName: string;
   highestScore: number;
+  isCurrentUser: boolean;
 };
 
 export default function TechnicalLeaderboardPage() {
@@ -251,7 +252,10 @@ export default function TechnicalLeaderboardPage() {
                 <div
                   key={entry.userId}
                   className="rounded-xl p-4 border flex items-center justify-between"
-                  style={{ borderColor: 'var(--color-neutral-200)', backgroundColor: 'var(--color-background)' }}
+                  style={{
+                    borderColor: entry.isCurrentUser ? 'var(--color-primary)' : 'var(--color-neutral-200)',
+                    backgroundColor: 'var(--color-background)'
+                  }}
                 >
                   <div className="flex items-center gap-3">
                     <div
