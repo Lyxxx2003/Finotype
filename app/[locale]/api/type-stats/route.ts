@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 
+const VALID_FEEDBACK = new Set(['down', 'up', 'heart', 'skip']);
+
 // Helper to generate or retrieve session ID from cookie
 function getOrCreateSessionId(request: NextRequest): string {
   const sessionId = request.cookies.get('finotype_session_id')?.value;
@@ -14,11 +16,19 @@ function getOrCreateSessionId(request: NextRequest): string {
 // POST: Save a finotype result
 export async function POST(request: NextRequest) {
   try {
-    const { finotype } = await request.json();
-    
-    if (!finotype || typeof finotype !== 'string') {
+    const { finotype, standardFeedback } = await request.json();
+    const feedback = standardFeedback;
+
+    if ((!finotype || typeof finotype !== 'string') && (!feedback || typeof feedback !== 'string')) {
       return NextResponse.json(
-        { error: 'Invalid finotype' },
+        { error: 'Invalid payload' },
+        { status: 400 }
+      );
+    }
+
+    if (feedback && !VALID_FEEDBACK.has(feedback)) {
+      return NextResponse.json(
+        { error: 'Invalid standard feedback value' },
         { status: 400 }
       );
     }
@@ -42,11 +52,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // If session already exists, update the finotype
+    const updatePayload: Record<string, string> = {};
+    if (finotype && typeof finotype === 'string') {
+      updatePayload.finotype = finotype;
+    }
+    if (feedback && typeof feedback === 'string') {
+      updatePayload.feedback = feedback;
+    }
+
+    // If session already exists, update values
     if (existing) {
       const { error: updateError } = await supabase
         .from('type')
-        .update({ finotype })
+        .update(updatePayload)
         .eq('session_id', sessionId);
 
       if (updateError) {
@@ -58,9 +76,16 @@ export async function POST(request: NextRequest) {
       }
     } else {
       // Insert new record
+      if (!finotype || typeof finotype !== 'string') {
+        return NextResponse.json(
+          { error: 'Finotype is required before saving feedback' },
+          { status: 400 }
+        );
+      }
+
       const { error: insertError } = await supabase
         .from('type')
-        .insert({ session_id: sessionId, finotype });
+        .insert({ session_id: sessionId, finotype, feedback: feedback ?? null });
 
       if (insertError) {
         console.error('Error saving type:', insertError);
@@ -104,6 +129,7 @@ export async function GET(request: NextRequest) {
     }
 
     const supabase = await createClient();
+    const sessionId = getOrCreateSessionId(request);
 
     // Get total count
     const { count: totalCount, error: totalError } = await supabase
@@ -132,13 +158,37 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({
+    const { data: sessionRow, error: sessionError } = await supabase
+      .from('type')
+      .select('feedback')
+      .eq('session_id', sessionId)
+      .maybeSingle();
+
+    if (sessionError && sessionError.code !== 'PGRST116') {
+      console.error('Error getting session feedback:', sessionError);
+      return NextResponse.json(
+        { error: 'Failed to fetch statistics' },
+        { status: 500 }
+      );
+    }
+
+    const response = NextResponse.json({
       total: totalCount || 0,
       typeCount: typeCount || 0,
       percentage: totalCount && totalCount > 0 
         ? Math.round((typeCount || 0) / totalCount * 100) 
         : 0,
+      sessionFeedback: sessionRow?.feedback ?? null,
     });
+
+    response.cookies.set('finotype_session_id', sessionId, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 365,
+    });
+
+    return response;
   } catch (error) {
     console.error('Error in GET /api/type-stats:', error);
     return NextResponse.json(

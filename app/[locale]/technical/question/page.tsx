@@ -108,6 +108,8 @@ export default function TechnicalQuestionPage() {
   const [glossaryTerm, setGlossaryTerm] = useState<string | null>(null);
   const [hasLoadedProgress, setHasLoadedProgress] = useState(false);
   const [loadedAsFinished, setLoadedAsFinished] = useState(false);
+  const [technicalFeedback, setTechnicalFeedback] = useState<string | null>(null);
+  const [submittingTechnicalFeedback, setSubmittingTechnicalFeedback] = useState(false);
 
   const toRevealed = (input: Record<string, string>) =>
     Object.keys(input).reduce<Record<string, boolean>>((acc, key) => {
@@ -123,6 +125,18 @@ export default function TechnicalQuestionPage() {
         return;
       }
       setUser(user);
+
+      try {
+        const feedbackResponse = await fetch(`/${locale}/api/feedback?flow=technical`, {
+          cache: 'no-store',
+        });
+        if (feedbackResponse.ok) {
+          const feedbackData = await feedbackResponse.json();
+          setTechnicalFeedback(feedbackData?.technicalFeedback ?? null);
+        }
+      } catch (error) {
+        console.error('Failed to load technical feedback:', error);
+      }
 
       try {
         const progress = await getLessonProgress(locale);
@@ -305,6 +319,28 @@ export default function TechnicalQuestionPage() {
       shareText: meta.shareText,
       shareUrl: meta.shareUrl,
     });
+  };
+
+  const handleTechnicalFeedback = async (feedback: 'down' | 'up' | 'heart' | 'skip') => {
+    if (submittingTechnicalFeedback) return;
+
+    setSubmittingTechnicalFeedback(true);
+    try {
+      const response = await fetch(`/${locale}/api/feedback`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ flow: 'technical', feedback }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setTechnicalFeedback(data?.technicalFeedback ?? feedback);
+      }
+    } catch (error) {
+      console.error('Failed to save technical feedback:', error);
+    } finally {
+      setSubmittingTechnicalFeedback(false);
+    }
   };
 
   const tocItems = [
@@ -626,7 +662,7 @@ export default function TechnicalQuestionPage() {
                           color: 'var(--color-text)'
                         }}
                       >
-                        Next
+                        {t('ui.next')}
                       </button>
                     )}
 
@@ -707,6 +743,52 @@ export default function TechnicalQuestionPage() {
                         onShareFacebook={handleShareFacebook}
                         t={tAnalysis}
                       />
+
+                      {technicalFeedback === null ? (
+                        <div className="card-professional p-5 mt-4 text-center" data-html2canvas-ignore>
+                          <p className="font-semibold mb-3" style={{ color: 'var(--color-text)' }}>
+                            {t('ui.feedbackQuestion')}
+                          </p>
+                          <div className="flex flex-wrap gap-2 justify-center">
+                            <button
+                              type="button"
+                              onClick={() => handleTechnicalFeedback('down')}
+                              disabled={submittingTechnicalFeedback}
+                              className="btn-professional-outline"
+                            >
+                              {t('ui.feedbackThumbsDown')}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleTechnicalFeedback('up')}
+                              disabled={submittingTechnicalFeedback}
+                              className="btn-professional-outline"
+                            >
+                              {t('ui.feedbackThumbsUp')}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleTechnicalFeedback('heart')}
+                              disabled={submittingTechnicalFeedback}
+                              className="btn-professional-outline"
+                            >
+                              {t('ui.feedbackHeart')}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleTechnicalFeedback('skip')}
+                              disabled={submittingTechnicalFeedback}
+                              className="btn-professional-outline"
+                            >
+                              {t('ui.feedbackSkip')}
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="alert-success mt-4 text-center" data-html2canvas-ignore>
+                          {t('ui.feedbackThanks')}
+                        </div>
+                      )}
                     </div>
                   </div>
 

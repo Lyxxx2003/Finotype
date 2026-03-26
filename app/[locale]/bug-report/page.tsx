@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams, usePathname, useSearchParams } from 'next/navigation';
 
 type BugReport = {
   id: string;
@@ -18,6 +18,7 @@ export default function BugReportPage() {
   const t = useTranslations('bugReport');
   const params = useParams();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const locale = String(params.locale ?? 'en');
 
   const [pageUrl, setPageUrl] = useState('');
@@ -31,11 +32,20 @@ export default function BugReportPage() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setPageUrl(window.location.href);
+      const sourceParam = searchParams.get('source');
+      if (sourceParam) {
+        if (sourceParam.startsWith('http://') || sourceParam.startsWith('https://')) {
+          setPageUrl(sourceParam);
+        } else {
+          setPageUrl(new URL(sourceParam, window.location.origin).toString());
+        }
+      } else {
+        setPageUrl(window.location.href);
+      }
     } else {
       setPageUrl(pathname || '');
     }
-  }, [pathname]);
+  }, [pathname, searchParams]);
 
   useEffect(() => {
     const loadReports = async () => {

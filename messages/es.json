@@ -1,9 +1,9 @@
 {
   "home": {
     "title": "Finotype",
-    "subtitle": "Descubre tu tipo de personalidad financiera. ¿Eres un Guardián, un Inconformista o algo más? Haz la prueba de 10 preguntas para descubrirlo y mejora tu educación financiera.",
-    "standardTest": "Prueba Estándar",
-    "proSimulation": "Simulación Pro",
+    "subtitle": "Comprende tus hábitos de dinero y mejora cómo gastas, ahorras y decides.",
+    "standardTest": "Descubre Tu Finotype",
+    "proSimulation": "Mejora Tus Habilidades Financieras",
     "footer": "© {year} Finotype. Todos los derechos reservados.",
     "behavioralAnalysis": "Análisis Conductual",
     "personalizedInsights": "Perspectivas Personalizadas",
@@ -362,7 +362,13 @@
     "firstTest": "¡¡Eres el primero en hacer la prueba!!",
     "shareTitle": "¿Cuál es tu Finotype?",
     "shareBrandText": "Descubre tu personalidad financiera",
-    "shareText": "Acabo de descubrir mi Finotype: {code} - {name}. Descubre tu personalidad financiera en https://finotype.vercel.app"
+    "shareText": "Acabo de descubrir mi Finotype: {code} - {name}. Descubre tu personalidad financiera en https://finotype.vercel.app",
+    "feedbackQuestion": "¿Sientes que esto mejoró tu educación financiera?",
+    "feedbackThumbsDown": "Pulgar abajo",
+    "feedbackThumbsUp": "Pulgar arriba",
+    "feedbackHeart": "Me encanta",
+    "feedbackSkip": "Omitir",
+    "feedbackThanks": "¡Gracias por tu comentario!"
   },
   "questions": {
     "1": {
@@ -580,7 +586,7 @@
     "learnMore": "Aprende Más",
     "pioneers": "Aventureros",
     "guardians": "Guardianes",
-    "players": "Jugadores",
+    "players": "Exploradores",
     "pragmatists": "Pragmáticos"
   },
   "resources": {
@@ -831,6 +837,7 @@
       "copyLink": "Copiar enlace",
       "shareToX": "Compartir en X",
       "facebook": "Facebook",
+      "next": "Siguiente",
       "retakeCourse": "Repetir curso",
       "startAgain": "Comenzar de nuevo",
       "loadingProgress": "Cargando tu progreso guardado...",
@@ -845,7 +852,13 @@
       "shareText": "Acabo de completar un curso de educación financiera y obtuve mi resultado de radar. ¡Pruébalo tú también!",
       "shareBrandText": "Mira cómo me fue en habilidades clave de dinero",
       "resultsPageTitle": "Resultados Técnicos",
-      "resultsPageComingSoon": "Esta página está en desarrollo. ¡Vuelve pronto!"
+      "resultsPageComingSoon": "Esta página está en desarrollo. ¡Vuelve pronto!",
+      "feedbackQuestion": "¿Sientes que esto mejoró tu educación financiera?",
+      "feedbackThumbsDown": "Pulgar abajo",
+      "feedbackThumbsUp": "Pulgar arriba",
+      "feedbackHeart": "Me encanta",
+      "feedbackSkip": "Omitir",
+      "feedbackThanks": "¡Gracias por tu comentario!"
     },
     "skills": [
       {

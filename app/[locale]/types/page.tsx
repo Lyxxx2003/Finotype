@@ -21,13 +21,6 @@ export default function TypesPage() {
     Pragmatists: tCommon('pragmatists'),
   };
 
-  const groupPositions: Record<string, string> = {
-    Pioneers: 'top-0 left-0',
-    Guardians: 'top-0 right-0',
-    Players: 'bottom-0 left-0',
-    Pragmatists: 'bottom-0 right-0',
-  };
-
   const groupColors: Record<string, string> = {
     Pioneers: '#F59E0B',
     Guardians: '#10B981',
@@ -161,7 +154,7 @@ export default function TypesPage() {
                   className="text-4xl font-bold mb-2"
                   style={{ color: groupColors[group] }}
                 >
-                  {group}
+                  {groupLabels[group]}
                 </h2>
                 <div
                   className="w-24 h-1 mx-auto rounded-full"
@@ -204,17 +197,6 @@ export default function TypesPage() {
               }}
             >
               {tCommon('takeTest')}
-            </a>
-            <a
-              href="./resources"
-              className="px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
-              style={{
-                border: '2px solid var(--color-primary)',
-                color: 'var(--color-primary)',
-                background: 'transparent',
-              }}
-            >
-              {tCommon('learnMore')}
             </a>
           </div>
         </div>

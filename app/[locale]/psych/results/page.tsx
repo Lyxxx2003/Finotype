@@ -25,6 +25,9 @@ export default function ResultsPage() {
   const tAnalysis = useTranslations('analysis');
   const tResults = useTranslations('results');
   const tTraits = useTranslations('traits');
+  const tHome = useTranslations('home');
+  const [standardFeedback, setStandardFeedback] = useState<string | null>(null);
+  const [submittingStandardFeedback, setSubmittingStandardFeedback] = useState(false);
 
   const finotypeCode = persona?.id ?? '';
   const finotypeName = persona && tPersonas.has(`${persona.id}.name`) ? tPersonas(`${persona.id}.name`) : finotypeCode;
@@ -67,6 +70,7 @@ export default function ResultsPage() {
           const data = await response.json();
           console.log('Stats fetched:', data);
           setStats(data);
+          setStandardFeedback(data?.sessionFeedback ?? null);
         } else {
           const errorData = await response.json();
           console.error('Failed to fetch stats:', errorData);
@@ -124,6 +128,27 @@ export default function ResultsPage() {
     shareToFacebook(getShareImageOptions());
   };
 
+  const handleStandardFeedback = async (feedback: 'down' | 'up' | 'heart' | 'skip') => {
+    if (submittingStandardFeedback) return;
+
+    setSubmittingStandardFeedback(true);
+    try {
+      const response = await fetch(`/${locale}/api/type-stats`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ finotype: persona?.id, standardFeedback: feedback }),
+      });
+
+      if (response.ok) {
+        setStandardFeedback(feedback);
+      }
+    } catch (error) {
+      console.error('Failed to save standard feedback:', error);
+    } finally {
+      setSubmittingStandardFeedback(false);
+    }
+  };
+
   if (!persona || !percentages) return <div className="p-8 text-center">{tResults('calculating')}</div>;
 
   return (
@@ -134,76 +159,71 @@ export default function ResultsPage() {
           style={{ background: 'var(--gradient-surface)' }}
         >
           <div className="p-8 space-y-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="space-y-3">
-                <div className="flex flex-wrap items-center gap-3">
-                  {displayName ? (
-                    <span className="text-sm font-semibold" style={{ color: 'var(--color-primary)' }}>
-                      {tResults('hey', { name: displayName })}
-                    </span>
-                  ) : null}
+            <div className="grid gap-6 md:grid-cols-2 items-stretch">
+              <div className="space-y-4 w-full flex flex-col items-center">
+                {displayName ? (
+                  <p className="text-2xl md:text-3xl font-extrabold text-center leading-tight" style={{ color: 'var(--color-primary)' }}>
+                    {tResults('hey', { name: displayName })}
+                  </p>
+                ) : null}
+                <div
+                  className="inline-flex w-full flex-col items-center text-center rounded-2xl px-6 py-4 border gap-2"
+                  style={{
+                    borderColor: 'var(--color-neutral-200)',
+                    background: 'linear-gradient(145deg, rgba(30,64,175,0.08) 0%, rgba(14,165,233,0.06) 100%)',
+                    boxShadow: '0 8px 24px rgba(15, 23, 42, 0.08)'
+                  }}
+                >
                   <span
-                    className="text-xs uppercase tracking-[0.3em] font-semibold px-3 py-1 rounded-full"
+                    className="text-xs uppercase tracking-[0.25em] font-semibold px-3 py-1 rounded-full"
                     style={{ background: 'var(--gradient-primary)', color: 'white' }}
                   >
                     {tResults('yourFinotype')}
                   </span>
-                </div>
-                <div
-                  className="inline-flex flex-col items-start rounded-2xl px-6 py-3 border gap-1"
-                  style={{
-                    borderColor: 'var(--color-neutral-200)',
-                    background: 'var(--gradient-primary)',
-                    boxShadow: '0 12px 28px rgba(15, 23, 42, 0.12)'
-                  }}
-                >
-                  <span className="text-4xl font-bold tracking-[0.35em]" style={{ color: 'white' }}>
+                  <span className="text-4xl font-bold tracking-[0.28em]" style={{ color: 'var(--color-text)' }}>
                     {persona.id}
                   </span>
-                  <span className="text-sm font-semibold" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <span className="text-base font-semibold" style={{ color: 'var(--color-text-secondary)' }}>
                     {finotypeName}
                   </span>
                 </div>
               </div>
 
               <div
-                className="relative w-full md:w-[340px] min-h-[220px] overflow-hidden rounded-3xl"
+                className="relative w-full h-full min-h-0 overflow-hidden rounded-3xl"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(30,64,175,0.2) 0%, rgba(14,165,233,0.08) 100%)',
-                  border: '1px solid var(--color-neutral-200)'
+                  background: 'linear-gradient(165deg, rgba(30,64,175,0.08) 0%, rgba(14,165,233,0.1) 45%, rgba(255,255,255,0.7) 100%)'
                 }}
               >
                 <div
-                  className="absolute -top-10 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full"
+                  className="absolute inset-0"
                   style={{
-                    background: 'radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.15) 70%)',
-                    boxShadow: '0 0 35px rgba(59,130,246,0.6)'
+                    background: 'radial-gradient(circle at 50% 8%, rgba(255,255,255,0.52) 0%, rgba(255,255,255,0.08) 34%, rgba(255,255,255,0) 72%)'
                   }}
                 ></div>
                 <div
-                  className="absolute top-4 left-1/2 -translate-x-1/2 w-64 h-44"
+                  className="absolute left-1/2 top-0 -translate-x-1/2 w-56 h-full"
                   style={{
-                    clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-                    background: 'linear-gradient(180deg, rgba(59,130,246,0.35) 0%, rgba(14,165,233,0.05) 100%)'
+                    clipPath: 'polygon(50% 0%, 8% 100%, 92% 100%)',
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0.14) 45%, rgba(255,255,255,0.02) 100%)',
+                    filter: 'blur(0.2px)'
                   }}
                 ></div>
-                <svg
-                  className="absolute top-6 left-1/2 -translate-x-1/2"
-                  width="170"
-                  height="170"
-                  viewBox="0 0 100 100"
-                  aria-hidden="true"
-                >
-                  <polygon
-                    points="50,6 61,38 95,38 67,58 77,92 50,72 23,92 33,58 5,38 39,38"
-                    fill="rgba(30,64,175,0.22)"
-                  />
-                </svg>
-                <div className="relative z-10 h-full flex items-end justify-center pb-4">
+                <div
+                  className="absolute left-1/2 bottom-4 -translate-x-1/2 w-[64%] h-10 rounded-full"
+                  style={{
+                    background: 'radial-gradient(ellipse at center, rgba(14,165,233,0.24) 0%, rgba(14,165,233,0.1) 55%, rgba(14,165,233,0) 100%)',
+                    filter: 'blur(1px)'
+                  }}
+                ></div>
+                <div className="relative z-10 h-full flex items-center justify-center">
                   <img
                     src={`/${persona.mascot}`}
                     alt={`${persona.name} Mascot`}
-                    className="w-40 h-40 md:w-44 md:h-44 object-contain"
+                    className="w-36 h-36 md:w-40 md:h-40 object-contain"
+                    style={{
+                      filter: 'drop-shadow(0 14px 18px rgba(15,23,42,0.24)) drop-shadow(0 2px 3px rgba(255,255,255,0.28))'
+                    }}
                   />
                 </div>
               </div>
@@ -220,7 +240,7 @@ export default function ResultsPage() {
                   }}
                 >
                   <p
-                    className="text-xs uppercase tracking-[0.3em] font-semibold"
+                    className="text-lg font-semibold"
                     style={{ color: 'var(--color-text-secondary)' }}
                   >
                     {tResults('peopleLikeYou')}
@@ -256,10 +276,10 @@ export default function ResultsPage() {
                     borderColor: 'var(--color-neutral-200)'
                   }}
                 >
-                  <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text)' }}>
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--color-text)' }}>
                     {tResults('aboutYourFinotype')}
                   </h3>
-                  <p className="leading-relaxed text-lg" style={{ color: 'var(--color-text-secondary)' }}>
+                  <p className="leading-relaxed text-base font-semibold" style={{ color: 'var(--color-text-secondary)' }}>
                     {tPersonas(`${persona.id}.description`)}
                   </p>
                 </div>
@@ -276,7 +296,57 @@ export default function ResultsPage() {
           onShareX={handleShareX}
           onShareFacebook={handleShareFacebook}
           t={tAnalysis}
+          extraAction={{
+            href: `/${locale}/technical/question`,
+            label: tHome('proSimulation'),
+          }}
         />
+
+        {standardFeedback === null ? (
+          <div className="card-professional p-5 text-center" data-html2canvas-ignore>
+            <p className="font-semibold mb-3" style={{ color: 'var(--color-text)' }}>
+              {tResults('feedbackQuestion')}
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center">
+              <button
+                type="button"
+                onClick={() => handleStandardFeedback('down')}
+                disabled={submittingStandardFeedback}
+                className="btn-professional-outline"
+              >
+                {tResults('feedbackThumbsDown')}
+              </button>
+              <button
+                type="button"
+                onClick={() => handleStandardFeedback('up')}
+                disabled={submittingStandardFeedback}
+                className="btn-professional-outline"
+              >
+                {tResults('feedbackThumbsUp')}
+              </button>
+              <button
+                type="button"
+                onClick={() => handleStandardFeedback('heart')}
+                disabled={submittingStandardFeedback}
+                className="btn-professional-outline"
+              >
+                {tResults('feedbackHeart')}
+              </button>
+              <button
+                type="button"
+                onClick={() => handleStandardFeedback('skip')}
+                disabled={submittingStandardFeedback}
+                className="btn-professional-outline"
+              >
+                {tResults('feedbackSkip')}
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="alert-success text-center" data-html2canvas-ignore>
+            {tResults('feedbackThanks')}
+          </div>
+        )}
       </div>
     </div>
   );

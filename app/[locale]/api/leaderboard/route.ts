@@ -5,6 +5,7 @@ type LeaderboardEntry = {
   userId: string;
   displayName: string;
   highestScore: number;
+  isCurrentUser: boolean;
 };
 
 export async function GET() {
@@ -44,10 +45,8 @@ export async function GET() {
       }
     }
 
+    friendIdSet.add(user.id);
     const friendIds = Array.from(friendIdSet);
-    if (friendIds.length === 0) {
-      return NextResponse.json({ leaderboard: [] as LeaderboardEntry[] });
-    }
 
     const [{ data: profiles, error: profileError }, { data: lessons, error: lessonError }] = await Promise.all([
       supabase.from('profiles').select('id, display_name').in('id', friendIds),
@@ -71,6 +70,7 @@ export async function GET() {
         userId: profile.id,
         displayName: profile.display_name?.trim() || 'Friend',
         highestScore: lessonMap.get(profile.id) ?? 0,
+        isCurrentUser: profile.id === user.id,
       };
     });
 

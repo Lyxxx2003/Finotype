@@ -11,9 +11,13 @@ interface ResultsButtonsProps {
   onShareX: () => void;
   onShareFacebook: () => void;
   t: any;
+  extraAction?: {
+    href: string;
+    label: string;
+  };
 }
 
-export function ResultsButtons({ locale, onShare, onDownload, onShareLink, onShareX, onShareFacebook, t }: ResultsButtonsProps) {
+export function ResultsButtons({ locale, onShare, onDownload, onShareLink, onShareX, onShareFacebook, t, extraAction }: ResultsButtonsProps) {
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -160,6 +164,11 @@ export function ResultsButtons({ locale, onShare, onDownload, onShareLink, onSha
       <Link href={`/${locale}`} className="btn-professional-outline text-center">
         {t('returnHome')}
       </Link>
+      {extraAction ? (
+        <Link href={extraAction.href} className="btn-professional-outline text-center">
+          {extraAction.label}
+        </Link>
+      ) : null}
     </div>
   );
 }

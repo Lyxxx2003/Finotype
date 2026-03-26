@@ -78,7 +78,7 @@ export default function Home() {
 
             {/* Title with professional gradient */}
             <h1
-              className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4 sm:mb-6 relative z-10"
+              className="text-4xl sm:text-6xl lg:text-7xl leading-[1.05] font-bold tracking-tight mb-4 sm:mb-6 relative z-10"
               style={{
                 animation: 'fadeInUp 0.8s ease-out 0.4s both',
                 background: 'var(--gradient-primary)',
@@ -92,7 +92,7 @@ export default function Home() {
             </h1>
 
             <p
-              className="text-lg sm:text-xl mb-8 sm:mb-10 max-w-2xl leading-relaxed relative z-10 font-medium"
+              className="mt-3 sm:mt-5 text-lg sm:text-xl mb-8 sm:mb-10 max-w-2xl leading-relaxed relative z-10 font-medium"
               style={{
                 animation: 'fadeInUp 0.8s ease-out 0.6s both',
                 color: 'var(--color-text-secondary)'

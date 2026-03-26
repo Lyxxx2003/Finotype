@@ -14,33 +14,21 @@ export interface Database {
           id: string
           display_name: string | null
           created_at: string
-          industry: string | null
-          familiarity: string | null
-          post_familiarity: string | null
-          salary: string | null
-          payment_freq: string | null
+          feedback: string | null
           email_verified: boolean
         }
         Insert: {
           id: string
           display_name?: string | null
           created_at?: string
-          industry?: string | null
-          familiarity?: string | null
-          post_familiarity?: string | null
-          salary?: string | null
-          payment_freq?: string | null
+          feedback?: string | null
           email_verified?: boolean
         }
         Update: {
           id?: string
           display_name?: string | null
           created_at?: string
-          industry?: string | null
-          familiarity?: string | null
-          post_familiarity?: string | null
-          salary?: string | null
-          payment_freq?: string | null
+          feedback?: string | null
           email_verified?: boolean
         }
       }
@@ -104,18 +92,21 @@ export interface Database {
           id: string
           session_id: string
           finotype: string
+          feedback: string | null
           created_at: string
         }
         Insert: {
           id?: string
           session_id: string
           finotype: string
+          feedback?: string | null
           created_at?: string
         }
         Update: {
           id?: string
           session_id?: string
           finotype?: string
+          feedback?: string | null
           created_at?: string
         }
       }
