@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { createClient } from '@/lib/supabase/client';
 import RadarChart from '@/components/RadarChart';
 import { ResultsButtons } from '@/components/ResultsButtons';
+import { FeedbackReactions } from '@/components/FeedbackReactions';
 import {
   downloadElementAsImage,
   nativeShareElement,
@@ -110,6 +111,7 @@ export default function TechnicalQuestionPage() {
   const [loadedAsFinished, setLoadedAsFinished] = useState(false);
   const [technicalFeedback, setTechnicalFeedback] = useState<string | null>(null);
   const [submittingTechnicalFeedback, setSubmittingTechnicalFeedback] = useState(false);
+  const [hasExistingTechnicalFeedback, setHasExistingTechnicalFeedback] = useState(false);
 
   const toRevealed = (input: Record<string, string>) =>
     Object.keys(input).reduce<Record<string, boolean>>((acc, key) => {
@@ -133,6 +135,7 @@ export default function TechnicalQuestionPage() {
         if (feedbackResponse.ok) {
           const feedbackData = await feedbackResponse.json();
           setTechnicalFeedback(feedbackData?.technicalFeedback ?? null);
+          setHasExistingTechnicalFeedback((feedbackData?.technicalFeedback ?? null) !== null);
         }
       } catch (error) {
         console.error('Failed to load technical feedback:', error);
@@ -744,49 +747,19 @@ export default function TechnicalQuestionPage() {
                         t={tAnalysis}
                       />
 
-                      {technicalFeedback === null ? (
-                        <div className="card-professional p-5 mt-4 text-center" data-html2canvas-ignore>
-                          <p className="font-semibold mb-3" style={{ color: 'var(--color-text)' }}>
-                            {t('ui.feedbackQuestion')}
-                          </p>
-                          <div className="flex flex-wrap gap-2 justify-center">
-                            <button
-                              type="button"
-                              onClick={() => handleTechnicalFeedback('down')}
-                              disabled={submittingTechnicalFeedback}
-                              className="btn-professional-outline"
-                            >
-                              {t('ui.feedbackThumbsDown')}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => handleTechnicalFeedback('up')}
-                              disabled={submittingTechnicalFeedback}
-                              className="btn-professional-outline"
-                            >
-                              {t('ui.feedbackThumbsUp')}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => handleTechnicalFeedback('heart')}
-                              disabled={submittingTechnicalFeedback}
-                              className="btn-professional-outline"
-                            >
-                              {t('ui.feedbackHeart')}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => handleTechnicalFeedback('skip')}
-                              disabled={submittingTechnicalFeedback}
-                              className="btn-professional-outline"
-                            >
-                              {t('ui.feedbackSkip')}
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="alert-success mt-4 text-center" data-html2canvas-ignore>
-                          {t('ui.feedbackThanks')}
+                      {!hasExistingTechnicalFeedback && (
+                        <div className="mt-4">
+                          <FeedbackReactions
+                            feedback={technicalFeedback as 'down' | 'up' | 'heart' | 'skip' | null}
+                            submitting={submittingTechnicalFeedback}
+                            question={t('ui.feedbackQuestion')}
+                            thumbsDownLabel={t('ui.feedbackThumbsDown')}
+                            thumbsUpLabel={t('ui.feedbackThumbsUp')}
+                            heartLabel={t('ui.feedbackHeart')}
+                            skipLabel={t('ui.feedbackSkip')}
+                            thanksText={t('ui.feedbackThanks')}
+                            onSubmit={handleTechnicalFeedback}
+                          />
                         </div>
                       )}
                     </div>

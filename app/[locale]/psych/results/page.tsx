@@ -11,6 +11,7 @@ import { nativeShare, copyShareLink, shareToX, shareToFacebook } from '@/compone
 import { Persona } from '@/lib/psych/data';
 import { ResultsButtons } from '@/components/ResultsButtons';
 import { PercentageCard } from '@/components/PercentageCard';
+import { FeedbackReactions } from '@/components/FeedbackReactions';
 
 export default function ResultsPage() {
   const [persona, setPersona] = useState<Persona | null>(null);
@@ -28,6 +29,7 @@ export default function ResultsPage() {
   const tHome = useTranslations('home');
   const [standardFeedback, setStandardFeedback] = useState<string | null>(null);
   const [submittingStandardFeedback, setSubmittingStandardFeedback] = useState(false);
+  const [hasExistingStandardFeedback, setHasExistingStandardFeedback] = useState(false);
 
   const finotypeCode = persona?.id ?? '';
   const finotypeName = persona && tPersonas.has(`${persona.id}.name`) ? tPersonas(`${persona.id}.name`) : finotypeCode;
@@ -71,6 +73,7 @@ export default function ResultsPage() {
           console.log('Stats fetched:', data);
           setStats(data);
           setStandardFeedback(data?.sessionFeedback ?? null);
+          setHasExistingStandardFeedback((data?.sessionFeedback ?? null) !== null);
         } else {
           const errorData = await response.json();
           console.error('Failed to fetch stats:', errorData);
@@ -302,50 +305,18 @@ export default function ResultsPage() {
           }}
         />
 
-        {standardFeedback === null ? (
-          <div className="card-professional p-5 text-center" data-html2canvas-ignore>
-            <p className="font-semibold mb-3" style={{ color: 'var(--color-text)' }}>
-              {tResults('feedbackQuestion')}
-            </p>
-            <div className="flex flex-wrap gap-2 justify-center">
-              <button
-                type="button"
-                onClick={() => handleStandardFeedback('down')}
-                disabled={submittingStandardFeedback}
-                className="btn-professional-outline"
-              >
-                {tResults('feedbackThumbsDown')}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleStandardFeedback('up')}
-                disabled={submittingStandardFeedback}
-                className="btn-professional-outline"
-              >
-                {tResults('feedbackThumbsUp')}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleStandardFeedback('heart')}
-                disabled={submittingStandardFeedback}
-                className="btn-professional-outline"
-              >
-                {tResults('feedbackHeart')}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleStandardFeedback('skip')}
-                disabled={submittingStandardFeedback}
-                className="btn-professional-outline"
-              >
-                {tResults('feedbackSkip')}
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="alert-success text-center" data-html2canvas-ignore>
-            {tResults('feedbackThanks')}
-          </div>
+        {!hasExistingStandardFeedback && (
+          <FeedbackReactions
+            feedback={standardFeedback as 'down' | 'up' | 'heart' | 'skip' | null}
+            submitting={submittingStandardFeedback}
+            question={tResults('feedbackQuestion')}
+            thumbsDownLabel={tResults('feedbackThumbsDown')}
+            thumbsUpLabel={tResults('feedbackThumbsUp')}
+            heartLabel={tResults('feedbackHeart')}
+            skipLabel={tResults('feedbackSkip')}
+            thanksText={tResults('feedbackThanks')}
+            onSubmit={handleStandardFeedback}
+          />
         )}
       </div>
     </div>
