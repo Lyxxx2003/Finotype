@@ -92,10 +92,11 @@ export default function Home() {
             </h1>
 
             <p
-              className="mt-3 sm:mt-5 text-lg sm:text-xl mb-8 sm:mb-10 max-w-2xl leading-relaxed relative z-10 font-medium"
+              className="mt-3 sm:mt-5 mb-8 sm:mb-10 leading-relaxed relative z-10 font-medium whitespace-nowrap"
               style={{
                 animation: 'fadeInUp 0.8s ease-out 0.6s both',
-                color: 'var(--color-text-secondary)'
+                color: 'var(--color-text-secondary)',
+                fontSize: 'clamp(0.72rem, 2vw, 1rem)'
               }}
             >
               {t('subtitle')}

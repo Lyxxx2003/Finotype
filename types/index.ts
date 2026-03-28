@@ -4,6 +4,8 @@ export type FinancialType = `${'A' | 'G'}${'F' | 'P'}${'D' | 'I'}${'E' | 'N'}`;
 
 export type AnswerValue = string | string[];
 
+export type FeedbackValue = 'down' | 'up' | 'heart' | 'skip' | null;
+
 export type LessonProgress = {
   id: string;
   user_id: string;
