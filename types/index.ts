@@ -105,4 +105,11 @@ export type Module = {
   takeaway: string[];
 };
 
+export type GlossaryPopoverState = {
+  term: string;
+  left: number;
+  top: number;
+  placement: 'top' | 'bottom';
+};
+
 export type Locale = typeof locales[number];
