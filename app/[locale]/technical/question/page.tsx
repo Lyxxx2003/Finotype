@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { createPortal } from 'react-dom';
 import { createClient } from '@/lib/supabase/client';
 import RadarChart from '@/components/RadarChart';
 import { ResultsButtons } from '@/components/ResultsButtons';
@@ -15,7 +16,7 @@ import {
   shareToFacebook,
 } from '@/components/ShareUtil';
 import { MODULES, SKILLS, GLOSSARY } from '@/lib/technical/data';
-import { Module } from '@/types';
+import { Module, GlossaryPopoverState } from '@/types';
 import {
   flattenQuestions,
   computeScoresFromAnswers,
@@ -31,7 +32,7 @@ import {
 
 function renderTextWithTooltips(
   text: string,
-  onTermClick: (term: string) => void
+  onTermClick: (term: string, element: HTMLElement) => void
 ) {
   const parts = text.split(/(\[\[[^[\]]+\]\])/g);
 
@@ -43,7 +44,7 @@ function renderTextWithTooltips(
         <button
           key={`${term}-${idx}`}
           type="button"
-          onClick={() => onTermClick(term)}
+          onClick={(event) => onTermClick(term, event.currentTarget)}
           className="underline decoration-dotted underline-offset-4 font-medium"
           style={{ color: 'var(--color-primary)' }}
         >
@@ -63,6 +64,7 @@ export default function TechnicalQuestionPage() {
   const t = useTranslations('technicalQuestion');
   const tAnalysis = useTranslations('analysis');
   const radarShareRef = useRef<HTMLDivElement | null>(null);
+  const glossaryPopoverRef = useRef<HTMLDivElement | null>(null);
 
   const localizedModules = useMemo(() => {
     try {
@@ -106,7 +108,7 @@ export default function TechnicalQuestionPage() {
   const [activeModuleId, setActiveModuleId] = useState<string>('');
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
-  const [glossaryTerm, setGlossaryTerm] = useState<string | null>(null);
+  const [glossaryPopover, setGlossaryPopover] = useState<GlossaryPopoverState | null>(null);
   const [hasLoadedProgress, setHasLoadedProgress] = useState(false);
   const [loadedAsFinished, setLoadedAsFinished] = useState(false);
   const [technicalFeedback, setTechnicalFeedback] = useState<string | null>(null);
@@ -201,6 +203,29 @@ export default function TechnicalQuestionPage() {
     });
   }, [activeModuleId]);
 
+  useEffect(() => {
+    if (!glossaryPopover) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (glossaryPopoverRef.current && !glossaryPopoverRef.current.contains(target)) {
+        setGlossaryPopover(null);
+      }
+    };
+
+    const closePopover = () => setGlossaryPopover(null);
+
+    document.addEventListener('mousedown', handlePointerDown);
+    window.addEventListener('scroll', closePopover, true);
+    window.addEventListener('resize', closePopover);
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      window.removeEventListener('scroll', closePopover, true);
+      window.removeEventListener('resize', closePopover);
+    };
+  }, [glossaryPopover]);
+
   const answeredQuestions = Object.keys(revealed).length;
   const allAnswered = answeredQuestions === totalQuestions;
 
@@ -241,6 +266,38 @@ export default function TechnicalQuestionPage() {
   const setAnswer = (questionId: string, choiceId: string) => {
     setAnswers(prev => ({ ...prev, [questionId]: choiceId }));
     setRevealed(prev => ({ ...prev, [questionId]: true }));
+  };
+
+  const handleTermClick = (term: string, element: HTMLElement) => {
+    const rect = element.getBoundingClientRect();
+    const spacing = 10;
+    const estimatedHeight = 220;
+    const viewportPadding = 16;
+
+    const centeredX = rect.left + rect.width / 2;
+    const left = Math.min(
+      window.innerWidth - viewportPadding,
+      Math.max(viewportPadding, centeredX)
+    );
+
+    const hasRoomBelow = window.innerHeight - rect.bottom > estimatedHeight;
+
+    if (hasRoomBelow) {
+      setGlossaryPopover({
+        term,
+        left,
+        top: rect.bottom + spacing,
+        placement: 'bottom',
+      });
+      return;
+    }
+
+    setGlossaryPopover({
+      term,
+      left,
+      top: rect.top - spacing,
+      placement: 'top',
+    });
   };
 
   const getShareMeta = () => ({
@@ -480,7 +537,7 @@ export default function TechnicalQuestionPage() {
                               className="p-4 rounded-xl leading-7"
                               style={{ backgroundColor: 'var(--color-background)', color: 'var(--color-text)' }}
                             >
-                              {renderTextWithTooltips(paragraph, setGlossaryTerm)}
+                              {renderTextWithTooltips(paragraph, handleTermClick)}
                             </div>
                           ))}
                         </div>
@@ -837,44 +894,44 @@ export default function TechnicalQuestionPage() {
         </div>
       </div>
 
-      {glossaryTerm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0"
-            style={{ backgroundColor: 'rgba(0,0,0,0.35)' }}
-            onClick={() => setGlossaryTerm(null)}
-          />
-          <div
-            className="relative max-w-md w-full rounded-2xl shadow-2xl p-6"
-            style={{
-              backgroundColor: 'var(--color-surface)',
-              borderWidth: '1px',
-              borderColor: 'var(--color-neutral-200)'
-            }}
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-xl font-bold" style={{ color: 'var(--color-text)' }}>
-                  {glossaryTerm}
-                </h3>
-                <p className="mt-3 leading-7" style={{ color: 'var(--color-text-secondary)' }}>
-                  {localizedGlossary[glossaryTerm] ?? GLOSSARY[glossaryTerm] ?? t('ui.definitionNotFound')}
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setGlossaryTerm(null)}
-                className="px-3 py-1 rounded-lg border"
-                style={{
-                  borderColor: 'var(--color-neutral-300)',
-                  color: 'var(--color-text)'
-                }}
-              >
-                {t('ui.close')}
-              </button>
+      {glossaryPopover && typeof document !== 'undefined' && createPortal(
+        <div
+          ref={glossaryPopoverRef}
+          className="fixed z-50 w-[min(360px,calc(100vw-24px))] rounded-2xl shadow-2xl p-5"
+          style={{
+            left: `${glossaryPopover.left}px`,
+            top: `${glossaryPopover.top}px`,
+            transform: glossaryPopover.placement === 'top' ? 'translate(-50%, -100%)' : 'translateX(-50%)',
+            backgroundColor: 'var(--color-surface)',
+            borderWidth: '1px',
+            borderColor: 'var(--color-neutral-200)'
+          }}
+          role="dialog"
+          aria-label={glossaryPopover.term}
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-bold" style={{ color: 'var(--color-text)' }}>
+                {glossaryPopover.term}
+              </h3>
+              <p className="mt-2 leading-7 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                {localizedGlossary[glossaryPopover.term] ?? GLOSSARY[glossaryPopover.term] ?? t('ui.definitionNotFound')}
+              </p>
             </div>
+            <button
+              type="button"
+              onClick={() => setGlossaryPopover(null)}
+              className="px-2 py-1 rounded-lg border text-xs font-semibold"
+              style={{
+                borderColor: 'var(--color-neutral-300)',
+                color: 'var(--color-text)'
+              }}
+            >
+              x
+            </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
